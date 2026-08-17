@@ -17,14 +17,14 @@ export const explainKnowledge = async (req, res) => {
           {
             role: 'system',
             content:
-              '你是一位资深高中教师，用中文为春季高考考生讲解知识点。只输出 JSON，格式：{"explanation":"详细讲解","keyPoints":["要点1","要点2"],"examples":["示例1","示例2"],"relatedTopics":["相关知识点1","相关知识点2"]}',
+              '你是一位资深高中教师，用中文为春季高考考生讲解知识点。只输出 JSON，格式：{"explanation":"详细讲解(100字以内,直击考点)","keyPoints":["要点1","要点2"],"examples":["示例1"],"relatedTopics":["相关知识点1"]}。内容务必精炼，不要空话。',
           },
           {
             role: 'user',
             content: `知识点名称：${kp.name}\n编号：${kp.code}\n描述：${kp.description || '无'}\n请结合春季高考考查方式讲解，简洁实用。`,
           },
         ],
-        { temperature: 0.5, json: true, maxTokens: 900 }
+        { temperature: 0.5, json: true, maxTokens: 600 }
       );
       const parsed = safeJson(text);
       if (parsed?.explanation) {
@@ -109,14 +109,14 @@ export const solveQuestion = async (req, res) => {
             {
               role: 'system',
               content:
-                '你是一位春季高考辅导老师，针对学生作答情况给出解题分析。只输出 JSON，格式：{"explanation":"针对对错情况的解析","stepByStep":["步骤1",...],"tips":"解题技巧","relatedKnowledge":["知识点1",...]}',
+                '你是一位春季高考辅导老师，针对学生作答情况给出解题分析。只输出 JSON，格式：{"explanation":"针对对错情况的解析(60字内)","stepByStep":["步骤1","步骤2"],"tips":"解题技巧一句话","relatedKnowledge":["知识点1"]}。内容精炼。',
             },
             {
               role: 'user',
               content: `题目（${question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题'}）：${question.stem}\n选项：${question.options?.join('；') || '无'}\n标准答案：${answer}\n题目解析：${analysis}\n学生作答：${userAnswer || '（未作答）'}\n判分结果：${isCorrect ? '正确' : '错误'}\n请给出解释与下一步建议。`,
             },
           ],
-          { temperature: 0.4, json: true, maxTokens: 700 }
+          { temperature: 0.4, json: true, maxTokens: 500 }
         );
         const parsed = safeJson(text);
         if (parsed?.explanation) {
@@ -166,11 +166,11 @@ export const reviewEssay = async (req, res) => {
             {
               role: 'system',
               content:
-                '你是一位广东春季高考语文阅卷教师，按 60 分制批改学生作文。只输出 JSON，格式：{"score":分数(30-58整数),"comment":"总评(80字内)","strengths":["优点1","优点2"],"weaknesses":["不足1","不足2"],"suggestions":["改进建议1","改进建议2"]}。评分要严格，内容空洞、偏题作文给低分。',
+                '你是一位广东春季高考语文阅卷教师，按 60 分制批改学生作文。只输出 JSON，格式：{"score":分数(30-58整数),"comment":"总评(60字内)","strengths":["优点1","优点2"],"weaknesses":["不足1"],"suggestions":["改进建议1","改进建议2"]}。评分要严格，内容空洞、偏题作文给低分。',
             },
             { role: 'user', content: `作文标题：${essayTitle}\n\n作文内容：\n${content}` },
           ],
-          { temperature: 0.3, json: true, maxTokens: 800 }
+          { temperature: 0.3, json: true, maxTokens: 600 }
         );
         const parsed = safeJson(text);
         if (parsed?.score && parsed.comment) {
