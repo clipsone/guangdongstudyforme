@@ -1,0 +1,460 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  username      String    @unique
+  email         String    @unique
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  targetScore   Int       @default(450)
+  examDate      DateTime  @default("2027-01-10T00:00:00.000Z")
+
+  exerciseRecords   ExerciseRecord[]
+  examRecords       Exam[]
+  recitationRecords RecitationRecord[]
+  studyTasks        StudyTask[]
+  studySessions     StudySession[]
+  masterySnapshots  MasterySnapshot[]
+  diagnosticRecords DiagnosticRecord[]
+  essays            Essay[]
+  chatRecords       ChatRecord[]
+  userAchievements  UserAchievement[]
+  weeklyReports     WeeklyReport[]
+}
+
+model Subject {
+  id          String   @id @default(uuid())
+  name        String   @unique // 语文/数学/英语
+  code        String   @unique // Y/M/E
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  chapters         Chapter[]
+  questions        Question[]
+  examTemplates    ExamTemplate[]
+  recitationItems  RecitationItem[]
+  masterySnapshots MasterySnapshot[]
+  exerciseRecords  ExerciseRecord[]
+  studySessions    StudySession[]
+}
+
+model Chapter {
+  id           String   @id @default(uuid())
+  subjectId    String
+  name         String
+  code         String   @unique
+  order        Int
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  subject         Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  knowledgePoints KnowledgePoint[]
+
+  @@index([subjectId])
+}
+
+model KnowledgePoint {
+  id             String   @id @default(uuid())
+  chapterId      String
+  code           String   @unique // Y1-1, M1-1, etc.
+  name           String
+  level          Int      // 1=章节 2=考点 3=子考点
+  parentId       String?
+  frequency      Int      @default(0) // 出题频次
+  difficulty     Int      @default(3) // 1-5
+  status         String   @default("pending") // pending/learning/mastered
+  mark           String   @default("none") // new/deleted/none
+  prerequisites  String[] @default([])
+  mastery        Int      @default(0) // 0-100
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  chapter          Chapter            @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  parent           KnowledgePoint?    @relation("KnowledgePointRelation", fields: [parentId], references: [id], onDelete: SetNull)
+  children         KnowledgePoint[]   @relation("KnowledgePointRelation")
+  questionKnowledge QuestionKnowledge[]
+  masterySnapshots MasterySnapshot[]
+
+  @@index([chapterId])
+  @@index([parentId])
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  subjectId   String
+  type        String   // choice/fill/essay/composite
+  stem        String   // 题干
+  options     Json?    // 选项JSON
+  answer      String   // 答案
+  solution    Json     // 解析JSON
+  difficulty  Int      @default(3) // 1-5
+  source      String?  // 来源
+  year        Int?
+  status      String   @default("active") // active/archived
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subject           Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  questionKnowledge QuestionKnowledge[]
+  exerciseQuestions ExerciseQuestion[]
+  examQuestions     ExamQuestion[]
+  wrongQuestions    WrongQuestion[]
+
+  @@index([subjectId])
+  @@index([type])
+  @@index([difficulty])
+}
+
+model QuestionKnowledge {
+  id             String   @id @default(uuid())
+  questionId     String
+  knowledgePointId String?
+
+  question       Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  knowledgePoint KnowledgePoint? @relation(fields: [knowledgePointId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, knowledgePointId])
+  @@index([questionId])
+  @@index([knowledgePointId])
+}
+
+model ExerciseRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  subjectId   String
+  startTime   DateTime
+  endTime     DateTime
+  totalQuestions Int
+  correctCount  Int
+  wrongCount    Int
+  accuracy      Float
+  status        String   @default("completed") // in_progress/completed
+  aiSummary     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject       Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  exerciseQuestions ExerciseQuestion[]
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model ExerciseQuestion {
+  id          String   @id @default(uuid())
+  exerciseId  String
+  questionId  String
+  userAnswer  String?
+  isCorrect   Boolean?
+  wrongReason String? // 错因：概念错误/计算错误/审题不清/粗心/其他
+  timeSpent   Int? // 秒
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  exercise   ExerciseRecord @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  question   Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([exerciseId])
+  @@index([questionId])
+}
+
+model WrongQuestion {
+  id          String   @id @default(uuid())
+  userId      String
+  questionId  String
+  wrongCount  Int      @default(1)
+  reviewCount Int      @default(0)
+  mastered    Boolean  @default(false)
+  lastWrongAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([userId])
+  @@index([questionId])
+}
+
+model ExamTemplate {
+  id          String   @id @default(uuid())
+  subjectId   String
+  name        String   @unique
+  description String
+  config      Json     // 题型配置JSON
+  totalScore  Int      @default(150)
+  duration    Int      // 分钟
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  exams   Exam[]
+
+  @@index([subjectId])
+}
+
+model Exam {
+  id          String   @id @default(uuid())
+  userId      String
+  templateId  String
+  score       Int?
+  rank        Int?
+  startTime   DateTime
+  endTime     DateTime?
+  status      String   @default("in_progress") // in_progress/completed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  template ExamTemplate    @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  questions ExamQuestion[]
+
+  @@index([userId])
+  @@index([templateId])
+}
+
+model ExamQuestion {
+  id       String   @id @default(uuid())
+  examId   String
+  questionId String
+  userAnswer  String?
+  score    Int?
+  isCorrect   Boolean?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  exam     Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([examId])
+  @@index([questionId])
+}
+
+model RecitationItem {
+  id          String   @id @default(uuid())
+  subjectId   String
+  category    String   // essay/vocabulary/formula
+  content     String
+  title       String?
+  phonetic    String?  // 音标
+  partOfSpeech String? // 词性
+  meaning     String?
+  example     String?
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subject     Subject           @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  records     RecitationRecord[]
+
+  @@index([subjectId])
+  @@index([category])
+}
+
+model RecitationRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  itemId      String
+  stage       Int      @default(1) // 艾宾浩斯阶段：1/2/4/7/15
+  reviewed    Boolean  @default(false)
+  nextReviewAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  item   RecitationItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, itemId])
+  @@index([userId])
+  @@index([itemId])
+  @@index([nextReviewAt])
+}
+
+model StudyTask {
+  id          String   @id @default(uuid())
+  userId      String
+  type        String   // knowledge/exercise/recitation/exam
+  targetId    String?  // 关联的知识点/背诵项目ID
+  title       String
+  description String?
+  targetCount Int?     // 目标数量
+  completed   Boolean  @default(false)
+  completedAt DateTime?
+  dueDate     DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessions      StudySession[]
+
+  @@index([userId])
+  @@index([dueDate])
+}
+
+model StudySession {
+  id          String   @id @default(uuid())
+  userId      String
+  taskId      String?
+  subjectId   String
+  duration    Int      // 秒
+  startedAt   DateTime
+  endedAt     DateTime
+  createdAt   DateTime @default(now())
+
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task StudyTask? @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([startedAt])
+}
+
+model MasterySnapshot {
+  id          String   @id @default(uuid())
+  userId      String
+  subjectId   String
+  knowledgePointId String?
+  mastery     Int      // 0-100
+  weekNumber  Int
+  recordedAt  DateTime @default(now())
+
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject        Subject        @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  knowledgePoint KnowledgePoint? @relation(fields: [knowledgePointId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([weekNumber])
+}
+
+model DiagnosticRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  subjectId   String
+  diagnosis   Json     // 诊断结果JSON
+  suggestions Json     // 建议JSON
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Essay {
+  id          String   @id @default(uuid())
+  userId      String
+  subjectId   String
+  title       String
+  content     String
+  type        String   // argument/exposition/narrative
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviews  EssayReview[]
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model EssayReview {
+  id          String   @id @default(uuid())
+  essayId     String
+  score       Int
+  comment     String
+  strengths   String[] @default([])
+  weaknesses  String[] @default([])
+  suggestions String[]
+  reviewedAt  DateTime @default(now())
+
+  essay Essay @relation(fields: [essayId], references: [id], onDelete: Cascade)
+
+  @@index([essayId])
+}
+
+model ChatRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  question    String
+  answer      String
+  context     Json?    // 上下文信息
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Resource {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  type        String   // document/video/audio
+  url         String
+  description String?
+  subjectId   String?
+  uploadedBy  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([subjectId])
+  @@index([type])
+}
+
+model Achievement {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  icon        String
+  condition   Json     // 解锁条件
+  createdAt   DateTime @default(now())
+
+  userAchievements UserAchievement[]
+
+  @@index([name])
+}
+
+model UserAchievement {
+  id             String   @id @default(uuid())
+  userId         String
+  achievementId  String
+  unlockedAt     DateTime @default(now())
+
+  achievement Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([achievementId])
+}
+
+model WeeklyReport {
+  id          String   @id @default(uuid())
+  userId      String
+  weekNumber  Int
+  year        Int
+  totalTime   Int      // 总学习时长（秒）
+  exerciseCount Int     // 练习题数
+  accuracy    Float    // 正确率
+  highlights  String[] @default([])
+  improvements String[] @default([])
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekNumber, year])
+  @@index([userId])
+}

@@ -1,0 +1,1204 @@
+[
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "已知集合 A={1,2,3}，则 A 的子集个数为（　）",
+    "options": [
+      "A. 4",
+      "B. 6",
+      "C. 7",
+      "D. 8"
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "含 n 个元素的集合的子集个数为 2ⁿ 个。A 有 3 个元素，所以子集个数为 2³=8 个。故选 D。"
+    },
+    "knowledgePointIds": [
+      "M1-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "已知集合 A={x|x²-3x+2=0}，B={1,2,3}，则 A∪B=（　）",
+    "options": [
+      "A. {1}",
+      "B. {1,2}",
+      "C. {1,2,3}",
+      "D. {2,3}"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "解方程 x²-3x+2=0 得 x=1 或 x=2，即 A={1,2}。A∪B={1,2}∪{1,2,3}={1,2,3}。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M1-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "「x>2」是「x>1」的（　）",
+    "options": [
+      "A. 充分不必要条件",
+      "B. 必要不充分条件",
+      "C. 充要条件",
+      "D. 既不充分也不必要条件"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "x>2 能推出 x>1（充分），但 x>1 推不出 x>2（如 x=1.5），所以是充分不必要条件。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M1-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "命题「∀x∈R，x²≥0」的否定是（　）",
+    "options": [
+      "A. ∀x∈R，x²<0",
+      "B. ∃x∈R，x²<0",
+      "C. ∃x∈R，x²≥0",
+      "D. ∀x∈R，x²≤0"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "全称命题的否定是特称命题：把「∀」改为「∃」，并把结论否定。故否定为「∃x∈R，x²<0」。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M1-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "已知命题 p：x>0，命题 q：x²>0，则 p 是 q 的（　）",
+    "options": [
+      "A. 充分不必要条件",
+      "B. 必要不充分条件",
+      "C. 充要条件",
+      "D. 既不充分也不必要条件"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "x>0 时必有 x²>0（充分）；但 x²>0 时 x 可为负数（如 x=-1），推不出 x>0。故 p 是 q 的充分不必要条件。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M1-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "计算 (1+i)(1-i)=（　）",
+    "options": [
+      "A. 0",
+      "B. 1",
+      "C. 2",
+      "D. 2i"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "(1+i)(1-i)=1-i²=1-(-1)=2。利用平方差公式，注意 i²=-1。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M2-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "复数 z=(2-i)/(1+i) 化简结果为（　）",
+    "options": [
+      "A. 1/2 - 3/2 i",
+      "B. 1/2 + 3/2 i",
+      "C. 3/2 - 1/2 i",
+      "D. 3/2 + 1/2 i"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "分子分母同乘分母的共轭 1-i：(2-i)(1-i)/[(1+i)(1-i)] = (2-2i-i+i²)/2 = (2-3i-1)/2 = 1/2 - 3/2 i。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M2-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "复数 z=3+4i 的模 |z|=______。",
+    "answer": "5",
+    "solution": {
+      "analysis": "|a+bi|=√(a²+b²)，所以 |3+4i|=√(9+16)=√25=5。"
+    },
+    "knowledgePointIds": [
+      "M2-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "复数 z=1+2i 的共轭复数为（　）",
+    "options": [
+      "A. 1-2i",
+      "B. -1+2i",
+      "C. 1+2i",
+      "D. -1-2i"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "共轭复数是实部相同、虚部互为相反数：z̄=1-2i。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M2-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "函数 f(x)=√(x-1) 的定义域为（　）",
+    "options": [
+      "A. (1,+∞)",
+      "B. [1,+∞)",
+      "C. (-∞,1]",
+      "D. R"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "偶次根号下需非负：x-1≥0，得 x≥1，即 [1,+∞)。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M3-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "已知 f(x)=2x+1，则 f(3)=______。",
+    "answer": "7",
+    "solution": {
+      "analysis": "将 x=3 代入：f(3)=2×3+1=7。"
+    },
+    "knowledgePointIds": [
+      "M3-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "函数 f(x)=x² 在区间 (-∞,0) 上（　）",
+    "options": [
+      "A. 单调递增",
+      "B. 单调递减",
+      "C. 先增后减",
+      "D. 不具有单调性"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "f'(x)=2x，当 x<0 时 f'(x)<0，所以 f(x) 在 (-∞,0) 上单调递减。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M3-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "log₂8=（　）",
+    "options": [
+      "A. 2",
+      "B. 3",
+      "C. 4",
+      "D. 8"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "因为 2³=8，所以 log₂8=3。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M3-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "指数函数 y=2ˣ 的图象恒过定点（　）",
+    "options": [
+      "A. (0,0)",
+      "B. (1,1)",
+      "C. (0,1)",
+      "D. (1,0)"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "当 x=0 时 y=2⁰=1，所以 y=2ˣ 恒过定点 (0,1)。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M3-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "已知 f(x)=x³，则 f'(1)=（　）",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 6"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "f'(x)=3x²，所以 f'(1)=3×1²=3。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M4-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "曲线 y=x² 在 x=1 处的切线斜率为______。",
+    "answer": "2",
+    "solution": {
+      "analysis": "y'=2x，切线斜率即导数值：x=1 时斜率为 2。"
+    },
+    "knowledgePointIds": [
+      "M4-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "函数 f(x)=x³-3x 在 x=1 处取得（　）",
+    "options": [
+      "A. 极大值",
+      "B. 极小值",
+      "C. 既非极大也非极小",
+      "D. 无法判断"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "f'(x)=3x²-3=3(x-1)(x+1)。当 x<-1 时 f'(x)>0，-1<x<1 时 f'(x)<0，x>1 时 f'(x)>0。x=1 处左减右增，为极小值。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M4-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "sin30°=（　）",
+    "options": [
+      "A. 0",
+      "B. 1/2",
+      "C. √2/2",
+      "D. √3/2"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "特殊角三角函数值：sin30°=1/2。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "cos(π-α)=（　）",
+    "options": [
+      "A. cosα",
+      "B. -cosα",
+      "C. sinα",
+      "D. -sinα"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "由诱导公式（二）：cos(π-α)=-cosα。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "tan45°=______。",
+    "answer": "1",
+    "solution": {
+      "analysis": "特殊角三角函数值：tan45°=1。"
+    },
+    "knowledgePointIds": [
+      "M5-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "若 sinα=3/5 且 α 为第二象限角，则 cosα=（　）",
+    "options": [
+      "A. 4/5",
+      "B. -4/5",
+      "C. 3/4",
+      "D. -3/4"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "由 sin²α+cos²α=1 得 cos²α=1-9/25=16/25，cosα=±4/5。第二象限余弦为负，所以 cosα=-4/5。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "已知向量 a=(1,2)，b=(2,1)，则 a·b=（　）",
+    "options": [
+      "A. 3",
+      "B. 4",
+      "C. 5",
+      "D. 6"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "向量数量积的坐标公式：a·b=x₁x₂+y₁y₂=1×2+2×1=4。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M6-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "已知向量 a=(3,4)，则 |a|=______。",
+    "answer": "5",
+    "solution": {
+      "analysis": "向量模长 |a|=√(3²+4²)=√25=5。"
+    },
+    "knowledgePointIds": [
+      "M6-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "已知向量 a=(1,1)，b=(2,0)，则 a+b=（　）",
+    "options": [
+      "A. (3,1)",
+      "B. (1,3)",
+      "C. (2,2)",
+      "D. (3,2)"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "向量加法坐标对应相加：(1+2, 1+0)=(3,1)。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M6-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "棱长为 2 的正方体的体积为（　）",
+    "options": [
+      "A. 4",
+      "B. 6",
+      "C. 8",
+      "D. 16"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "正方体体积 V=a³=2³=8。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M7-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "底面半径为 1、高为 3 的圆柱的体积为（　）",
+    "options": [
+      "A. 2π",
+      "B. 3π",
+      "C. 6π",
+      "D. 9π"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "圆柱体积 V=πr²h=π×1²×3=3π。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M7-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "直线 y=2x+1 的斜率为（　）",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. -2",
+      "D. 1/2"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "直线 y=kx+b 中 k 为斜率，故斜率 k=2。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M8-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "过点 (1,1) 且斜率为 2 的直线方程为 y=______。",
+    "answer": "2x-1",
+    "solution": {
+      "analysis": "点斜式：y-1=2(x-1)，整理得 y=2x-1。"
+    },
+    "knowledgePointIds": [
+      "M8-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "椭圆 x²/4 + y²/3 = 1 的长半轴长为（　）",
+    "options": [
+      "A. 2",
+      "B. 3",
+      "C. 4",
+      "D. √3"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "标准方程 x²/a²+y²/b²=1 中 a²=4，a=2（长半轴在 x 轴方向）。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "抛物线 y²=4x 的焦点坐标为（　）",
+    "options": [
+      "A. (1,0)",
+      "B. (2,0)",
+      "C. (0,1)",
+      "D. (0,2)"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "抛物线 y²=2px 的焦点为 (p/2,0)。y²=4x 中 2p=4，p=2，焦点为 (1,0)。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "一组数据 1,2,3,4,5 的中位数是（　）",
+    "options": [
+      "A. 2",
+      "B. 2.5",
+      "C. 3",
+      "D. 3.5"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "5 个数据排序后中间位置为第 3 个，即 3。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M10-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "抛掷一枚质地均匀的骰子，朝上的点数大于 4 的概率为（　）",
+    "options": [
+      "A. 1/6",
+      "B. 1/3",
+      "C. 1/2",
+      "D. 2/3"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "点数大于 4 的有 5、6 两种结果，总结果 6 种，P=2/6=1/3。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M10-6"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "数据 1,2,3,4,5,6,7,8,9,10 的第 50 百分位数为______。",
+    "answer": "5.5",
+    "solution": {
+      "analysis": "10 个数据，第 50 百分位数即中位数，为第 5 和第 6 个数据的平均数 (5+6)/2=5.5。"
+    },
+    "knowledgePointIds": [
+      "M10-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 1,
+    "stem": "样本 2,4,6,8 的平均数为（　）",
+    "options": [
+      "A. 4",
+      "B. 5",
+      "C. 6",
+      "D. 7"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "平均数 x̄=(2+4+6+8)/4=20/4=5。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M10-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "从 3 名男生、2 名女生中任选 2 人，恰有 1 名女生的概率为（　）",
+    "options": [
+      "A. 1/10",
+      "B. 3/10",
+      "C. 3/5",
+      "D. 1/5"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "总选法 C₅²=10；恰有 1 名女生即选 1 男 1 女：C₃¹·C₂¹=6。P=6/10=3/5。故选 C。"
+    },
+    "knowledgePointIds": [
+      "M10-6"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "函数 f(x)=x²-2x 的单调递减区间为（　）",
+    "options": [
+      "A. (-∞,1)",
+      "B. (1,+∞)",
+      "C. (-∞,2)",
+      "D. (2,+∞)"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "f'(x)=2x-2，令 f'(x)<0 得 x<1，故递减区间为 (-∞,1)。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M3-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "在 △ABC 中，若 A=60°，B=45°，则 a:b=（　）",
+    "options": [
+      "A. √2:√3",
+      "B. √3:√2",
+      "C. 1:2",
+      "D. 2:1"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "由正弦定理 a/sinA=b/sinB，a:b=sinA:sinB=sin60°:sin45°=(√3/2):(√2/2)=√3:√2。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-7"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "已知 f(x)=x³-3x，则 f(x) 的极小值为______。",
+    "answer": "-2",
+    "solution": {
+      "analysis": "f'(x)=3x²-3=3(x-1)(x+1)。x=-1 处取得极大值 f(-1)=2；x=1 处取得极小值 f(1)=1-3=-2。"
+    },
+    "knowledgePointIds": [
+      "M4-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "复数 z=1+i 在复平面内对应的点位于（　）",
+    "options": [
+      "A. 第一象限",
+      "B. 第二象限",
+      "C. 第三象限",
+      "D. 第四象限"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "z=1+i 的实部为 1、虚部为 1，对应点 (1,1) 在第一象限。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M2-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "函数 f(x)=x³ 在定义域 R 上是（　）",
+    "options": [
+      "A. 偶函数",
+      "B. 奇函数",
+      "C. 非奇非偶函数",
+      "D. 既奇又偶函数"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "f(-x)=(-x)³=-x³=-f(x)，且定义域关于原点对称，故 f(x)=x³ 是奇函数。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M3-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "若 log₂x+log₂(x+1)=1，则 x=（　）",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 4"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "log₂x+log₂(x+1)=log₂[x(x+1)]=1，得 x(x+1)=2，即 x²+x-2=0，解得 x=1 或 x=-2（舍，真数须为正）。故 x=1，选 A。"
+    },
+    "knowledgePointIds": [
+      "M3-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "函数 f(x)=x³-3x 的单调递增区间为（　）",
+    "options": [
+      "A. (-∞,-1)∪(1,+∞)",
+      "B. (-1,1)",
+      "C. (-∞,1)",
+      "D. (1,+∞)"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "f'(x)=3x²-3=3(x-1)(x+1)。令 f'(x)>0 得 x<-1 或 x>1，故增区间为 (-∞,-1)∪(1,+∞)。选 A。"
+    },
+    "knowledgePointIds": [
+      "M4-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "sin75°=（　）",
+    "options": [
+      "A. (√6-√2)/4",
+      "B. (√6+√2)/4",
+      "C. (√2-√6)/4",
+      "D. √6/2"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "sin75°=sin(45°+30°)=sin45°cos30°+cos45°sin30°=√2/2·√3/2+√2/2·1/2=(√6+√2)/4。故选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "若 cosα=1/3，则 cos2α=（　）",
+    "options": [
+      "A. -7/9",
+      "B. 7/9",
+      "C. -8/9",
+      "D. 2/3"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "cos2α=2cos²α-1=2×(1/9)-1=2/9-1=-7/9。故选 A。"
+    },
+    "knowledgePointIds": [
+      "M5-6"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "在 △ABC 中，a=2，A=30°，则此三角形外接圆半径 R=（　）",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 4"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "由正弦定理 a/sinA=2R，得 2R=2/sin30°=2/(1/2)=4，故 R=2。选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-7"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "已知向量 a=(1,2)，b=(2,-1)，则 a 与 b 的夹角为（　）",
+    "options": [
+      "A. 0°",
+      "B. 45°",
+      "C. 90°",
+      "D. 180°"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "a·b=1×2+2×(-1)=0，数量积为 0 则两向量垂直，夹角为 90°。选 C。"
+    },
+    "knowledgePointIds": [
+      "M6-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "直线 y=2x+1 与直线 y=2x-3 的位置关系是______（填\"平行\"或\"垂直\"）。",
+    "answer": "平行",
+    "solution": {
+      "analysis": "两直线斜率均为 2，且截距不同，故两直线平行。"
+    },
+    "knowledgePointIds": [
+      "M8-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "椭圆 x²/4+y²/3=1 的离心率 e=（　）",
+    "options": [
+      "A. 1/2",
+      "B. √3/2",
+      "C. 1/4",
+      "D. √3/4"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "a²=4，b²=3，c²=a²-b²=1，c=1，离心率 e=c/a=1/2。选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "双曲线 x²/4-y²/5=1 的离心率为（　）",
+    "options": [
+      "A. 3/2",
+      "B. 5/4",
+      "C. √5/2",
+      "D. 3"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "a²=4，b²=5，c²=a²+b²=9，c=3，离心率 e=c/a=3/2。选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "抛物线 y²=8x 的准线方程为（　）",
+    "options": [
+      "A. x=-2",
+      "B. x=2",
+      "C. x=-4",
+      "D. x=4"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "y²=2px 中 2p=8，p=4，准线 x=-p/2=-2。选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-6"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "在区间 [0,4] 上任取一个实数 x，则 x∈[1,3] 的概率为（　）",
+    "options": [
+      "A. 1/4",
+      "B. 1/3",
+      "C. 1/2",
+      "D. 2/3"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "几何概型：P=区间长度之比=(3-1)/(4-0)=2/4=1/2。选 C。"
+    },
+    "knowledgePointIds": [
+      "M10-7"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "设 A、B 为互斥事件，P(A)=0.3，P(B)=0.4，则 P(A∪B)=（　）",
+    "options": [
+      "A. 0.12",
+      "B. 0.7",
+      "C. 0.3",
+      "D. 0.4"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "互斥事件 P(A∪B)=P(A)+P(B)=0.3+0.4=0.7。选 B。"
+    },
+    "knowledgePointIds": [
+      "M10-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "函数 y=√x 的图象所表示的函数是（　）",
+    "options": [
+      "A. 指数函数",
+      "B. 对数函数",
+      "C. 幂函数",
+      "D. 三角函数"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "y=√x=x^(1/2)，形如 y=x^α，是幂函数。选 C。"
+    },
+    "knowledgePointIds": [
+      "M3-6"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "函数 f(x)=x³-3x²+2 在区间 (0,3) 内的极小值为（　）",
+    "options": [
+      "A. -2",
+      "B. 0",
+      "C. 2",
+      "D. 3"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "f'(x)=3x²-6x=3x(x-2)。0<x<2 时 f'(x)<0，2<x<3 时 f'(x)>0，故 x=2 处取极小值 f(2)=8-12+2=-2。选 A。"
+    },
+    "knowledgePointIds": [
+      "M4-4"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "若 tanα=2，则 sinαcosα=（　）",
+    "options": [
+      "A. 1/5",
+      "B. 2/5",
+      "C. 3/5",
+      "D. 4/5"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "sinαcosα=tanα/(1+tan²α)=2/(1+4)=2/5。选 B。"
+    },
+    "knowledgePointIds": [
+      "M5-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "过点 (1,2) 和 (3,4) 的直线的斜率为（　）",
+    "options": [
+      "A. 1",
+      "B. -1",
+      "C. 2",
+      "D. 1/2"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "斜率 k=(4-2)/(3-1)=2/2=1。选 A。"
+    },
+    "knowledgePointIds": [
+      "M8-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "已知 F₁、F₂ 是椭圆 x²/4+y²/3=1 的两个焦点，P 为椭圆上一点，则 |PF₁|+|PF₂|=（　）",
+    "options": [
+      "A. 2",
+      "B. 3",
+      "C. 4",
+      "D. 8"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "椭圆定义：|PF₁|+|PF₂|=2a=2×2=4。选 C。"
+    },
+    "knowledgePointIds": [
+      "M9-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "下列函数中，既是偶函数又在 (0,+∞) 上单调递增的是（　）",
+    "options": [
+      "A. y=x³",
+      "B. y=x²",
+      "C. y=2ˣ",
+      "D. y=log₂x"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "y=x² 是偶函数（f(-x)=x²=f(x)），且在 (0,+∞) 上递增。y=x³ 为奇函数，y=2ˣ 与 y=log₂x 均非奇非偶。选 B。"
+    },
+    "knowledgePointIds": [
+      "M3-3",
+      "M3-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 4,
+    "stem": "在 △ABC 中，已知 a=√3，b=1，A=60°，则 B=______°。",
+    "answer": "30",
+    "solution": {
+      "analysis": "由正弦定理 a/sinA=b/sinB，sinB=bsinA/a=1×(√3/2)/√3=1/2。又 b<a 得 B<A，故 B=30°。"
+    },
+    "knowledgePointIds": [
+      "M5-7"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "已知向量 a=(2,1)，b=(1,-1)，则 2a+b=（　）",
+    "options": [
+      "A. (5,1)",
+      "B. (4,1)",
+      "C. (5,2)",
+      "D. (3,0)"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "2a+b=2(2,1)+(1,-1)=(4,2)+(1,-1)=(5,1)。选 A。"
+    },
+    "knowledgePointIds": [
+      "M6-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "正方体 ABCD-A₁B₁C₁D₁ 中，直线 A₁B 与直线 D₁C 的位置关系是（　）",
+    "options": [
+      "A. 相交",
+      "B. 平行",
+      "C. 异面",
+      "D. 无法判断"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "A₁B∥D₁C（二者均与 C₁D 平行且方向相同，为正方体中对边），故两直线平行。选 B。"
+    },
+    "knowledgePointIds": [
+      "M7-3"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "在三棱锥 P-ABC 中，若 PA⊥平面 ABC，AB⊥BC，则（　）",
+    "options": [
+      "A. PB⊥BC",
+      "B. PC⊥BC",
+      "C. PA⊥PB",
+      "D. AB⊥PC"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "PA⊥平面 ABC 得 PA⊥BC；又 AB⊥BC，且 PA 与 AB 相交，故 BC⊥平面 PAB，所以 BC⊥PB（即 PB⊥BC）。选 A。"
+    },
+    "knowledgePointIds": [
+      "M7-5"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 5,
+    "stem": "已知椭圆 C：x²/a²+y²/b²=1(a>b>0) 的离心率为 1/2，且过点 (2,0)，则椭圆的短轴长为（　）",
+    "options": [
+      "A. 2√3",
+      "B. 4",
+      "C. 2√2",
+      "D. √3"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "过 (2,0) 得 a=2；e=c/a=1/2 得 c=1；b²=a²-c²=4-1=3，b=√3，短轴长 2b=2√3。选 A。"
+    },
+    "knowledgePointIds": [
+      "M9-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 5,
+    "stem": "曲线 y=x³-3x²+1 在点 (1,-1) 处的切线方程为 y=______。",
+    "answer": "-3x+2",
+    "solution": {
+      "analysis": "y'=3x²-6x，在 x=1 处斜率 k=3-6=-3。切线：y+1=-3(x-1)，整理得 y=-3x+2。"
+    },
+    "knowledgePointIds": [
+      "M4-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 5,
+    "stem": "若复数 z 满足 z(1+i)=2i，则 z=（　）",
+    "options": [
+      "A. 1+i",
+      "B. 1-i",
+      "C. -1+i",
+      "D. -1-i"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "z=2i/(1+i)=2i(1-i)/((1+i)(1-i))=2i(1-i)/2=i(1-i)=i-i²=i+1=1+i。选 A。"
+    },
+    "knowledgePointIds": [
+      "M2-2"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "fill",
+    "difficulty": 5,
+    "stem": "某班有男生 30 人、女生 20 人，用分层抽样抽取 10 人，则男生应抽取______人。",
+    "answer": "6",
+    "solution": {
+      "analysis": "抽样比 10/50=1/5，男生 30×1/5=6 人。"
+    },
+    "knowledgePointIds": [
+      "M10-1"
+    ]
+  },
+  {
+    "subjectCode": "M",
+    "type": "choice",
+    "difficulty": 5,
+    "stem": "从 1,2,3,4,5 中任取 2 个不同的数，和为偶数的概率为（　）",
+    "options": [
+      "A. 1/5",
+      "B. 2/5",
+      "C. 3/5",
+      "D. 4/5"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "总取法 C₅²=10。和为偶数需两数同奇或同偶：奇 3 个取 2 个 C₃²=3，偶 2 个取 2 个 C₂²=1，共 4 种。P=4/10=2/5。选 B。"
+    },
+    "knowledgePointIds": [
+      "M10-6"
+    ]
+  }
+]

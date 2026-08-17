@@ -1,0 +1,96 @@
+import prisma from '../utils/prisma.js';
+
+// 获取知识图谱
+export const getKnowledge = async (req, res) => {
+  try {
+    const { subjectId } = req.query;
+
+    const where = subjectId ? { chapter: { subjectId } } : {};
+
+    const knowledgePoints = await prisma.knowledgePoint.findMany({
+      where,
+      include: {
+        chapter: {
+          include: {
+            subject: true
+          }
+        },
+        children: true,
+        parent: true
+      },
+      orderBy: [
+        { chapter: { order: 'asc' } },
+        { code: 'asc' }
+      ]
+    });
+
+    res.json({ data: knowledgePoints });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
+
+// 获取单个考点详情
+export const getKnowledgeById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const knowledgePoint = await prisma.knowledgePoint.findUnique({
+      where: { id },
+      include: {
+        chapter: {
+          include: {
+            subject: true
+          }
+        },
+        parent: true,
+        children: true
+      }
+    });
+
+    if (!knowledgePoint) {
+      return res.status(404).json({ error: { message: '考点不存在', status: 404 } });
+    }
+
+    // 前置依赖详情：prerequisites 字段存的是考点 code 数组
+    let prerequisitesDetails = [];
+    if (Array.isArray(knowledgePoint.prerequisites) && knowledgePoint.prerequisites.length > 0) {
+      prerequisitesDetails = await prisma.knowledgePoint.findMany({
+        where: { code: { in: knowledgePoint.prerequisites } }
+      });
+    }
+
+    // 获取相关题目统计
+    const questionStats = await prisma.questionKnowledge.groupBy({
+      by: ['questionId'],
+      where: { knowledgePointId: id },
+      _count: true
+    });
+
+    res.json({
+      data: { ...knowledgePoint, prerequisitesDetails },
+      stats: {
+        questionCount: questionStats.length
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
+
+// 更新知识点掌握度
+export const updateMastery = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { mastery } = req.body;
+
+    const updated = await prisma.knowledgePoint.update({
+      where: { id },
+      data: { mastery }
+    });
+
+    res.json({ data: updated });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};

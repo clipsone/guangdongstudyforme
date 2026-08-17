@@ -1,0 +1,3072 @@
+[
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Could you help me carry this heavy box to the classroom?\n— _____.\n",
+    "options": [
+      "A. It doesn't matter.",
+      "B. My pleasure.",
+      "C. Never mind.",
+      "D. That's right."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "考查回应他人请求的得体表达。对方请求帮助，答语应表示乐意帮忙，My pleasure（我的荣幸/很乐意）是标准回应。A项It doesn't matter用于回应道歉，表示“没关系”；C项Never mind用于安慰对方“别在意”；D项That's right表示赞同，均不符合请求帮助的语境。故选B。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Thank you so much for showing me around the school.\n— _____.\n",
+    "options": [
+      "A. Don't say that.",
+      "B. No, thanks.",
+      "C. It's my pleasure.",
+      "D. That's too bad."
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "考查回应感谢的得体表达。对方表达感谢，回答应用It's my pleasure / You're welcome（不客气，这是我的荣幸）。A项Don't say that不符合英语交际习惯；B项No, thanks用于婉拒对方提供的东西；D项That's too bad表示遗憾，与感谢语境无关。故选C。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— I'm sorry I forgot to bring your book back. I'll return it tomorrow.\n— _____. Take your time.\n",
+    "options": [
+      "A. No problem.",
+      "B. You're welcome.",
+      "C. I think so.",
+      "D. Go ahead."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查回应道歉的得体表达。对方道歉并说明补救措施，答语应表示谅解，No problem（没关系）最合适，后句Take your time（不急）也印证了宽容态度。B项You're welcome用于回应感谢；C项I think so表示“我认为是这样”；D项Go ahead用于允许对方做某事，均不合语境。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Would you like to join us for the school picnic this Saturday?\n— _____. I have to visit my grandparents.\n",
+    "options": [
+      "A. Yes, I'd love to.",
+      "B. I'd love to, but I'm afraid I can't.",
+      "C. It doesn't matter.",
+      "D. Of course not."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "考查回应邀请的得体表达。面对邀请，如果无法接受，应先表示感谢并礼貌拒绝，I'd love to, but I'm afraid I can't是标准句式，后句说明原因（要去看望祖父母）。A项与后句矛盾；C项It doesn't matter用于回应道歉或无关紧要的事；D项Of course not过于生硬无礼。故选B。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— I've been feeling tired these days. What should I do?\n— _____.\n",
+    "options": [
+      "A. Why don't you get more sleep?",
+      "B. I'm sorry to hear that.",
+      "C. It's up to you.",
+      "D. That's a good idea."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查对征求意见的应答。对方问What should I do（我该怎么办），这是在请求建议，答语应给出具体建议，Why don't you...?（为什么不……呢？）是提建议的常用句型。B项只是表示同情，没有回答问题；C项It's up to you表示“由你决定”，用于回应选择问题；D项That's a good idea用于评价对方提出的建议，此处对方并未提建议。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Could I use your pen for a moment? Mine doesn't work.\n— _____. Here you are.\n",
+    "options": [
+      "A. Sure, go ahead.",
+      "B. Not at all.",
+      "C. Never mind.",
+      "D. You're welcome."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查回应借用请求的得体表达。对方请求借用钢笔，后句Here you are（给你）表明说话人同意出借，因此前面应表示允许，Sure, go ahead（当然可以）最合适。B项Not at all用于回应感谢或mind类问句；C项Never mind用于安慰对方；D项You're welcome用于回应感谢。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— I've just won the first prize in the English speech contest!\n— _____. I'm so proud of you.\n",
+    "options": [
+      "A. Congratulations!",
+      "B. Good luck!",
+      "C. Best wishes!",
+      "D. Take it easy!"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查对好消息的祝贺表达。对方获奖后告知好消息，答语应表示祝贺，Congratulations（恭喜）是标准用语，后句I'm so proud of you（我真为你骄傲）进一步印证喜悦之情。B项Good luck用于祝愿对方将来好运，多用于事前；C项Best wishes用于送别或节日祝福；D项Take it easy用于让对方放松，均不符合祝贺语境。故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Do you mind if I close the window?\n— _____. It's really cold outside.\n",
+    "options": [
+      "A. Yes, I do.",
+      "B. Not at all.",
+      "C. Never mind.",
+      "D. It doesn't matter."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "考查Do you mind...?句型的应答，为易错陷阱题。对方问“你介意我关窗吗”，后句说明外面很冷，说明说话人不介意对方关窗，应回答Not at all（一点也不介意）或Of course not。A项Yes, I do表示“我介意”，与后句逻辑矛盾；C项Never mind用于安慰对方“别担心”；D项It doesn't matter用于回应道歉。故选B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Would you like something to drink, sir?\n— _____. Two cups of coffee, please.\n",
+    "options": [
+      "A. Yes, I'd like some coffee.",
+      "B. Help yourself.",
+      "C. I'm full now.",
+      "D. It's up to you."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查餐厅点餐场景的应答。服务员问“您想喝点什么”，客人应直接说出需求，Yes, I'd like some coffee（是的，我想要咖啡）与后句Two cups of coffee, please一致。B项Help yourself（请自便）用于招待客人用餐；C项I'm full now（我吃饱了）回应的是关于是否再吃的询问；D项It's up to you表示“由你决定”，不用于点单。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Can I help you?\n— _____. I'm looking for a pair of sports shoes.\n",
+    "options": [
+      "A. Yes, please.",
+      "B. No, thanks.",
+      "C. You're welcome.",
+      "D. Not at all."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查购物场景中店员问候语的应答。Can I help you?是店员招呼顾客的常用语，顾客如有需要应回答Yes, please（是的，请），后句说明想买运动鞋。B项No, thanks表示不需要帮助，与后句相矛盾；C项You're welcome用于回应感谢；D项Not at all用于回应感谢或mind类问句。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— What's the matter with you? You look pale.\n— _____.\n",
+    "options": [
+      "A. I've got a headache.",
+      "B. I'm a doctor.",
+      "C. Nothing much, thanks.",
+      "D. I'm feeling better now."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查就医场景中描述病情的应答。对方问What's the matter with you（你怎么了）并观察到你脸色苍白，应回答具体不适，I've got a headache（我头疼）符合语境。B项I'm a doctor（我是医生）答非所问；C项Nothing much, thanks多用于回答“最近怎么样”；D项I'm feeling better now（我现在好些了）与前句You look pale矛盾。故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Excuse me, could you tell me the way to the railway station?\n— _____. Go straight and turn left at the second crossing.\n",
+    "options": [
+      "A. It's my pleasure.",
+      "B. Sure, it's not far from here.",
+      "C. That's all right.",
+      "D. You can't miss it."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "考查问路场景的应答。对方询问去火车站的路，答语应先表示愿意帮忙并给出路线信息，Sure, it's not far from here（当然，离这儿不远）与后句指路内容衔接自然。A项It's my pleasure用于回应感谢；C项That's all right用于回应道歉；D项You can't miss it（你一定能找到）是指路结束时的补充语，不能作为开头应答。故选B。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Hello! May I speak to Mr. Wang?\n— _____.\n",
+    "options": [
+      "A. Who are you?",
+      "B. I'm Wang.",
+      "C. This is Wang speaking.",
+      "D. Are you Wang?"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "考查电话用语。接电话时向对方表明自己的身份，应用This is Wang speaking（我是小王）或Speaking，这是电话交际的固定表达，不能使用I'm Wang。A项Who are you?（你是谁）语气生硬且不是电话用语；B项I'm Wang不符合电话习惯；D项Are you Wang?是反问，不合逻辑。故选C。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— May I ask a question, Mr. Li?\n— _____. What is it?\n",
+    "options": [
+      "A. Of course, go ahead.",
+      "B. No, you may not.",
+      "C. It's my turn.",
+      "D. That's right."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查课堂场景中请求许可的应答。学生问“我可以问个问题吗”，老师应表示允许并让提问，Of course, go ahead（当然，请讲）最得体，后句What is it?（什么问题？）与之呼应。B项No, you may not（不可以）过于生硬，不符合师生交际；C项It's my turn表示“轮到我了”，答非所问；D项That's right用于赞同对方观点。故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "— Would you mind if I joined your volunteer group this weekend?\n— _____. The more, the merrier.\n",
+    "options": [
+      "A. Not at all.",
+      "B. Yes, please.",
+      "C. Thank you.",
+      "D. Good luck."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查Would you mind if...?句型的应答。对方问“你介意我这个周末加入你们的志愿者小组吗”，后句The more, the merrier（人越多越热闹）表明说话人欢迎对方加入，应回答Not at all（一点也不介意）。B项Yes, please用于接受对方提供的东西，不能回应mind类问句；C项Thank you用于感谢；D项Good luck用于祝愿好运，与欢迎加入的语境不符。故选A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E1-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The new library at Sunshine Middle School is very popular. It opens at 8:00 a.m. and closes at 6:30 p.m. on weekdays, but on weekends it only opens from 9:00 a.m. to 4:00 p.m. Students can borrow up to five books at a time and must return them within two weeks. The library has a quiet reading room on the first floor and a computer room on the second floor. Many students go there after class to do homework or read magazines. Mrs. Chen, the librarian, says the library is now the busiest place in the school.\n\n第1题：When does the library close on weekdays?\n",
+    "options": [
+      "A. At 8:00 a.m.",
+      "B. At 4:00 p.m.",
+      "C. At 6:30 p.m.",
+      "D. At 9:00 a.m."
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "细节理解题。由原文第一句It opens at 8:00 a.m. and closes at 6:30 p.m. on weekdays可知，工作日图书馆下午6:30闭馆。A项8:00 a.m.是开馆时间；B项4:00 p.m.是周末闭馆时间；D项9:00 a.m.是周末开馆时间。定位原文关键词closes和weekdays即可得出答案C。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Our school has many clubs for students. The English Club meets every Tuesday afternoon and helps students practise speaking. The Science Club meets on Thursday and does interesting experiments. The Basketball Club trains on Monday and Friday, and the Art Club meets on Wednesday to draw and paint. Students can join two clubs at most. This term, the Science Club is the most popular, with over sixty members. Everyone is welcome, so just come and find something you enjoy!\n\n第1题：Which club meets on Thursday?\n",
+    "options": [
+      "A. The English Club.",
+      "B. The Basketball Club.",
+      "C. The Art Club.",
+      "D. The Science Club."
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "细节理解题。由原文The Science Club meets on Thursday and does interesting experiments可知，科学俱乐部周四活动。A项English Club是周二；B项Basketball Club是周一和周五；C项Art Club是周三。只要在原文中逐一核对各俱乐部活动时间，即可选出答案D。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Last Friday, our school held its annual sports day. The weather was fine and the playground was full of cheering students. Li Hua ran in the 800-metre race and won first place. Wang Fang jumped 1.55 metres in the high jump and broke the school record. The relay race was the most exciting part, and Class 3 finally won it. In the afternoon, teachers and students played a friendly basketball match. Everyone agreed that it was a wonderful day full of fun and teamwork.\n\n第1题：What did Li Hua win in the sports day?\n",
+    "options": [
+      "A. The high jump.",
+      "B. The 800-metre race.",
+      "C. The relay race.",
+      "D. The basketball match."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文Li Hua ran in the 800-metre race and won first place可知，李华在800米赛跑中获得第一名。A项跳高获奖的是王芳；C项接力赛获胜的是三班；D项篮球赛是师生友谊赛，未提到获胜者。抓住人名Li Hua在原文中定位，即可得出答案B。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Do you want to study better? Here are some useful tips. First, make a study plan and stick to it. Second, review your notes every evening before going to bed, because the brain keeps working while you sleep. Third, ask your teachers questions in class if you don't understand something. Finally, take a short break every forty-five minutes when you study at home. Remember, studying is like planting a tree: you must be patient and keep watering it every day.\n\n第1题：What does the writer suggest doing every evening?\n",
+    "options": [
+      "A. Making a new plan.",
+      "B. Asking teachers questions.",
+      "C. Taking a short break.",
+      "D. Reviewing the notes."
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "细节理解题。由原文Second, review your notes every evening before going to bed可知，作者建议每天晚上复习笔记。A项制定计划是第一步建议，未说明每晚进行；B项在课堂上问老师问题是第三条建议；C项每学习四十五分钟休息一下是第四条建议，与“每晚”无关。根据关键词every evening定位，答案D。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Sunshine High School has made a new rule about smartphones. From this term, students may not use their phones in class or during exams. If a student is seen using a phone in class, the teacher will keep the phone until the end of the day. However, students can still use their phones in the dining hall and in the dormitory after 9:30 p.m. The rule was made because many students were distracted by games and messages during lessons. Most parents support the rule, saying it helps their children focus on study.\n\n第1题：What is the new rule about smartphones?\n",
+    "options": [
+      "A. Students can use phones anywhere.",
+      "B. Students can't use phones in class or during exams.",
+      "C. Phones are not allowed in the dining hall.",
+      "D. Phones must be kept at home."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文students may not use their phones in class or during exams可知，新规定是学生在课堂上和考试期间不得使用手机。A项与规定相反；C项原文说学生可以在食堂使用手机；D项原文说学生9:30后可在宿舍使用手机，并未要求把手机留在家中。锁定关键词new rule，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "A new cleaning robot has started working in our school dining hall. The robot, named Xiaoqing, is about one metre tall. It can sweep the floor, collect dirty trays and even say “Excuse me” politely when it passes students. Xiaoqing works from 11:00 a.m. to 1:00 p.m. and from 5:00 p.m. to 7:00 p.m. every day. The robot is powered by electricity and can work for eight hours after one charge. Students think it is cool, and the dining hall is now much cleaner.\n\n第1题：What can the robot Xiaoqing do?\n",
+    "options": [
+      "A. Cook meals for students.",
+      "B. Sweep the floor and collect trays.",
+      "C. Teach students English.",
+      "D. Charge itself without electricity."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文It can sweep the floor, collect dirty trays and even say “Excuse me”可知，机器人能扫地、收餐盘并礼貌地说“借过”。A项做饭未提及；C项教英语未提及；D项原文说机器人充电后可工作八小时，说明它需要充电，该项表述错误。根据can后列举的动作定位，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In Guangdong, drinking tea is part of everyday life. People drink tea at home, in offices and in restaurants. When guests come to visit, the host always serves tea first before talking about anything else. Young people are taught to pour tea for elders first and to tap the table with two fingers to say “thank you” when someone pours tea for them. There are many kinds of tea, such as green tea, black tea and oolong tea. For local people, a day without tea is like a day without sunshine.\n\n第1题：What do hosts do when guests come to visit?\n",
+    "options": [
+      "A. They sing a song.",
+      "B. They serve tea first.",
+      "C. They close the door.",
+      "D. They cook a big meal."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文When guests come to visit, the host always serves tea first可知，客人来访时主人总是先上茶。A项唱歌、C项关门、D项做大餐在文中均未提及。根据关键词guests和host定位第一处茶文化描写，答案B。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The Dragon Boat Festival falls on the fifth day of the fifth lunar month. On this day, people eat zongzi, a kind of rice dumpling wrapped in bamboo leaves, and watch dragon boat races on rivers. The festival is held to remember Qu Yuan, a great poet who lived over two thousand years ago. In many cities, dragon boat teams train for months before the race. Some schools also teach students how to make zongzi, so that the tradition can be passed down from generation to generation.\n\n第1题：When is the Dragon Boat Festival celebrated?\n",
+    "options": [
+      "A. On the fifth day of the fifth lunar month.",
+      "B. On the first day of the first lunar month.",
+      "C. On the fifteenth day of the eighth lunar month.",
+      "D. On the ninth day of the ninth lunar month."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "细节理解题。由原文第一句The Dragon Boat Festival falls on the fifth day of the fifth lunar month可知，端午节在农历五月初五。B项是春节（正月初一）；C项是中秋节（八月十五）；D项是重阳节（九月初九）。本题只需定位第一句的时间表达，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "A recent study shows that many teenagers do not get enough sleep. Scientists say that teenagers need eight to ten hours of sleep every night to grow well and learn well. However, many students stay up late doing homework or playing with phones. As a result, they feel tired in class and cannot concentrate. Dr. Li, a health expert, suggests that students go to bed before 10:30 p.m. and keep their phones outside the bedroom. “A good night's sleep is the best medicine for study,” she says.\n\n第1题：How many hours of sleep do teenagers need every night according to scientists?\n",
+    "options": [
+      "A. Six to seven hours.",
+      "B. Seven to eight hours.",
+      "C. Eight to ten hours.",
+      "D. Ten to twelve hours."
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "细节理解题。由原文teenagers need eight to ten hours of sleep every night可知，科学家认为青少年每晚需要8到10小时睡眠。A、B、D项的数字均与原文不符。题干中according to scientists是定位关键，对应原文Scientists say that...，答案C。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Exercise is important for everyone. Jogging for thirty minutes a day can make your heart stronger, help you sleep better and reduce stress. You don't need expensive equipment; a pair of good shoes is enough. If you find jogging boring, you can try swimming, cycling or playing ball games with friends. The key is to exercise regularly. Doctors advise teenagers to do at least one hour of physical activity every day. Remember, a healthy body is the foundation of a happy life.\n\n第1题：What benefit of jogging is mentioned in the passage?\n",
+    "options": [
+      "A. It makes the heart stronger.",
+      "B. It makes students richer.",
+      "C. It makes food taste better.",
+      "D. It makes homework easier."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "细节理解题。由原文Jogging for thirty minutes a day can make your heart stronger, help you sleep better and reduce stress可知，慢跑能增强心脏功能、改善睡眠、减轻压力，A项是其中之一。B、C、D项在文中均无依据。根据题干benefit和jogging定位第一句的列举，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "To reduce plastic waste, our school has taken action. Last year, the school stopped selling bottled water in the shops and put up drinking fountains in every building. Students are encouraged to bring their own water bottles and reusable lunch boxes. The school also collects used bottles and sends them to a recycling centre. In just one year, the amount of plastic waste on campus dropped by half. The Green Club students made posters to remind everyone: “Less plastic, better planet.”\n\n第1题：What did the school do to reduce plastic waste?\n",
+    "options": [
+      "A. It sold more bottled water.",
+      "B. It stopped selling bottled water.",
+      "C. It threw all plastic bottles away.",
+      "D. It closed the school shops."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文the school stopped selling bottled water in the shops and put up drinking fountains可知，学校停止销售瓶装水并安装直饮水机。A项与原文相反；C项“扔掉所有塑料瓶”文中未提及；D项“关闭学校商店”不准确，商店仍在但不再卖瓶装水。根据reduce plastic waste定位行动内容，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "On Tree-Planting Day, students from Grade 7 planted two hundred trees behind the playground. With the help of their teachers, they dug holes, put the young trees in and watered them. Each class wrote its name on a small board and placed it beside the trees. The students promised to look after the trees, and they will visit them every month. In a few years, the playground will be surrounded by green shade, and the school will be a more beautiful place to study.\n\n第1题：How many trees did the students plant?\n",
+    "options": [
+      "A. One hundred.",
+      "B. Two hundred.",
+      "C. Three hundred.",
+      "D. Five hundred."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "细节理解题。由原文第一句students from Grade 7 planted two hundred trees可知，学生们共种了200棵树。其余选项的数字与原文不符。本题为直接数字细节题，抓住关键词two hundred即可选出答案B，无需理解全文。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Sara used to be slow at running and often finished last in PE class. One day, her teacher told her that practice could make a difference. So Sara began to run every morning before school. Soon her classmates noticed her progress and asked to run with her. Now more than fifty students run together every morning, and the group is called the Morning Star Running Club. Sara is proud that she not only became faster herself, but also helped others fall in love with running.\n\n第1题：What is the passage mainly about?\n",
+    "options": [
+      "A. How Sara became a better runner and started a club.",
+      "B. How to win a running race at school.",
+      "C. Why running is bad for students.",
+      "D. How the PE teacher taught Sara to swim."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。全文按照时间顺序讲述了Sara从跑步落后到坚持晨跑、带动同学、最终成立跑步俱乐部的成长故事。A项“Sara如何成为更好的跑者并创办俱乐部”完整概括了主旨。B项“如何赢得赛跑”范围过窄且文中未写比赛；C项与文章积极态度相反；D项“教游泳”与内容无关。综合首尾句可确定答案A。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Music is more than just a way to have fun. Fast music can make us feel excited and full of energy, while slow, soft music can calm us down when we are nervous. Many students listen to light music while studying, and they find it easier to focus. Scientists also say that learning to play an instrument trains the brain and improves memory. No matter what kind of music you like, it can bring colour to your life.\n\n第1题：What is the main idea of the passage?\n",
+    "options": [
+      "A. Music can affect our feelings and bring benefits.",
+      "B. Fast music is better than slow music.",
+      "C. Everyone should learn to play an instrument.",
+      "D. Music is only for fun."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章从“音乐影响情绪”（兴奋或平静）、帮助集中注意力、训练大脑改善记忆等方面说明音乐的作用，A项“音乐能影响我们的情绪并带来好处”概括全面。B项“快歌比慢歌好”是错误比较，文中无此观点；C项“每个人都应学乐器”过于绝对；D项与全文主旨相悖。把握主题句Music is more than just a way to have fun，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Many students think museums are boring places full of old things. But in fact, museums are like time machines. They tell us stories about the past, from ancient coins to modern inventions. They also help us understand different cultures and the way people lived. Some museums even let visitors touch and try things, which makes learning fun. A visit to a museum is not a waste of time; it is a wonderful journey of discovery.\n\n第1题：What is the passage mainly about?\n",
+    "options": [
+      "A. The value and fun of visiting museums.",
+      "B. The history of ancient coins.",
+      "C. How to build a museum.",
+      "D. Why students dislike museums."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章先提出“很多学生认为博物馆无聊”的观点，再用But转折，指出博物馆如时间机器、能了解历史与文化、甚至可以动手体验，最后总结“参观博物馆是奇妙的发现之旅”。A项“参观博物馆的价值与乐趣”准确概括主旨。B项“古钱币历史”只是例证；C项“如何建博物馆”未提及；D项“为什么学生讨厌博物馆”只对应开头铺垫。注意转折词But后的内容才是主旨所在，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Long ago, before planes and trains, traders travelled across deserts and mountains to exchange goods. They carried Chinese silk, tea and paper to the West along a road that later became known as the Silk Road. In return, they brought back grapes, glass and new ideas. The Silk Road was not only a trade road; it was also a bridge between different cultures. Its story tells us that people have always wanted to connect with each other.\n\n第1题：What is the passage mainly about?\n",
+    "options": [
+      "A. The Silk Road and what it meant to people.",
+      "B. How to make Chinese silk.",
+      "C. Modern planes and trains.",
+      "D. The food people ate long ago."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章围绕丝绸之路展开：商人运送丝绸、茶叶、纸张，带回葡萄、玻璃和新思想，说明它既是贸易之路也是文化桥梁。A项“丝绸之路及其对人们的意义”概括了主要内容。B项“如何制作丝绸”未提及；C项“现代飞机火车”只是开头的对比引入；D项“古人吃的食物”范围过窄。抓住关键词Silk Road，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Reading is like opening a window to a wider world. When you read, you can travel to faraway places without leaving your chair, and meet people from different times. Reading also improves your language skills, because you learn new words and sentence patterns naturally. Besides, readers usually think more clearly, because stories train them to follow ideas step by step. That is why teachers always say: the more you read, the more you grow.\n\n第1题：What is the main idea of the passage?\n",
+    "options": [
+      "A. Reading brings knowledge and trains thinking.",
+      "B. Reading is only useful for exams.",
+      "C. People should read in their chairs only.",
+      "D. Reading makes people leave home."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章用“阅读像打开一扇窗”作比喻，从了解远方世界、提高语言能力、训练思维三个方面说明阅读的好处，结尾the more you read, the more you grow点明主旨。A项“阅读带来知识并训练思维”概括准确。B项“只为考试”以偏概全；C项是字面误解；D项与原文“不出家门即可旅行”相反。答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "At home, my family separates waste into three bins: one for kitchen waste, one for recyclables and one for other waste. Every weekend, my father takes the recyclable bottles and paper to the recycling station. My mother makes sure the kitchen waste goes to the right bin. At first it was hard to remember, but now it has become a habit. We are happy because we are doing something small but useful for the earth.\n\n第1题：What is the passage mainly about?\n",
+    "options": [
+      "A. How the family sorts waste at home.",
+      "B. How to cook with kitchen waste.",
+      "C. Why the family moves to a new house.",
+      "D. How to make bottles at home."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章描述了“我”家如何在家中进行垃圾分类：三个垃圾桶、爸爸送可回收物、妈妈处理厨余垃圾。A项“一家人如何在家分类垃圾”概括了全文内容。B项“用厨余垃圾做饭”、C项“搬家”、D项“在家制作瓶子”均与文章无关。抓住关键词waste、bins、recycling即可确定主旨，答案A。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Scientists have found that students who sleep well remember their lessons better. During sleep, the brain goes through what we learned during the day, sorts out the important information and stores it in long-term memory. That is why students who stay up late to study often forget more the next morning. So before a big exam, the best thing you can do is not to read more books, but to have a good sleep.\n\n第1题：What is the main idea of the passage?\n",
+    "options": [
+      "A. Good sleep helps students remember what they learn.",
+      "B. Students should stay up late to study.",
+      "C. Exams are more important than sleep.",
+      "D. The brain stops working during sleep."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章说明科学家发现睡眠好的人记得更牢，解释大脑在睡眠中整理、储存信息，并建议考前好好睡觉。A项“好的睡眠帮助学生记住所学内容”是全文主旨。B项与原文建议相反；C项无依据；D项“大脑在睡眠时停止工作”与原文“大脑在睡眠中整理信息”矛盾。注意转折与结论句The best thing you can do is...，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Last summer, I worked as a volunteer at the city library for two weeks. My job was to help readers find books and put returned books back on the shelves. At first, I was nervous because I didn't know where everything was. But the librarians were kind, and the readers were patient with me. By the end of the two weeks, I could find any book in minutes. More importantly, I learned to be helpful and responsible. Volunteering not only helped others, but also helped me grow.\n\n第1题：What is the passage mainly about?\n",
+    "options": [
+      "A. The writer's experience of volunteering at a library.",
+      "B. How to write a book.",
+      "C. The history of the city library.",
+      "D. How to become a librarian."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "主旨大意题。文章按时间顺序讲述“我”在图书馆做两周志愿者的经历：从紧张到熟练，最终学到乐于助人和有责任心。A项“作者在图书馆做志愿者的经历”准确概括主旨。B项“如何写书”、C项“图书馆历史”、D项“如何成为图书管理员”均与内容无关。文章以第一人称叙述经历，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "China's new spaceship, which can carry more astronauts and stay in space for a longer time, passed its latest test last month. Engineers say the spaceship was designed for future missions to the moon station. They are now building more training centres for young astronauts. According to the plan, the first moon mission may happen within ten years. Students who are interested in space are encouraged to study science and maths hard, because the space programme needs more young talent.\n\n第1题：What can we infer from the passage?\n",
+    "options": [
+      "A. China will never send astronauts to the moon.",
+      "B. The new spaceship will probably be used for moon missions.",
+      "C. Students don't need to study science for space work.",
+      "D. The spaceship can carry fewer astronauts than before."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文the spaceship was designed for future missions to the moon station以及the first moon mission may happen within ten years可推断，新飞船很可能用于未来的登月任务。A项与计划中的登月任务矛盾；C项与原文鼓励学科学数学相反；D项原文说能搭载更多宇航员，与之相反。根据designed for future missions推断，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Researchers put cameras in a forest to watch pandas in the wild. The videos show that pandas spend about fourteen hours a day eating bamboo. They only move when they are hungry or need to find a new bamboo forest. Scientists were surprised that pandas rarely play or explore, unlike other animals of the same size. From the videos, they also learned that pandas meet each other mainly during the mating season.\n\n第1题：What can we infer from the passage?\n",
+    "options": [
+      "A. Pandas like to play and explore all day.",
+      "B. Pandas eat bamboo only when they are hungry.",
+      "C. Pandas are not very active animals.",
+      "D. Pandas live together in large groups."
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "推理判断题。由原文pandas spend about fourteen hours a day eating bamboo和pandas rarely play or explore可推断，熊猫大部分时间都在吃竹子、很少活动，是行动不活跃的动物。A项与rarely play or explore矛盾；B项原文说它们一天吃十四小时竹子，且“饿了才移动”，并非饿了才吃；D项“成群生活”原文未提及，且文中提到它们主要在繁殖季节相见。综合归纳，答案C。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Bike-sharing has become very popular in big cities because it is cheap and good for the environment. Every day, thousands of people ride shared bikes to work or school. However, some users leave the bikes anywhere, blocking the roads and sidewalks. City workers have to spend hours collecting the bikes every day. The government is now setting up more parking stations and asking users to park bikes in the right places.\n\n第1题：What does the writer think of bike-sharing?\n",
+    "options": [
+      "A. It is useless and should be stopped.",
+      "B. It is convenient but has some problems.",
+      "C. It is only good for the government.",
+      "D. It has no effect on the environment."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。文章先说共享单车便宜又环保（优点），再用However转折指出乱停放、堵路的问题（缺点），最后说政府正采取措施。作者用however连接前后内容，态度客观，可推断他认为共享单车方便但存在问题。A项“无用应停用”过于极端；C项“只对政府有利”无依据；D项与“对环境好”相反。抓住转折词However前后的对比，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Our dog Max always waits by the door at exactly five o'clock, the time I get home from school. When he hears my footsteps on the stairs, he starts wagging his tail. The moment I open the door, he jumps up to greet me and brings me his favourite toy. Even on rainy days when I am late, he is still there, sitting patiently. My mother says Max has an inner clock and knows the time better than we do.\n\n第1题：What can we infer about Max?\n",
+    "options": [
+      "A. Max dislikes rainy days.",
+      "B. Max is very loyal and loves the writer.",
+      "C. Max can tell people the exact time.",
+      "D. Max never plays with toys."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。从Max每天准点在门口等待、听到脚步摇尾巴、递玩具迎接等细节可推断，它忠诚且深爱主人。A项“讨厌雨天”无依据，文中说雨天它仍耐心等待；C项“能报时”是对“inner clock”比喻的误解；D项与“brings me his favourite toy”矛盾。综合细节描写推断作者与狗的感情，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The new subway Line 3 will connect the city centre with the airport. Workers are now testing the trains and checking the stations day and night. The line has twelve stations in total, and the whole journey will take only thirty-five minutes. The city government says the line will open to the public next spring. Many people who often travel by air are looking forward to it, because taking a taxi to the airport is expensive and slow.\n\n第1题：What will probably happen soon?\n",
+    "options": [
+      "A. The subway line will be open to the public.",
+      "B. The subway line will be closed forever.",
+      "C. Taxis will stop running in the city.",
+      "D. The airport will move to the city centre."
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "推理判断题。由原文Workers are now testing the trains以及the line will open to the public next spring可推断，地铁3号线即将（明年春天）开通运营。B项“永远关闭”与即将开通相反；C项“出租车停运”无依据，原文只说打车贵又慢；D项“机场搬迁”文中未提。根据测试和开通计划的时间线索推断，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Mr. Chen, who is seventy years old, still makes paper umbrellas by hand in his small workshop. It takes him three days to finish one umbrella, because every step, from cutting the paper to painting the pictures, must be done carefully. Few young people are willing to learn this craft, as it is hard and pays little. Mr. Chen worries that the skill may die with him. He hopes more people will see the value of traditional handcrafts.\n\n第1题：What can we infer from the passage?\n",
+    "options": [
+      "A. Paper umbrellas are easy to make quickly.",
+      "B. The traditional craft may disappear in the future.",
+      "C. Young people are very interested in making umbrellas.",
+      "D. Mr. Chen makes money easily from his umbrellas."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文Few young people are willing to learn this craft以及the skill may die with him可推断，这门传统手艺可能失传。A项与“做一把伞要三天、步骤精细”矛盾；C项与“几乎没有年轻人愿学”相反；D项与“pays little（挣钱少）”矛盾。根据Mr. Chen的担忧和年轻人不愿学的现状综合推断，答案B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Too much homework and frequent exams make some students feel stressed. Experts say that stress is not always bad; a little pressure can push us to work harder. But when stress lasts too long, it can hurt our health and sleep. Experts suggest that students talk to their parents or friends about their feelings, do sports regularly and take short breaks during study. “Opening your heart is the first step to feeling better,” one expert says.\n\n第1题：The writer would most probably agree that ________.\n",
+    "options": [
+      "A. students should never feel any pressure",
+      "B. talking about feelings helps reduce stress",
+      "C. doing more homework can solve stress",
+      "D. stress is always harmful to students"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文Experts suggest that students talk to their parents or friends about their feelings以及Opening your heart is the first step to feeling better可推断，作者赞同“倾诉有助于缓解压力”。A项“学生不该有任何压力”与原文“一点压力能推动我们更努力”矛盾；C项“多做作业缓解压力”与文意相反；D项“压力总是有害”与“stress is not always bad”矛盾。根据专家建议推断作者态度，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The Internet brings us a world of information, but not all of it is true. Some news on social media is made up or exaggerated just to get more clicks. If we believe everything we read online, we may make wrong decisions. That is why teachers now spend time teaching students how to check the source of information and compare different reports. Being able to tell the truth from lies is an important skill in the information age.\n\n第1题：What can we learn from the passage?\n",
+    "options": [
+      "A. All information on the Internet is true.",
+      "B. We should check the source before believing online news.",
+      "C. Social media never spreads false news.",
+      "D. Making wrong decisions is unavoidable."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。文章指出网上有些信息是编造或夸大的，并说老师教学生“check the source of information and compare different reports”，由此可知我们应该核实信息来源后再相信。A项与“not all of it is true”矛盾；C项与“Some news on social media is made up”相反；D项“犯错误不可避免”过于绝对且无依据。综合原文建议推断，答案B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Shawan, an old town near Guangzhou, keeps its narrow streets, grey brick houses and ancient temples. Unlike modern cities full of tall buildings, the town looks almost the same as it did a hundred years ago. Every weekend, thousands of visitors come to walk along the old streets, taste the local snacks and take photos. The town government has promised to protect the old buildings while developing tourism carefully.\n\n第1题：What can we infer about Shawan?\n",
+    "options": [
+      "A. It is a newly built modern town.",
+      "B. It is popular with visitors and well protected.",
+      "C. It has no traditional buildings left.",
+      "D. Visitors never go there on weekends."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文thousands of visitors come every weekend和The town government has promised to protect the old buildings可推断，沙湾古镇受游客欢迎且得到良好保护。A项与“looks almost the same as it did a hundred years ago”矛盾；C项与“keeps its narrow streets, grey brick houses”矛盾；D项与“every weekend visitors come”相反。综合游客量与保护承诺，答案B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Every autumn, thousands of birds stop at the wetland park on their long journey south. They rest, feed on small fish and insects, and store energy for the flight ahead. The park, which was once a fish farm, has become an important stopping place for more than a hundred kinds of birds. Workers keep the water clean and plant reeds to protect the birds. Birdwatchers come from all over the country to watch them.\n\n第1题：Why do the birds stop at the wetland park?\n",
+    "options": [
+      "A. To find a warmer place to live forever.",
+      "B. To rest and feed before continuing their journey.",
+      "C. To watch the birdwatchers.",
+      "D. To escape from other birds."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文They rest, feed on small fish and insects, and store energy for the flight ahead可推断，候鸟在此停留是为了休息、觅食、储存能量，然后继续南飞。A项“永远住下来”与“long journey south”矛盾；C项“看观鸟者”颠倒了主客关系；D项“躲避其他鸟类”文中未提。根据rest、feed、store energy三个动词推断目的，答案B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "At the end of the film, the hero finally found his family after ten years of searching. The cinema became completely silent, and then many people in the audience wiped their eyes. Some were even moved to tears. When the lights came on, everyone stood up and clapped for a long time. The director, who was sitting in the back row, stood up and bowed to the audience with a big smile.\n\n第1题：How did the audience feel at the end of the film?\n",
+    "options": [
+      "A. Angry and bored.",
+      "B. Moved and excited.",
+      "C. Sleepy and tired.",
+      "D. Nervous and worried."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "推理判断题。由原文many people wiped their eyes、moved to tears、everyone stood up and clapped可推断，观众被影片打动并感到激动，用掌声表达赞赏。A项“生气无聊”与现场反应相反；C项“困倦”无依据；D项“紧张担心”不符合结局时观众的表现。根据wipe eyes、tears、clap等细节推断情绪，答案B。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "When I moved to a new school last term, I felt lonely and missed my old friends. On the first day, Tom, my deskmate, noticed that I ate lunch alone. He invited me to sit with him and his friends. Later, he taught me how to play basketball and took me to the school library. Now I have many good friends, and I look forward to going to school every day. I will never forget Tom's kindness.\n\n第1题：What does the writer value most according to the passage?\n",
+    "options": [
+      "A. Playing basketball.",
+      "B. The school library.",
+      "C. Friendship and kindness.",
+      "D. Moving to a new school."
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "推理判断题。文章讲述Tom在“我”孤独时主动邀请、帮助“我”融入新学校，结尾I will never forget Tom's kindness点明作者最珍视的是友谊与善意。A项“打篮球”只是Tom带作者做的事；B项“图书馆”只是地点；D项“转学”本身并非作者珍视的对象，转学带来的是孤独。综合全文情感走向，答案C。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In our science class, students showed the small gadgets they had made at home. One gadget could water plants automatically when the soil was dry. Another could open the door by voice, and a third could remind people to drink water every hour. Although these gadgets were simple, they were full of creativity. Our teacher said that every great invention starts with a small idea, and encouraged us to keep exploring.\n\n第1题：The underlined word “gadgets” in the passage means ________.\n",
+    "options": [
+      "A. 小发明/小装置",
+      "B. 大机器",
+      "C. 玩具",
+      "D. 工具书"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由上下文可知，学生们展示的是能自动浇水、声控开门、提醒喝水等小型发明装置，且后文说它们simple but full of creativity，可推断gadget意为“小装置、小发明”。B项“大机器”与simple矛盾；C项“玩具”不符合功能描述；D项“工具书”是工具书dictionary等的意思。结合功能举例与修饰语simple，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "After months of hard work in the school vegetable garden, we finally harvested our first tomatoes and cucumbers. The joy of harvest was beyond words. We had watered the plants, pulled out the weeds and protected them from insects. Now we understood why farmers are so proud of their fields. Our teacher smiled and said, “In study, you harvest what you plant. Work hard, and you will enjoy a rich harvest in the future.”\n\n第1题：The underlined word “harvest” in the passage means ________.\n",
+    "options": [
+      "A. 播种",
+      "B. 收获",
+      "C. 出售",
+      "D. 品尝"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "词义猜测题。第一处harvest作动词，与“first tomatoes and cucumbers”搭配，指经过数月劳作“收获”果实；第二处名词the joy of harvest指收获的喜悦。A项“播种”是plant/sow，与“after months of hard work”不符；C项“出售”文中未提及；D项“品尝”只是收成后可能的动作。结合耕作过程与结尾比喻，答案B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "To sustain the balance of nature, we must protect wetlands, forests and oceans. Wetlands clean the water and give animals a home. Forests take in carbon dioxide and produce fresh air. Oceans provide food for billions of people. If we continue to pollute and cut down trees, many species will disappear and the balance will be broken. Protecting the environment is protecting ourselves. Everyone should do his or her part.\n\n第1题：The underlined word “sustain” in the passage means ________.\n",
+    "options": [
+      "A. 维持、保持",
+      "B. 破坏",
+      "C. 改变",
+      "D. 观察"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由下文对湿地、森林、海洋作用的介绍（净化水质、提供氧气和食物）以及“如果继续污染砍伐，平衡将被打破”可知，sustain the balance意为“维持生态平衡”。B项“破坏”与保护生态的目的相反；C项“改变”程度不符；D项“观察”与语境无关。根据“若破坏则会打破平衡”的对照关系，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Morning exercise can boost your energy for the whole day. After jogging for twenty minutes, you will feel more active and think more clearly in class. Many students who exercise in the morning say they no longer feel sleepy before lunch. Doctors also say that a short run can improve your mood, so you will face the day's challenges with a smile. Why not try it tomorrow morning?\n\n第1题：The underlined word “boost” in the passage means ________.\n",
+    "options": [
+      "A. 提升、增强",
+      "B. 减少",
+      "C. 消耗",
+      "D. 浪费"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由后文“跑完二十分钟后，你在课堂上更活跃、思维更清晰”可知，晨练能“提升”一整天的精力。B项“减少”与效果相反；C项“消耗”虽可用于精力，但句意应是增强而非消耗；D项“浪费”不合逻辑。根据后文feel more active的具体效果推断词义，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "A smart watch can track your heart rate, sleeping time and steps every day. It collects your health data and shows them clearly on the screen. If your sleep is not enough, the watch will remind you to rest. Doctors can also use the data to learn about your health condition. Thanks to such devices, people can take better care of themselves. However, experts warn that we should not depend on machines too much.\n\n第1题：The underlined word “track” in the passage means ________.\n",
+    "options": [
+      "A. 追踪、记录",
+      "B. 控制",
+      "C. 治疗",
+      "D. 忘记"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由后文“它收集你的健康数据并清晰显示在屏幕上”可知，智能手表的功能是“追踪记录”心率、睡眠和步数。B项“控制”程度过重，手表不能控制身体数据；C项“治疗”是医生的职责；D项“忘记”与记录功能相反。根据collects your health data的同义复现推断，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In the morning, I always grab a piece of bread and run to the bus stop, because I get up too late. As a result, I often feel hungry before lunch. My mother says this is a bad habit and asks me to get up earlier. She prepares a rich breakfast for me every day, but I never have enough time to enjoy it. This weekend, I plan to set my alarm clock ten minutes earlier.\n\n第1题：The underlined word “grab” in the passage means ________.\n",
+    "options": [
+      "A. 匆忙拿起",
+      "B. 慢慢品尝",
+      "C. 仔细检查",
+      "D. 小心放下"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由后文run to the bus stop、get up too late可知，“我”起床太晚，只能“匆忙拿起”一片面包赶公交。B项“慢慢品尝”与赶时间的语境矛盾；C项“仔细检查”不合逻辑；D项“小心放下”与“带去吃”不符。根据赶车的紧张情境推断词义，答案A。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Graduation day was bittersweet for our class. We were excited to move on to senior high school, but sad to say goodbye to our teachers and friends. We took photos in front of the school gate, wrote messages in each other's notebooks and promised to keep in touch. Some girls cried when the headmaster made his speech. In the end, we all agreed that the three years of junior high were the sweetest time of our life.\n\n第1题：The underlined word “bittersweet” in the passage means ________.\n",
+    "options": [
+      "A. 苦乐参半的",
+      "B. 平淡无奇的",
+      "C. 令人失望的",
+      "D. 轻松愉快的"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由后文解释we were excited to move on, but sad to say goodbye可知，毕业这天既高兴又难过，即“苦乐参半”。B项“平淡无奇”与情感描写不符；C项“令人失望”只含负面；D项“轻松愉快”只含正面，均未涵盖“既开心又不舍”的双重情感。根据but前后的对比解释推断词义，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "New energy buses are now running in many cities. They are better for the environment because they don't burn petrol and produce little noise. The buses have USB ports under the seats, so passengers can charge their phones during the ride. They also use a special system to show how many people are on the bus. Thanks to these buses, the city air is getting cleaner, and more people choose to travel by bus.\n\n第1题：The underlined word “charge” in the passage means ________.\n",
+    "options": [
+      "A. 给……充电",
+      "B. 收费",
+      "C. 指控",
+      "D. 换乘"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "词义猜测题。由原文passengers can charge their phones during the ride和USB ports（USB接口）可知，乘客可以坐在座位上用USB接口给手机“充电”。B项“收费”是charge的另一词义，但USB接口与收费无关；C项“指控”为法律义项；D项“换乘”是transfer。根据USB ports这一线索词确定词义，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E2-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Taking good notes in class is an important study skill. [1]. It can help you remember the key points and prepare for exams. First, listen carefully and think about what the teacher says. [2]. If you try to write down every word, you may miss the main ideas. Second, use short forms and symbols to write faster. [3]. Third, review your notes after class on the same day. [4]. Finally, keep your notebooks tidy and use different colours for different parts. [5]. With good notes, your study will become more efficient and enjoyable.",
+    "options": [
+      "A. However, you should only write down the most important points.",
+      "B. In addition, writing down the questions you don't understand is also helpful.",
+      "C. Good notes are like a map that guides you through your lessons.",
+      "D. This will help you remember the information better.",
+      "E. In this way, you can find the information you need quickly."
+    ],
+    "answer": "C A B D E",
+    "solution": {
+      "analysis": "本文按First/Second/Third/Finally的层次讲记笔记的方法。[1]在主题句之后，需要一个总起句，C项“好笔记像地图一样指引你上课”承上启下。[2]前句说“认真听并思考”，后句说“若每个词都记会错过要点”，A项However转折“只记最重要的点”自然衔接。[3]前文讲用简写和符号，B项In addition“把不懂的问题记下来也有帮助”是补充建议，逻辑递进。[4]前句“当天复习笔记”，D项This指代“当天复习”这件事，说明其好处。[5]前句“笔记本整洁、用不同颜色”，E项In this way指代整理笔记的做法，说明便于查找。故选C、A、B、D、E。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Everyone can do something to protect the environment. [1]. First, reduce the waste we produce. For example, buy only what we really need. [2]. Second, reuse things instead of throwing them away. Glass bottles can be cleaned and used again, and old clothes can be given to others. [3]. Third, recycle. Paper, plastic and metal can be sent to recycling centres. [4]. If every family follows these three steps, the earth will become cleaner. [5]. After all, we only have one planet.",
+    "options": [
+      "A. Small actions can make a big difference.",
+      "B. In this way, we can save resources and reduce pollution.",
+      "C. Also, avoid buying things with too much packaging.",
+      "D. This is much better than throwing them into the rubbish bin.",
+      "E. Let's take action from today and do our part."
+    ],
+    "answer": "A C D B E",
+    "solution": {
+      "analysis": "本文按reduce-reuse-recycle结构展开。[1]在总起句后，A项“小行动也能带来大改变”是环保主题句。[2]前句讲“只买真正需要的东西”，C项Also“避免买包装过多的东西”是同一类别（减少浪费）的补充建议，用Also衔接。[3]前文说瓶子洗净再用、旧衣送人，D项This指代“重复使用”，说明比扔进垃圾桶更好。[4]前句讲回收利用，B项In this way指代“回收”这一做法，说明可节约资源、减少污染。[5]结尾处E项“让我们从今天起行动起来”是号召语，与After all, we only have one planet呼应。故选A、C、D、B、E。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Sleep is very important for teenagers. [1]. A good night's sleep helps you grow, learn and keep a good mood. However, many students stay up late doing homework or playing with phones. [2]. They feel tired in class and cannot concentrate. How can we improve our sleep? First, go to bed at the same time every night. [3]. Second, keep phones and computers out of the bedroom. The light from screens makes it harder to fall asleep. [4]. Finally, do some exercise during the day. [5]. If you follow these habits, you will sleep better and study better.",
+    "options": [
+      "A. In addition, they often feel sleepy the next day.",
+      "B. This helps your body get into a regular rhythm.",
+      "C. Teenagers need about eight to ten hours of sleep every night.",
+      "D. However, avoid doing exercise too late in the evening.",
+      "E. Instead, read a book or listen to soft music before bed."
+    ],
+    "answer": "C A B E D",
+    "solution": {
+      "analysis": "本文按问题—建议的结构展开。[1]在主题句“睡眠对青少年很重要”之后，C项“青少年每晚需要8到10小时睡眠”具体说明重要性，属总分关系。[2]前句说很多学生熬夜，A项In addition“此外他们第二天常犯困”补充熬夜的后果，与后句“上课疲惫”并列递进。[3]前句“每天同一时间上床睡觉”，B项This指代这一做法，说明它帮助身体形成规律节律。[4]前句“把手机电脑拿出卧室”，E项Instead“改为睡前读书或听轻音乐”用Instead引出替代做法。[5]前句“白天做运动”，D项However转折“但不要在晚上太晚运动”，提醒注意事项。故选C、A、B、E、D。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Many students complain that they don't have enough time to finish homework and relax. [1]. The key is to manage time well. First, make a list of things you need to do. [2]. Then, do the most important tasks first. [3]. Next, break big tasks into small ones. A long report is easier to finish if you write it page by page. [4]. Finally, remember to take short breaks. [5]. Good time management not only helps you finish work on time, but also gives you more time to enjoy your hobbies.",
+    "options": [
+      "A. This helps you plan your day more clearly.",
+      "B. For example, finish your maths homework before watching TV.",
+      "C. In fact, most of them have enough time, but they waste it.",
+      "D. In this way, you won't feel stressed by the big task.",
+      "E. A ten-minute rest can make your mind fresh again."
+    ],
+    "answer": "C A B D E",
+    "solution": {
+      "analysis": "本文按First/Then/Next/Finally的顺序讲时间管理。[1]前句说学生抱怨没时间，C项In fact“事实上多数人时间够，只是浪费了”用In fact纠正错误观点，引出“关键是要管理好时间”。[2]前句“列出要做的事”，A项This指代“列清单”，说明其帮助更清晰地规划一天。[3]前句“先做最重要的事”，B项For example“例如先做完数学作业再看电视”是具体例证。[4]前句“把大任务拆成小任务”，D项In this way指代这一方法，说明其减轻压力。[5]前句“记得短暂休息”，E项“休息十分钟能让大脑焕然一新”解释休息的作用。故选C、A、B、D、E。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Making good friends is one of the most valuable things in life. A true friend is someone who stands by you in difficult times. [1]. They share your happiness and sadness without asking for anything in return. When I was in Grade 7, I met Li Ming. [2]. He helped me with my maths when I failed the exam, and he never laughed at my mistakes. Now we are in different schools, but we still keep in touch by phone. [3]. Every time I feel down, I call him, and he always knows how to cheer me up. [4]. It teaches us to care about others. [5]. Remember, a friend in need is a friend indeed.",
+    "options": [
+      "A. This kind of friendship is rare and precious.",
+      "B. He became my best friend from that day on.",
+      "C. They listen to you when you need to talk.",
+      "D. That is why I value our friendship so much.",
+      "E. Making friends also makes us better people."
+    ],
+    "answer": "C B D E A",
+    "solution": {
+      "analysis": "本题侧重代词指代衔接。[1]前句“真正的朋友在你困难时支持你”，C项They指代true friends，“他们倾听你的倾诉”与后句“分享喜怒哀乐”并列，形成排比。[2]前句提到Li Ming，B项He指代Li Ming，“从那天起他成了我最好的朋友”，代词指代清晰。[3]前句“虽不同校仍电话联系”，D项That指代这份情谊，“这就是我如此珍视友谊的原因”。[4]后句It指代友谊，E项“交朋友也让我们成为更好的人”中making friends与It对应。[5]结尾总结，A项This kind of friendship指代上文描述的友谊，说明其珍贵。故选C、B、D、E、A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Nowadays, bike-sharing has changed the way people travel in cities. [1]. They are cheap, convenient and good for the environment. You can unlock a bike with your phone in seconds and park it anywhere in the city. However, the new way of travel also brings problems. [2]. They block the roads and make the streets messy. To solve this problem, the government has set up more parking stations. [3]. In addition, some cities are teaching riders to follow traffic rules. [4]. It makes the streets safer for everyone. After all, a good system needs the effort of every user. [5]. Only in this way can the bikes serve us better.",
+    "options": [
+      "A. They help reduce traffic and air pollution.",
+      "B. Some users leave the bikes in the middle of the sidewalk.",
+      "C. Riders can now park their bikes in the right places easily.",
+      "D. This kind of education is very necessary.",
+      "E. This is why everyone should use the bikes properly."
+    ],
+    "answer": "A B C D E",
+    "solution": {
+      "analysis": "本题侧重代词指代与转折衔接。[1]前句引入共享单车，A项They指代shared bikes，“它们有助于减少交通拥堵和空气污染”与后句“便宜、方便、环保”一致，构成总分。[2]前句用However转折说带来问题，B项“一些用户把车停在人行道中间”点出具体问题，后句They指代bikes，说它们堵路。[3]前句“政府增设停车点”，C项“骑车人现在能方便地把车停在正确位置”说明措施效果。[4]前句“有些城市教骑车人遵守交规”，D项This kind of education指代交通安全教育，“这种教育很有必要”。[5]前句“好系统需要每个使用者努力”，E项This指代上述讨论，“这就是为什么每个人都应正确用车”，与后句Only in this way呼应。故选A、B、C、D、E。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Keeping a pet is a wonderful experience for many families. A pet is not just an animal; it is a member of the family. [1]. They can make people happy and reduce stress. However, keeping a pet is also a big responsibility. [2]. You need to feed it, clean it and take it to the vet regularly. My neighbour has a lovely cat named Mimi. [3]. She waits for my neighbour at the door every evening and follows him around the house. When my neighbour is sick, Mimi lies quietly beside him. [4]. It seems that she understands his feelings. [5]. In return, the pet gives us love and companionship.",
+    "options": [
+      "A. This shows that animals can be very loyal.",
+      "B. For example, you must spend time caring for it every day.",
+      "C. Pets bring us so much joy in our daily life.",
+      "D. This is why many people treat their pets as family members.",
+      "E. She has brought the whole family a lot of happiness."
+    ],
+    "answer": "C B E A D",
+    "solution": {
+      "analysis": "本题侧重代词指代衔接。[1]前句说宠物是家庭成员，C项“宠物给我们的日常生活带来很多欢乐”承接主题，后句They指代pets，说它们让人开心、减压。[2]前句用However转折说养宠物是责任，B项For example“例如你每天都要花时间照顾它”举例说明责任，it指代pet。[3]前句介绍邻居的猫Mimi，E项She指代Mimi，“她给全家人带来很多快乐”，与后句具体行为衔接。[4]前句“邻居生病时Mimi静静躺在他身边”，A项This指代这一行为，“这说明动物可以非常忠诚”。[5]结尾总结，D项This指代上文宠物忠诚陪伴的表现，“这就是为什么很多人把宠物当家庭成员”，与后句“作为回报，宠物给我们爱与陪伴”呼应。故选C、B、E、A、D。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Reading is one of the best habits a person can have. [1]. First, reading widens our knowledge. [2]. Second, reading improves our language skills. We learn new words and sentence patterns naturally from books. [3]. Third, reading trains our thinking. Stories and articles ask us to follow ideas, compare opinions and make judgements. [4]. Moreover, reading is a good way to relax. [5]. In a word, the more we read, the more we benefit.",
+    "options": [
+      "A. Books can take us to places we have never been and introduce us to people we have never met.",
+      "B. For example, after reading a story, we may think about why the character made a certain choice.",
+      "C. Losing yourself in a good book can help you forget your worries for a while.",
+      "D. It brings us knowledge, skills and pleasure.",
+      "E. Students who read a lot usually write better and speak more confidently."
+    ],
+    "answer": "D A E B C",
+    "solution": {
+      "analysis": "本题侧重主题句与段落结构。文章用First/Second/Third/Moreover列出阅读的四个好处，每个空都是对所在段落主题句的支撑。[1]位于总起句后，D项“它带给我们知识、技能和乐趣”是总括句，与下文四个方面一一对应。[2]支撑“开阔知识面”，A项“书把我们带到从未去过的地方、介绍从未见过的人”正说明知识面的拓展。[3]支撑“提高语言能力”，E项“读书多的学生写作更好、表达更自信”是语言能力的体现。[4]支撑“训练思维”，B项For example“读故事后思考人物为何作此选择”是思维训练的例证。[5]支撑“放松”，C项“沉浸在好书中能暂时忘记烦恼”说明放松作用。故选D、A、E、B、C。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Planning a trip takes time and care. If you prepare well, your journey will be smooth and enjoyable. [1]. First, decide where to go and when. You should also book your hotel and tickets early, especially during holidays. [2]. Second, pack your bag wisely. [3]. Don't forget your ID card, phone charger and some medicine. Third, learn about the place before you leave. [4]. Finally, be flexible during the trip. [5]. Remember, the purpose of travel is to relax and enjoy, not to follow a strict plan.",
+    "options": [
+      "A. This way, you can avoid the rush and save money.",
+      "B. Check the weather so that you can bring the right clothes.",
+      "C. Knowing the local customs can help you avoid embarrassment.",
+      "D. Here are some tips to help you get ready.",
+      "E. Sometimes plans change, and that is part of the fun."
+    ],
+    "answer": "D A B C E",
+    "solution": {
+      "analysis": "本题侧重篇章结构：总起—分点建议—总结。[1]在总起句“做好准备旅行就顺利愉快”之后，D项“下面是一些帮你准备的建议”是总领句，引出First/Second/Third/Finally四层建议。[2]前文“提前订酒店和票”，A项This way指代提前预订的做法，“这样能避开高峰期并省钱”。[3]支撑“明智打包”，B项“查看天气以便带对衣服”是打包的具体建议。[4]支撑“出发前了解当地”，C项“了解当地习俗能避免尴尬”与之对应。[5]支撑“行程要灵活”，E项“计划有时会变，这正是乐趣所在”解释灵活态度，与结尾“旅行的目的是放松享受”呼应。故选D、A、B、C、E。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "The Spring Festival is the most important festival in China. It is a time for family reunion. [1]. Days before the festival, people clean their houses and put up red couplets. [2]. On New Year's Eve, the whole family gets together for a big dinner. [3]. After dinner, children receive red packets and everyone stays up late to welcome the new year. [4]. During the following days, people visit relatives and friends, wishing each other good luck. [5]. The festival not only brings joy, but also keeps our traditions alive.",
+    "options": [
+      "A. They do this to sweep away bad luck and welcome good fortune.",
+      "B. Dumplings, fish and spring rolls are usually on the table.",
+      "C. For example, people who work far away try to get home before the festival.",
+      "D. This is the most exciting part for children.",
+      "E. It is also a good chance to show respect for elders."
+    ],
+    "answer": "C A B D E",
+    "solution": {
+      "analysis": "本题侧重篇章结构与逻辑衔接。[1]前句“春节是家人团聚之时”，C项For example“例如在外地工作的人会在节前赶回家”举例说明团聚，属例证关系。[2]前句“打扫房屋、贴春联”，A项They指代people，“他们这样做是为了扫除霉运、迎接好运”说明传统习俗的含义。[3]前句“除夕全家吃团圆饭”，B项“桌上通常有饺子、鱼和春卷”列举年夜饭的食物，衔接自然。[4]前句“孩子收到红包、守岁”，D项This指代收红包这件事，“这是孩子们最期待的部分”。[5]前句“走亲访友互致祝福”，E项“这也是向长辈表达尊敬的好机会”补充拜年的意义，与结尾“传承传统”呼应。故选C、A、B、D、E。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E3-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "One cold morning, I was waiting at the bus stop when I (1)____ an old lady carrying two heavy bags. She looked tired and (2)____. I walked up to her and (3)____ to carry the bags for her. At first, she (4)____ my help, saying she could manage. But when I insisted, she finally (5)____ with a smile. We chatted while waiting for the bus. She said she was going to the hospital to (6)____ her husband, who had been ill for a week. When the bus (7)____, I helped her put the bags on board. She thanked me again and again and said that I had (8)____ her day. To be honest, I felt even (9)____ than she did. Helping others is like lighting a candle: it gives light to (10)____ people and warms yourself. That day taught me a (11)____ lesson. I decided to (12)____ doing small good deeds from then on. Now I believe that kindness is the most (13)____ language in the world. A little help can make a big (14)____ to someone in trouble. So don't (15)____ to give a hand when you see someone in need.",
+    "options": null,
+    "answer": "B C A D B C A D C A B D A C B",
+    "solution": {
+      "analysis": "全文大意：作者在公交站帮助一位提着重物的老奶奶，感受到助人的快乐，领悟到善良是世界最美的语言，从此坚持行善。各空考点：1.B noticed 动词辨析，“注意到”，与后文carrying呼应；2.C weak 形容词，“虚弱的”，与tired并列；3.A offered offer to do sth“主动提出做某事”，固定用法；4.D refused 动词辨析，“拒绝”，与后文坚持后同意形成转折；5.B agreed “同意”，with a smile表明欣然接受；6.C visit “探望”，去医院探望丈夫；7.A arrived arrive“到达”；8.D made make one's day“使某人开心一整天”，固定搭配；9.C happier 比较级，与than呼应；10.A other 限定词，other people“其他人”；11.B valuable 形容词，“宝贵的”，修饰lesson；12.D keep keep doing sth“坚持做某事”；13.A beautiful 最高级，“最美的语言”；14.C difference make a big difference“产生很大影响”，固定搭配；15.B hesitate don't hesitate to do“毫不犹豫做”。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E4-1",
+      "E4-2",
+      "E4-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Learning to ride a bike was one of the hardest things I have ever done. When I was eight, my father bought me a small bike as a birthday (1)____. I was so excited that I couldn't wait to (2)____ it. However, the first ride was a (3)____. I fell off again and again until my knees were (4)____ and hurt badly. I wanted to give up and cried, (5)____ my father encouraged me. He said, \"Everyone falls before they can stand.\" So I got up and tried (6)____. Day after day, I practised in the park. (7)____, I could ride a few metres without falling. My father ran behind me, holding the bike, and (8)____ let go when I wasn't looking. When I turned around and saw him far behind, I was (9)____ — I was riding alone! From that moment, I knew that (10)____ is the key to success. If you never (11)____, you will never learn. Years later, whenever I meet difficulties, I remember that day. It reminds me that every (12)____ starts with a small step. (13)____ the road ahead is hard, keep going and you will succeed. That bike taught me a lesson that I will always (14)____ in mind. Now I often tell my younger brother: \"Don't be afraid of (15)____; they are part of growing up.\"",
+    "options": null,
+    "answer": "C A B D C A B D C A B D C A B",
+    "solution": {
+      "analysis": "全文大意：作者回忆八岁学骑自行车的经历，从屡次摔倒到突然发现父亲放手、自己独立骑行，领悟到坚持与勇气是成功的关键。各空考点：1.C gift 名词辨析，“生日礼物”；2.A try try it“试骑”，与exciting呼应；3.B disaster 名词，“灾难”，夸张表达首次骑行失败；4.D bruised 形容词，“擦伤的”；5.C but 连词，表转折，想放弃但父亲鼓励；6.A again try again“再试一次”；7.B Finally 副词，“终于”，强调努力后的结果；8.D suddenly 副词，“突然放手”；9.C surprised 形容词，“惊讶的”，发现自己独自骑行；10.A practice 名词辨析，“练习是成功的关键”；11.B try 动词，never try与never learn呼应；12.D journey 名词，every journey starts with a small step“千里之行始于足下”；13.C Although 连词，引导让步状语从句；14.A keep keep sth in mind“牢记”，固定搭配；15.B failure 名词辨析，“失败是成长的一部分”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E4-1",
+      "E4-2",
+      "E4-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Jack and I have been friends since primary school. We shared secrets, played basketball together and (1)____ each other through hard times. However, last month we had a serious (2)____. It started with a small misunderstanding about a football match. Jack thought I had (3)____ him on purpose, and he was really angry. We didn't talk to each other for a whole week. I felt (4)____, because I had lost my best friend. One day, I (5)____ my courage and decided to say sorry first. I wrote him a letter and put it in his desk. To my (6)____, Jack replied the next day. He said he was also sorry and that he had (7)____ over the matter many times. We met after school and talked (8)____ for hours. We both (9)____ that a real friendship is more important than winning an argument. (10)____ we shook hands and laughed. That experience taught me that (11)____ is the bridge between people. If you care about a friend, don't let (12)____ stand in the way. Sometimes it takes a lot of (13)____ to say the first sorry. But when you do, you will find that the (14)____ of friendship is sweeter than before. (15)____, a friend is a person who forgives you and stays by your side.",
+    "options": null,
+    "answer": "A C B D C A D B C A D B C A D",
+    "solution": {
+      "analysis": "全文大意：作者与好友Jack因误会争吵一周，最终作者主动写信道歉，两人和好，领悟到沟通与勇气是友谊的桥梁。各空考点：1.A supported 动词辨析，“支持”，与through hard times呼应；2.C argument 名词辨析，“争吵”；3.B cheated 动词辨析，“欺骗”，误会起因；4.D lonely 形容词，“孤独的”，因失去挚友；5.C gathered gather one's courage“鼓起勇气”，固定搭配；6.A surprise To my surprise“令我惊讶的是”；7.D thought think over“仔细考虑”；8.B openly 副词，“坦率地交谈”；9.C realized 动词辨析，“认识到”；10.A Finally 副词，“最后”，和好；11.D communication 名词辨析，“沟通是人与人之间的桥梁”；12.B pride 名词辨析，“不要让自尊挡路”；13.C courage 名词辨析，“说第一句对不起需要勇气”；14.A sweetness 名词辨析，“友谊的甜蜜”；15.D After all 副词短语，“毕竟”，总结朋友的含义。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E4-1",
+      "E4-2",
+      "E4-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "The night before the final exam, I could not fall (1)____. My heart was beating fast, and I kept thinking about the maths problems I might (2)____. The next morning, I felt so (3)____ that I didn't even want to eat breakfast. My mother noticed my (4)____ and sat down beside me. She said softly, \"Don't be afraid. You have studied (5)____ all term. Just do your best.\" Her words made me feel a little (6)____. I took a deep breath and walked into the classroom. When the exam (7)____, I looked at the paper. To my relief, most of the questions were (8)____ that I had reviewed. I calmed down and began to answer them one by one. An hour later, I finished the paper with ten minutes to (9)____. I checked my answers carefully. When the results came out, I got an A. I was so (10)____ that I almost jumped with joy. That experience (11)____ me that nervousness is normal, but it should never control us. If we prepare (12)____ and stay calm, we can do well in anything. (13)____, fear is just a feeling, and feelings can be changed. Now before every exam, I tell myself: \"I have done my best, so I have nothing to (14)____.\" This simple sentence has helped me (15)____ my fears many times.",
+    "options": null,
+    "answer": "B D A C B D A C B D A C B D A",
+    "solution": {
+      "analysis": "全文大意：作者讲述大考前夜紧张失眠、母亲安慰后平静应考并获得A的经历，认识到紧张是正常的，但不能被它控制。各空考点：1.B asleep fall asleep“入睡”，固定搭配；2.D face 动词辨析，“可能面对的问题”；3.A nervous 形容词，“紧张的”，so...that句型；4.C worry 名词辨析，“担忧”；5.B hard 副词，study hard“努力学习”；6.D better 形容词比较级，feel better“感觉好些了”；7.A began 动词辨析，“考试开始”；8.C ones 代词，替代questions，后接定语从句；9.B spare 动词，ten minutes to spare“还剩十分钟”；10.D glad 形容词辨析，“高兴得几乎跳起来”；11.A taught 动词辨析，teach sb sth“教会某人”；12.C well 副词，prepare well“充分准备”；13.B After all 副词短语，“毕竟”；14.D fear 动词辨析，nothing to fear“没什么可怕的”；15.A overcome 动词辨析，“克服恐惧”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E4-1",
+      "E4-2",
+      "E4-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Last weekend, our class visited an old tea house in the city. It was my first (1)____ to experience the traditional tea ceremony, and I was full of (2)____. An old master welcomed us warmly and showed us (3)____ to make tea properly. First, he warmed the cups with hot water. (4)____, he put some tea leaves into the pot. The leaves, (5)____ smelled sweet, came from a small mountain village. Then he poured hot water and waited for a moment. We watched (6)____ quietly, afraid to break the peaceful atmosphere. When the tea was ready, the master (7)____ each cup for us. I took a small sip. The taste was light (8)____ fresh, completely different from the bottled tea I usually drank. The master told us that drinking tea is (9)____ just a habit; it is a way of life. He said that patience and respect are (10)____ important in making tea as in doing anything else. (11)____ the visit, I understood why tea has been loved by Chinese people for thousands of years. It is not only about the drink (12)____ about the peace it brings to the mind. That afternoon, I learned (13)____ than a lesson from a textbook: culture lives in everyday life. (14)____, I have started to drink tea slowly and enjoy every sip. I hope I can visit (15)____ tea house again.",
+    "options": null,
+    "answer": "C A D B C A D B C A D B C A D",
+    "solution": {
+      "analysis": "全文大意：作者第一次体验传统茶道，从观看泡茶过程中领悟到茶不仅是一种饮品，更是一种生活方式，文化就在日常生活中。各空考点：1.C time 名词辨析，“第一次”；2.A curiosity 名词辨析，“充满好奇”；3.D how 连接副词，show sb how to do“教某人如何做”；4.B Next 副词，与First、Then构成顺序连接词；5.C which 关系代词，引导非限制性定语从句修饰leaves；6.A silently 副词，“安静地看着”；7.D poured 动词辨析，“斟茶”；8.B but 连词，light but fresh“清淡而新鲜”；9.C not not just...; it is...“不只是……而是……”；10.A as as...as“与……一样”，固定结构；11.D After 介词，“参观之后”；12.B but not only...but (also)结构；13.C more 比较级，more than“不仅仅是”；14.A Since then 副词短语，“从那以后”，与现在完成时搭配；15.D that 指示代词，“那家茶馆”。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E4-1",
+      "E4-2",
+      "E4-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Last week, our school (1)____ (hold) a sports meeting on the playground. The weather was fine and the students were (2)____ (excite). In the morning, the athletes ran in the 100-metre race (3)____ the others cheered loudly. Our class won the relay race at last, (4)____ made us all feel proud. After the meeting, the headmaster made a short speech. He said that doing sports is important for both body and mind, and encouraged us (5)____ (take) part in more outdoor activities. Now I realise that sports not only build up our (6)____ (strong) but also teach us teamwork. The most exciting moment was (7)____ our class crossed the finishing line first. Next year, I (8)____ (join) the long-distance race. I believe that (9)____ hard training, I can do (10)____ (good) than this year.",
+    "options": null,
+    "answer": "held excited while which to take strength when will join with better",
+    "solution": {
+      "analysis": "考点逐空解析：1.held 谓语动词，一般过去时，与Last week呼应；2.excited 词性转换，excite→excited“兴奋的”，用于人；3.while 从句连接词，引导时间状语从句表“与此同时”；4.which 关系代词，引导非限制性定语从句指代前句整件事；5.to take 非谓语，encourage sb to do sth“鼓励某人做某事”；6.strength 词性转换，strong→strength“力量”；7.when 连接词，引导表语从句“最激动人心的时刻是……时”；8.will join 谓语动词，一般将来时，与Next year呼应；9.with 介词，“凭借艰苦训练”；10.better 词性转换，good→better比较级，与than呼应。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Water is very important to all living things. About seventy percent of the earth's surface is (1)____ (cover) by water. Most of it is sea water, so we can't drink it (2)____ (direct). The water cycle keeps water moving all the time. When the sun shines, the water in rivers and seas (3)____ (become) steam and rises into the sky. The steam forms clouds. When the clouds get heavy, the water falls (4)____ rain. Then the rain water runs back into the rivers and seas, and the cycle starts again. Scientists say that the amount of water on the earth never changes; it is just recycled by nature. That is (5)____ we should save water instead of wasting it. If we don't take care of water resources, future generations (6)____ (face) serious problems. Many cities have already started (7)____ (collect) rain water for daily use. To protect water, we can turn off the tap while (8)____ (brush) our teeth. We should also try to reuse water (9)____ (wise) in our daily life. Remember: saving a drop of water today means saving a river (10)____ the future.",
+    "options": null,
+    "answer": "covered directly becomes as why will face collecting brushing wisely in",
+    "solution": {
+      "analysis": "考点逐空解析：1.covered 谓语动词被动语态，be covered by“被……覆盖”；2.directly 词性转换，direct→directly副词修饰drink；3.becomes 谓语动词，一般现在时第三人称单数，主语the water；4.as 介词，fall as rain“以雨的形式落下”；5.why 连接词，引导表语从句“这就是……的原因”；6.will face 谓语动词，一般将来时，if条件句主句；7.collecting 非谓语，start doing sth“开始做某事”；8.brushing 非谓语，while doing“边……边……”省略主语；9.wisely 词性转换，wise→wisely副词修饰reuse；10.in 介词，in the future“在将来”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "The Mid-Autumn Festival is one of (1)____ (important) festivals in China. It falls on the fifteenth day of the eighth lunar month, when the moon looks bigger and (2)____ (bright) than usual. On that night, families get together (3)____ (enjoy) the full moon and eat mooncakes. Mooncakes are round, (4)____ (symbol) family reunion. Children love the festival because they can listen (5)____ the old stories about Chang'e, the goddess on the moon. In recent years, more and more people (6)____ (celebrate) the festival by sending mooncakes to their friends. Some schools hold poetry competitions, in (7)____ students recite poems about the moon. The festival reminds us (8)____ the importance of family. No matter how busy we are, we should try (9)____ (return) home for a family dinner. After all, a family (10)____ (be) the warmest place in the world.",
+    "options": null,
+    "answer": "the most important brighter to enjoy symbolising to have celebrated which of to return is",
+    "solution": {
+      "analysis": "考点逐空解析：1.the most important 词性转换，one of+最高级“最重要的节日之一”；2.brighter 词性转换，bright→brighter比较级，与bigger并列、与than呼应；3.to enjoy 非谓语，不定式作目的状语；4.symbolising 非谓语，现在分词作伴随状语“象征团圆”；5.to 介词，listen to固定搭配；6.have celebrated 谓语动词，现在完成时，与In recent years呼应；7.which 关系代词，介词in+which引导定语从句；8.of 介词，remind sb of sth“提醒某人某事”；9.to return 非谓语，try to do sth“努力做某事”；10.is 谓语动词，一般现在时，主语a family为单数。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Doctors often say that exercise is good (1)____ our health. It can help us keep fit, sleep better and feel (2)____ (happy). However, many students spend too much time (3)____ (sit) in front of computers. Some even play games for hours, (4)____ is bad for their eyes. To stay healthy, we should do sports regularly. For example, we can run, swim or play basketball after school. Experts suggest that teenagers (5)____ (do) at least one hour of exercise every day. If we don't exercise, our bodies will become weak and we (6)____ (get) sick easily. Besides, we should eat more vegetables and less junk food, because (7)____ we eat affects our health greatly. A balanced diet, together with enough exercise, (8)____ (make) us strong and energetic. Let's take action now! I believe that if everyone (9)____ (start) exercising today, our school will be full of (10)____ (energy) students.",
+    "options": null,
+    "answer": "for happier sitting which do will get what makes starts energetic",
+    "solution": {
+      "analysis": "考点逐空解析：1.for 介词，be good for“对……有益”；2.happier 词性转换，happy→happier比较级，与feel连用；3.sitting 非谓语，spend time (in) doing sth；4.which 关系代词，非限制性定语从句指代前面整句；5.do 谓语动词，suggest that sb (should) do sth虚拟语气，省略should；6.will get 谓语动词，一般将来时，if条件句主句；7.what 连接代词，引导主语从句“我们所吃的”；8.makes 谓语动词，主语A balanced diet为单数，together with不影响谓语；9.starts 谓语动词，if条件句用一般现在时表将来；10.energetic 词性转换，energy→energetic“精力充沛的”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Planting trees is one of the best ways (1)____ (protect) the environment. Trees can clean the air, cool the city and give animals a home. Last spring, our class planted fifty young trees in the park. We dug holes, watered the trees and wrote our names on small boards. Since then, we have (2)____ (visit) the park every month to take care of them. Now the trees are growing well, and some of them are already (3)____ (tall) than us. It makes us feel proud to see the green leaves. Scientists say that a city with more trees is a city (4)____ people live better. That is why many cities are trying their best (5)____ (add) more green spaces. We should remember that the earth is our common home, and it is our duty to protect it. Trees bring us fresh air and (6)____ (beauty) views. If everyone plants a tree, the world will become a (7)____ (green) place. Let's start (8)____ small things and make the earth more (9)____ (love). After all, (10)____ we do for nature, nature will do for us.",
+    "options": null,
+    "answer": "to protect visited taller where to add beautiful greener from lovely what",
+    "solution": {
+      "analysis": "考点逐空解析：1.to protect 非谓语，不定式作定语修饰ways；2.visited 谓语动词，现在完成时have visited，与Since then呼应；3.taller 词性转换，tall→taller比较级，与than呼应；4.where 关系副词，引导定语从句修饰city，在从句中作地点状语；5.to add 非谓语，try one's best to do sth；6.beautiful 词性转换，beauty→beautiful形容词修饰views；7.greener 词性转换，green→greener比较级“更绿的地方”；8.from 介词，start from“从……开始”；9.lovely 词性转换，love→lovely“可爱的、美好的”；10.what 连接代词，引导让步意味的主语从句，“我们为自然做什么，自然也会为我们做什么”。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Last summer holiday, my family (1)____ (visit) Guilin, a city famous for its beautiful mountains and rivers. We took a boat trip along the Li River, the banks of (2)____ were covered with green bamboo. The water was so clear that we could see the stones at the bottom. After the boat trip, we climbed one of the hills (3)____ (watch) the sunset. It was one of the most (4)____ (forget) moments in my life. The local people were very friendly, and (5)____ they told us helped us learn a lot about the history of the city. We also tasted some local food, (6)____ tasted really delicious. My favourite was the rice noodles, and I couldn't help (7)____ (eat) two bowls. Before we left, my mother bought some silk scarves (8)____ presents for our friends. The trip was so wonderful that I (9)____ (plan) to go there again next year, and I have already started (10)____ (save) money for it.",
+    "options": null,
+    "answer": "visited which to watch unforgettable what which eating as plan saving",
+    "solution": {
+      "analysis": "考点逐空解析：1.visited 谓语动词，一般过去时，与Last summer holiday呼应；2.which 关系代词，介词of+which引导定语从句；3.to watch 非谓语，不定式作目的状语“去看日落”；4.unforgettable 词性转换，forget→unforgettable“难忘的”；5.what 连接代词，引导主语从句“他们告诉我们的”；6.which 关系代词，非限制性定语从句修饰food；7.eating 非谓语，can't help doing sth“忍不住做某事”；8.as 介词，as presents“作为礼物”；9.plan 谓语动词，一般现在时表将来计划；10.saving 非谓语，start doing sth“开始存钱”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Dear Lily, How is everything going? It (1)____ (be) two months since you moved to Shanghai, and I miss you very much. Yesterday I (2)____ (receive) your letter and I was really happy (3)____ (hear) from you. I am glad (4)____ you are enjoying your new school. The students there seem friendly, and your new teachers are kind, too. In my school, we have just finished the mid-term exams. I did (5)____ (good) than last time because I reviewed my notes every day. Our English teacher, Miss Wang, is always ready (6)____ (help) us. She often tells us that (7)____ we learn at school will be useful in the future. After the exams, our class went on a picnic (8)____ the weather was fine. We had a great time (9)____ (sing) and playing games by the lake. I hope you can come back to visit us during the winter holiday. If you come, I will show you (10)____ new library. Looking forward to your reply. Yours, Amy",
+    "options": null,
+    "answer": "has been received to hear that better to help what because singing the",
+    "solution": {
+      "analysis": "考点逐空解析：1.has been 谓语动词，现在完成时，It has been+时间+since...固定句型；2.received 谓语动词，一般过去时，与Yesterday呼应；3.to hear 非谓语，be happy to do sth；4.that 连接词，引导宾语从句glad that...；5.better 词性转换，good→better比较级，与than呼应；6.to help 非谓语，be ready to do sth“乐于做某事”；7.what 连接代词，引导主语从句“我们在学校所学到的”；8.because 连词，引导原因状语从句；9.singing 非谓语，have a great time doing sth；10.the 冠词，特指双方都知道的图书馆。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "My hometown is a small town in the south of China. In the past, there (1)____ (be) only narrow roads and low houses. People walked or rode bikes (2)____ (go) to work. Life was simple (3)____ peaceful. In recent years, great changes (4)____ (take) place in my hometown. New buildings have been built, and wide roads (5)____ (connect) the town with the city centre. Now people can travel to the city (6)____ (easy) by bus or by car. The town has also become (7)____ (clean) than before because of the new rubbish bins. What makes me happiest is (8)____ a new park has been opened near my house. Every evening, the park is full of people (9)____ (enjoy) themselves after work. I love my hometown, and I believe it (10)____ (become) more beautiful in the future.",
+    "options": null,
+    "answer": "were to go but have taken connect easily cleaner that enjoying will become",
+    "solution": {
+      "analysis": "考点逐空解析：1.were 谓语动词，there be句型一般过去时，主语roads为复数；2.to go 非谓语，不定式作目的状语；3.but 连词，simple but peaceful“简单而宁静”；4.have taken 谓语动词，现在完成时，take place“发生”，与In recent years呼应；5.connect 谓语动词，一般现在时，主语roads为复数；6.easily 词性转换，easy→easily副词修饰travel；7.cleaner 词性转换，clean→cleaner比较级，与than呼应；8.that 连接词，引导表语从句；9.enjoying 非谓语，现在分词作定语修饰people；10.will become 谓语动词，一般将来时，与in the future呼应。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Giant pandas are one of the most famous animals in the world. They live mainly in the mountains of Sichuan, where there are lots of bamboo. A panda (1)____ (eat) about twelve hours a day, and bamboo makes up most of its diet. Baby pandas are very small (2)____ birth, only about the size of a mouse. They grow (3)____ (quick) in the first few months. Today, the number of wild pandas (4)____ (increase) slowly thanks to years of protection. Scientists (5)____ (do) research on pandas for years. They put cameras in the forests (6)____ (watch) the animals without disturbing them. What scientists have found (7)____ (be) very useful for panda protection. However, pandas still face many dangers, such as (8)____ (lose) their homes. That is (9)____ we should continue to protect their living environment. If we all care about nature, pandas (10)____ (live) happily in the wild forever.",
+    "options": null,
+    "answer": "eats at quickly is increasing have done to watch is losing why will live",
+    "solution": {
+      "analysis": "考点逐空解析：1.eats 谓语动词，一般现在时第三人称单数，主语A panda；2.at 介词，at birth“出生时”，固定搭配；3.quickly 词性转换，quick→quickly副词修饰grow；4.is increasing 谓语动词，现在进行时表“正在增长”，主语the number为单数；5.have done 谓语动词，现在完成时，与for years呼应；6.to watch 非谓语，不定式作目的状语；7.is 谓语动词，主语为What引导的主语从句，谓语用单数；8.losing 非谓语，such as+动名词“例如失去家园”；9.why 连接词，引导表语从句“这就是……的原因”；10.will live 谓语动词，一般将来时，if条件句主句。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "stem": "Helen Keller is a name (1)____ people all over the world remember. When she was only nineteen months old, she became seriously ill and lost her (2)____ (see) and hearing. For a long time, she lived in a world of darkness and silence. Then her teacher, Anne Sullivan, came into her life. Anne taught Helen (3)____ (connect) words with things by spelling into her hand. It was through Anne's patience (4)____ Helen finally understood the meaning of words. From then on, Helen worked (5)____ (hard) than anyone else and learned to read, write and even speak. Later, she went to college and became the first deaf-blind person (6)____ (get) a university degree. She wrote many books, in (7)____ she shared her thoughts about life. Helen's story tells us (8)____ nothing is impossible if we never give up. Her courage and determination are inspiring (9)____ millions of people. As she once said, \"The best and most beautiful things in the world cannot be seen or (10)____ (touch) — they must be felt with the heart.\"",
+    "options": null,
+    "answer": "that sight to connect that harder to get which that to touched",
+    "solution": {
+      "analysis": "考点逐空解析：1.that 关系代词，引导定语从句修饰name，作remember的宾语；2.sight 词性转换，see→sight“视力”，与hearing并列；3.to connect 非谓语，teach sb to do sth；4.that 强调句型It was...that...，强调through Anne's patience；5.harder 词性转换，hard→harder比较级，与than呼应；6.to get 非谓语，不定式作定语，the first person to do；7.which 关系代词，介词in+which引导定语从句；8.that 连接词，引导宾语从句tells us that...；9.to 介词，be inspiring to sb“鼓舞某人”；10.touched 谓语动词被动语态，cannot be seen or touched“看不见也摸不着”。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E5-1",
+      "E5-2",
+      "E5-3",
+      "E5-4",
+      "E5-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，你们学校将于下周五下午在学校礼堂举办中国文化节。请给外教Mr. Smith写一封邀请信，内容包括：1. 活动时间、地点；2. 活动内容（茶艺、传统音乐表演、剪纸展示、品尝小吃等）；3. 表达期待。注意：词数80左右，可适当增加细节，使行文连贯。",
+    "options": null,
+    "answer": "写作要点：1. 开头问候并说明写信目的（邀请参加文化节）；2. 具体信息：时间（下周五下午2点）、地点（学校礼堂）、活动内容（茶艺、音乐、剪纸、小吃）；3. 表达期望对方参加并请求回复。结构建议：三段式——开头（目的）+正文（时间地点活动）+结尾（期待与请求回复），注意书信格式（称呼、落款）。",
+    "solution": {
+      "analysis": "范文：Dear Mr. Smith,\nOur school will hold a Chinese Culture Festival next Friday afternoon. I am writing to invite you to join us. The festival will start at 2:00 p.m. in the school hall. There will be a tea ceremony, traditional music performances and a paper-cutting show. You can also taste different kinds of local snacks. I believe you will enjoy the festival and learn more about Chinese culture. We would be very glad if you could come. Please let me know if you can make it.\nYours sincerely,\nLi Hua\n高分要点：1. 覆盖全部要点且信息完整；2. 使用I am writing to invite...、We would be glad if...等得体表达；3. 适当使用there be结构、定语从句（if you could come）等高级句式；4. 语言礼貌、结尾自然。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，上个月你因病住院两周，同学李明每天放学后帮你补课，使你顺利通过了期中考试。请给李明写一封感谢信，内容包括：1. 表达感谢；2. 回忆他帮助你的具体事例；3. 表示今后愿意回报。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 开门见山表达感谢；2. 具体回忆李明帮你补课、讲解难题的事例；3. 说明他帮助的结果（顺利通过期中考试）；4. 表达回报意愿和祝愿。结构建议：三段式——感谢+事例+回报与祝愿，使用I'm writing to thank you for...等句型。",
+    "solution": {
+      "analysis": "范文：Dear Li Ming,\nI'm writing to thank you for helping me during my illness. Last month, I stayed in hospital for two weeks and missed many lessons. You came to see me every day after school and explained the difficult maths problems to me. Thanks to your patient help, I passed the mid-term exam. Your kindness touched me deeply. If you need any help in the future, please don't hesitate to tell me. I hope we can always be good friends.\nYours sincerely,\nLi Hua\n高分要点：1. 完整覆盖感谢、事例、结果、回报四个要点；2. 使用Thanks to your patient help、don't hesitate to tell me等高级表达；3. 情感真挚、时态准确（一般过去时叙述事例，一般现在时表意愿）；4. 书信格式规范。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，学校英语广播站正在招聘两名英语播音员。请你给站长写一封申请信，内容包括：1. 表达申请意愿；2. 介绍自己的优势（英语好、发音标准、有播音经验）；3. 表达希望被录用。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 表明写信目的——申请播音员职位；2. 自我介绍与优势：英语成绩优异、发音标准、曾在班级活动中担任主持；3. 表达决心与期待录用。结构建议：三段式——申请目的+个人优势+期待回复，使用I'm writing to apply for...、I would be grateful if...等申请信常用句型。",
+    "solution": {
+      "analysis": "范文：Dear Editor,\nI'm writing to apply for the position of English announcer in our school radio station. I am a student of Class 3, Grade 8. I am good at English and my spoken English is quite standard. Last year, I hosted the English singing competition of our school, which gave me much experience. I am also willing to work hard and learn new things. I believe I can do the job well. I would be grateful if you could give me a chance.\nYours sincerely,\nLi Hua\n高分要点：1. 申请信要点齐全（目的、优势、期待）；2. 使用apply for、be good at、would be grateful if等得体表达；3. 用非限制性定语从句（which gave me much experience）提升句式；4. 语气诚恳、条理清晰。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，你的朋友王芳来信说她的英语成绩不理想，向你请教提高英语的方法。请你给她写一封回信，内容包括：1. 表示理解；2. 提出建议（多听多说、每天记单词、多读英文短文等）；3. 表达鼓励。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 开头表示理解对方的困扰；2. 提出2-3条具体建议：每天听英语广播练听力、坚持记单词、多读英文故事并做笔记；3. 表达鼓励与祝福。结构建议：三段式——理解+建议（用First/Second/Third）+鼓励，使用Why not...?、You'd better...等提建议句型。",
+    "solution": {
+      "analysis": "范文：Dear Wang Fang,\nI was sorry to hear that you are worried about your English. Don't worry; you can improve it with effort. First, listen to English programmes every day and practise speaking aloud. Second, keep a notebook and write down ten new words every day. Third, read short English stories and try to retell them in your own words. If you keep doing these things, your English will get better soon. I believe in you, so please don't give up. I'm looking forward to your good news.\nYours sincerely,\nLi Hua\n高分要点：1. 建议具体可行，条理清晰（First/Second/Third）；2. 使用Why not...?、If you keep doing...等丰富句式；3. 语气真诚，既有理解又有鼓励；4. 结尾表达期待，收尾自然。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，请你以“My Favourite Festival”为题，用英语写一篇短文，介绍你最喜欢的中国传统节日，内容包括：1. 节日的名称和时间；2. 人们如何庆祝（传统习俗）；3. 你喜欢它的原因。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 点明最爱的节日及时间（如春节/中秋节）；2. 介绍庆祝方式：家庭团聚、吃特定食物（饺子/月饼）、看晚会或赏月等；3. 说明喜欢的原因：家人团聚、传统文化、氛围温馨。结构建议：总分总——引出节日+庆祝活动+个人感受，使用定语从句和并列句丰富表达。",
+    "solution": {
+      "analysis": "范文：My Favourite Festival\nMy favourite festival is the Mid-Autumn Festival, which falls on the fifteenth day of the eighth lunar month. On that day, family members get together and enjoy a big dinner. After dinner, we go outside to watch the full moon and eat mooncakes. The mooncakes are round and sweet, just like our happy family. I like this festival best because it brings our family together. In our busy life, it is a wonderful time to talk with our parents and grandparents. It also reminds me of the importance of family love.\n高分要点：1. 要点齐全：时间、习俗、原因；2. 使用which引导的非限制性定语从句和because原因状语从句；3. 用比喻（just like our happy family）增强感染力；4. 结尾升华主题（family love），结构完整。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，你们班就“中学生是否应该带手机进校园”进行了讨论。请你用英语写一篇短文，表达你的观点，内容包括：1. 你的观点；2. 支持你观点的理由（至少两点）；3. 提出合理建议。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 明确观点（支持或反对，本范文观点：反对带手机进校园）；2. 理由：影响学习（上课分心）、损害健康（视力下降）、可能产生攀比；3. 建议：学校可设手机保管柜，确需联系可找老师。结构建议：三段式——观点+理由（Firstly/Secondly）+建议，使用in my opinion等表达立场。",
+    "solution": {
+      "analysis": "范文：Should Students Take Phones to School?\nIn my opinion, students should not take phones to school. Firstly, phones make us distracted in class. Some students play games or send messages instead of listening to the teacher, which is bad for their studies. Secondly, looking at screens for a long time hurts our eyes and health. Besides, comparing phones with others may cause unnecessary problems. To solve this, our school can set up lockers for phones at the school gate. If students need to contact their parents, they can use the office phone. Let's put our hearts into study and grow up healthily.\n高分要点：1. 观点鲜明，理由充分（至少两点并展开）；2. 使用Firstly/Secondly/Besides衔接，逻辑清晰；3. 用非限制性定语从句（which is bad for their studies）等高级句式；4. 结尾提出可行建议并升华（grow up healthily）。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "essay",
+    "stem": "假定你是李华，上周末你参加了学校组织的社区志愿活动。请你用英语写一篇短文，描述这次经历，内容包括：1. 活动的时间和地点；2. 你做了什么（如帮助老人打扫房间、陪他们聊天）；3. 你的感受。注意：词数80左右，可适当增加细节。",
+    "options": null,
+    "answer": "写作要点：1. 交代时间地点（上周末、社区养老服务中心）；2. 具体活动：打扫房间、陪老人聊天、表演小节目；3. 感受：帮助他人让自己快乐，体会到尊老爱老的意义。结构建议：三段式——活动概况+活动经过（按时间顺序）+感受，注意一般过去时的正确使用。",
+    "solution": {
+      "analysis": "范文：An Unforgettable Volunteer Experience\nLast weekend, our class went to the community centre for the elderly as volunteers. In the morning, we cleaned the rooms and washed the windows for the old people. Then we sat with them and chatted about their daily life. Some of us sang songs, and the old people clapped happily. When we left, they smiled and thanked us again and again. I felt warm inside, because I realised that a little care can bring great joy to others. This experience taught me to respect and love the elderly. I will take part in more volunteer activities in the future.\n高分要点：1. 按时间顺序描述（In the morning...Then...When we left），条理清楚；2. 使用because引导的原因状语从句和宾语从句（realised that...）等句式；3. 情感真实，结尾点明收获与决心；4. 时态一致，全部用一般过去时叙述。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E6-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The word \"brilliant\" in the sentence \"She gave a brilliant speech at the meeting\" means ________.\n",
+    "options": [
+      "A. 精彩的",
+      "B. 乏味的",
+      "C. 简短的",
+      "D. 响亮的"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查brilliant的词义。brilliant本义为“明亮的、闪耀的”，引申为“杰出的、精彩的”，brilliant speech指“精彩的演讲”，故A正确。B项“乏味的”是boring；C项“简短的”是short/brief；D项“响亮的”是loud。结合语境a brilliant speech（精彩的演讲）即可判断，答案A。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Choose the best word to complete the sentence: The teacher asked us to ________ our answers before handing in the papers.\n",
+    "options": [
+      "A. check",
+      "B. cheer",
+      "C. change",
+      "D. charge"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查动词词义辨析。交卷前应先“检查”答案，check意为“检查、核对”，符合语境。B项cheer“欢呼”与语境无关；C项change“改变”句意不通；D项charge“收费、充电”为干扰项（与check形近）。四个选项形近词辨析，结合before handing in（交卷前）的语境，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The word \"prevent\" in \"Washing hands often can prevent diseases\" means ________.\n",
+    "options": [
+      "A. 预防",
+      "B. 治疗",
+      "C. 传播",
+      "D. 减轻"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查prevent的词义。prevent意为“预防、阻止”，prevent diseases即“预防疾病”，符合勤洗手的作用，故A正确。B项“治疗”是cure/treat；C项“传播”是spread；D项“减轻”是reduce。根据生活常识“勤洗手能预防疾病”，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The word \"abandon\" in \"They had to abandon the plan because of the sudden storm\" means ________.\n",
+    "options": [
+      "A. 放弃",
+      "B. 坚持",
+      "C. 修改",
+      "D. 讨论"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查abandon的词义。abandon意为“放弃、抛弃”，because of the sudden storm（由于突如其来的暴风雨）说明被迫“放弃”计划，故A正确。B项“坚持”是stick to/insist on，与被迫放弃的逻辑相反；C项“修改”是revise；D项“讨论”是discuss。根据因果逻辑（风暴→放弃计划），答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "Which word can best replace \"delighted\" in \"The children were delighted to see the first snow of winter\"?\n",
+    "options": [
+      "A. angry",
+      "B. happy",
+      "C. tired",
+      "D. worried"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "考查delighted的同义替换。delighted意为“高兴的、欣喜的”，孩子们看到初雪应是“开心的”，故用happy替换，答案B。A项angry“生气的”、C项tired“疲惫的”、D项worried“担心的”都与看到初雪的喜悦情绪相悖。根据语境情感色彩判断，答案B。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "We should ________ water, because fresh water is becoming less and less.\n",
+    "options": [
+      "A. save",
+      "B. spend",
+      "C. waste",
+      "D. collect"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查语境选词。后文说“淡水越来越少”，因此我们应当“节约”水，save意为“节约、节省”，答案A。B项spend“花费”；C项waste“浪费”与节约的呼吁相反；D项collect“收集”虽可搭配水，但与“越来越少”的逻辑不如save贴切。根据因果逻辑判断，答案A。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The school library is a good place for students to ________ books and study quietly.\n",
+    "options": [
+      "A. borrow",
+      "B. cook",
+      "C. paint",
+      "D. climb"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查语境选词。在图书馆里可以“借”书并安静学习，borrow意为“借入”，答案A。B项cook“做饭”、C项paint“画画”、D项climb“攀爬”都与图书馆的功能不符。根据地点library的典型行为判断，答案A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The school meeting was ________ because the headmaster was ill and could not attend.\n",
+    "options": [
+      "A. cancelled",
+      "B. celebrated",
+      "C. attended",
+      "D. organised"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查语境选词。校长生病无法出席，会议因此被“取消”，cancelled意为“取消”，答案A。B项celebrated“庆祝”与会议语境不符；C项attended“出席”是被动语态“被出席”，逻辑不通；D项organised“组织”与because从句无因果关系。根据“生病→取消会议”的因果关系判断，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "After ten years, she still ________ her old friend the moment she saw him at the airport.\n",
+    "options": [
+      "A. recognized",
+      "B. refused",
+      "C. repeated",
+      "D. remained"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查语境选词。十年未见，但在机场看到老朋友的那一刻她“认出”了他，recognized意为“认出”，答案A。B项refused“拒绝”；C项repeated“重复”；D项remained“保持、留下”，均与“见到老友”的语境不符。the moment she saw him（她一看到他）强调瞬间认出，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "The doctor advised him to ________ smoking, or his health would get worse and worse.\n",
+    "options": [
+      "A. give up",
+      "B. put up",
+      "C. turn up",
+      "D. look up"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查动词短语辨析。医生建议他“戒掉”吸烟，否则健康会恶化，give up smoking“戒烟”，答案A。B项put up“张贴、举起”；C项turn up“出现、调大”；D项look up“查阅、抬头看”，均不能与smoking构成合理搭配。根据“否则健康恶化”的警告逻辑判断，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In the sentence \"He is a warm person, always ready to help others\", the word \"warm\" means ________.\n",
+    "options": [
+      "A. 热情的",
+      "B. 温暖的",
+      "C. 凉爽的",
+      "D. 冷淡的"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查熟词生义。warm常见义为“温暖的”，但此处修饰人，与always ready to help others（总是乐于助人）相呼应，意为“热情的、热心的”，答案A。B项“温暖的”是warm的常见义，但修饰人的性格时应用引申义；C项“凉爽的”是cool；D项“冷淡的”是cold。根据后文解释判断，答案A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In the sentence \"The meeting will run for two hours\", the word \"run\" means ________.\n",
+    "options": [
+      "A. 持续",
+      "B. 奔跑",
+      "C. 经营",
+      "D. 流动"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查熟词生义。run常见义为“跑”，但此处与for two hours（两个小时）搭配，意为“持续”，即“会议将持续两个小时”，答案A。B项“奔跑”是常见义，但会议不能奔跑；C项“经营”是run的另一义项（run a company），不适用于会议；D项“流动”用于run water等。根据for two hours时间段判断，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-3"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "stem": "In the sentence \"The plan met with a cold reception from the students\", the word \"cold\" means ________.\n",
+    "options": [
+      "A. 冷淡的",
+      "B. 寒冷的",
+      "C. 潮湿的",
+      "D. 温暖的"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "考查熟词生义。cold常见义为“寒冷的”，但此处修饰reception（对待、反应），a cold reception意为“冷淡的对待”，即学生们对这个计划不感兴趣，答案A。B项“寒冷的”是常见义，但reception指态度而非天气；C项“潮湿的”是wet；D项“温暖的”是warm。结合reception的搭配和句意判断，答案A。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "E7-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "在数字技术飞速发展的今天，人们获取信息的方式发生了深刻变化。指尖轻点，海量信息便纷至沓来，碎片化阅读、快餐式浏览成为常态。有人担忧：长此以往，人们会不会失去深度思考的能力？其实，技术本身并无优劣之分，关键在于如何使用。一方面，数字媒介为知识的传播提供了前所未有的便利，让学习可以随时随地发生；另一方面，碎片化的信息若缺乏系统整合，便难以形成完整的知识结构。因此，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡。唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想。\n\n请概括本文的中心论点。",
+    "options": null,
+    "answer": "在数字时代，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡，方能在信息洪流中保持清醒的头脑与独立的思想。",
+    "solution": {
+      "analysis": "本文先提出“技术本身并无优劣之分”的论断，再从正反两方面分析数字媒介的利与弊，最后提出“善用便捷、守护深度阅读、快慢平衡”的主张，末句点明其意义，中心论点即文末的主张句。作答时须扣住“快慢平衡”“善用与守护”两个关键词，不可只答“技术无优劣之分”。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "在数字技术飞速发展的今天，人们获取信息的方式发生了深刻变化。指尖轻点，海量信息便纷至沓来，碎片化阅读、快餐式浏览成为常态。有人担忧：长此以往，人们会不会失去深度思考的能力？其实，技术本身并无优劣之分，关键在于如何使用。一方面，数字媒介为知识的传播提供了前所未有的便利，让学习可以随时随地发生；另一方面，碎片化的信息若缺乏系统整合，便难以形成完整的知识结构。因此，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡。唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想。\n\n文章在论证“技术本身并无优劣之分，关键在于如何使用”这一观点时，主要运用了什么论证方法？",
+    "options": [
+      "A. 举例论证",
+      "B. 比喻论证",
+      "C. 道理论证",
+      "D. 引用论证"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "作者运用“一方面……另一方面……”的句式，从利弊两面正面讲道理，阐明如何正确使用数字媒介，属于道理论证。文中未列举具体事例（排除A），未打比方（排除B），也未引用名言（排除D），故选C。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "在数字技术飞速发展的今天，人们获取信息的方式发生了深刻变化。指尖轻点，海量信息便纷至沓来，碎片化阅读、快餐式浏览成为常态。有人担忧：长此以往，人们会不会失去深度思考的能力？其实，技术本身并无优劣之分，关键在于如何使用。一方面，数字媒介为知识的传播提供了前所未有的便利，让学习可以随时随地发生；另一方面，碎片化的信息若缺乏系统整合，便难以形成完整的知识结构。因此，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡。唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想。\n\n结合语境，文中“在‘快’与‘慢’之间找到平衡”一句中“快”“慢”分别指什么？",
+    "options": [
+      "A. 快指网络速度，慢指手机运行速度",
+      "B. 快指数字媒介获取信息的便捷高效，慢指深度阅读的从容深入",
+      "C. 快指生活节奏加快，慢指工作效率降低",
+      "D. 快指阅读速度快，慢指写作速度慢"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "联系上文，“快”对应“数字媒介……让学习随时随地发生”的便捷高效，“慢”对应“守护深度阅读的习惯”的从容深入。A、C、D三项均脱离语境，属望文生义，故选B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "在数字技术飞速发展的今天，人们获取信息的方式发生了深刻变化。指尖轻点，海量信息便纷至沓来，碎片化阅读、快餐式浏览成为常态。有人担忧：长此以往，人们会不会失去深度思考的能力？其实，技术本身并无优劣之分，关键在于如何使用。一方面，数字媒介为知识的传播提供了前所未有的便利，让学习可以随时随地发生；另一方面，碎片化的信息若缺乏系统整合，便难以形成完整的知识结构。因此，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡。唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想。\n\n根据原文内容，下列说法不正确的一项是？",
+    "options": [
+      "A. 数字媒介为知识的传播提供了前所未有的便利",
+      "B. 碎片化的信息若缺乏系统整合，便难以形成完整的知识结构",
+      "C. 数字技术弊大于利，应当彻底回归纸质阅读",
+      "D. 我们要在“快”与“慢”之间找到平衡，守护深度阅读"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "原文明确说“技术本身并无优劣之分，关键在于如何使用”，C项“数字技术弊大于利”是对原文的曲解，且“彻底回归纸质阅读”文中并无此意。A、B、D均可从原文中找到依据，故选C。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "在数字技术飞速发展的今天，人们获取信息的方式发生了深刻变化。指尖轻点，海量信息便纷至沓来，碎片化阅读、快餐式浏览成为常态。有人担忧：长此以往，人们会不会失去深度思考的能力？其实，技术本身并无优劣之分，关键在于如何使用。一方面，数字媒介为知识的传播提供了前所未有的便利，让学习可以随时随地发生；另一方面，碎片化的信息若缺乏系统整合，便难以形成完整的知识结构。因此，我们既要善用数字媒介的便捷，更要守护深度阅读的习惯，在“快”与“慢”之间找到平衡。唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想。\n\n“唯有如此，方能在信息洪流中保持清醒的头脑与独立的思想”一句在文中的作用是什么？",
+    "options": [
+      "A. 引出下文",
+      "B. 总结全文，深化中心",
+      "C. 承上启下",
+      "D. 设置悬念，激发阅读兴趣"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "该句位于文末，“唯有如此”回扣上文“在‘快’与‘慢’之间找到平衡”的主张，“保持清醒的头脑与独立的思想”点明其意义，起到总结全文、深化中心的作用。A、C、D均与句子的位置和功能不符。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "港珠澳大桥东接香港，西连珠海和澳门，全长55公里，是世界上最长的跨海大桥。大桥建设面临诸多世界级难题：伶仃洋海域气象条件复杂，水文地质状况多变，且该海域栖息着国家一级保护动物中华白海豚。建设团队迎难而上，首创“桥—岛—隧”集群方案，采用沉管隧道技术，将33节巨型沉管逐一安放于海底，隧道接头误差控制在毫米级。施工过程中，建设者严格控制噪音和污染物排放，最大限度减少对白海豚栖息环境的影响。大桥建成通车后，粤港澳三地间的车程大幅缩短，人员、货物往来更加便捷，有力推动了粤港澳大湾区的一体化发展，成为“一国两制”框架下粤港澳合作的典范工程。\n\n下列关于港珠澳大桥的说法，符合原文意思的一项是？",
+    "options": [
+      "A. 大桥全长55公里，是世界上最长的跨海大桥",
+      "B. 大桥的33节巨型沉管是直接在海底浇筑而成的",
+      "C. 大桥施工对中华白海豚栖息环境毫无影响",
+      "D. 大桥建成后，粤港澳大湾区的一体化发展已经彻底完成"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "A项可直接从首句“全长55公里，是世界上最长的跨海大桥”找到依据。B项与原文“将33节巨型沉管逐一安放于海底”不符，沉管系预制后安放；C项“毫无影响”过于绝对，原文为“最大限度减少”；D项“彻底完成”夸大其词，原文只说“有力推动”。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "港珠澳大桥东接香港，西连珠海和澳门，全长55公里，是世界上最长的跨海大桥。大桥建设面临诸多世界级难题：伶仃洋海域气象条件复杂，水文地质状况多变，且该海域栖息着国家一级保护动物中华白海豚。建设团队迎难而上，首创“桥—岛—隧”集群方案，采用沉管隧道技术，将33节巨型沉管逐一安放于海底，隧道接头误差控制在毫米级。施工过程中，建设者严格控制噪音和污染物排放，最大限度减少对白海豚栖息环境的影响。大桥建成通车后，粤港澳三地间的车程大幅缩短，人员、货物往来更加便捷，有力推动了粤港澳大湾区的一体化发展，成为“一国两制”框架下粤港澳合作的典范工程。\n\n文中“隧道接头误差控制在毫米级”一句，主要运用了什么说明方法？",
+    "options": [
+      "A. 列数字",
+      "B. 打比方",
+      "C. 作比较",
+      "D. 分类别"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“毫米级”是具体、准确的数据，以列数字的方法说明隧道接头精度之高，突出施工技术的精湛。句中既未打比方、作比较，也未进行分类说明，故B、C、D均不正确。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "港珠澳大桥东接香港，西连珠海和澳门，全长55公里，是世界上最长的跨海大桥。大桥建设面临诸多世界级难题：伶仃洋海域气象条件复杂，水文地质状况多变，且该海域栖息着国家一级保护动物中华白海豚。建设团队迎难而上，首创“桥—岛—隧”集群方案，采用沉管隧道技术，将33节巨型沉管逐一安放于海底，隧道接头误差控制在毫米级。施工过程中，建设者严格控制噪音和污染物排放，最大限度减少对白海豚栖息环境的影响。大桥建成通车后，粤港澳三地间的车程大幅缩短，人员、货物往来更加便捷，有力推动了粤港澳大湾区的一体化发展，成为“一国两制”框架下粤港澳合作的典范工程。\n\n文中“最大限度减少对白海豚栖息环境的影响”一句中的“最大限度”能否删去？请说明理由。",
+    "options": null,
+    "answer": "不能删去。“最大限度”起限制、修饰作用，表明建设者已尽最大努力减少对环境的干扰，但并非“零影响”，删去后表意不够准确严密。它体现了说明文语言的准确性与严密性。",
+    "solution": {
+      "analysis": "说明文语言赏析题要从“准确性、严密性”入手：“最大限度”限定了程度，说明环保措施已尽全力但不能绝对化，删去后“减少”便成为无程度限制的表述，与事实不符。答题须先表态（不能删），再分析表达效果，最后点出体现说明文语言的准确严密。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "港珠澳大桥东接香港，西连珠海和澳门，全长55公里，是世界上最长的跨海大桥。大桥建设面临诸多世界级难题：伶仃洋海域气象条件复杂，水文地质状况多变，且该海域栖息着国家一级保护动物中华白海豚。建设团队迎难而上，首创“桥—岛—隧”集群方案，采用沉管隧道技术，将33节巨型沉管逐一安放于海底，隧道接头误差控制在毫米级。施工过程中，建设者严格控制噪音和污染物排放，最大限度减少对白海豚栖息环境的影响。大桥建成通车后，粤港澳三地间的车程大幅缩短，人员、货物往来更加便捷，有力推动了粤港澳大湾区的一体化发展，成为“一国两制”框架下粤港澳合作的典范工程。\n\n下列对原文内容的理解，不正确的一项是？",
+    "options": [
+      "A. 港珠澳大桥建设面临气象、水文、生态等多重难题",
+      "B. “桥—岛—隧”集群方案是大桥建设的首创方案",
+      "C. 大桥施工完全杜绝了对白海豚栖息地的影响",
+      "D. 大桥通车有力推动了粤港澳大湾区的一体化发展"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "原文说“最大限度减少影响”，并未说“完全杜绝”，C项表述绝对化，与文意不符。A项可由“气象条件复杂、水文地质状况多变、栖息着中华白海豚”印证，B项可由“首创”印证，D项可由末句印证。故选C。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "港珠澳大桥东接香港，西连珠海和澳门，全长55公里，是世界上最长的跨海大桥。大桥建设面临诸多世界级难题：伶仃洋海域气象条件复杂，水文地质状况多变，且该海域栖息着国家一级保护动物中华白海豚。建设团队迎难而上，首创“桥—岛—隧”集群方案，采用沉管隧道技术，将33节巨型沉管逐一安放于海底，隧道接头误差控制在毫米级。施工过程中，建设者严格控制噪音和污染物排放，最大限度减少对白海豚栖息环境的影响。大桥建成通车后，粤港澳三地间的车程大幅缩短，人员、货物往来更加便捷，有力推动了粤港澳大湾区的一体化发展，成为“一国两制”框架下粤港澳合作的典范工程。\n\n请用一句话概括本文的主要内容。（不超过40字）",
+    "options": null,
+    "answer": "文章介绍了港珠澳大桥的规模、建设难题与创新技术，及其对粤港澳大湾区发展的推动作用。",
+    "solution": {
+      "analysis": "概括说明文内容要抓住说明对象与核心信息：本文说明对象是港珠澳大桥，主要内容包括其规模（全长55公里）、建设难题（气象水文复杂、生态保护）、技术突破（“桥—岛—隧”、沉管隧道）以及通车意义（推动大湾区一体化）。语言须精炼，突出主干信息，舍弃细节，并注意字数限制。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "故乡的老井，坐落在村东头的老槐树下。井口是青石砌的，被岁月磨得光滑温润。清晨，挑水的人络绎不绝，扁担吱呀作响，水桶碰撞着井壁，溅起一串串清凉的水花。井水冬暖夏凉，甘甜清冽。盛夏时节，孩子们围着井口嬉戏，大人则从井里提上西瓜，浸在凉水里，待切开时，满口都是透心的甜。后来，村里通了自来水，老井渐渐被人遗忘，井台上长满了青苔。可每次回到故乡，我总要去看看那口井——它像一位沉默的老人，守望着村庄的变迁，也守望着我童年的记忆。井水或许不再甘甜，但那份清凉，却永远流淌在我的心里。\n\n文中“老井”具有怎样的象征意义？",
+    "options": null,
+    "answer": "老井象征着故乡与根脉，承载着村庄的岁月变迁和“我”童年的美好记忆，是乡愁与传统生活方式的见证，寄托着作者对故乡深深的眷恋。",
+    "solution": {
+      "analysis": "散文中的物象往往具有象征义。老井伴随村庄与“我”的成长，被自来水取代后渐被遗忘，象征故乡的根脉与逝去的传统生活，寄托乡愁。答题要由实入虚：先答表层（一口井），再答象征义（故乡、记忆、乡愁），并联系“守望”“流淌在心里”等语句加以印证。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "故乡的老井，坐落在村东头的老槐树下。井口是青石砌的，被岁月磨得光滑温润。清晨，挑水的人络绎不绝，扁担吱呀作响，水桶碰撞着井壁，溅起一串串清凉的水花。井水冬暖夏凉，甘甜清冽。盛夏时节，孩子们围着井口嬉戏，大人则从井里提上西瓜，浸在凉水里，待切开时，满口都是透心的甜。后来，村里通了自来水，老井渐渐被人遗忘，井台上长满了青苔。可每次回到故乡，我总要去看看那口井——它像一位沉默的老人，守望着村庄的变迁，也守望着我童年的记忆。井水或许不再甘甜，但那份清凉，却永远流淌在我的心里。\n\n“它像一位沉默的老人，守望着村庄的变迁”一句，主要运用了什么修辞手法？",
+    "options": [
+      "A. 比喻、拟人",
+      "B. 夸张、排比",
+      "C. 借代、反问",
+      "D. 对偶、反复"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“像一位沉默的老人”是比喻，把老井比作老人；“沉默”“守望”赋予老井人的情态，是拟人。句中未使用夸张、排比、借代、反问、对偶、反复等修辞，故B、C、D均可排除。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "故乡的老井，坐落在村东头的老槐树下。井口是青石砌的，被岁月磨得光滑温润。清晨，挑水的人络绎不绝，扁担吱呀作响，水桶碰撞着井壁，溅起一串串清凉的水花。井水冬暖夏凉，甘甜清冽。盛夏时节，孩子们围着井口嬉戏，大人则从井里提上西瓜，浸在凉水里，待切开时，满口都是透心的甜。后来，村里通了自来水，老井渐渐被人遗忘，井台上长满了青苔。可每次回到故乡，我总要去看看那口井——它像一位沉默的老人，守望着村庄的变迁，也守望着我童年的记忆。井水或许不再甘甜，但那份清凉，却永远流淌在我的心里。\n\n对文中“井水或许不再甘甜，但那份清凉，却永远流淌在我的心里”一句的理解，正确的一项是？",
+    "options": [
+      "A. 井水虽不再甘甜，但井水依然清凉可口",
+      "B. 老井虽被遗忘，但故乡的温情与童年的美好回忆永远留在“我”心中",
+      "C. 家乡的自来水不如井水甘甜",
+      "D. “我”再也无法回到故乡"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "“井水不再甘甜”指老井被自来水取代、渐渐荒废；“那份清凉永远流淌在心里”是比喻，指故乡的温情、童年的记忆永驻心间。A项停留在字面义，C项无中生有，D项理解偏颇，故选B。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "故乡的老井，坐落在村东头的老槐树下。井口是青石砌的，被岁月磨得光滑温润。清晨，挑水的人络绎不绝，扁担吱呀作响，水桶碰撞着井壁，溅起一串串清凉的水花。井水冬暖夏凉，甘甜清冽。盛夏时节，孩子们围着井口嬉戏，大人则从井里提上西瓜，浸在凉水里，待切开时，满口都是透心的甜。后来，村里通了自来水，老井渐渐被人遗忘，井台上长满了青苔。可每次回到故乡，我总要去看看那口井——它像一位沉默的老人，守望着村庄的变迁，也守望着我童年的记忆。井水或许不再甘甜，但那份清凉，却永远流淌在我的心里。\n\n文章表达了作者怎样的思想感情？",
+    "options": null,
+    "answer": "文章表达了作者对故乡老井的深切怀念，对童年时光的留恋，以及对传统生活方式渐行渐远的淡淡怅惘，字里行间洋溢着深沉而温暖的乡愁。",
+    "solution": {
+      "analysis": "散文的抒情主体是“我”。从“总要去看看那口井”可见怀念之深，从“长满了青苔”“渐渐被人遗忘”可见对传统事物消逝的怅惘，从“那份清凉却永远流淌在心里”可见乡愁之深。答题要点明“怀念、留恋、怅惘、乡愁”等情感层次，做到概括全面。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "故乡的老井，坐落在村东头的老槐树下。井口是青石砌的，被岁月磨得光滑温润。清晨，挑水的人络绎不绝，扁担吱呀作响，水桶碰撞着井壁，溅起一串串清凉的水花。井水冬暖夏凉，甘甜清冽。盛夏时节，孩子们围着井口嬉戏，大人则从井里提上西瓜，浸在凉水里，待切开时，满口都是透心的甜。后来，村里通了自来水，老井渐渐被人遗忘，井台上长满了青苔。可每次回到故乡，我总要去看看那口井——它像一位沉默的老人，守望着村庄的变迁，也守望着我童年的记忆。井水或许不再甘甜，但那份清凉，却永远流淌在我的心里。\n\n文章以“故乡的老井”为题，有什么作用？",
+    "options": [
+      "A. 以“老井”为线索贯穿全文，寄托思乡之情",
+      "B. 突出井水甘甜的特点",
+      "C. 交代老井的历史沿革",
+      "D. 表现村民勤劳质朴的品质"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "全文围绕老井展开：写井的外观、井水、井边的生活，再写老井被遗忘以及“我”回故乡看井，老井是贯穿全文的线索；写井实为写故乡与童年，寄托乡愁。B项以偏概全，C项无中生有，D项偏离主旨，故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y1-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n下列句子中“举”字的意思，与“及长，举孝廉”中“举”相同的一项是？",
+    "options": [
+      "A. 推举、选拔",
+      "B. 全部",
+      "C. 举起",
+      "D. 攻占、拔取"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“及长，举孝廉”意为“等到年长，被推举为孝廉”，“举”是推举、选拔。B项“举”作“全、都”讲，如“举国上下”；C项如“举头望明月”；D项如“戍卒叫，函谷举”（《阿房宫赋》），“举”为攻占。结合语境判断，故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n“贤至，悉还所侵”中“悉”的意思是？",
+    "options": [
+      "A. 全部、都",
+      "B. 熟悉",
+      "C. 详尽",
+      "D. 了解"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“悉还所侵”意为“把被侵占的田地全部归还”，“悉”修饰动词“还”，作状语，是“全、都”的意思。B、D项“熟悉、了解”义如“悉其情形”，C项“详尽”义如“书不能悉意”，均不符合语境。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n“后迁刺史”中“迁”的意思是？",
+    "options": [
+      "A. 升任、升迁",
+      "B. 迁移",
+      "C. 贬谪",
+      "D. 流放"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“迁”本义指调动官职，多用于升职，故“后迁刺史”即“后来升任刺史”。古代“左迁”才指降职贬谪。B项“迁移”指转移居所，C、D项均表贬官降职，与“治行卓异，吏民怀之”的褒扬语境不符。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n“治行卓异，吏民怀之”中“怀”的意思是？",
+    "options": [
+      "A. 感念、怀念",
+      "B. 胸怀",
+      "C. 怀抱",
+      "D. 归附"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“吏民怀之”意为“官吏和百姓都感念他”，“怀”是感念、怀念，与下文“罢市而哭”相呼应。B项“胸怀”如“虚怀若谷”，C项“怀抱”如“怀瑾握瑜”，D项“归附”多用于部众投奔，均与语境不符。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n“李贤，字德昭，陇西人也”一句属于什么句式？",
+    "options": [
+      "A. 判断句",
+      "B. 被动句",
+      "C. 宾语前置",
+      "D. 状语后置"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“……也”是文言判断句的典型标志，此句是对李贤姓名、籍贯的介绍。B项被动句有“于、见、为、被”等标志，如“此非孟德之困于周郎者乎”；C项宾语前置如“大王来何操”；D项状语后置如“徘徊于斗牛之间”。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n下列对李贤这一人物形象的分析，不正确的一项是？",
+    "options": [
+      "A. 勤学博闻，博览群书",
+      "B. 为官正直，敢于打击豪强、归还民田",
+      "C. 心系百姓，开仓赈灾，深得民心",
+      "D. 淡泊名利，晚年辞官归隐山林"
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "文中写李贤“卒于官”，百姓“罢市而哭”，可见他一生为官至终，并无辞官归隐之事，D项属于无中生有。A项可由“少好学，博览群书”印证，B项由“悉还所侵”印证，C项由“开仓赈民”“吏民怀之”印证。故选D。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "李贤，字德昭，陇西人也。少好学，博览群书，尤善《春秋》。及长，举孝廉，为郡丞。郡有豪强，横夺民田，贤至，悉还所侵。岁饥，开仓赈民，活者甚众。后迁刺史，治行卓异，吏民怀之。尝曰：“为官之道，在利民而已。”年六十三，卒于官，百姓闻之，罢市而哭。\n（选文为自拟文言短文，仿《史记》人物列传体）\n\n把文中画横线的句子翻译成现代汉语：岁饥，开仓赈民，活者甚众。",
+    "options": null,
+    "answer": "有一年闹饥荒，（李贤）打开官仓赈济百姓，得以存活的人很多。",
+    "solution": {
+      "analysis": "翻译要点：“岁饥”即年成不好、闹饥荒；“赈”是赈济、救济；“活者”指活下来的人，“甚众”即很多。全句主语“李贤”承前省略，翻译时应补出。注意“活者”理解为“活下来的人”，不要误译为“使……活”的使动结构。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n下列各句中“因”的用法，与“因起彷徨”中“因”相同的一项是？",
+    "options": [
+      "A. 因击沛公于坐，杀之（《鸿门宴》）",
+      "B. 蒙故业，因遗策（《过秦论》）",
+      "C. 项王即日因留沛公与饮（《鸿门宴》）",
+      "D. 因人之力而敝之，不仁（《烛之武退秦师》）"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "“因起彷徨”的“因”是副词，意为“于是、就”。C项“项王即日因留沛公与饮”中“因”同为“于是、就”。A项“因”为“趁机”，B项为“沿袭”，D项为“依靠、凭借”。故与例句用法相同的是C项。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n下列各句中“之”的用法，与“即便夜乘小舟就之”中“之”相同的一项是？",
+    "options": [
+      "A. 师道之不传也久矣（《师说》）",
+      "B. 蚓无爪牙之利，筋骨之强（《劝学》）",
+      "C. 作《师说》以贻之（《师说》）",
+      "D. 不知东方之既白（《赤壁赋》）"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "例句“就之”中“之”是代词，代指戴安道。C项“贻之”中“之”是代词，代指李蟠。A、D项“之”用于主谓之间取消句子独立性；B项“之”是定语后置的标志。故选C。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n下列各句中“而”的用法，与“兴尽而返”中“而”相同的一项是？",
+    "options": [
+      "A. 吾尝终日而思矣（《劝学》）",
+      "B. 蟹六跪而二螯（《劝学》）",
+      "C. 惑而不从师（《师说》）",
+      "D. 恍惊起而长嗟（《梦游天姥吟留别》）"
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "例句“兴尽而返”中“而”表承接，先“兴尽”后“返”。D项“恍惊起而长嗟”中“而”同样表承接。A项“而”表修饰，B项表并列，C项表转折。故选D。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n下列各句中“其”的用法，与“人问其故”中“其”相同的一项是？",
+    "options": [
+      "A. 吾其还也（《烛之武退秦师》）",
+      "B. 其皆出于此乎（《师说》）",
+      "C. 余嘉其能行古道（《师说》）",
+      "D. 其曲中规（《劝学》）"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "例句“人问其故”中“其”是代词，代指王子猷，意为“他的”。C项“余嘉其能行古道”中“其”作代词，代指李蟠。A项“其”表祈使语气（还是），B项表推测语气（大概），D项“其”作代词但指物（它的，指木材）。与例句用法最接近的是C项。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n“造门不前而返”中“前”的活用类型是？",
+    "options": [
+      "A. 名词用作动词，意为上前",
+      "B. 名词作状语",
+      "C. 形容词作名词",
+      "D. 使动用法"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“前”本是名词（前面），此处受副词“不”修饰，活用为动词，意为“上前”，即“到了门口却不进去”。B项名词作状语如“夜乘小舟”中的“夜”；C、D项均不符合句意。故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n“即便夜乘小舟就之”中“夜”的活用类型是？",
+    "options": [
+      "A. 名词作状语，意为在夜里",
+      "B. 名词用作动词",
+      "C. 意动用法",
+      "D. 形容词作动词"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“夜”是时间名词，用在动词“乘”之前作状语，意为“在夜里”。B项名词作动词如“造门不前而返”中的“前”；C、D项均不符合语境。故选A。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n把文中画横线的句子翻译成现代汉语：经宿方至，造门不前而返。",
+    "options": null,
+    "answer": "经过一夜才到达（戴逵家门前），到了门口却不进去，就返回了。",
+    "solution": {
+      "analysis": "翻译要点：“经宿”即经过一夜；“方”是“才”；“造”是“到、至”，“造门”即到门前；“前”名词作动词，上前；“而返”即就返回。句意是王子猷乘兴而来、兴尽而返，并未进门。翻译时注意补出省略的地点，并落实“方、造、前”等关键词。"
+    },
+    "difficulty": 5,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "王子猷居山阴，夜大雪，眠觉，开室，命酌酒，四望皎然。因起彷徨，咏左思《招隐》诗。忽忆戴安道，时戴在剡，即便夜乘小舟就之。经宿方至，造门不前而返。人问其故，王曰：“吾本乘兴而行，兴尽而返，何必见戴？”\n（选自《世说新语·任诞》）\n\n下列对原文有关内容的概括和分析，不正确的一项是？",
+    "options": [
+      "A. 王子猷雪夜醒来，开室饮酒赏雪，咏诗怀念友人",
+      "B. 王子猷连夜乘小船前往剡县，到了门口却不进去就返回了",
+      "C. “乘兴而行，兴尽而返”体现了魏晋名士率性洒脱的个性",
+      "D. 王子猷因未能见到戴安道而深感遗憾，懊悔不已"
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "王子猷自述“吾本乘兴而行，兴尽而返，何必见戴”，可见他并不以未见戴安道为憾，D项“深感遗憾，懊悔不已”与文意相悖。A、B两项均与原文相符，C项是历来对该典故的通行解读，均正确。故选D。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y2-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "登高\n杜甫\n风急天高猿啸哀，渚清沙白鸟飞回。\n无边落木萧萧下，不尽长江滚滚来。\n万里悲秋常作客，百年多病独登台。\n艰难苦恨繁霜鬓，潦倒新停浊酒杯。\n\n诗歌前两联描绘了怎样的意境？请简要概括。",
+    "options": null,
+    "answer": "前两联描绘了一幅苍凉悲壮、雄浑开阔的深秋江景图：秋风劲急、天宇高远、猿啼凄哀、落木萧萧、长江滚滚，意境苍凉阔大、悲壮雄浑，为全诗奠定了悲凉的感情基调。",
+    "solution": {
+      "analysis": "概括意境要抓意象与色调：风、天、猿、渚、沙、鸟、落木、长江，再以“哀、萧萧、滚滚”等词体会悲凉苍劲之感，用“苍凉悲壮、雄浑开阔”等词语概括意境特点，并点出其为全诗奠定悲凉基调的作用。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "声声慢\n李清照\n寻寻觅觅，冷冷清清，凄凄惨惨戚戚。乍暖还寒时候，最难将息。三杯两盏淡酒，怎敌他、晚来风急！雁过也，正伤心，却是旧时相识。满地黄花堆积，憔悴损，如今有谁堪摘？守着窗儿，独自怎生得黑！梧桐更兼细雨，到黄昏、点点滴滴。这次第，怎一个愁字了得！\n\n“雁过也，正伤心，却是旧时相识”中“雁”这一意象寄寓了词人怎样的情感？",
+    "options": null,
+    "answer": "大雁南飞，正与词人漂泊流离的境遇相似；“旧时相识”勾起词人对亡夫、故国的深切思念，也暗含物是人非、孤苦无依的凄凉。",
+    "solution": {
+      "analysis": "意象题要从象征义与情感义入手：雁是候鸟，南来北往，象征漂泊；词人北人南渡，见雁南飞而自伤漂泊。“旧时相识”暗示此前与丈夫鸿雁传书的幸福时光，如今国破家亡、丈夫已逝，故“正伤心”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "念奴娇·赤壁怀古\n苏轼\n大江东去，浪淘尽，千古风流人物。故垒西边，人道是，三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。\n遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间，樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一尊还酹江月。\n\n“遥想公瑾当年”几句塑造了周瑜怎样的形象？这样写有何作用？",
+    "options": null,
+    "answer": "塑造了周瑜年轻有为、英姿勃发、从容自信、指挥若定的儒将形象；以周瑜的功业卓著反衬词人自己功业无成、早生华发，抒发了怀才不遇、壮志难酬的感慨。",
+    "solution": {
+      "analysis": "抓关键词：“小乔初嫁”（年轻得意）、“雄姿英发”（英武）、“羽扇纶巾”（儒雅）、“谈笑间”（从容）、“樯橹灰飞烟灭”（功业）。怀古是为了伤己：周瑜三十余岁建功立业，词人已“早生华发”却功业无成，对比反衬，抒发壮志难酬之慨。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "登高\n杜甫\n风急天高猿啸哀，渚清沙白鸟飞回。\n无边落木萧萧下，不尽长江滚滚来。\n万里悲秋常作客，百年多病独登台。\n艰难苦恨繁霜鬓，潦倒新停浊酒杯。\n\n“无边落木萧萧下，不尽长江滚滚来”中“萧萧”“滚滚”两个叠词有何表达效果？",
+    "options": null,
+    "answer": "“萧萧”摹写落叶飘落之声，以声衬寂，渲染悲凉氛围；“滚滚”摹写江水奔涌之势，画面阔大。两句从听觉与视觉、空间与时间两个维度写景，意境苍凉悲壮，也暗示韶光易逝、生命短暂。",
+    "solution": {
+      "analysis": "赏析叠词从拟声、摹状入手：“萧萧”是拟声词，写落叶声，衬托秋之萧瑟；“滚滚”状江水奔涌。落木萧萧（个体、空间）与长江滚滚（永恒、时间）对照，蕴含生命短暂、人生易老之叹。答题要结合叠词效果与情感内涵。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "念奴娇·赤壁怀古\n苏轼\n大江东去，浪淘尽，千古风流人物。故垒西边，人道是，三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。\n遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间，樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一尊还酹江月。\n\n请赏析“乱石穿空，惊涛拍岸，卷起千堆雪”中“穿”“拍”“卷”三个动词的表达效果。",
+    "options": null,
+    "answer": "“穿”写出山崖高峻挺拔、直插云霄的气势；“拍”写出惊涛撞击崖壁的巨大力量与声响；“卷”写出巨浪翻涌、如雪堆叠的形态。三个动词化静为动、视听结合，生动再现了赤壁雄奇壮阔的景象，为下片周瑜的出场蓄势。",
+    "solution": {
+      "analysis": "炼字题分三步：解字义、说效果、谈作用。“穿”言其高，“拍”言其力，“卷”言其势，均极富动感与画面感；三词连用使景物雄浑壮阔，既交代赤壁战场之险，又烘托人物英姿，为怀古抒情作铺垫。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "声声慢\n李清照\n寻寻觅觅，冷冷清清，凄凄惨惨戚戚。乍暖还寒时候，最难将息。三杯两盏淡酒，怎敌他、晚来风急！雁过也，正伤心，却是旧时相识。满地黄花堆积，憔悴损，如今有谁堪摘？守着窗儿，独自怎生得黑！梧桐更兼细雨，到黄昏、点点滴滴。这次第，怎一个愁字了得！\n\n“寻寻觅觅，冷冷清清，凄凄惨惨戚戚”连用七组叠词，有何作用？",
+    "options": null,
+    "answer": "七组叠词由动作（寻觅）到环境（冷清）再到心境（凄惨戚戚），层层递进，写尽词人百无聊赖、若有所失、孤寂凄凉之情；叠词增强音律美，读来如泣如诉、回环往复，渲染了全词凄苦哀婉的氛围。",
+    "solution": {
+      "analysis": "从内容与形式两方面作答：内容上，三组词分别写动作、环境、心境，由外而内、层层深入；形式上，叠词形成回环往复的节奏，增强音乐美与感染力，并奠定全词凄苦的基调。这是李清照词的语言特色之一。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "短歌行\n曹操\n对酒当歌，人生几何！譬如朝露，去日苦多。慨当以慷，忧思难忘。何以解忧？唯有杜康。青青子衿，悠悠我心。但为君故，沉吟至今。呦呦鹿鸣，食野之苹。我有嘉宾，鼓瑟吹笙。……\n\n“青青子衿，悠悠我心”两句运用的主要表现手法是？",
+    "options": [
+      "A. 用典",
+      "B. 比喻",
+      "C. 夸张",
+      "D. 对比"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“青青子衿，悠悠我心”化用《诗经·郑风·子衿》中的诗句，原诗写思念情人，曹操借以表达对贤才的思慕渴望，是典型的用典手法。句中未用比喻、夸张、对比，故B、C、D均可排除。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "归园田居（其一）\n陶渊明\n少无适俗韵，性本爱丘山。误落尘网中，一去三十年。羁鸟恋旧林，池鱼思故渊。开荒南野际，守拙归园田。方宅十余亩，草屋八九间。榆柳荫后檐，桃李罗堂前。暧暧远人村，依依墟里烟。狗吠深巷中，鸡鸣桑树颠。户庭无尘杂，虚室有余闲。久在樊笼里，复得返自然。\n\n“久在樊笼里，复得返自然”中“樊笼”比喻什么？",
+    "options": [
+      "A. 束缚身心的官场生活",
+      "B. 牢狱",
+      "C. 田园",
+      "D. 家宅"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“樊笼”本指关鸟兽的笼子，此处比喻束缚人身心、使人不得自由的官场生活，与“自然”（田园生活）相对，表达了诗人对官场的厌恶与回归田园的喜悦。B、C、D项均不符合诗意。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "永遇乐·京口北固亭怀古\n辛弃疾\n千古江山，英雄无觅孙仲谋处。舞榭歌台，风流总被雨打风吹去。斜阳草树，寻常巷陌，人道寄奴曾住。想当年，金戈铁马，气吞万里如虎。\n元嘉草草，封狼居胥，赢得仓皇北顾。四十三年，望中犹记，烽火扬州路。可堪回首，佛狸祠下，一片神鸦社鼓。凭谁问：廉颇老矣，尚能饭否？\n\n下列对“凭谁问：廉颇老矣，尚能饭否”这两句词的理解，不正确的一项是？",
+    "options": [
+      "A. 借廉颇的典故自比，表明自己虽年老仍渴望报国",
+      "B. 抒发壮志难酬、报国无门的悲愤",
+      "C. 表达词人对自己定能受到朝廷重用的自信与满足",
+      "D. 流露出对朝廷不信任、不重用人才的愤懑"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "“凭谁问”三字已明言无人来问，词人借廉颇被弃置的典故，抒发的是英雄迟暮、报国无门的悲愤与无奈，而非自信满足，故C项错误。A、B、D项均是对这两句词的正确理解。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "梦游天姥吟留别\n李白\n海客谈瀛洲，烟涛微茫信难求；越人语天姥，云霞明灭或可睹。天姥连天向天横，势拔五岳掩赤城。天台四万八千丈，对此欲倒东南倾。……霓为衣兮风为马，云之君兮纷纷而来下。虎鼓瑟兮鸾回车，仙之人兮列如麻。忽魂悸以魄动，恍惊起而长嗟。惟觉时之枕席，失向来之烟霞。世间行乐亦如此，古来万事东流水。别君去兮何时还？且放白鹿青崖间，须行即骑访名山。安能摧眉折腰事权贵，使我不得开心颜！\n\n“天台四万八千丈，对此欲倒东南倾”两句运用的主要表现手法是？",
+    "options": [
+      "A. 夸张与衬托",
+      "B. 比喻与拟人",
+      "C. 对比与借代",
+      "D. 对偶与反复"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "“四万八千丈”是夸张，极言天台山之高；以高峻的天台山面对天姥山仿佛要倾倒，从侧面衬托天姥山更加高大。两句共同突出天姥山高峻挺拔、气势非凡，为下文写梦游之奇幻蓄势。故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "琵琶行（节选）\n白居易\n冰泉冷涩弦凝绝，凝绝不通声暂歇。别有幽愁暗恨生，此时无声胜有声。银瓶乍破水浆迸，铁骑突出刀枪鸣。曲终收拨当心画，四弦一声如裂帛。东船西舫悄无言，唯见江心秋月白。\n\n“东船西舫悄无言，唯见江心秋月白”两句运用的表现手法及作用是？",
+    "options": [
+      "A. 侧面烘托，以环境的寂静烘托琵琶女技艺的高超",
+      "B. 正面描写，直接写演奏的精彩",
+      "C. 夸张，突出听众的沉醉",
+      "D. 反衬，以月色衬托演奏的悲凉"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "演奏结束后东船西舫悄然无声，只有江心秋月倒映，以听众的如痴如醉和环境的寂静，从侧面烘托琵琶女演奏技艺的高超、艺术感染力之强。这是典型的侧面描写（烘托）手法，故选A。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "登高\n杜甫\n风急天高猿啸哀，渚清沙白鸟飞回。\n无边落木萧萧下，不尽长江滚滚来。\n万里悲秋常作客，百年多病独登台。\n艰难苦恨繁霜鬓，潦倒新停浊酒杯。\n\n全诗抒发了诗人怎样的思想感情？",
+    "options": null,
+    "answer": "抒发了诗人长年漂泊、老病孤愁的悲苦，表达了韶光易逝、壮志难酬的慨叹，以及对国家动荡、人民疾苦的忧思，情感深沉而悲壮。",
+    "solution": {
+      "analysis": "结合诗句逐层分析：“万里悲秋常作客”写漂泊无依，“百年多病独登台”写年老多病，“艰难苦恨繁霜鬓”既写个人困顿，也暗含国事艰难，“潦倒新停浊酒杯”写尽潦倒。全诗融身世之悲与忧国之情于一体。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "声声慢\n李清照\n寻寻觅觅，冷冷清清，凄凄惨惨戚戚。乍暖还寒时候，最难将息。三杯两盏淡酒，怎敌他、晚来风急！雁过也，正伤心，却是旧时相识。满地黄花堆积，憔悴损，如今有谁堪摘？守着窗儿，独自怎生得黑！梧桐更兼细雨，到黄昏、点点滴滴。这次第，怎一个愁字了得！\n\n结句“这次第，怎一个愁字了得”中“愁”字包含了词人哪些愁绪？",
+    "options": null,
+    "answer": "包含了国破家亡之痛、丈夫离世之哀、漂泊流离之苦、晚年孤苦无依之悲。这些愁绪纷繁复杂、难以尽述，一个“愁”字远远无法概括，故言“怎一个愁字了得”。",
+    "solution": {
+      "analysis": "结合作者身世（靖康之变后南渡、丧夫、晚景凄凉）与词中意象分析：淡酒难敌晚风（孤寂）、雁是旧时相识（思亲怀故）、黄花憔悴（自伤）、梧桐细雨（愁苦），“愁”的内涵丰富而深重，非一字可尽。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "念奴娇·赤壁怀古\n苏轼\n大江东去，浪淘尽，千古风流人物。故垒西边，人道是，三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。\n遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间，樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一尊还酹江月。\n\n“人生如梦，一尊还酹江月”两句表达了词人怎样的情感？",
+    "options": null,
+    "answer": "既流露出对功业无成、人生短暂的深沉感慨与无奈，又以洒酒祭江月的举动寄情山水、与自然和解，表现出超然旷达、自我宽解的胸怀。",
+    "solution": {
+      "analysis": "“人生如梦”是词人面对周瑜功业与自身华发对比后的深沉感慨；“一尊还酹江月”以洒酒祭江月的豪举排遣苦闷，将个人失意托付江月与自然，体现了苏轼身处逆境仍能自我宽解、超然旷达的人生态度。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "stem": "梦游天姥吟留别\n李白\n海客谈瀛洲，烟涛微茫信难求；越人语天姥，云霞明灭或可睹。天姥连天向天横，势拔五岳掩赤城。天台四万八千丈，对此欲倒东南倾。……霓为衣兮风为马，云之君兮纷纷而来下。虎鼓瑟兮鸾回车，仙之人兮列如麻。忽魂悸以魄动，恍惊起而长嗟。惟觉时之枕席，失向来之烟霞。世间行乐亦如此，古来万事东流水。别君去兮何时还？且放白鹿青崖间，须行即骑访名山。安能摧眉折腰事权贵，使我不得开心颜！\n\n“安能摧眉折腰事权贵，使我不得开心颜”表达了诗人怎样的思想感情？",
+    "options": null,
+    "answer": "表达了诗人对权贵的极度蔑视和不与权贵同流合污的傲岸气节，抒发了追求个性自由、保持人格尊严的强烈愿望，是全诗的主旨所在。",
+    "solution": {
+      "analysis": "“安能……使……”以反诘语气斩钉截铁，“摧眉折腰”刻画奴颜婢膝之态，诗人与之彻底决绝，体现李白傲岸不羁、蔑视权贵的性格。这句是理解全诗主旨的钥匙，也是李白人格精神的高度概括。"
+    },
+    "difficulty": 4,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y3-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。锲而舍之，朽木不折；锲而不舍，____。",
+    "options": null,
+    "answer": "金石可镂",
+    "solution": {
+      "analysis": "出自《荀子·劝学》，是必修背诵篇目中的经典名句。“镂”意为雕刻，易误写为“楼”“缕”。全句以朽木与金石对比，强调坚持不懈方能成功，与上句“锲而舍之，朽木不折”构成正反对比，默写时注意易错字与上下句的对应关系。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。是故弟子不必不如师，____，闻道有先后，术业有专攻，如是而已。",
+    "options": null,
+    "answer": "师不必贤于弟子",
+    "solution": {
+      "analysis": "出自韩愈《师说》。“不必”意为不一定，“贤”此处为形容词用作动词，意为胜过、超过。注意“弟子不必不如师”与“师不必贤于弟子”两句互文呼应，切勿写颠倒；默写时须与上下文“闻道有先后，术业有专攻”衔接完整。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。寄蜉蝣于天地，____。哀吾生之须臾，羡长江之无穷。",
+    "options": null,
+    "answer": "渺沧海之一粟",
+    "solution": {
+      "analysis": "出自苏轼《赤壁赋》。“蜉蝣”喻生命短暂，“沧海一粟”喻人之渺小。易错字：“渺”易误写为“缈”，“粟”易误写为“栗”。默写时注意与上句“寄蜉蝣于天地”及下句“哀吾生之须臾”构成排比，句意连贯。"
+    },
+    "difficulty": 1,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。无边落木萧萧下，____。万里悲秋常作客，百年多病独登台。",
+    "options": null,
+    "answer": "不尽长江滚滚来",
+    "solution": {
+      "analysis": "出自杜甫《登高》，是必修背诵篇目中的名联。“萧萧”摹落叶之声，“滚滚”状江水之势，两句对仗工整。易错字：“滚”易误写为“混”，且注意“长江”前是“不尽”而非“无边”，默写时须准确对应上下句。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。及既上，苍山负雪，____。望晚日照城郭，汶水、徂徕如画。",
+    "options": null,
+    "answer": "明烛天南",
+    "solution": {
+      "analysis": "出自姚鼐《登泰山记》。“烛”此处为名词用作动词，意为照亮；“明烛天南”即雪光映亮了南面的天空。易错字：“烛”易误写为“竹”，“南”勿写成“难”。默写时注意“苍山负雪”与“明烛天南”的主谓对应关系。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。苏轼《念奴娇·赤壁怀古》中，____，____两句生动描绘了周瑜从容破敌、大败曹军的英姿。",
+    "options": null,
+    "answer": "谈笑间，樯橹灰飞烟灭",
+    "solution": {
+      "analysis": "出自苏轼《念奴娇·赤壁怀古》，“谈笑间”写周瑜从容不迫，“樯橹灰飞烟灭”写曹军战船化为灰烬。易错字：“樯”“橹”笔画繁多须仔细书写（人教版教材作“樯橹”），句末“烟灭”勿写成“湮灭”。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。《短歌行》中曹操化用《诗经》中的____，____两句，表达对贤才的思慕之情。",
+    "options": null,
+    "answer": "青青子衿，悠悠我心",
+    "solution": {
+      "analysis": "出自曹操《短歌行》，化用《诗经·郑风·子衿》。“衿”指衣领，易误写为“襟”；“悠”易误写为“优”。原诗写思念情人，曹操借以抒发对贤才的渴慕，默写时注意“衿”“悠”二字及两句的先后顺序。"
+    },
+    "difficulty": 2,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。李清照《声声慢》开篇____，____，____三句连用叠词，为全词定下凄苦的基调。",
+    "options": null,
+    "answer": "寻寻觅觅，冷冷清清，凄凄惨惨戚戚",
+    "solution": {
+      "analysis": "出自李清照《声声慢》，七组叠词须一字不差：寻寻觅觅、冷冷清清、凄凄惨惨戚戚。易错字：“觅”易误写为“密”，“凄”易误写为“妻”，“戚”易误写为“泣”。默写时注意三组叠词由动作、环境到心境的顺序。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。《梦游天姥吟留别》中____，____两句以反诘语气表现了诗人蔑视权贵、追求自由的精神。",
+    "options": null,
+    "answer": "安能摧眉折腰事权贵，使我不得开心颜",
+    "solution": {
+      "analysis": "出自李白《梦游天姥吟留别》，是全诗主旨句。“摧眉折腰”意为低头弯腰，形容恭顺屈从；“事”意为侍奉；“颜”意为面容。易错字：“摧”勿写“催”，“颜”勿写“言”，且“事”勿误写为“侍”。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "stem": "补写出下列句子中的空缺部分。《琵琶行》中____，____两句以听众的沉默和江月的清冷，侧面烘托琵琶女演奏技艺的高超。",
+    "options": null,
+    "answer": "东船西舫悄无言，唯见江心秋月白",
+    "solution": {
+      "analysis": "出自白居易《琵琶行》。“舫”指船，易误写为“坊”；“唯”易误写为“惟”（人教版教材作“唯”）。两句以静写声、以景衬情，从侧面烘托琵琶声的艺术感染力。默写时注意“舫”“唯”二字及句意。"
+    },
+    "difficulty": 3,
+    "source": "ai_seed",
+    "year": null,
+    "knowledgePointIds": [
+      "Y4"
+    ]
+  }
+]

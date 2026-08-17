@@ -1,0 +1,629 @@
+[
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "补写出下列句子中的空缺部分。荀子《劝学》中\"青，取之于蓝，______\"一句，常用来比喻学生超过老师。",
+    "answer": "而青于蓝",
+    "solution": {
+      "analysis": "原文为\"青，取之于蓝，而青于蓝；冰，水为之，而寒于水\"。注意\"于\"字不能遗漏。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "荀子《劝学》中，强调坚持才能成功、金石也可雕刻的名句是\"______，金石可镂\"。",
+    "answer": "锲而不舍",
+    "solution": {
+      "analysis": "\"锲而不舍，金石可镂\"，注意\"锲\"与\"镂\"的写法。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "韩愈《师说》中，概括教师职能的句子是\"师者，______\"。",
+    "answer": "所以传道受业解惑也",
+    "solution": {
+      "analysis": "\"师者，所以传道受业解惑也\"，\"受\"通\"授\"，注意书写。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "苏轼《赤壁赋》中描写江上清风拂面、水面波澜不惊的句子是\"清风徐来，______\"。",
+    "answer": "水波不兴",
+    "solution": {
+      "analysis": "\"清风徐来，水波不兴\"，出自《赤壁赋》开篇。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "曹操《短歌行》中借周公典故表达求贤若渴的句子是\"______，天下归心\"。",
+    "answer": "周公吐哺",
+    "solution": {
+      "analysis": "\"周公吐哺，天下归心\"，\"哺\"字易错，指口中的食物。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 1,
+    "stem": "陶渊明《归园田居（其一）》中表达挣脱官场束缚、回归自然的句子是\"久在樊笼里，______\"。",
+    "answer": "复得返自然",
+    "solution": {
+      "analysis": "\"久在樊笼里，复得返自然\"，\"樊笼\"指官场。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "杜甫《登高》中描写秋景萧瑟、长江奔流的名句是\"无边落木萧萧下，______\"。",
+    "answer": "不尽长江滚滚来",
+    "solution": {
+      "analysis": "\"无边落木萧萧下，不尽长江滚滚来\"，注意\"萧\"\"滚\"写法。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "白居易《琵琶行》中表达天涯沦落、同病相怜之情的名句是\"同是天涯沦落人，______\"。",
+    "answer": "相逢何必曾相识",
+    "solution": {
+      "analysis": "\"同是天涯沦落人，相逢何必曾相识\"，\"曾\"读 céng。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "苏轼《念奴娇·赤壁怀古》开篇\"______，浪淘尽，千古风流人物\"，气势磅礴。",
+    "answer": "大江东去",
+    "solution": {
+      "analysis": "\"大江东去，浪淘尽，千古风流人物\"。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "辛弃疾《永遇乐·京口北固亭怀古》中，以廉颇自比、壮心不已的句子是\"凭谁问：______，尚能饭否\"。",
+    "answer": "廉颇老矣",
+    "solution": {
+      "analysis": "\"凭谁问：廉颇老矣，尚能饭否\"，注意\"廉颇\"的\"颇\"。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "下列句中加点词的解释，不正确的一项是（　）",
+    "options": [
+      "A. 师者，所以传道受业解惑也（受：通\"授\"，传授）",
+      "B. 君子博学而日参省乎己（参：检查）",
+      "C. 假舟楫者，非能水也（假：假如）",
+      "D. 举酒属客（属：通\"嘱\"，劝酒）"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "\"假舟楫者\"中的\"假\"意为\"借助、利用\"，而非\"假如\"。故选 C。"
+    },
+    "knowledgePointIds": [
+      "Y2-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "下列句子中\"而\"的用法与\"青，取之于蓝，而青于蓝\"相同的一项是（　）",
+    "options": [
+      "A. 君子博学而日参省乎己",
+      "B. 吾尝终日而思矣",
+      "C. 冰，水为之，而寒于水",
+      "D. 锲而舍之，朽木不折"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "题干\"而青于蓝\"表转折；C 项\"而寒于水\"亦表转折。A 表并列，B 表修饰，D 表假设。故选 C。"
+    },
+    "knowledgePointIds": [
+      "Y2-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "下列各句中，没有语病的一句是（　）",
+    "options": [
+      "A. 通过这次活动，使我明白了团结的重要性。",
+      "B. 他能否考上理想的大学，关键在于他平时是否努力。",
+      "C. 我们要养成随时整理错题的好习惯。",
+      "D. 为了避免不再发生类似事故，学校加强了安全管理。"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "A 项\"通过……使……\"缺主语；B 项\"能否……是否……\"搭配没问题但\"考上理想的大学\"表述不当（两面对两面本身可以，但语义重复）；D 项\"避免不再\"否定不当。C 项没有语病。故选 C。"
+    },
+    "knowledgePointIds": [
+      "Y4-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "下列各句中加点成语使用恰当的一项是（　）",
+    "options": [
+      "A. 他平时不努力，考试前才临阵磨枪，真是事半功倍。",
+      "B. 这篇作文立意新颖，语言优美，真是独具匠心。",
+      "C. 面对困难，我们要勇往直前，不能裹足不前。",
+      "D. 他的演讲慷慨激昂，令人叹为观止。"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "A 项\"事半功倍\"用反（应为\"事倍功半\"）；B 项\"独具匠心\"多用于艺术构思，用于作文尚可但\"真是\"略显生硬；D 项\"叹为观止\"指赞美事物精妙，用于演讲不恰当；C 项\"裹足不前\"使用正确。综合选 C。"
+    },
+    "knowledgePointIds": [
+      "Y4-3"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "古代科举考试中，殿试录取者统称为（　）",
+    "options": [
+      "A. 举人",
+      "B. 进士",
+      "C. 秀才",
+      "D. 贡士"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "科举层级：院试→秀才，乡试→举人，会试→贡士，殿试→进士。故选 B。"
+    },
+    "knowledgePointIds": [
+      "Y4-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "古代男子二十岁行冠礼，称为（　）",
+    "options": [
+      "A. 及笄",
+      "B. 弱冠",
+      "C. 而立",
+      "D. 花甲"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "男子二十岁行冠礼称\"弱冠\"；\"及笄\"为女子十五岁；\"而立\"三十岁；\"花甲\"六十岁。故选 B。"
+    },
+    "knowledgePointIds": [
+      "Y4-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "阅读：\"读书足以怡情，足以博彩，足以长才。其怡情也，最见于独处幽居之时；其博彩也，最见于高谈阔论之中；其长才也，最见于处世判事之际。\"这段话的主要观点是（　）",
+    "options": [
+      "A. 读书的三种作用及其体现场合",
+      "B. 读书要讲究方法",
+      "C. 读书能让人快乐",
+      "D. 读书要持之以恒"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "语段首句总述读书的三种作用（怡情、博彩、长才），后文分别说明其体现的场合，中心明确。故选 A。"
+    },
+    "knowledgePointIds": [
+      "Y1-4"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "下列文学常识表述有误的一项是（　）",
+    "options": [
+      "A. 《劝学》选自《荀子》，作者荀子名况。",
+      "B. 《师说》作者韩愈，是\"唐宋八大家\"之一。",
+      "C. 《赤壁赋》作者苏轼，字子瞻，号东坡居士。",
+      "D. 《琵琶行》作者白居易，是唐代浪漫主义诗人代表。"
+    ],
+    "answer": "D",
+    "solution": {
+      "analysis": "白居易是唐代现实主义诗人，其\"新乐府运动\"主张\"文章合为时而著\"。D 项\"浪漫主义\"表述有误。故选 D。"
+    },
+    "knowledgePointIds": [
+      "Y4-2"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "王维《使至塞上》中描绘塞外壮阔风光的名句是\"大漠孤烟直，______\"。",
+    "answer": "长河落日圆",
+    "solution": {
+      "analysis": "\"大漠孤烟直，长河落日圆\"，被赞为\"千古壮观\"之景。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "Y",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "李白《行路难》中表达自信乐观、终将远行的人生态度的句子是\"长风破浪会有时，______\"。",
+    "answer": "直挂云帆济沧海",
+    "solution": {
+      "analysis": "\"长风破浪会有时，直挂云帆济沧海\"，注意\"济\"与\"沧\"的写法。"
+    },
+    "knowledgePointIds": [
+      "Y3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "语法填空：Tom ______ (visit) his grandparents last weekend.",
+    "answer": "visited",
+    "solution": {
+      "analysis": "last weekend 是过去时间状语，用一般过去时 visited。"
+    },
+    "knowledgePointIds": [
+      "E4-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 2,
+    "stem": "语法填空：She ______ (live) in Guangzhou since 2019.",
+    "answer": "has lived",
+    "solution": {
+      "analysis": "since 2019 与现在完成时连用，主语为第三人称单数，用 has lived。"
+    },
+    "knowledgePointIds": [
+      "E4-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "语法填空：I look forward to ______ (hear) from you soon.",
+    "answer": "hearing",
+    "solution": {
+      "analysis": "look forward to 中的 to 是介词，后接动名词 hearing。"
+    },
+    "knowledgePointIds": [
+      "E4-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "语法填空：The book ______ (write) by Lu Xun is very famous.",
+    "answer": "written",
+    "solution": {
+      "analysis": "book 与 write 是被动关系，用过去分词 written 作后置定语。"
+    },
+    "knowledgePointIds": [
+      "E4-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "The teacher asked us ______ quiet in the library.",
+    "options": [
+      "A. keep",
+      "B. to keep",
+      "C. keeping",
+      "D. kept"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "ask sb. to do sth.，用不定式 to keep。故选 B。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "This is the school ______ I studied three years ago.",
+    "options": [
+      "A. where",
+      "B. which",
+      "C. who",
+      "D. what"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "先行词 school 在定语从句中作地点状语，用关系副词 where。故选 A。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "If it ______ tomorrow, we will stay at home.",
+    "options": [
+      "A. rains",
+      "B. rained",
+      "C. will rain",
+      "D. is raining"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "if 引导的条件状语从句用一般现在时表将来，即\"主将从现\"。故选 A。"
+    },
+    "knowledgePointIds": [
+      "E4-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "语法填空：He suggested that we ______ (start) early the next morning.",
+    "answer": "start",
+    "solution": {
+      "analysis": "suggest 后接 that 从句用虚拟语气（should+动词原形，should 可省略），故填 start。"
+    },
+    "knowledgePointIds": [
+      "E4-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "— Could you tell me ______? — Sure. It's on the third floor.",
+    "options": [
+      "A. where is the library",
+      "B. where the library is",
+      "C. the library is where",
+      "D. where was the library"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "宾语从句用陈述语序：where the library is。故选 B。"
+    },
+    "knowledgePointIds": [
+      "E4-4"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "The ______ you work, the ______ progress you will make.",
+    "options": [
+      "A. harder; greater",
+      "B. harder; greatest",
+      "C. hard; greater",
+      "D. hardest; greatest"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "\"the+比较级, the+比较级\"表示\"越……越……\"。故选 A。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "阅读下列短文，选择最佳答案。\n\nMost students think exams are stressful, but proper preparation can make a big difference. First, make a study plan and stick to it. Second, practice with past papers to get familiar with question types. Finally, get enough sleep the night before the exam — a tired brain cannot perform well.\n\nQ: What is the main idea of the passage?",
+    "options": [
+      "A. Exams are always stressful.",
+      "B. Good preparation can help students do well in exams.",
+      "C. Students should study all night before exams.",
+      "D. Past papers are useless."
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "文章首句即主旨：\"proper preparation can make a big difference\"，即充分准备能帮助考好。故选 B。"
+    },
+    "knowledgePointIds": [
+      "E2-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "阅读上文，根据文章，考前最后一晚应该（　）",
+    "options": [
+      "A. 通宵复习",
+      "B. 做更多模拟卷",
+      "C. 保证充足睡眠",
+      "D. 只复习最难的科目"
+    ],
+    "answer": "C",
+    "solution": {
+      "analysis": "原文\"get enough sleep the night before the exam\"，故选 C。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "— How often do you exercise? — ______. I run three times a week.",
+    "options": [
+      "A. Once a month",
+      "B. Three times a week",
+      "C. Every day",
+      "D. Hardly ever"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "问句问频率，答语\"I run three times a week\"，故选 B。"
+    },
+    "knowledgePointIds": [
+      "E3-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "My brother is good ______ playing basketball.",
+    "options": [
+      "A. at",
+      "B. in",
+      "C. on",
+      "D. for"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "be good at 擅长。故选 A。"
+    },
+    "knowledgePointIds": [
+      "E3-2"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 4,
+    "stem": "五选五（阅读还原）：将下列句子按正确顺序填入文章空白处。\n\nKeeping a diary is a good habit. ①______ ②______ ③______ ④______ ⑤______\nA. It helps you remember what happened each day.\nB. You can also record your feelings and ideas.\nC. Try to write at the same time every day.\nD. Reading old diaries can be fun and meaningful.\nE. Diaries are private, so write honestly.\n（请按 A-E 的顺序字母作答，如：A B C D E）",
+    "answer": "A B C D E",
+    "solution": {
+      "analysis": "逻辑顺序：写日记帮助回忆（A）→ 记录感受（B）→ 固定时间（C）→ 诚实书写（D）→ 回读有趣（E）。按此顺序作答。"
+    },
+    "knowledgePointIds": [
+      "E2-5"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "— Must I finish the work today? — No, you ______. You may do it tomorrow.",
+    "options": [
+      "A. mustn't",
+      "B. needn't",
+      "C. can't",
+      "D. don't"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "回答 must 的疑问句，否定用 needn't（不必）。mustn't 表示禁止。故选 B。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "The number of students in our school ______ about 3000, and a number of them ______ interested in science.",
+    "options": [
+      "A. is; are",
+      "B. are; is",
+      "C. is; is",
+      "D. are; are"
+    ],
+    "answer": "A",
+    "solution": {
+      "analysis": "the number of+复数名词 谓语用单数（is）；a number of+复数名词 谓语用复数（are）。故选 A。"
+    },
+    "knowledgePointIds": [
+      "E3-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "fill",
+    "difficulty": 3,
+    "stem": "词汇填空：We should protect the e______ (环境) to live a better life.",
+    "answer": "environment",
+    "solution": {
+      "analysis": "environment 环境。注意拼写。"
+    },
+    "knowledgePointIds": [
+      "E7-1"
+    ]
+  },
+  {
+    "subjectCode": "E",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "阅读：\n\nIn 2027, the Spring Exam (春季高考) in Guangdong includes three subjects: Chinese, Maths and English. The exam focuses on basic knowledge from high school textbooks. Students who want to enter vocational colleges take this exam.\n\nQ: What subjects does the Spring Exam include?",
+    "options": [
+      "A. Only Chinese and Maths",
+      "B. Chinese, Maths and English",
+      "C. Only English",
+      "D. Four subjects"
+    ],
+    "answer": "B",
+    "solution": {
+      "analysis": "文中\"includes three subjects: Chinese, Maths and English\"，故选 B。"
+    },
+    "knowledgePointIds": [
+      "E2-2"
+    ]
+  }
+]
