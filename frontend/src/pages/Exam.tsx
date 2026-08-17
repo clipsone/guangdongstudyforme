@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, Clock, Flag, RotateCcw, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Clock, Flag, RotateCcw, Sparkles, XCircle } from 'lucide-react';
 import { useUser } from '@/hooks/useUser';
 import { examService } from '@/services/examService';
 import { studySessionService } from '@/services/studySessionService';
+import { subjectService } from '@/services/subjectService';
+import { aiService } from '@/services/aiService';
 import { questionTypeLabel, fmtDate } from '@/utils/date';
-import type { Exam, ExamTemplate, Question } from '@/types';
+import type { Exam, ExamTemplate, Question, Subject } from '@/types';
 
 type Phase = 'list' | 'exam' | 'result';
 
@@ -28,17 +30,59 @@ export default function ExamPage() {
   const [newBadges, setNewBadges] = useState<Array<{ name: string; icon: string }>>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  // 导入历年真题
+  const [importOpen, setImportOpen] = useState(false);
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [importSubjectId, setImportSubjectId] = useState('');
+  const [importYear, setImportYear] = useState('');
+  const [importPaperName, setImportPaperName] = useState('');
+  const [importText, setImportText] = useState('');
+  const [importLoading, setImportLoading] = useState(false);
+  const [importMsg, setImportMsg] = useState('');
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (!userId) return;
-    Promise.all([examService.getTemplates(), examService.getExams(userId)])
-      .then(([tRes, hRes]) => {
+    Promise.all([
+      examService.getTemplates(),
+      examService.getExams(userId),
+      subjectService.getSubjects(),
+    ])
+      .then(([tRes, hRes, sRes]) => {
         setTemplates(tRes.data);
         setHistory(hRes.data);
+        setSubjects(sRes.data);
+        if (sRes.data.length > 0 && !importSubjectId) setImportSubjectId(sRes.data[0].id);
       })
       .catch((e: any) => setError(e?.error?.message || '加载模考数据失败'));
   }, [userId]);
+
+  // 导入历年真题：粘贴试卷文本 → AI 解析入库并生成真题卷模板
+  const doImport = async () => {
+    if (!importText.trim()) {
+      setImportMsg('请先粘贴试卷文本');
+      return;
+    }
+    setImportLoading(true);
+    setImportMsg('');
+    try {
+      const res = await aiService.importRealExam({
+        subjectId: importSubjectId,
+        ...(importYear ? { year: importYear } : {}),
+        ...(importPaperName ? { paperName: importPaperName } : {}),
+        text: importText,
+      });
+      setImportMsg(`✅ 成功导入 ${res.data.imported} 道真题，已生成试卷「${res.data.template.name}」`);
+      setImportText('');
+      setImportOpen(false);
+      const tRes = await examService.getTemplates();
+      setTemplates(tRes.data);
+    } catch (e: any) {
+      setImportMsg(e?.error?.message || '导入失败，请重试');
+    } finally {
+      setImportLoading(false);
+    }
+  };
 
   // 倒计时
   useEffect(() => {
@@ -131,12 +175,56 @@ export default function ExamPage() {
       <div className="mx-auto max-w-3xl space-y-5 p-4 sm:p-6">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">🏁 全真模考</h2>
-          <button className="btn-outline text-sm" onClick={() => navigate('/practice')}>
-            <RotateCcw size={14} /> 专项练习
-          </button>
+          <div className="flex gap-2">
+            <button className="btn-outline text-sm" onClick={() => setImportOpen(true)}>
+              <Sparkles size={14} /> 导入历年真题
+            </button>
+            <button className="btn-outline text-sm" onClick={() => navigate('/practice')}>
+              <RotateCcw size={14} /> 专项练习
+            </button>
+          </div>
         </div>
 
         {error && <div className="rounded-lg bg-error/10 p-3 text-sm text-error">{error}</div>}
+
+        {/* 导入历年真题面板 */}
+        {importOpen && (
+          <div className="card space-y-3 p-5">
+            <div className="flex items-center justify-between">
+              <div className="text-sm font-semibold">📥 导入历年真题（AI 解析）</div>
+              <button className="text-gray-400 hover:text-gray-600" onClick={() => setImportOpen(false)}><XCircle size={18} /></button>
+            </div>
+            <p className="text-xs leading-relaxed text-gray-400">
+              把真题试卷的<b>题目+答案</b>文本粘贴到下方（支持从网页/PDF 复制），AI 会解析成标准题目并生成对应真题卷。导入的题会永久加入题库，其他人也能用到。
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div>
+                <label className="mb-1 block text-xs text-gray-500">科目</label>
+                <select className="input" value={importSubjectId} onChange={(e) => setImportSubjectId(e.target.value)}>
+                  {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="mb-1 block text-xs text-gray-500">年份（可选）</label>
+                <input className="input" placeholder="如 2025" value={importYear} onChange={(e) => setImportYear(e.target.value)} />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs text-gray-500">试卷名（可选）</label>
+                <input className="input" placeholder="留空自动命名" value={importPaperName} onChange={(e) => setImportPaperName(e.target.value)} />
+              </div>
+            </div>
+            <textarea
+              className="input min-h-[180px] font-mono text-xs"
+              placeholder={'粘贴真题文本，例如：\n一、单项选择（共15小题，每小题2分）\n1. —Do you know ______ girl over there?\n   A. a  B. an  C. the  D. /\n答案：C\n...'}
+              value={importText}
+              onChange={(e) => setImportText(e.target.value)}
+            />
+            {importMsg && <div className="text-xs text-gray-500">{importMsg}</div>}
+            <button className="btn-primary w-full" disabled={importLoading} onClick={doImport}>
+              {importLoading ? 'AI 解析中（约20秒）…' : '✨ AI 解析并导入'}
+            </button>
+          </div>
+        )}
 
         <div className="grid gap-3 sm:grid-cols-3">
           {templates.map((t) => (
@@ -148,6 +236,24 @@ export default function ExamPage() {
                 <span className="flex items-center gap-1"><Flag size={12} /> 总分 {t.totalScore}</span>
                 <span className="flex items-center gap-1"><Clock size={12} /> {t.duration} 分钟</span>
               </div>
+              {t.coverage && t.coverage.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {t.coverage.map((c) => {
+                    const ok = c.available === null || c.available >= c.need;
+                    return (
+                      <span
+                        key={c.name}
+                        className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${
+                          ok ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' : 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400'
+                        }`}
+                        title={`需要 ${c.need} 题，题库现有 ${c.available ?? '—'} 题`}
+                      >
+                        {c.name} {ok ? `✓${c.available}/${c.need}` : `${c.available ?? 0}/${c.need}`}
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
               <button
                 className="btn-primary mt-3 w-full"
                 disabled={loading}
@@ -199,6 +305,12 @@ export default function ExamPage() {
           </div>
         </div>
 
+        {exam.missingSections && exam.missingSections.length > 0 && (
+          <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-700 dark:border-amber-500/30 dark:bg-amber-900/20 dark:text-amber-300">
+            ⚠️ 题库不足，本卷已自动跳过：{exam.missingSections.join('、')}。可到「专项练习 → AI 出题」生成对应题型补全后重新组卷。
+          </div>
+        )}
+
         {exam.questions.map((eq, i) => {
           const q = eq.question;
           const ua = answers[q.id] || '';
@@ -207,6 +319,7 @@ export default function ExamPage() {
               <div className="mb-2 flex items-center gap-2">
                 <span className="chip bg-primary/10 text-primary">第 {i + 1} 题 · {eq.score} 分</span>
                 <span className="chip bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300">{questionTypeLabel(q.type)}</span>
+                {q.section && <span className="chip bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300">{q.section}</span>}
               </div>
               <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200">{q.stem}</div>
 

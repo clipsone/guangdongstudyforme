@@ -1,0 +1,17 @@
+{
+  "name": "2027广东春季高考复习",
+  "short_name": "春考复习",
+  "description": "2027 广东春季高考（语数英）复习备考助手",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

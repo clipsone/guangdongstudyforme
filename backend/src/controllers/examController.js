@@ -19,7 +19,30 @@ export const getExamTemplates = async (req, res) => {
       include: { subject: true },
       orderBy: { createdAt: 'asc' }
     });
-    res.json({ data: templates });
+
+    // 计算每个模板的题库覆盖率（各分区可用题目数 vs 需要数）
+    const enriched = [];
+    for (const t of templates) {
+      const sections = (t.config && t.config.sections) || [];
+      const sectionNames = sections.map((s) => s.name).filter(Boolean);
+      let counts = [];
+      if (sectionNames.length > 0) {
+        const groups = await prisma.question.groupBy({
+          by: ['section'],
+          where: { subjectId: t.subjectId, section: { in: sectionNames }, status: 'active' },
+          _count: { _all: true },
+        });
+        const map = new Map(groups.map((g) => [g.section, g._count._all]));
+        counts = sections.map((s) => ({
+          name: s.name,
+          type: s.type,
+          need: s.count,
+          available: s.name ? map.get(s.name) || 0 : null,
+        }));
+      }
+      enriched.push({ ...t, coverage: counts });
+    }
+    res.json({ data: enriched });
   } catch (error) {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
@@ -39,28 +62,40 @@ export const createExam = async (req, res) => {
       return res.status(404).json({ error: { message: '模板不存在', status: 404 } });
     }
 
-    const sections = (template.config && template.config.sections) || [{ type: 'choice', count: 10, scorePer: 10 }];
+    const config = template.config || {};
+    const sections = config.sections || [{ type: 'choice', count: 10, scorePer: 10 }];
+    const fixedIds = Array.isArray(config.fixedQuestionIds) ? config.fixedQuestionIds : [];
 
-    // 按题型抽题
+    // 固定真题卷：按卷面题目顺序取题；仿真卷：按题型分区抽题
     let pickedQuestions = [];
-    for (const section of sections) {
-      const pool = await prisma.question.findMany({
-        where: { subjectId: template.subjectId, type: section.type, status: 'active' },
-        take: Math.max(section.count * 3, 30)
+    if (fixedIds.length > 0) {
+      const fixed = await prisma.question.findMany({
+        where: { id: { in: fixedIds }, status: 'active' },
       });
-      const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, section.count);
-      pickedQuestions = pickedQuestions.concat(shuffled);
+      const byId = new Map(fixed.map((q) => [q.id, q]));
+      pickedQuestions = fixedIds.map((id) => byId.get(id)).filter(Boolean);
+    } else {
+      for (const section of sections) {
+        const where = { subjectId: template.subjectId, type: section.type, status: 'active' };
+        if (section.name) where.section = section.name;
+        const pool = await prisma.question.findMany({ where, take: Math.max(section.count * 3, 30) });
+        const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, section.count);
+        pickedQuestions = pickedQuestions.concat(shuffled);
+      }
     }
 
     if (pickedQuestions.length === 0) {
-      return res.status(400).json({ error: { message: '该模板下暂无可用题目，请先导入题库', status: 400 } });
+      return res.status(400).json({ error: { message: '该模板下暂无可用题目，请先用 AI 出题扩充题库或导入真题', status: 400 } });
     }
 
-    // 每道题按所属题型计分
-    const scoreOf = {};
-    for (const section of sections) {
-      scoreOf[section.type] = section.scorePer;
+    // 每道题分值：优先按题目所属分区，其次按题型
+    const scoreBySection = {};
+    const scoreByType = {};
+    for (const s of sections) {
+      if (s.name) scoreBySection[s.name] = s.scorePer;
+      scoreByType[s.type] = s.scorePer;
     }
+    const scoreOf = (q) => (q.section && scoreBySection[q.section] ? scoreBySection[q.section] : scoreByType[q.type] || 5);
 
     const exam = await prisma.exam.create({
       data: {
@@ -69,7 +104,7 @@ export const createExam = async (req, res) => {
         startTime: new Date(),
         status: 'in_progress',
         questions: {
-          create: pickedQuestions.map((q) => ({ questionId: q.id, score: scoreOf[q.type] || 0 }))
+          create: pickedQuestions.map((q) => ({ questionId: q.id, score: scoreOf(q) }))
         }
       },
       include: {
@@ -86,7 +121,17 @@ export const createExam = async (req, res) => {
       }
     });
 
-    res.json({ data: exam });
+    // 统计缺失分区（题库不足被跳过的部分）
+    const pickedBySection = {};
+    for (const q of pickedQuestions) {
+      const key = q.section || q.type;
+      pickedBySection[key] = (pickedBySection[key] || 0) + 1;
+    }
+    const missingSections = sections
+      .filter((s) => s.name && (pickedBySection[s.name] || 0) < s.count)
+      .map((s) => `${s.name}（差 ${s.count - (pickedBySection[s.name] || 0)} 题）`);
+
+    res.json({ data: { ...exam, missingSections } });
   } catch (error) {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }

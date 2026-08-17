@@ -23,6 +23,45 @@ export default function Profile() {
   const [examDate, setExamDate] = useState('');
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [pwdMsg, setPwdMsg] = useState('');
+  const [pwdError, setPwdError] = useState(false);
+  const [pwdSaving, setPwdSaving] = useState(false);
+
+  const changePwd = async () => {
+    setPwdError(false);
+    setPwdMsg('');
+    if (!oldPassword || !newPassword) {
+      setPwdError(true);
+      setPwdMsg('请填写旧密码和新密码');
+      return;
+    }
+    if (newPassword.length < 6) {
+      setPwdError(true);
+      setPwdMsg('新密码至少 6 位');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setPwdError(true);
+      setPwdMsg('两次输入的新密码不一致');
+      return;
+    }
+    setPwdSaving(true);
+    try {
+      await authService.changePassword(oldPassword, newPassword);
+      setPwdMsg('✅ 密码已修改');
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (e: any) {
+      setPwdError(true);
+      setPwdMsg(e?.error?.message || '修改失败');
+    } finally {
+      setPwdSaving(false);
+    }
+  };
 
   useEffect(() => {
     const uid = localStorage.getItem('userId');
@@ -206,6 +245,36 @@ export default function Profile() {
       <div className="card p-5">
         <h3 className="mb-1 font-semibold">👤 我的账号</h3>
         <div className="mb-3 text-xs text-gray-400">当前登录：{user?.username || '—'}</div>
+
+        <div className="mb-3 space-y-2 border-t border-gray-100 pt-3 dark:border-gray-800">
+          <div className="text-xs font-medium text-gray-500">修改密码</div>
+          <input
+            type="password"
+            className="input"
+            placeholder="旧密码"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            className="input"
+            placeholder="新密码（至少 6 位）"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            className="input"
+            placeholder="确认新密码"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          {pwdMsg && <div className={`text-xs font-medium ${pwdError ? 'text-error' : 'text-primary'}`}>{pwdMsg}</div>}
+          <button className="btn-outline w-full text-sm" onClick={changePwd} disabled={pwdSaving}>
+            {pwdSaving ? '修改中…' : '🔑 确认修改密码'}
+          </button>
+        </div>
+
         <button
           className="w-full rounded-lg border border-red-200 py-2 text-sm font-medium text-red-500 transition-colors hover:bg-red-50 dark:border-red-500/30 dark:hover:bg-red-500/10"
           onClick={async () => {

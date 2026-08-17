@@ -25,6 +25,9 @@ export const authService = {
   logout: () => {
     return http.post<ApiResponse<{ success: boolean }>>('/auth/logout');
   },
+  changePassword: (oldPassword: string, newPassword: string) => {
+    return http.post<ApiResponse<{ success: boolean }>>('/auth/change-password', { oldPassword, newPassword });
+  },
 };
 
 // 本地会话工具

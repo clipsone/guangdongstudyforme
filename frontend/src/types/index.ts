@@ -51,6 +51,7 @@ export interface Question {
   id: string;
   subjectId: string;
   type: 'choice' | 'fill' | 'essay' | 'composite';
+  section?: string;
   stem: string;
   options?: any;
   answer: string;
@@ -218,9 +219,18 @@ export interface ApiError {
 }
 // 模考相关
 export interface ExamTemplateSection {
+  name?: string;
   type: string;
   count: number;
   scorePer: number;
+  available?: number | null;
+}
+
+export interface ExamTemplateCoverage {
+  name: string;
+  type: string;
+  need: number;
+  available: number | null;
 }
 
 export interface ExamTemplate {
@@ -232,6 +242,7 @@ export interface ExamTemplate {
   totalScore: number;
   duration: number;
   subject: Subject;
+  coverage?: ExamTemplateCoverage[];
 }
 
 export interface ExamQuestion {
@@ -256,6 +267,7 @@ export interface Exam {
   createdAt: string;
   template: ExamTemplate;
   questions: ExamQuestion[];
+  missingSections?: string[];
 }
 
 // 成就相关

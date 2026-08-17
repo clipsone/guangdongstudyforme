@@ -1,0 +1,169 @@
+// AI 题库增强：AI 出题（扩充题库）+ 历年真题导入（解析粘贴文本入库）
+import prisma from '../utils/prisma.js';
+import { chat as aiChat, isConfigured, safeJson } from '../services/aiProvider.js';
+
+// 各科真实试卷题型分区（广东春季高考·依学考，供 AI 出题/解析参考）
+const SUBJECT_SECTIONS = {
+  语文: ['现代文阅读', '文言文阅读', '古代诗歌鉴赏', '名句名篇默写', '语言文字运用', '写作'],
+  数学: ['单选题', '填空题', '解答题'],
+  英语: ['单项选择', '完形填空', '阅读理解', '语法填空', '书面表达'],
+};
+
+// 归一化单题
+function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType) {
+  const stem = String(raw?.stem || '').trim();
+  if (!stem) return null;
+  let type = String(raw?.type || fallbackType || 'choice').toLowerCase();
+  if (!['choice', 'fill', 'essay'].includes(type)) type = 'choice';
+  const section = String(raw?.section || fallbackSection || '').trim() || null;
+  const options = Array.isArray(raw?.options) ? raw.options.map((o) => String(o).trim()) : null;
+  let answer = String(raw?.answer ?? '').trim();
+  if (type === 'choice' && options?.length) {
+    // 选项按 A/B/C/D 编号，答案统一为字母
+    if (!/^[A-D]$/i.test(answer)) {
+      const idx = options.findIndex((o) => o === answer || o.startsWith(answer));
+      if (idx >= 0) answer = String.fromCharCode(65 + idx);
+    }
+    answer = answer.toUpperCase();
+  }
+  if (!answer) return null;
+  return {
+    subjectId,
+    type,
+    section,
+    stem,
+    options: options && options.length ? options : null,
+    answer,
+    solution: { analysis: String(raw?.analysis || raw?.solution || '') },
+    difficulty: Math.min(5, Math.max(1, parseInt(raw?.difficulty) || 3)),
+    source: 'ai',
+  };
+}
+
+// ---------- AI 出题 ----------
+export const generateQuestions = async (req, res) => {
+  try {
+    const { subjectId, knowledgePointId, section, type = 'choice', count = 5 } = req.body;
+    const num = Math.min(10, Math.max(1, parseInt(count) || 5));
+
+    const subject = await prisma.subject.findUnique({ where: { id: subjectId } });
+    if (!subject) return res.status(400).json({ error: { message: '科目不存在', status: 400 } });
+
+    const kp = knowledgePointId
+      ? await prisma.knowledgePoint.findUnique({ where: { id: knowledgePointId } })
+      : null;
+
+    const typeName = type === 'choice' ? '单项选择题（4个选项）' : type === 'fill' ? '填空题' : '解答题';
+    const sectionDesc = section ? `，属于「${section}」题型分区` : '';
+    const kpDesc = kp ? `，考查知识点：${kp.name}` : '';
+
+    const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。
+请命制 ${num} 道${typeName}，难度贴近广东春季高考（依学考）真题。
+${type === 'choice' ? '每道题格式：{"stem":"题干","options":["A选项","B选项","C选项","D选项"],"answer":"正确选项字母(A/B/C/D)","analysis":"解析","difficulty":1-5}' : type === 'fill' ? '每道题格式：{"stem":"题干（用____表示填空处）","answer":"答案","analysis":"解析","difficulty":1-5}' : '每道题格式：{"stem":"题干","answer":"参考答案要点","analysis":"解析","difficulty":1-5}'}
+只输出 JSON 数组，不要输出任何其他文字。`;
+
+    const text = await aiChat(
+      [
+        { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出 JSON。' },
+        { role: 'user', content: prompt },
+      ],
+      { temperature: 0.7, json: true, maxTokens: 2000 }
+    );
+
+    const parsed = safeJson(text);
+    const arr = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.questions) ? parsed.questions : null;
+    if (!arr || arr.length === 0) {
+      return res.status(502).json({ error: { message: 'AI 未返回有效题目，请重试', status: 502 } });
+    }
+
+    const created = [];
+    for (const raw of arr.slice(0, num)) {
+      const q = normalizeQuestion(raw, subject.id, section, type);
+      if (!q) continue;
+      const saved = await prisma.question.create({ data: q });
+      if (kp) {
+        await prisma.questionKnowledge
+          .create({ data: { questionId: saved.id, knowledgePointId: kp.id } })
+          .catch(() => {});
+      }
+      created.push(saved);
+    }
+
+    if (created.length === 0) {
+      return res.status(502).json({ error: { message: 'AI 生成的题目缺少答案，请重试', status: 502 } });
+    }
+    res.json({ data: { questions: created, count: created.length } });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
+
+// ---------- 历年真题导入（粘贴文本 → AI 解析入库 → 生成真题卷模板） ----------
+export const importRealExam = async (req, res) => {
+  try {
+    const { subjectId, year, paperName, text } = req.body;
+    const rawText = String(text || '').trim();
+    if (!rawText || rawText.length < 50) {
+      return res.status(400).json({ error: { message: '请粘贴完整的试卷文本（题目+答案）', status: 400 } });
+    }
+    const subject = await prisma.subject.findUnique({ where: { id: subjectId } });
+    if (!subject) return res.status(400).json({ error: { message: '科目不存在', status: 400 } });
+
+    const sections = SUBJECT_SECTIONS[subject.name] || [];
+    const prompt = `这是${year || ''}年广东春季高考${subject.name}真题试卷文本。请逐题提取，按真实题型分区归类。
+分区参考：${sections.join('、')}。
+输出 JSON 数组，每题格式：{"section":"题型分区","type":"choice|fill|essay","stem":"题干","options":["A","B","C","D"]或null,"answer":"标准答案","score":本题分值(整数,无法确定给5),"analysis":"解析（可简短）"}。
+选择题 options 必须有4项且 answer 为字母；填空题 answer 为答案；解答/写作题 type=essay。
+答案缺失的题目跳过。只输出 JSON 数组。
+试卷文本：\n${rawText.slice(0, 6000)}`;
+
+    const text2 = await aiChat(
+      [{ role: 'system', content: '你是试卷解析器，精确提取题目与答案。只输出 JSON。' }, { role: 'user', content: prompt }],
+      { temperature: 0.2, json: true, maxTokens: 4000 }
+    );
+
+    const parsed = safeJson(text2);
+    const arr = Array.isArray(parsed) ? parsed : null;
+    if (!arr || arr.length === 0) {
+      return res.status(502).json({ error: { message: '未能从文本中解析出题目，请确认文本包含题目与答案', status: 502 } });
+    }
+
+    const ids = [];
+    const sectionsMeta = [];
+    for (const raw of arr) {
+      const section = String(raw?.section || '').trim() || '综合';
+      const type = ['choice', 'fill', 'essay'].includes(raw?.type) ? raw.type : 'choice';
+      const q = normalizeQuestion({ ...raw, section, type, source: undefined }, subject.id, section, type);
+      if (!q) continue;
+      q.source = 'real';
+      if (year) q.year = parseInt(year) || null;
+      const saved = await prisma.question.create({ data: q });
+      ids.push(saved.id);
+      sectionsMeta.push({
+        name: section,
+        type,
+        count: (sectionsMeta.find((s) => s.name === section)?.count || 0) + 1,
+        scorePer: Math.min(60, Math.max(1, parseInt(raw?.score) || 5)),
+      });
+    }
+    if (ids.length === 0) {
+      return res.status(502).json({ error: { message: '解析出的题目均缺少答案', status: 502 } });
+    }
+
+    const name = paperName?.trim() || `${year ? year + '年' : ''}广东春季高考${subject.name}真题`;
+    const template = await prisma.examTemplate.create({
+      data: {
+        subjectId: subject.id,
+        name,
+        description: `${year || '—'}年广东春季高考${subject.name}真题（AI 解析导入，含 ${ids.length} 题）`,
+        totalScore: sectionsMeta.reduce((s, x) => s + x.count * x.scorePer, 0),
+        duration: subject.name === '语文' ? 120 : 90,
+        config: { fixed: true, sections: sectionsMeta, fixedQuestionIds: ids },
+      },
+    });
+
+    res.status(201).json({ data: { template, imported: ids.length } });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};

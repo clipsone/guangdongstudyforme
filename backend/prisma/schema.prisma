@@ -110,12 +110,13 @@ model Question {
   id          String   @id @default(uuid())
   subjectId   String
   type        String   // choice/fill/essay/composite
+  section     String?  // 真实试卷题型分区：现代文阅读/文言文阅读/单项选择/阅读理解/语法填空/解答题…
   stem        String   // 题干
   options     Json?    // 选项JSON
   answer      String   // 答案
   solution    Json     // 解析JSON
   difficulty  Int      @default(3) // 1-5
-  source      String?  // 来源
+  source      String?  // 来源：seed/ai/real（真题）
   year        Int?
   status      String   @default("active") // active/archived
   createdAt   DateTime @default(now())
@@ -129,6 +130,7 @@ model Question {
 
   @@index([subjectId])
   @@index([type])
+  @@index([section])
   @@index([difficulty])
 }
 

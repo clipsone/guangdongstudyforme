@@ -1,5 +1,5 @@
 import { http } from './api';
-import type { AIExplanation, AISolution, AIEssayReview } from '@/types';
+import type { AIExplanation, AISolution, AIEssayReview, Question, ExamTemplate } from '@/types';
 import type { ApiResponse } from '@/types';
 
 export const aiService = {
@@ -38,5 +38,15 @@ export const aiService = {
       question,
       userId,
     });
+  },
+
+  // AI出题（扩充题库）
+  generateQuestions: (data: { subjectId: string; knowledgePointId?: string; section?: string; type?: string; count?: number }) => {
+    return http.post<ApiResponse<{ questions: Question[]; count: number }>>('/ai/generate-questions', data);
+  },
+
+  // 导入历年真题（粘贴文本 → AI 解析入库并生成真题卷）
+  importRealExam: (data: { subjectId: string; year?: string; paperName?: string; text: string }) => {
+    return http.post<ApiResponse<{ template: ExamTemplate; imported: number }>>('/ai/import-real-exam', data);
   },
 };

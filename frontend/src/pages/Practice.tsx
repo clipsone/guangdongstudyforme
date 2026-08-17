@@ -13,7 +13,7 @@ import { questionTypeLabel } from '@/utils/date';
 import type { AISolution, KnowledgePoint, Question, Subject } from '@/types';
 
 type Phase = 'config' | 'answering' | 'result';
-type Mode = 'smart' | 'knowledge' | 'wrong';
+type Mode = 'smart' | 'knowledge' | 'wrong' | 'ai';
 
 interface ResultItem {
   question: Question;
@@ -32,6 +32,7 @@ export default function Practice() {
   const [count, setCount] = useState(10);
   const [difficulty, setDifficulty] = useState('all');
   const [mode, setMode] = useState<Mode>('smart');
+  const [aiType, setAiType] = useState<'choice' | 'fill' | 'essay'>('choice');
 
   const [phase, setPhase] = useState<Phase>('config');
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -136,9 +137,43 @@ export default function Practice() {
     }
   };
 
+  // AI 出题：现场命制新题并开始练习
+  const startAI = async () => {
+    if (!subjectId) {
+      setError('请先选择科目');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const res = await aiService.generateQuestions({
+        subjectId,
+        ...(knowledgeId ? { knowledgePointId: knowledgeId } : {}),
+        type: aiType,
+        count,
+      });
+      const list: Question[] = res.data.questions || [];
+      if (list.length === 0) {
+        setError('AI 未生成题目，请重试');
+        return;
+      }
+      setQuestions(list);
+      setAnswers({});
+      setCurrent(0);
+      setResult(null);
+      setAiSummary('');
+      setNewBadges([]);
+      startTimeRef.current = Date.now();
+      setPhase('answering');
+    } catch (e: any) {
+      setError(e?.error?.message || 'AI 出题失败，请稍后再试');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 问 AI：调解题助手
-  const askAI = async (questionId: string) => {
-    setAiPanel({ questionId, solution: null, loading: true });
+  const askAI = async (questionId: string) => {    setAiPanel({ questionId, solution: null, loading: true });
     try {
       const res = await aiService.solveQuestion(questionId, answers[questionId] || '');
       setAiPanel({ questionId, solution: res.data, loading: false });
@@ -216,8 +251,8 @@ export default function Practice() {
         <div className="card space-y-4 p-6">
           <div>
             <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">练习模式</label>
-            <div className="grid grid-cols-3 gap-2">
-              {([['smart', '🎯 智能组卷'], ['knowledge', '📌 按考点'], ['wrong', '🧹 错题重练']] as const).map(([m, label]) => (
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {([['smart', '🎯 智能组卷'], ['knowledge', '📌 按考点'], ['wrong', '🧹 错题重练'], ['ai', '✨ AI 出题']] as const).map(([m, label]) => (
                 <button
                   key={m}
                   onClick={() => setMode(m)}
@@ -233,6 +268,7 @@ export default function Practice() {
               {mode === 'smart' && '从题库随机抽题，覆盖该科目各章节'}
               {mode === 'knowledge' && '指定单一考点专项训练'}
               {mode === 'wrong' && '从错题本抽取未消化错题重练'}
+              {mode === 'ai' && 'AI 现场命制新题并存入题库，越练题库越大'}
             </p>
           </div>
 
@@ -255,7 +291,7 @@ export default function Practice() {
             </div>
           )}
 
-          {mode === 'knowledge' && (
+          {(mode === 'knowledge' || mode === 'ai') && (
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">知识点</label>
               <select className="input" value={knowledgeId} onChange={(e) => setKnowledgeId(e.target.value)}>
@@ -266,6 +302,25 @@ export default function Practice() {
                   </option>
                 ))}
               </select>
+            </div>
+          )}
+
+          {mode === 'ai' && (
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型</label>
+              <div className="flex gap-2">
+                {([['choice', '选择题'], ['fill', '填空题'], ['essay', '解答题']] as const).map(([t, label]) => (
+                  <button
+                    key={t}
+                    onClick={() => setAiType(t)}
+                    className={`flex-1 rounded-lg border px-3 py-2 text-sm ${
+                      aiType === t ? 'border-primary bg-primary/10 text-primary' : 'border-gray-200 text-gray-500 dark:border-gray-700'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
@@ -289,11 +344,13 @@ export default function Practice() {
 
           {error && <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-300">{error}</div>}
 
-          <button className="btn-primary w-full py-3" onClick={() => start()} disabled={loading}>
-            {loading ? '生成试卷中…' : '🚀 开始练习'}
+          <button className="btn-primary w-full py-3" onClick={() => (mode === 'ai' ? startAI() : start())} disabled={loading}>
+            {loading ? '生成中…' : mode === 'ai' ? '✨ AI 出题并开始练习' : '🚀 开始练习'}
           </button>
         </div>
-        <p className="text-center text-xs text-gray-400">提示：练习完成后自动判分、收录错题、更新掌握度</p>
+        <p className="text-center text-xs text-gray-400">
+          {mode === 'ai' ? '提示：AI 生成的新题会存入题库，练习后自动判分、收录错题' : '提示：练习完成后自动判分、收录错题、更新掌握度'}
+        </p>
       </div>
     );
   }

@@ -109,3 +109,35 @@ export const me = async (req, res) => {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };
+
+// 修改密码：验证旧密码 → 更新为新密码（并使其他会话失效）
+export const changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body || {};
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({ error: { message: '请输入旧密码和新密码', status: 400 } });
+    }
+    if (String(newPassword).length < 6) {
+      return res.status(400).json({ error: { message: '新密码至少 6 位', status: 400 } });
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: req.userId } });
+    if (!user) {
+      return res.status(404).json({ error: { message: '用户不存在', status: 404 } });
+    }
+    if (!bcrypt.compareSync(String(oldPassword), user.passwordHash)) {
+      return res.status(401).json({ error: { message: '旧密码不正确', status: 401 } });
+    }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { passwordHash: bcrypt.hashSync(String(newPassword), 10) },
+    });
+    // 让其他设备上的会话失效（保留当前会话）
+    await prisma.session.deleteMany({ where: { userId: user.id, token: { not: req.token } } });
+
+    res.json({ data: { success: true, message: '密码已修改' } });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
