@@ -76,8 +76,11 @@ export const createExam = async (req, res) => {
       pickedQuestions = fixedIds.map((id) => byId.get(id)).filter(Boolean);
     } else {
       for (const section of sections) {
-        const where = { subjectId: template.subjectId, type: section.type, status: 'active' };
+        // 有分区名时按分区抽题（同区可含混合题型，如完形填空的 choice/fill 版式）；
+        // 无分区名时回退按题型抽题
+        const where = { subjectId: template.subjectId, status: 'active' };
         if (section.name) where.section = section.name;
+        else where.type = section.type;
         const pool = await prisma.question.findMany({ where, take: Math.max(section.count * 3, 30) });
         const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, section.count);
         pickedQuestions = pickedQuestions.concat(shuffled);
