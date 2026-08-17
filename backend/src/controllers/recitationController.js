@@ -28,7 +28,8 @@ export const getRecitationItems = async (req, res) => {
 // 提交背诵记录（mastered=false 表示「不熟」，按艾宾浩斯回退到第 1 天）
 export const createRecitationRecord = async (req, res) => {
   try {
-    const { userId, itemId, reviewed, mastered } = req.body;
+    const { itemId, reviewed, mastered } = req.body;
+    const userId = req.userId;
     const passed = mastered !== false && reviewed !== false;
 
     // 艾宾浩斯复习间隔（天）
@@ -95,7 +96,7 @@ export const createRecitationRecord = async (req, res) => {
 // 获取我的全部背诵记录（用于展示复习进度）
 export const getMyRecitationRecords = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
 
     const records = await prisma.recitationRecord.findMany({
       where: { userId },
@@ -118,7 +119,7 @@ export const getMyRecitationRecords = async (req, res) => {
 // 获取今日待复习背诵项目
 export const getTodayRecitation = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);

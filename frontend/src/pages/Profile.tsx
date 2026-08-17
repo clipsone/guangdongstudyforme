@@ -7,6 +7,7 @@ import { exportService } from '@/services/exportService';
 import { exerciseService } from '@/services/exerciseService';
 import { achievementService } from '@/services/achievementService';
 import { userService } from '@/services/userService';
+import { authService } from '@/services/authService';
 import { LineTrendChart, RadarChart } from '@/components/Charts';
 import { fmtDate } from '@/utils/date';
 import type { Achievement, ExerciseRecord } from '@/types';
@@ -199,6 +200,27 @@ export default function Profile() {
           </button>
         </div>
         {savedMsg && <div className="mt-2 text-xs font-medium text-primary">{savedMsg}</div>}
+      </div>
+
+      {/* 账号与退出 */}
+      <div className="card p-5">
+        <h3 className="mb-1 font-semibold">👤 我的账号</h3>
+        <div className="mb-3 text-xs text-gray-400">当前登录：{user?.username || '—'}</div>
+        <button
+          className="w-full rounded-lg border border-red-200 py-2 text-sm font-medium text-red-500 transition-colors hover:bg-red-50 dark:border-red-500/30 dark:hover:bg-red-500/10"
+          onClick={async () => {
+            try {
+              await authService.logout();
+            } catch {
+              // 忽略登出接口异常，本地会话照常清除
+            }
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            window.location.href = '/login';
+          }}
+        >
+          退出登录
+        </button>
       </div>
 
       {/* 成就徽章 */}

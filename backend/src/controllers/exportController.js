@@ -3,7 +3,7 @@ import prisma from '../utils/prisma.js';
 // 导出全部学习数据（JSON 备份）
 export const exportData = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     if (!userId) {
       return res.status(400).json({ error: { message: '缺少 userId', status: 400 } });
     }

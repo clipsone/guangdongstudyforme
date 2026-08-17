@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -29,14 +30,15 @@ async function main() {
   console.log('🌱 开始种子数据导入...');
   await resetData();
 
-  // 1. 创建默认用户
+  // 1. 创建默认用户（密码为 bcrypt 哈希；如需自定义，先设环境变量 SEED_USER_PASSWORD）
+  const seedPassword = process.env.SEED_USER_PASSWORD || 'password123';
   const user = await prisma.user.upsert({
     where: { username: 'student' },
-    update: {},
+    update: { passwordHash: bcrypt.hashSync(seedPassword, 10) },
     create: {
       username: 'student',
       email: 'student@example.com',
-      password: 'password123',
+      passwordHash: bcrypt.hashSync(seedPassword, 10),
       examDate: new Date('2027-01-10')
     }
   });

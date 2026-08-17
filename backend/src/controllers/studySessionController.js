@@ -3,7 +3,8 @@ import prisma from '../utils/prisma.js';
 // 记录一段学习时长（练习/模考结束时调用）
 export const createStudySession = async (req, res) => {
   try {
-    const { userId, subjectId, duration, taskId } = req.body;
+    const { subjectId, duration, taskId } = req.body;
+    const userId = req.userId;
     const seconds = Math.max(0, Math.round(Number(duration) || 0));
 
     const endedAt = new Date();
@@ -29,7 +30,8 @@ export const createStudySession = async (req, res) => {
 // 查询学习时长（可带 days 参数聚合今日/近 N 天）
 export const getStudySessions = async (req, res) => {
   try {
-    const { userId, days } = req.query;
+    const { days } = req.query;
+    const userId = req.userId;
     if (!userId) return res.json({ data: { totalSeconds: 0, sessions: [] } });
 
     const where = { userId };

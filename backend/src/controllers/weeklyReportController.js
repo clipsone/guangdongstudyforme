@@ -12,7 +12,7 @@ function weekNumber(date = new Date()) {
 // 生成本周学习报告
 export const generateWeeklyReport = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const userId = req.userId;
     if (!userId) return res.status(400).json({ error: { message: '缺少 userId', status: 400 } });
 
     const now = new Date();
@@ -87,7 +87,7 @@ export const generateWeeklyReport = async (req, res) => {
 // 获取最新周报
 export const getWeeklyReports = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     if (!userId) return res.json({ data: [] });
 
     const reports = await prisma.weeklyReport.findMany({

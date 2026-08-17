@@ -206,7 +206,7 @@ export const reviewEssay = async (req, res) => {
 // ---------- 聊天历史 ----------
 export const getChatHistory = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     if (!userId) return res.json({ data: [] });
 
     const records = await prisma.chatRecord.findMany({
@@ -229,7 +229,8 @@ export const getChatHistory = async (req, res) => {
 // ---------- 自由问答 ----------
 export const chat = async (req, res) => {
   try {
-    const { question, userId } = req.body;
+    const { question } = req.body;
+    const userId = req.userId;
 
     const q = String(question || '').trim();
     if (!q) {

@@ -29,7 +29,8 @@ async function buildAiSummary(userId, subjectId, accuracy, correctCount, totalCo
 // 智能组卷（薄弱考点加权）
 export const generateExercisePaper = async (req, res) => {
   try {
-    const { userId, subjectId, count = 10, difficulty, knowledgeIds } = req.body;
+    const { subjectId, count = 10, difficulty, knowledgeIds } = req.body;
+    const userId = req.userId;
     const questions = await generatePaper({ userId, subjectId, count, difficulty, knowledgeIds });
     res.json({ data: { questions } });
   } catch (error) {
@@ -40,7 +41,8 @@ export const generateExercisePaper = async (req, res) => {
 // 创建练习记录
 export const createExercise = async (req, res) => {
   try {
-    const { userId, subjectId, questions } = req.body;
+    const { subjectId, questions } = req.body;
+    const userId = req.userId;
 
     // 预计算判分结果（前端已判分，服务端据此统计）
     const correctCount = questions.filter(q => q.isCorrect).length;
@@ -153,7 +155,8 @@ export const createExercise = async (req, res) => {
 // 获取练习历史
 export const getExercises = async (req, res) => {
   try {
-    const { userId, subjectId, limit = 10 } = req.query;
+    const { subjectId, limit = 10 } = req.query;
+    const userId = req.userId;
 
     const where = {};
     if (userId) where.userId = userId;

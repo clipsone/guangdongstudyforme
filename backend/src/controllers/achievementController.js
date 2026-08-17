@@ -3,7 +3,7 @@ import prisma from '../utils/prisma.js';
 // 获取成就列表（含当前用户解锁状态）
 export const getAchievements = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
 
     const [all, unlocked] = await Promise.all([
       prisma.achievement.findMany({ orderBy: { createdAt: 'asc' } }),

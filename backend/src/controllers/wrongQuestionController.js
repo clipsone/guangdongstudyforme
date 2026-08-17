@@ -4,7 +4,8 @@ import { checkAndUnlockAchievements } from '../services/achievement.service.js';
 // 获取错题本
 export const getWrongQuestions = async (req, res) => {
   try {
-    const { userId, knowledgePointId, mastered, limit = 20 } = req.query;
+    const { knowledgePointId, mastered, limit = 20 } = req.query;
+    const userId = req.userId;
 
     const where = {};
     if (userId) where.userId = userId;
@@ -74,7 +75,8 @@ export const reviewWrongQuestion = async (req, res) => {
 // 批量错题重练
 export const batchReviewWrongQuestions = async (req, res) => {
   try {
-    const { userId, questionIds } = req.body;
+    const { questionIds } = req.body;
+    const userId = req.userId;
 
     const results = await Promise.all(
       questionIds.map(async (questionId) => {

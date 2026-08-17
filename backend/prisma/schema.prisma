@@ -13,8 +13,8 @@ datasource db {
 model User {
   id            String    @id @default(uuid())
   username      String    @unique
-  email         String    @unique
-  password      String
+  email         String?   @unique
+  passwordHash  String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   targetScore   Int       @default(450)
@@ -31,6 +31,20 @@ model User {
   chatRecords       ChatRecord[]
   userAchievements  UserAchievement[]
   weeklyReports     WeeklyReport[]
+  sessions          Session[]
+}
+
+// 登录会话（token 存库，可注销/过期）
+model Session {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model Subject {

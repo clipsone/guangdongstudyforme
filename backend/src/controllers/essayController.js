@@ -44,7 +44,8 @@ ${essay.content}` },
 // 保存作文（可选生成 AI 批改）
 export const createEssay = async (req, res) => {
   try {
-    const { userId, subjectId, title, content, type = 'argument', withReview = true } = req.body;
+    const { subjectId, title, content, type = 'argument', withReview = true } = req.body;
+    const userId = req.userId;
     if (!userId || !content) {
       return res.status(400).json({ error: { message: '缺少用户或作文内容', status: 400 } });
     }
@@ -101,7 +102,7 @@ export const createEssay = async (req, res) => {
 // 我的作文列表（含批改）
 export const getEssays = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     const essays = await prisma.essay.findMany({
       where: userId ? { userId } : {},
       include: {

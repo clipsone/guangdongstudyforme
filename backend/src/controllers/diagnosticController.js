@@ -77,7 +77,8 @@ async function buildDiagnosis(userId, subject) {
 // 生成学习诊断（缺省对全部科目生成）
 export const generateDiagnostic = async (req, res) => {
   try {
-    const { userId, subjectId } = req.body;
+    const { subjectId } = req.body;
+    const userId = req.userId;
     if (!userId) return res.status(400).json({ error: { message: '缺少 userId', status: 400 } });
 
     const subjects = subjectId
@@ -112,7 +113,7 @@ export const generateDiagnostic = async (req, res) => {
 // 获取历史诊断（每科最新一条）
 export const getDiagnostics = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     if (!userId) return res.json({ data: [] });
 
     const records = await prisma.diagnosticRecord.findMany({

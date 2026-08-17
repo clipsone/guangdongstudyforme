@@ -1,20 +1,10 @@
 import prisma from '../utils/prisma.js';
 
-// 解析用户ID：缺省或占位符时回退到默认用户（单用户模式）
-async function resolveUserId(userId) {
-  if (userId && userId !== 'default-user-id') return userId;
-  const user = await prisma.user.findFirst({
-    where: { username: 'student' },
-    orderBy: { createdAt: 'asc' }
-  });
-  return user?.id;
-}
-
 // 获取统计数据 - 仪表盘
 export const getDashboardStats = async (req, res) => {
   try {
-    const { userId } = req.query;
-    const uid = await resolveUserId(userId);
+    const userId = req.userId;
+    const uid = req.userId;
     if (!uid) {
       return res.status(404).json({ error: { message: '默认用户不存在', status: 404 } });
     }
@@ -117,8 +107,9 @@ export const getDashboardStats = async (req, res) => {
 // 获取进步曲线数据
 export const getProgressData = async (req, res) => {
   try {
-    const { userId, days = 30 } = req.query;
-    const uid = await resolveUserId(userId);
+    const { days = 30 } = req.query;
+    const userId = req.userId;
+    const uid = req.userId;
     if (!uid) {
       return res.status(404).json({ error: { message: '默认用户不存在', status: 404 } });
     }
@@ -192,8 +183,9 @@ export const getProgressData = async (req, res) => {
 // 获取掌握度历史（快照 + 当前值兜底）
 export const getMasteryHistory = async (req, res) => {
   try {
-    const { userId, days = 60 } = req.query;
-    const uid = await resolveUserId(userId);
+    const { days = 60 } = req.query;
+    const userId = req.userId;
+    const uid = req.userId;
     if (!uid) return res.json({ data: [] });
 
     const startDate = new Date();
@@ -242,8 +234,8 @@ export const getMasteryHistory = async (req, res) => {
 // 获取雷达图数据
 export const getRadarData = async (req, res) => {
   try {
-    const { userId } = req.query;
-    const uid = await resolveUserId(userId);
+    const userId = req.userId;
+    const uid = req.userId;
     if (!uid) {
       return res.status(404).json({ error: { message: '默认用户不存在', status: 404 } });
     }

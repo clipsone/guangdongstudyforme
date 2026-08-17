@@ -28,7 +28,8 @@ export const getExamTemplates = async (req, res) => {
 // 创建模考（按模板配置抽题）
 export const createExam = async (req, res) => {
   try {
-    const { userId, templateId } = req.body;
+    const { templateId } = req.body;
+    const userId = req.userId;
 
     const template = await prisma.examTemplate.findUnique({
       where: { id: templateId },
@@ -94,7 +95,7 @@ export const createExam = async (req, res) => {
 // 获取模考列表
 export const getExams = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const userId = req.userId;
     const exams = await prisma.exam.findMany({
       where: userId ? { userId } : {},
       include: {

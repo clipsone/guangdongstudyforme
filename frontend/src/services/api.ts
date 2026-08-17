@@ -30,10 +30,20 @@ api.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    const status = error.response?.status || 500;
+    const url: string = error.config?.url || '';
+    // 登录过期/未登录：清除本地会话并回到登录页（登录/注册接口自身的 401 除外）
+    if (status === 401 && !url.startsWith('/auth/')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
     const apiError: ApiError = {
       error: {
         message: error.response?.data?.error?.message || '请求失败',
-        status: error.response?.status || 500,
+        status,
       },
     };
     return Promise.reject(apiError);

@@ -63,7 +63,8 @@ async function ensureTodayTasks(userId, date) {
 // 获取每日任务（无当日任务时自动生成）
 export const getStudyTasks = async (req, res) => {
   try {
-    const { userId, date } = req.query;
+    const { date } = req.query;
+    const userId = req.userId;
     if (!userId) return res.json({ data: [] });
 
     const today = date ? new Date(date) : new Date();
@@ -83,7 +84,8 @@ export const getStudyTasks = async (req, res) => {
 // 创建学习任务
 export const createStudyTask = async (req, res) => {
   try {
-    const { userId, type, targetId, title, description, targetCount, dueDate } = req.body;
+    const { type, targetId, title, description, targetCount, dueDate } = req.body;
+    const userId = req.userId;
 
     const task = await prisma.studyTask.create({
       data: {

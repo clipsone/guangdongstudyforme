@@ -10,6 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Routes
 import userRoutes from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import subjectRoutes from './routes/subjectRoutes.js';
 import knowledgeRoutes from './routes/knowledgeRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
@@ -54,6 +55,7 @@ app.get('/api', (req, res) => {
   res.json({ message: '2027广东春季高考复习API', version: '1.0.0' });
 });
 
+app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/knowledge', knowledgeRoutes);
