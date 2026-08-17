@@ -69,6 +69,7 @@ export const generateQuestions = async (req, res) => {
           : '{"stem":"题干","answer":"参考答案（只写关键步骤要点，不超过120字）","analysis":"解析一句话"}';
 
     // 每题一个独立请求，并行发出
+    const errors = [];
     const tasks = Array.from({ length: num }, (_, i) => {
       const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。格式：${formatSpec}。只输出这一个 JSON 对象，答案与解析务必简洁。`;
       return aiChat(
@@ -85,7 +86,10 @@ export const generateQuestions = async (req, res) => {
         const arr = extractArray(parsed);
         if (arr) return arr[0];
         return parsed;
-      }).catch(() => null);
+      }).catch((e) => {
+        errors.push(String(e?.message || e).slice(0, 160));
+        return null;
+      });
     });
 
     const raws = await Promise.all(tasks);
@@ -110,7 +114,8 @@ export const generateQuestions = async (req, res) => {
     }
 
     if (created.length === 0) {
-      return res.status(502).json({ error: { message: 'AI 生成失败，请稍后重试', status: 502 } });
+      const detail = errors.length ? `请求错误：${errors.join(' | ')}` : 'AI 返回内容无法解析为有效题目';
+      return res.status(502).json({ error: { message: `AI 生成失败（${detail}）`, status: 502 } });
     }
     res.json({ data: { questions: created, count: created.length } });
   } catch (error) {
