@@ -91,10 +91,13 @@ export const generateQuestions = async (req, res) => {
             errors.push(`返回非JSON: ${String(text).slice(0, 100)}`);
             return null;
           }
-          // 兼容数组/包裹格式/单对象
+          // 兼容数组/包裹格式/单对象。
+          // 注意：题目对象含 options 数组，不能对其用 extractArray（会把 options 误当题目解包），
+          // 只有 parsed 本身不是题目对象时才尝试解包。
           if (Array.isArray(parsed)) return parsed[0];
+          if (parsed && typeof parsed === 'object' && parsed.stem) return parsed;
           const arr = extractArray(parsed);
-          if (arr) return arr[0];
+          if (arr && arr.length) return arr[0];
           return parsed;
         });
       };
