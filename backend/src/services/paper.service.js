@@ -19,6 +19,18 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
   const where = { status: 'active' };
   if (subjectId) where.subjectId = subjectId;
 
+  // 该用户已做过的题（练习+模考），优先排除以降低重复率
+  const [doneEx, doneExam] = await Promise.all([
+    prisma.exerciseQuestion.findMany({ where: { exercise: { userId } }, select: { questionId: true } }),
+    prisma.examQuestion.findMany({ where: { exam: { userId } }, select: { questionId: true } }),
+  ]);
+  const doneIds = new Set([...doneEx.map((r) => r.questionId), ...doneExam.map((r) => r.questionId)]);
+  const freshOnly = (list) => {
+    const fresh = list.filter((q) => !doneIds.has(q.id));
+    // 未做过的题不足时允许复用（保证出满题量）
+    return fresh.length > 0 ? fresh : list;
+  };
+
   // 1. 目标知识点池
   let targetPoints = [];
   if (knowledgeIds && knowledgeIds.length > 0) {
@@ -38,13 +50,13 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
     // 无考点数据时退化为随机抽题
     const fallback = await prisma.question.findMany({
       where,
-      take: count,
+      take: count * 3,
       include: {
         subject: true,
         questionKnowledge: { include: { knowledgePoint: true } }
       }
     });
-    return fallback;
+    return freshOnly(fallback).slice(0, count);
   }
 
   // 2. 按考点权重随机抽样（加权不放回）
@@ -75,13 +87,13 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
   if (questionIds.length === 0) {
     const fallback = await prisma.question.findMany({
       where,
-      take: count,
+      take: count * 3,
       include: {
         subject: true,
         questionKnowledge: { include: { knowledgePoint: true } }
       }
     });
-    return fallback;
+    return freshOnly(fallback).slice(0, count);
   }
 
   let questions = await prisma.question.findMany({
@@ -105,6 +117,10 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
       questions = questions.filter((q) => q.difficulty === parts[0]);
     }
   }
+
+  // 优先未做过的题（降低重复率）；未做不足时允许复用已做
+  const freshQs = questions.filter((q) => !doneIds.has(q.id));
+  if (freshQs.length > 0) questions = freshQs;
 
   // 加权随机排序：命中考点越多越靠前
   questions.sort((a, b) => (hitCount[b.id] || 0) - (hitCount[a.id] || 0));

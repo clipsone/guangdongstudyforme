@@ -68,6 +68,14 @@ export const createExam = async (req, res) => {
 
     // 固定真题卷：按卷面题目顺序取题；仿真卷：按题型分区抽题
     let pickedQuestions = [];
+
+    // 该用户已做过的题（练习+模考记录），抽题时优先排除，降低重复率
+    const [doneEx, doneExam] = await Promise.all([
+      prisma.exerciseQuestion.findMany({ where: { exercise: { userId } }, select: { questionId: true } }),
+      prisma.examQuestion.findMany({ where: { exam: { userId } }, select: { questionId: true } }),
+    ]);
+    const doneIds = new Set([...doneEx.map((r) => r.questionId), ...doneExam.map((r) => r.questionId)]);
+
     if (fixedIds.length > 0) {
       const fixed = await prisma.question.findMany({
         where: { id: { in: fixedIds }, status: 'active' },
@@ -81,8 +89,11 @@ export const createExam = async (req, res) => {
         const where = { subjectId: template.subjectId, status: 'active' };
         if (section.name) where.section = section.name;
         else where.type = section.type;
-        const pool = await prisma.question.findMany({ where, take: Math.max(section.count * 3, 30) });
-        const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, section.count);
+        const pool = await prisma.question.findMany({ where, take: Math.max(section.count * 6, 60) });
+        // 优先未做过的题；未做不足时再从全池补足（保证满卷）
+        const fresh = pool.filter((q) => !doneIds.has(q.id));
+        const source = fresh.length >= section.count ? fresh : pool;
+        const shuffled = [...source].sort(() => Math.random() - 0.5).slice(0, section.count);
         pickedQuestions = pickedQuestions.concat(shuffled);
       }
     }
