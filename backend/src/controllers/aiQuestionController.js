@@ -1,6 +1,6 @@
 // AI 题库增强：AI 出题（扩充题库）+ 历年真题导入（解析粘贴文本入库）
 import prisma from '../utils/prisma.js';
-import { chat as aiChat, isConfigured, safeJson, extractArray } from '../services/aiProvider.js';
+import { chat as aiChat, isConfigured, safeJson, extractArray, fastModel } from '../services/aiProvider.js';
 
 // 各科真实试卷题型分区（广东春季高考·依学考，供 AI 出题/解析参考）
 const SUBJECT_SECTIONS = {
@@ -47,7 +47,7 @@ function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType) {
 // ---------- AI 出题 ----------
 // 并行逐题生成：每道题一个独立小请求同时发出（快模型+短输出），
 // 总耗时≈单题耗时，适配 Vercel 60s 函数上限
-const FAST_MODEL = 'glm-4-flash';
+const FAST_MODEL = fastModel;
 
 export const generateQuestions = async (req, res) => {
   try {
@@ -84,7 +84,7 @@ export const generateQuestions = async (req, res) => {
             { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出合法 JSON，答案与解析简洁。' },
             { role: 'user', content: prompt },
           ],
-          { temperature: 0.7, json: false, maxTokens: 900, model: FAST_MODEL }
+          { temperature: 0.7, json: false, maxTokens: 900, model: FAST_MODEL() }
         ).then((text) => {
           const parsed = safeJson(text);
           if (!parsed) {
@@ -157,7 +157,7 @@ export const importRealExam = async (req, res) => {
 
     const text2 = await aiChat(
       [{ role: 'system', content: '你是试卷解析器，精确提取题目与答案。答案简洁，只输出 JSON。' }, { role: 'user', content: prompt }],
-      { temperature: 0.2, json: true, maxTokens: 2000, model: FAST_MODEL }
+      { temperature: 0.2, json: true, maxTokens: 2000, model: FAST_MODEL() }
     );
 
     const parsed = safeJson(text2);
