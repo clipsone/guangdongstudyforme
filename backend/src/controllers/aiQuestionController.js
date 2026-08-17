@@ -94,6 +94,12 @@ export const generateQuestions = async (req, res) => {
       if (!raw) continue;
       const q = normalizeQuestion(raw, subject.id, section, type);
       if (!q) continue;
+      // 去重：与题库已有题目题干相同的跳过（AI 并行生成易撞题）
+      const dup = await prisma.question.findFirst({
+        where: { subjectId: subject.id, stem: q.stem },
+        select: { id: true },
+      });
+      if (dup) continue;
       const saved = await prisma.question.create({ data: q });
       if (kp) {
         await prisma.questionKnowledge
