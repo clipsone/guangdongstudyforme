@@ -80,7 +80,10 @@ export const generateQuestions = async (req, res) => {
         { temperature: 0.7, json: true, maxTokens: 600, model: FAST_MODEL }
       ).then((text) => {
         const parsed = safeJson(text);
-        if (!parsed) return null;
+        if (!parsed) {
+          errors.push(`返回非JSON: ${String(text).slice(0, 120)}`);
+          return null;
+        }
         // json_object 模式直接返回单个题目对象；也兼容数组/包裹格式
         if (Array.isArray(parsed)) return parsed[0];
         const arr = extractArray(parsed);
@@ -97,7 +100,10 @@ export const generateQuestions = async (req, res) => {
     for (const raw of raws) {
       if (!raw) continue;
       const q = normalizeQuestion(raw, subject.id, section, type);
-      if (!q) continue;
+      if (!q) {
+        errors.push(`解析后无效: ${JSON.stringify(raw).slice(0, 120)}`);
+        continue;
+      }
       // 去重：与题库已有题目题干相同的跳过（AI 并行生成易撞题）
       const dup = await prisma.question.findFirst({
         where: { subjectId: subject.id, stem: q.stem },

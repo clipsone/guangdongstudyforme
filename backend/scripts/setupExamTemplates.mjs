@@ -18,8 +18,12 @@ const CHAPTER_SECTION = {
   },
   数学: {},
   英语: {
-    阅读理解: '阅读理解', 完形填空: '完形填空', 语法填空: '语法填空',
-    书面表达: '书面表达', 词汇与短语: '单项选择', 听力理解: '单项选择', 短文改错: '单项选择',
+    阅读理解: '阅读理解·第一节',
+    完形填空: '完形填空',
+    语法填空: '语法填空',
+    书面表达: '书面表达',
+    // 词汇/听力/改错单选并入完形（同为词汇语法选择题）
+    词汇与短语: '完形填空', 听力理解: '完形填空', 短文改错: '完形填空',
   },
 };
 
@@ -27,7 +31,7 @@ const CHAPTER_SECTION = {
 const TYPE_SECTIONS = {
   语文: { choice: ['基础知识与运用'], fill: ['名句名篇默写'], essay: ['写作'] },
   数学: { choice: ['单选题'], fill: ['填空题'], essay: ['解答题'] },
-  英语: { choice: ['单项选择', '完形填空', '阅读理解'], fill: ['语法填空'], essay: ['书面表达'] },
+  英语: { choice: ['完形填空'], fill: ['语法填空'], essay: ['书面表达'] },
 };
 
 // 真实结构模板（广东春季高考·学业水平合格性考试，满分150）
@@ -62,33 +66,35 @@ const TEMPLATES = {
   },
   英语: {
     name: '英语·春季高考仿真卷',
-    description: '按广东春季高考（依学考）真实题型组卷：单项选择/完形填空/阅读理解/语法填空/书面表达，满分150分，90分钟',
+    description: '按广东春季高考真实结构（90分钟/150分）：情景交际15 + 阅读理解60（第一节45+五选五15）+ 完形填空30 + 语法填空20 + 书面表达25',
     totalScore: 150, duration: 90,
     sections: [
-      { name: '单项选择', type: 'choice', count: 15, scorePer: 2 },
-      { name: '完形填空', type: 'choice', count: 15, scorePer: 2 },
-      { name: '阅读理解', type: 'choice', count: 15, scorePer: 2 },
-      { name: '语法填空', type: 'fill', count: 10, scorePer: 2 },
-      { name: '书面表达', type: 'essay', count: 1, scorePer: 40 },
+      { name: '情景交际', type: 'choice', count: 5, scorePer: 3 },            // 15
+      { name: '阅读理解·第一节', type: 'choice', count: 15, scorePer: 3 },     // 45
+      { name: '阅读理解·第二节', type: 'fill', count: 5, scorePer: 3 },        // 15（五选五）
+      { name: '完形填空', type: 'choice', count: 15, scorePer: 2 },            // 30
+      { name: '语法填空', type: 'fill', count: 10, scorePer: 2 },              // 20
+      { name: '书面表达', type: 'essay', count: 1, scorePer: 25 },             // 25
     ],
   },
 };
 
-// 旧版语文分区名（v1 打标），重跑时需要先清除再按新版映射重打
-const OLD_LANG_SECTIONS = ['现代文阅读', '文言文阅读', '古代诗歌鉴赏', '语言文字运用', '名句名篇默写', '写作'];
+// 旧版分区名（v1 打标），重跑时需要先清除再按新版映射重打
+const OLD_LANG_SECTIONS = [
+  '现代文阅读', '文言文阅读', '古代诗歌鉴赏', '语言文字运用', '名句名篇默写', '写作',
+  '单项选择', '阅读理解', '完形填空', '语法填空', '书面表达',
+];
 
 async function tagQuestions() {
   const subjects = await prisma.subject.findMany();
   for (const s of subjects) {
     const chapterMap = CHAPTER_SECTION[s.name] || {};
     const typeFallback = TYPE_SECTIONS[s.name] || {};
-    // 语文：先清除旧版分区标签，再按新映射重打（保留 AI 生成的新分区题）
-    if (s.name === '语文') {
-      await prisma.question.updateMany({
-        where: { subjectId: s.id, section: { in: OLD_LANG_SECTIONS } },
-        data: { section: null },
-      });
-    }
+    // 先清除旧版分区标签，再按新映射重打（保留 AI 生成的新分区题）
+    await prisma.question.updateMany({
+      where: { subjectId: s.id, section: { in: OLD_LANG_SECTIONS } },
+      data: { section: null },
+    });
     const questions = await prisma.question.findMany({
       where: { subjectId: s.id, section: null },
       include: { questionKnowledge: { include: { knowledgePoint: { include: { chapter: true } } } } },
