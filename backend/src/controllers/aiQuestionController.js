@@ -79,8 +79,12 @@ export const generateQuestions = async (req, res) => {
         { temperature: 0.7, json: true, maxTokens: 600, model: FAST_MODEL }
       ).then((text) => {
         const parsed = safeJson(text);
+        if (!parsed) return null;
+        // json_object 模式直接返回单个题目对象；也兼容数组/包裹格式
+        if (Array.isArray(parsed)) return parsed[0];
         const arr = extractArray(parsed);
-        return (Array.isArray(arr) ? arr[0] : arr) || null;
+        if (arr) return arr[0];
+        return parsed;
       }).catch(() => null);
     });
 
