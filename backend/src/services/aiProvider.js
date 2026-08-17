@@ -31,6 +31,19 @@ export function safeJson(text) {
   }
 }
 
+// 从对象中取出数组：兼容 {"questions":[...]} / {"result":[...]} / {"data":[...]} 等包裹
+export function extractArray(obj) {
+  if (Array.isArray(obj)) return obj;
+  if (obj && typeof obj === 'object') {
+    for (const key of ['questions', 'result', 'data', 'items', 'list']) {
+      if (Array.isArray(obj[key])) return obj[key];
+    }
+    const vals = Object.values(obj).filter((v) => Array.isArray(v));
+    if (vals.length === 1) return vals[0];
+  }
+  return null;
+}
+
 // 统一对话入口：messages=[{role,content}]
 // opts: { temperature, json } —— json 时要求模型输出 JSON 对象
 export async function chat(messages, { temperature = 0.7, json = false, maxTokens = 1024 } = {}) {
@@ -54,6 +67,8 @@ export async function chat(messages, { temperature = 0.7, json = false, maxToken
       Authorization: `Bearer ${apiKey()}`,
     },
     body: JSON.stringify(body),
+    // 50 秒超时：Vercel 函数上限 60s，留出响应余量
+    signal: AbortSignal.timeout(50000),
   });
 
   if (!resp.ok) {

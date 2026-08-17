@@ -1,6 +1,6 @@
 // AI 题库增强：AI 出题（扩充题库）+ 历年真题导入（解析粘贴文本入库）
 import prisma from '../utils/prisma.js';
-import { chat as aiChat, isConfigured, safeJson } from '../services/aiProvider.js';
+import { chat as aiChat, isConfigured, safeJson, extractArray } from '../services/aiProvider.js';
 
 // 各科真实试卷题型分区（广东春季高考·依学考，供 AI 出题/解析参考）
 const SUBJECT_SECTIONS = {
@@ -59,19 +59,19 @@ export const generateQuestions = async (req, res) => {
 
     const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。
 请命制 ${num} 道${typeName}，难度贴近广东春季高考（依学考）真题。
-${type === 'choice' ? '每道题格式：{"stem":"题干","options":["A选项","B选项","C选项","D选项"],"answer":"正确选项字母(A/B/C/D)","analysis":"解析","difficulty":1-5}' : type === 'fill' ? '每道题格式：{"stem":"题干（用____表示填空处）","answer":"答案","analysis":"解析","difficulty":1-5}' : '每道题格式：{"stem":"题干","answer":"参考答案要点","analysis":"解析","difficulty":1-5}'}
-只输出 JSON 数组，不要输出任何其他文字。`;
+${type === 'choice' ? '每道题格式：{"stem":"题干","options":["A选项","B选项","C选项","D选项"],"answer":"正确选项字母(A/B/C/D)","analysis":"解析一句话"}，选择题答案只给字母' : type === 'fill' ? '每道题格式：{"stem":"题干（用____表示填空处）","answer":"答案（一句话）","analysis":"解析一句话"}' : '每道题格式：{"stem":"题干","answer":"参考答案（只写关键步骤要点，不超过120字）","analysis":"解析一句话"}'}
+只输出 JSON 数组，不要输出任何其他文字。答案与解析务必简洁。`;
 
     const text = await aiChat(
       [
-        { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出 JSON。' },
+        { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。答案解析务必简洁，只输出 JSON。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.7, json: true, maxTokens: 2000 }
+      { temperature: 0.7, json: true, maxTokens: 1100 }
     );
 
     const parsed = safeJson(text);
-    const arr = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.questions) ? parsed.questions : null;
+    const arr = extractArray(parsed);
     if (!arr || arr.length === 0) {
       return res.status(502).json({ error: { message: 'AI 未返回有效题目，请重试', status: 502 } });
     }
@@ -118,12 +118,12 @@ export const importRealExam = async (req, res) => {
 试卷文本：\n${rawText.slice(0, 6000)}`;
 
     const text2 = await aiChat(
-      [{ role: 'system', content: '你是试卷解析器，精确提取题目与答案。只输出 JSON。' }, { role: 'user', content: prompt }],
-      { temperature: 0.2, json: true, maxTokens: 4000 }
+      [{ role: 'system', content: '你是试卷解析器，精确提取题目与答案。答案简洁，只输出 JSON。' }, { role: 'user', content: prompt }],
+      { temperature: 0.2, json: true, maxTokens: 2000 }
     );
 
     const parsed = safeJson(text2);
-    const arr = Array.isArray(parsed) ? parsed : null;
+    const arr = extractArray(parsed);
     if (!arr || arr.length === 0) {
       return res.status(502).json({ error: { message: '未能从文本中解析出题目，请确认文本包含题目与答案', status: 502 } });
     }

@@ -166,7 +166,12 @@ export default function Practice() {
       startTimeRef.current = Date.now();
       setPhase('answering');
     } catch (e: any) {
-      setError(e?.error?.message || 'AI 出题失败，请稍后再试');
+      setError(
+        e?.error?.message ||
+          (e?.response?.status === 504
+            ? 'AI 出题超时，请减少题量（建议 3 题以内）后重试'
+            : 'AI 出题失败，请稍后再试')
+      );
     } finally {
       setLoading(false);
     }
@@ -328,7 +333,7 @@ export default function Practice() {
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题量</label>
               <select className="input" value={count} onChange={(e) => setCount(Number(e.target.value))}>
-                {[5, 10, 15, 20].map((n) => <option key={n} value={n}>{n} 题</option>)}
+                {(mode === 'ai' ? [1, 2, 3, 5] : [5, 10, 15, 20]).map((n) => <option key={n} value={n}>{n} 题</option>)}
               </select>
             </div>
             <div>
