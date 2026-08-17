@@ -41,6 +41,10 @@ function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType) {
 }
 
 // ---------- AI 出题 ----------
+// 并行逐题生成：每道题一个独立小请求同时发出（快模型+短输出），
+// 总耗时≈单题耗时，适配 Vercel 60s 函数上限
+const FAST_MODEL = 'glm-4-flash';
+
 export const generateQuestions = async (req, res) => {
   try {
     const { subjectId, knowledgePointId, section, type = 'choice', count = 5 } = req.body;
@@ -57,27 +61,33 @@ export const generateQuestions = async (req, res) => {
     const sectionDesc = section ? `，属于「${section}」题型分区` : '';
     const kpDesc = kp ? `，考查知识点：${kp.name}` : '';
 
-    const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。
-请命制 ${num} 道${typeName}，难度贴近广东春季高考（依学考）真题。
-${type === 'choice' ? '每道题格式：{"stem":"题干","options":["A选项","B选项","C选项","D选项"],"answer":"正确选项字母(A/B/C/D)","analysis":"解析一句话"}，选择题答案只给字母' : type === 'fill' ? '每道题格式：{"stem":"题干（用____表示填空处）","answer":"答案（一句话）","analysis":"解析一句话"}' : '每道题格式：{"stem":"题干","answer":"参考答案（只写关键步骤要点，不超过120字）","analysis":"解析一句话"}'}
-只输出 JSON 数组，不要输出任何其他文字。答案与解析务必简洁。`;
+    const formatSpec =
+      type === 'choice'
+        ? '{"stem":"题干","options":["A选项","B选项","C选项","D选项"],"answer":"正确选项字母(A/B/C/D)","analysis":"解析一句话"}'
+        : type === 'fill'
+          ? '{"stem":"题干（用____表示填空处）","answer":"答案（一句话）","analysis":"解析一句话"}'
+          : '{"stem":"题干","answer":"参考答案（只写关键步骤要点，不超过120字）","analysis":"解析一句话"}';
 
-    const text = await aiChat(
-      [
-        { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。答案解析务必简洁，只输出 JSON。' },
-        { role: 'user', content: prompt },
-      ],
-      { temperature: 0.7, json: true, maxTokens: 1100 }
-    );
+    // 每题一个独立请求，并行发出
+    const tasks = Array.from({ length: num }, (_, i) => {
+      const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。格式：${formatSpec}。只输出这一个 JSON 对象，答案与解析务必简洁。`;
+      return aiChat(
+        [
+          { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出 JSON，答案简洁。' },
+          { role: 'user', content: prompt },
+        ],
+        { temperature: 0.7, json: true, maxTokens: 600, model: FAST_MODEL }
+      ).then((text) => {
+        const parsed = safeJson(text);
+        const arr = extractArray(parsed);
+        return (Array.isArray(arr) ? arr[0] : arr) || null;
+      }).catch(() => null);
+    });
 
-    const parsed = safeJson(text);
-    const arr = extractArray(parsed);
-    if (!arr || arr.length === 0) {
-      return res.status(502).json({ error: { message: 'AI 未返回有效题目，请重试', status: 502 } });
-    }
-
+    const raws = await Promise.all(tasks);
     const created = [];
-    for (const raw of arr.slice(0, num)) {
+    for (const raw of raws) {
+      if (!raw) continue;
       const q = normalizeQuestion(raw, subject.id, section, type);
       if (!q) continue;
       const saved = await prisma.question.create({ data: q });
@@ -90,7 +100,7 @@ ${type === 'choice' ? '每道题格式：{"stem":"题干","options":["A选项","
     }
 
     if (created.length === 0) {
-      return res.status(502).json({ error: { message: 'AI 生成的题目缺少答案，请重试', status: 502 } });
+      return res.status(502).json({ error: { message: 'AI 生成失败，请稍后重试', status: 502 } });
     }
     res.json({ data: { questions: created, count: created.length } });
   } catch (error) {
@@ -119,7 +129,7 @@ export const importRealExam = async (req, res) => {
 
     const text2 = await aiChat(
       [{ role: 'system', content: '你是试卷解析器，精确提取题目与答案。答案简洁，只输出 JSON。' }, { role: 'user', content: prompt }],
-      { temperature: 0.2, json: true, maxTokens: 2000 }
+      { temperature: 0.2, json: true, maxTokens: 2000, model: FAST_MODEL }
     );
 
     const parsed = safeJson(text2);

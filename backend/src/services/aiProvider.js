@@ -45,14 +45,14 @@ export function extractArray(obj) {
 }
 
 // 统一对话入口：messages=[{role,content}]
-// opts: { temperature, json } —— json 时要求模型输出 JSON 对象
-export async function chat(messages, { temperature = 0.7, json = false, maxTokens = 1024 } = {}) {
+// opts: { temperature, json, maxTokens, model } —— json 时要求模型输出 JSON 对象；model 缺省用全局配置
+export async function chat(messages, { temperature = 0.7, json = false, maxTokens = 1024, model } = {}) {
   if (!isConfigured()) {
     throw new Error('AI 未配置（AI_PROVIDER=mock 或缺少 ZHIPU_API_KEY）');
   }
 
   const body = {
-    model: currentModel(),
+    model: model || currentModel(),
     messages,
     temperature,
     max_tokens: maxTokens,
