@@ -30,7 +30,7 @@ const CHAPTER_SECTION = {
 // 无章节映射时的兜底：按题型轮转分区
 const TYPE_SECTIONS = {
   语文: { choice: ['基础知识与运用'], fill: ['名句名篇默写'], essay: ['写作'] },
-  数学: { choice: ['单选题'], fill: ['填空题'], essay: ['解答题'] },
+  数学: { choice: ['选择题'], fill: ['填空题'], essay: ['解答题（19-21题）'] },
   英语: { choice: ['完形填空'], fill: ['语法填空'], essay: ['书面表达'] },
 };
 
@@ -56,12 +56,13 @@ const TEMPLATES = {
   },
   数学: {
     name: '数学·春季高考仿真卷',
-    description: '按广东春季高考（依学考）真实题型组卷：单选题/填空题/解答题，满分150分，90分钟',
+    description: '按广东春季高考真实结构（90分钟/150分）：选择题12题×6分 + 填空题6题×6分 + 解答题4题（19-21题各10分、22题12分）',
     totalScore: 150, duration: 90,
     sections: [
-      { name: '单选题', type: 'choice', count: 10, scorePer: 5 },
-      { name: '填空题', type: 'fill', count: 4, scorePer: 5 },
-      { name: '解答题', type: 'essay', count: 4, scorePer: 20 },
+      { name: '选择题', type: 'choice', count: 12, scorePer: 6 },   // 72
+      { name: '填空题', type: 'fill', count: 6, scorePer: 6 },      // 36
+      { name: '解答题（19-21题）', type: 'essay', count: 3, scorePer: 10 }, // 30
+      { name: '解答题（22题）', type: 'essay', count: 1, scorePer: 12 },    // 12
     ],
   },
   英语: {
@@ -83,6 +84,7 @@ const TEMPLATES = {
 const OLD_LANG_SECTIONS = [
   '现代文阅读', '文言文阅读', '古代诗歌鉴赏', '语言文字运用', '名句名篇默写', '写作',
   '单项选择', '阅读理解', '完形填空', '语法填空', '书面表达',
+  '单选题', '填空题', '解答题', '选择题',
 ];
 
 async function tagQuestions() {

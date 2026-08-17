@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, ChevronRight, Link2, PenLine, Sparkles, Star, X } from 'lucide-react';
+import { AlertTriangle, BookOpen, ChevronRight, Link2, PenLine, Sparkles, Star, X } from 'lucide-react';
 import { knowledgeService } from '@/services/knowledgeService';
 import { aiService } from '@/services/aiService';
 import { freqLabel, statusColor, statusLabel } from '@/utils/date';
@@ -288,6 +288,16 @@ export default function Knowledge() {
                   <Sparkles size={16} /> AI 讲解
                 </button>
               </div>
+
+              {/* 考点摘要（必背干货） */}
+              {drawer.point.summary && (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-500/30 dark:bg-amber-900/10">
+                  <div className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-amber-700 dark:text-amber-400">
+                    <BookOpen size={14} /> 必背摘要
+                  </div>
+                  <div className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700 dark:text-gray-300">{drawer.point.summary}</div>
+                </div>
+              )}
 
               {/* 前置依赖 */}
               <div className="rounded-lg border border-gray-100 p-3 dark:border-gray-700">

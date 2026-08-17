@@ -41,6 +41,7 @@ export interface KnowledgePoint {
   mark: 'new' | 'deleted' | 'none';
   prerequisites: string[];
   mastery: number;
+  summary?: string;
   chapter: Chapter;
   parent?: KnowledgePoint;
   children?: KnowledgePoint[];

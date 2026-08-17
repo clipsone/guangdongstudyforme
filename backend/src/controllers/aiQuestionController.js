@@ -19,10 +19,14 @@ function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType) {
   const options = Array.isArray(raw?.options) ? raw.options.map((o) => String(o).trim()) : null;
   let answer = String(raw?.answer ?? '').trim();
   if (type === 'choice' && options?.length) {
-    // 选项按 A/B/C/D 编号，答案统一为字母
+    // 选项按 A/B/C/D 编号，答案统一为字母（兼容 "答案C"/"C项"/"C." 等写法）
     if (!/^[A-D]$/i.test(answer)) {
       const idx = options.findIndex((o) => o === answer || o.startsWith(answer));
       if (idx >= 0) answer = String.fromCharCode(65 + idx);
+      else {
+        const m = String(answer).match(/[A-D]/i);
+        if (m) answer = m[0];
+      }
     }
     answer = answer.toUpperCase();
   }
@@ -68,31 +72,34 @@ export const generateQuestions = async (req, res) => {
           ? '{"stem":"题干（用____表示填空处）","answer":"答案（一句话）","analysis":"解析一句话"}'
           : '{"stem":"题干","answer":"参考答案（只写关键步骤要点，不超过120字）","analysis":"解析一句话"}';
 
-    // 每题一个独立请求，并行发出
+    // 每题一个独立请求，并行发出；不使用 json_object 模式（该模式下 glm-4-flash 偶发返回非 JSON 裸文本），
+    // 改为提示词约束 + 宽松解析，失败自动重试一次
     const errors = [];
     const tasks = Array.from({ length: num }, (_, i) => {
-      const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。格式：${formatSpec}。只输出这一个 JSON 对象，答案与解析务必简洁。`;
-      return aiChat(
-        [
-          { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出 JSON，答案简洁。' },
-          { role: 'user', content: prompt },
-        ],
-        { temperature: 0.7, json: true, maxTokens: 600, model: FAST_MODEL }
-      ).then((text) => {
-        const parsed = safeJson(text);
-        if (!parsed) {
-          errors.push(`返回非JSON: ${String(text).slice(0, 120)}`);
-          return null;
-        }
-        // json_object 模式直接返回单个题目对象；也兼容数组/包裹格式
-        if (Array.isArray(parsed)) return parsed[0];
-        const arr = extractArray(parsed);
-        if (arr) return arr[0];
-        return parsed;
-      }).catch((e) => {
-        errors.push(String(e?.message || e).slice(0, 160));
-        return null;
-      });
+      const runOnce = (variant) => {
+        const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。
+严格按以下 JSON 格式输出（不要输出任何其他文字、不要 markdown、不要解释）：${formatSpec}${variant ? `。${variant}` : ''}`;
+        return aiChat(
+          [
+            { role: 'system', content: '你是广东春季高考命题专家，命制高质量试题。只输出合法 JSON，答案与解析简洁。' },
+            { role: 'user', content: prompt },
+          ],
+          { temperature: 0.7, json: false, maxTokens: 900, model: FAST_MODEL }
+        ).then((text) => {
+          const parsed = safeJson(text);
+          if (!parsed) {
+            errors.push(`返回非JSON: ${String(text).slice(0, 100)}`);
+            return null;
+          }
+          // 兼容数组/包裹格式/单对象
+          if (Array.isArray(parsed)) return parsed[0];
+          const arr = extractArray(parsed);
+          if (arr) return arr[0];
+          return parsed;
+        });
+      };
+      // 先跑一次，失败（null）则换措辞重试一次
+      return runOnce(null).then((r) => (r ? r : runOnce('请重新生成一道不同的题目')));
     });
 
     const raws = await Promise.all(tasks);

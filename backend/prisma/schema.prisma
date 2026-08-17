@@ -93,6 +93,7 @@ model KnowledgePoint {
   mark           String   @default("none") // new/deleted/none
   prerequisites  String[] @default([])
   mastery        Int      @default(0) // 0-100
+  summary        String?  // 考点备考摘要（必背内容/公式/模板）
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
