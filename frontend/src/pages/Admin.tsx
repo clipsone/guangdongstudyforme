@@ -347,7 +347,6 @@ function Users({ me }: { me: string }) {
             <th className="text-left p-3 font-bold">目标分</th>
             <th className="text-left p-3 font-bold">练习</th>
             <th className="text-left p-3 font-bold">模考</th>
-            <th className="text-left p-3 font-bold">错题</th>
             <th className="text-left p-3 font-bold">注册时间</th>
             <th className="text-left p-3 font-bold">操作</th>
           </tr>
@@ -360,7 +359,6 @@ function Users({ me }: { me: string }) {
               <td className="p-3">{u.targetScore}</td>
               <td className="p-3">{u._count.exerciseRecords}</td>
               <td className="p-3">{u._count.examRecords}</td>
-              <td className="p-3">{u._count.wrongQuestions}</td>
               <td className="p-3 text-xs text-gray-500">{new Date(u.createdAt).toLocaleDateString('zh-CN')}</td>
               <td className="p-3 flex gap-2">
                 <button onClick={() => toggleRole(u)} disabled={u.id === me} className="btn btn-ink !px-2 !py-1 text-xs disabled:opacity-40">

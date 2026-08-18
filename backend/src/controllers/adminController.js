@@ -136,7 +136,7 @@ export const getUsers = async (req, res) => {
         role: true,
         targetScore: true,
         createdAt: true,
-        _count: { select: { exerciseRecords: true, examRecords: true, wrongQuestions: true } },
+        _count: { select: { exerciseRecords: true, examRecords: true } },
       },
       orderBy: { createdAt: 'desc' },
     });

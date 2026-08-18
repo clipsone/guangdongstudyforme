@@ -15,7 +15,7 @@ export interface AdminUser {
   role: string;
   targetScore: number;
   createdAt: string;
-  _count: { exerciseRecords: number; examRecords: number; wrongQuestions: number };
+  _count: { exerciseRecords: number; examRecords: number };
 }
 
 export interface AdminQuestion {
