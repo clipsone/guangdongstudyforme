@@ -258,22 +258,30 @@ export const submitExam = async (req, res) => {
       if (gradeQuestion(eq.question, userAnswer)) score += eq.score || 0;
     }
 
-    // 更新掌握度（并行执行，避免串行 DB 往返拖慢交卷）
-    await Promise.all(
-      Object.entries(knowledgeStats).map(async ([kpId, stats]) => {
-        const accuracy = (stats.correct / stats.total) * 100;
-        const kp = await prisma.knowledgePoint.findUnique({ where: { id: kpId } });
-        if (!kp) return;
-        let newMastery = kp.mastery;
-        if (accuracy >= 80) newMastery = Math.min(100, kp.mastery + 8);
-        else if (accuracy < 40) newMastery = Math.max(0, kp.mastery - 8);
-        else newMastery = Math.min(100, Math.max(0, kp.mastery + (accuracy - 50) / 12));
-        await prisma.knowledgePoint.update({
-          where: { id: kpId },
-          data: { mastery: Math.round(newMastery) }
-        });
-      })
-    );
+    // 掌握度更新 + 成就解锁 并行执行（互不依赖，减少交卷等待）
+    const [newAchievements] = await Promise.all([
+      checkAndUnlockAchievements(exam.userId).catch(() => []),
+      (async () => {
+        const kpIds = Object.keys(knowledgeStats);
+        if (kpIds.length === 0) return;
+        // 批量查出所有知识点，避免逐题 findUnique 往返
+        const kps = await prisma.knowledgePoint.findMany({ where: { id: { in: kpIds } } });
+        await Promise.all(
+          kps.map(async (kp) => {
+            const stats = knowledgeStats[kp.id];
+            const accuracy = (stats.correct / stats.total) * 100;
+            let newMastery = kp.mastery;
+            if (accuracy >= 80) newMastery = Math.min(100, kp.mastery + 8);
+            else if (accuracy < 40) newMastery = Math.max(0, kp.mastery - 8);
+            else newMastery = Math.min(100, Math.max(0, kp.mastery + (accuracy - 50) / 12));
+            await prisma.knowledgePoint.update({
+              where: { id: kp.id },
+              data: { mastery: Math.round(newMastery) }
+            });
+          })
+        );
+      })(),
+    ]);
 
     const updated = await prisma.exam.update({
       where: { id },
@@ -283,7 +291,6 @@ export const submitExam = async (req, res) => {
       }
     });
 
-    const newAchievements = await checkAndUnlockAchievements(exam.userId).catch(() => []);
     recordMasterySnapshot(exam.userId).catch(() => {});
 
     res.json({
