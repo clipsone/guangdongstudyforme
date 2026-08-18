@@ -346,19 +346,24 @@ export default function ExamPage() {
               </div>
               <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200">{q.stem}</div>
 
-              {q.type === 'choice' ? (
+              {q.type === 'choice' || (q.options && q.options.length > 0) ? (
                 <div className="mt-3 space-y-1.5">
-                  {q.options?.map((opt: string) => {
-                    const letter = opt.split('.')[0].trim();
+                  {q.options?.map((opt: string, i: number) => {
+                    const letter = String.fromCharCode(65 + i);
                     const active = ua === letter;
                     return (
                       <button
-                        key={letter}
+                        key={i}
                         onClick={() => setAnswers((a) => ({ ...a, [q.id]: letter }))}
-                        className={`block w-full rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
-                          active ? 'border-primary bg-primary/10 text-primary' : 'border-gray-200 text-gray-600 dark:border-gray-700 dark:text-gray-300'
+                        className={`flex w-full items-start gap-2.5 rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
+                          active ? 'border-primary bg-primary/10 text-primary' : 'border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800'
                         }`}
                       >
+                        <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                          active ? 'bg-primary text-white' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300'
+                        }`}>
+                          {letter}
+                        </span>
                         {opt}
                       </button>
                     );

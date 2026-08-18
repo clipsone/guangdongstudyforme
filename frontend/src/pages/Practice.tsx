@@ -362,10 +362,10 @@ export default function Practice() {
 
   // ========== 答题阶段 ==========
   if (phase === 'answering' && q) {
-    const isObj = q.type === 'choice';
     const myAnswer = answers[q.id] || '';
     const progress = Math.round((answeredCount / questions.length) * 100);
     const options: string[] = Array.isArray(q.options) ? q.options : [];
+    const isObj = q.type === 'choice' || options.length > 0;
 
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">
