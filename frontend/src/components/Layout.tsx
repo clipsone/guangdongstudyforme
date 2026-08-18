@@ -95,7 +95,7 @@ export const Layout: React.FC = () => {
                 {/* 每项前置几何色点：红黄蓝循环 */}
                 <span
                   className={`inline-block h-2.5 w-2.5 ${
-                    idx % 3 === 0 ? 'bg-primary' : idx % 3 === 1 ? 'bg-accent' : 'bg-info'
+                    idx % 3 === 0 ? 'bg-ink' : idx % 3 === 1 ? 'bg-primary' : 'bg-gray-400'
                   } ${isActive(item.path) ? 'rounded-full' : ''}`}
                 />
                 <item.icon className="w-5 h-5" />

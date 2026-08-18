@@ -8,28 +8,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        // 包豪斯：三原色 + 黑 + 纸白
+        // 黑白基底 + 深蓝点缀（包豪斯几何，去红黄蓝）
         primary: {
-          DEFAULT: '#E30613', // 包豪斯红（主操作）
-          light: '#FF3B30',
-          dark: '#B00511',
+          DEFAULT: '#1D4ED8', // 深蓝（主操作/激活）
+          light: '#3B82F6',
+          dark: '#1E40AF',
         },
         accent: {
-          DEFAULT: '#F4B400', // 包豪斯黄（强调/成就）
-          light: '#FFD60A',
-          dark: '#D19A00',
+          DEFAULT: '#2563EB', // 亮蓝（强调）
+          light: '#60A5FA',
+          dark: '#1D4ED8',
         },
         info: {
-          DEFAULT: '#0F52BA', // 包豪斯蓝（信息/链接）
-          light: '#2E6FD8',
-          dark: '#0B3D8C',
+          DEFAULT: '#3B82F6', // 信息蓝
+          light: '#93C5FD',
+          dark: '#1E40AF',
         },
         error: {
-          DEFAULT: '#E30613',
-          light: '#FF3B30',
-          dark: '#B00511',
+          DEFAULT: '#DC2626', // 语义红（仅错误提示，小面积）
+          light: '#EF4444',
+          dark: '#B91C1C',
         },
-        ink: '#111111', // 包豪斯黑
+        ink: '#111111', // 黑
         paper: '#FAFAF7', // 纸白背景
       },
       borderRadius: {
@@ -50,7 +50,7 @@ export default {
         // 包豪斯硬阴影（海报感）
         'bauhaus': '4px 4px 0 0 #111111',
         'bauhaus-sm': '3px 3px 0 0 #111111',
-        'bauhaus-yellow': '4px 4px 0 0 #F4B400',
+        'bauhaus-blue': '4px 4px 0 0 #1D4ED8',
       },
     },
   },

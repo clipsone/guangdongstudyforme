@@ -43,7 +43,7 @@ export function Chart({ option, height = 280, className }: ChartProps) {
 }
 
 /** 折线图（进步曲线） */
-export function LineTrendChart({ data, labels, name = '正确率', color = '#16a34a' }: {
+export function LineTrendChart({ data, labels, name = '正确率', color = '#1D4ED8' }: {
   data: number[];
   labels: string[];
   name?: string;
@@ -93,8 +93,8 @@ export function RadarChart({ data }: { data: Array<{ name: string; value: number
         value: data.map((d) => d.value),
         name: '掌握度',
         areaStyle: { color: 'rgba(22,163,74,0.35)' },
-        lineStyle: { color: '#16a34a', width: 2 },
-        itemStyle: { color: '#16a34a' },
+        lineStyle: { color: '#1D4ED8', width: 2 },
+        itemStyle: { color: '#1D4ED8' },
       }],
     }],
   };

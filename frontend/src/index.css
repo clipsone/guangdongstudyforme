@@ -75,10 +75,10 @@
     @apply bg-info text-white;
   }
   .chip-yellow {
-    @apply bg-accent text-ink;
+    @apply bg-primary text-white;
   }
   .chip-red {
-    @apply bg-primary text-white;
+    @apply bg-ink text-white;
   }
 
   .progress-bar {
@@ -89,27 +89,27 @@
   }
 
   /* 包豪斯几何装饰元素 */
-  .geo-red-square { @apply inline-block bg-primary; width: 14px; height: 14px; }
-  .geo-yellow-circle { @apply inline-block bg-accent rounded-full; width: 14px; height: 14px; }
+  .geo-red-square { @apply inline-block bg-ink; width: 14px; height: 14px; }
+  .geo-yellow-circle { @apply inline-block bg-primary rounded-full; width: 14px; height: 14px; }
   .geo-blue-triangle {
     @apply inline-block;
     width: 0; height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 14px solid #0F52BA;
+    border-bottom: 14px solid #9CA3AF;
   }
 
   /* 三色分割条（顶栏/卡片顶部装饰） */
   .bauhaus-stripe {
     @apply flex;
   }
-  .bauhaus-stripe > span:nth-child(1) { @apply block h-1.5 flex-1 bg-primary; }
-  .bauhaus-stripe > span:nth-child(2) { @apply block h-1.5 flex-1 bg-accent; }
-  .bauhaus-stripe > span:nth-child(3) { @apply block h-1.5 flex-1 bg-info; }
+  .bauhaus-stripe > span:nth-child(1) { @apply block h-1.5 flex-1 bg-ink; }
+  .bauhaus-stripe > span:nth-child(2) { @apply block h-1.5 flex-1 bg-primary; }
+  .bauhaus-stripe > span:nth-child(3) { @apply block h-1.5 flex-1 bg-gray-300; }
 }
 
 /* 滚动条（桌面端包豪斯风格） */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #fafaf7; }
 ::-webkit-scrollbar-thumb { background: #111111; border: 2px solid #fafaf7; }
-::-webkit-scrollbar-thumb:hover { background: #E30613; }
+::-webkit-scrollbar-thumb:hover { background: #1D4ED8; }

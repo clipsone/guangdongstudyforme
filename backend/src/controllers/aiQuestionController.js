@@ -9,15 +9,66 @@ const SUBJECT_SECTIONS = {
   英语: ['单项选择', '完形填空', '阅读理解', '语法填空', '书面表达'],
 };
 
+// ---------- 数学公式清洗：把 AI 输出的 LaTeX/花括号写法转成人类可读 ----------
+const SUP_MAP = { 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹', '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾', n: 'ⁿ', i: 'ⁱ' };
+const SUB_MAP = { 0: '₀', 1: '₁', 2: '₂', 3: '₃', 4: '₄', 5: '₅', 6: '₆', 7: '₇', 8: '₈', 9: '₉', '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎', n: 'ₙ', m: 'ₘ', k: 'ₖ', i: 'ᵢ', j: 'ⱼ', x: 'ₓ', a: 'ₐ', e: 'ₑ', o: 'ₒ', r: 'ᵣ', t: 'ₜ', u: 'ᵤ', v: 'ᵥ' };
+const toUni = (s, map) => s.split('').map((c) => map[c] || c).join('');
+
+export function normalizeMathText(text) {
+  if (!text) return text;
+  let s = String(text);
+  // 1) LaTeX 命令 → 可读符号
+  const cmds = [
+    [/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, (m, a, b) => `(${a})/(${b})`],
+    [/\\dfrac\{([^{}]*)\}\{([^{}]*)\}/g, (m, a, b) => `(${a})/(${b})`],
+    [/\\sqrt(\[([^\]]*)\])?\{([^{}]*)\}/g, (m, _, idx, rad) => (idx ? `${idx}√(${rad})` : `√(${rad})`)],
+    [/\\pi/g, 'π'],
+    [/\\cdot/g, '·'],
+    [/\\times/g, '×'],
+    [/\\pm/g, '±'],
+    [/\\le/g, '≤'],
+    [/\\ge/g, '≥'],
+    [/\\ne/g, '≠'],
+    [/\\left\(/g, '('],
+    [/\\right\)/g, ')'],
+    [/\\left\[/g, '['],
+    [/\\right\]/g, ']'],
+    [/\\,/g, ''],
+    [/\\ /g, ''],
+  ];
+  for (const [re, rep] of cmds) s = s.replace(re, rep);
+  // 2) 花括号角标：^{...} / _{...} / {x}（如 {a_n} 会先被 _ 规则处理）
+  s = s.replace(/\^\{([^{}]*)\}/g, (m, inner) => toUni(inner.replace(/_([0-9n])/g, (mm, c) => SUB_MAP[c] || c), SUP_MAP));
+  s = s.replace(/_\{([^{}]*)\}/g, (m, inner) => toUni(inner, SUB_MAP));
+  s = s.replace(/\{([^{}]+)\}/g, (m, inner) => {
+    // 内部无 ^_ 的纯花括号包裹（如 {aₙ}）直接去括号；有角标的先不处理
+    return inner.includes('^') || inner.includes('_') ? m : inner;
+  });
+  // 3) 单个字符角标：x^2 / a_n（只吃单个数字或字母，避免吞掉后面的负号）
+  s = s.replace(/\^([0-9n])(?![0-9])/g, (m, c) => SUP_MAP[c] || c);
+  s = s.replace(/_([0-9n])(?![0-9])/g, (m, c) => SUB_MAP[c] || c);
+  // 4) 清理多余空格：括号内逗号后、等号两边保持原样，仅压缩连续空格
+  s = s.replace(/\s{2,}/g, ' ');
+  return s;
+}
+
 // 归一化单题
-function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType) {
-  const stem = String(raw?.stem || '').trim();
+function normalizeQuestion(raw, subjectId, fallbackSection, fallbackType, subjectName) {
+  let stem = String(raw?.stem || '').trim();
   if (!stem) return null;
   let type = String(raw?.type || fallbackType || 'choice').toLowerCase();
   if (!['choice', 'fill', 'essay'].includes(type)) type = 'choice';
   const section = String(raw?.section || fallbackSection || '').trim() || null;
-  const options = Array.isArray(raw?.options) ? raw.options.map((o) => String(o).trim()) : null;
+  let options = Array.isArray(raw?.options) ? raw.options.map((o) => String(o).trim()) : null;
   let answer = String(raw?.answer ?? '').trim();
+
+  // 数学科目：清洗公式写法为人类可读（LaTeX/花括号角标 → Unicode）
+  if (subjectName === '数学') {
+    stem = normalizeMathText(stem);
+    if (options) options = options.map((o) => normalizeMathText(o));
+    answer = normalizeMathText(answer);
+    if (raw.analysis) raw.analysis = normalizeMathText(raw.analysis);
+  }
   if (type === 'choice' && options?.length) {
     // 选项按 A/B/C/D 编号，答案统一为字母（兼容 "答案C"/"C项"/"C." 等写法）
     if (!/^[A-D]$/i.test(answer)) {
@@ -74,10 +125,13 @@ export const generateQuestions = async (req, res) => {
 
     // 每题一个独立请求，并行发出；不使用 json_object 模式（该模式下 glm-4-flash 偶发返回非 JSON 裸文本），
     // 改为提示词约束 + 宽松解析，失败自动重试一次
+    const mathStyleRule = subject.name === '数学'
+      ? '。数学公式一律用人类可读纯文本书写，禁止 LaTeX 命令（\frac、\sqrt、\\、^、_、{}）。写法：分数写"1/2"或"(a)/(b)"，根号写"√3"、"√(x+1)"，幂写"x²"、"x³"，下标写"aₙ"、"Sₙ"，π 用"π"，乘号用"×"。'
+      : '';
     const errors = [];
     const tasks = Array.from({ length: num }, (_, i) => {
       const runOnce = (variant) => {
-        const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。
+        const prompt = `科目：${subject.name}${sectionDesc}${kpDesc}。请命制第 ${i + 1} 道${typeName}，难度贴近广东春季高考（依学考）真题。${mathStyleRule}
 严格按以下 JSON 格式输出（不要输出任何其他文字、不要 markdown、不要解释）：${formatSpec}${variant ? `。${variant}` : ''}`;
         return aiChat(
           [
@@ -109,7 +163,7 @@ export const generateQuestions = async (req, res) => {
     const created = [];
     for (const raw of raws) {
       if (!raw) continue;
-      const q = normalizeQuestion(raw, subject.id, section, type);
+      const q = normalizeQuestion(raw, subject.id, section, type, subject.name);
       if (!q) {
         errors.push(`解析后无效: ${JSON.stringify(raw).slice(0, 120)}`);
         continue;
@@ -174,7 +228,7 @@ export const importRealExam = async (req, res) => {
     for (const raw of arr) {
       const section = String(raw?.section || '').trim() || '综合';
       const type = ['choice', 'fill', 'essay'].includes(raw?.type) ? raw.type : 'choice';
-      const q = normalizeQuestion({ ...raw, section, type, source: undefined }, subject.id, section, type);
+      const q = normalizeQuestion({ ...raw, section, type, source: undefined }, subject.id, section, type, subject.name);
       if (!q) continue;
       q.source = 'real';
       if (year) q.year = parseInt(year) || null;
