@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, Clock, Flag, Loader2, RotateCcw, Sparkles, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, ChevronRight, Clock, Flag, Loader2, RotateCcw, Sparkles, XCircle } from 'lucide-react';
 import { useUser } from '@/hooks/useUser';
 import { examService } from '@/services/examService';
 import { studySessionService } from '@/services/studySessionService';
@@ -163,6 +163,22 @@ export default function ExamPage() {
     if (userId) examService.getExams(userId).then((r) => setHistory(r.data)).catch(() => undefined);
   };
 
+  // 查看历史模考详情（成绩 + 逐题解析）
+  const openHistory = async (id: string) => {
+    try {
+      setLoading(true);
+      const res = await examService.getExamById(id);
+      setExam(res.data);
+      setSummary(null); // 历史记录无 summary，正确率由题目判分现场计算
+      setPhase('result');
+      window.scrollTo(0, 0);
+    } catch (e: any) {
+      setError(e?.error?.message || '加载历史模考失败');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const mmss = useMemo(() => {
     const m = Math.floor(secondsLeft / 60);
     const s = secondsLeft % 60;
@@ -270,7 +286,13 @@ export default function ExamPage() {
             <div className="mb-2 text-sm font-semibold">📜 模考记录</div>
             <div className="divide-y divide-gray-100 dark:divide-gray-800">
               {history.slice(0, 8).map((h) => (
-                <div key={h.id} className="flex items-center justify-between py-2 text-sm">
+                <button
+                  key={h.id}
+                  onClick={() => h.status === 'completed' && openHistory(h.id)}
+                  disabled={h.status !== 'completed'}
+                  className="flex w-full items-center justify-between py-2 text-left text-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60 dark:hover:bg-gray-800/50"
+                  title={h.status === 'completed' ? '查看答题详情' : '未完成'}
+                >
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{h.template.subject.name}</span>
                     <span className="text-xs text-gray-400">{fmtDate(h.createdAt)}</span>
@@ -278,11 +300,12 @@ export default function ExamPage() {
                   {h.status === 'completed' ? (
                     <span className="flex items-center gap-1 font-bold text-primary">
                       <CheckCircle2 size={14} /> {h.score} 分
+                      <ChevronRight size={14} className="text-gray-300" />
                     </span>
                   ) : (
                     <span className="chip bg-amber-100 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">未完成</span>
                   )}
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -370,7 +393,10 @@ export default function ExamPage() {
   if (phase === 'result' && exam) {
     const totalScore = exam.template.totalScore || 0;
     const score = exam.score ?? 0;
-    const acc = summary?.accuracy ?? 0;
+    // 历史记录无 summary：由题目判分现场计算正确率
+    const correctCount = exam.questions?.filter((q) => q.isCorrect).length ?? 0;
+    const questionTotal = exam.questions?.length ?? 0;
+    const acc = summary?.accuracy ?? (questionTotal ? Math.round((correctCount / questionTotal) * 100) : 0);
 
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">
@@ -378,7 +404,7 @@ export default function ExamPage() {
           <div className="text-xs opacity-80">{exam.template.name}</div>
           <div className="mt-2 text-5xl font-black">{score}<span className="text-lg opacity-80"> / {totalScore}</span></div>
           <div className="mt-2 text-sm opacity-90">
-            答对 {summary?.correct ?? 0} / {summary?.total ?? 0} 题 · 正确率 {acc}%
+            答对 {correctCount} / {questionTotal} 题 · 正确率 {acc}%
           </div>
         </div>
 
