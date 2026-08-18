@@ -8,53 +8,108 @@
   }
 
   body {
-    @apply bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100;
+    @apply bg-paper text-ink antialiased dark:bg-[#111111] dark:text-gray-100;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold tracking-tight;
   }
 }
 
 @layer components {
+  /* 包豪斯卡片：白底 + 2px 黑边 + 硬阴影（海报感） */
   .card {
-    @apply rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800;
+    @apply border-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c];
+    box-shadow: 4px 4px 0 0 #111111;
+  }
+  .dark .card {
+    box-shadow: 4px 4px 0 0 #000000;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-1.5 border-2 border-ink px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none;
   }
 
+  /* 主按钮：黑底白字（包豪斯经典） */
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-dark;
+    @apply bg-ink text-white hover:bg-primary;
+    box-shadow: 3px 3px 0 0 #111111;
+  }
+  .dark .btn-primary {
+    @apply bg-white text-ink hover:bg-primary hover:text-white;
+    box-shadow: 3px 3px 0 0 #000000;
   }
 
+  /* 强调按钮：黄底黑字 */
+  .btn-accent {
+    @apply bg-accent text-ink hover:bg-ink hover:text-white;
+    box-shadow: 3px 3px 0 0 #111111;
+  }
+
+  /* 次要按钮：白底黑边 */
   .btn-secondary {
-    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
-  }
-
-  .btn-error {
-  @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-error px-4 py-2 font-medium text-white transition-colors hover:bg-error-dark disabled:cursor-not-allowed disabled:opacity-50;
-}
-
-.btn-accent {
-    @apply bg-accent text-white hover:bg-accent-dark;
-  }
-
-  .btn-destructive {
-    @apply bg-error text-white hover:bg-error-dark;
+    @apply bg-white text-ink hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+    box-shadow: 3px 3px 0 0 #111111;
   }
 
   .btn-outline {
-    @apply border border-gray-300 bg-transparent text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700;
+    @apply border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white dark:border-gray-400 dark:text-gray-200 dark:hover:bg-gray-200 dark:hover:text-ink;
+    box-shadow: 3px 3px 0 0 #111111;
+  }
+
+  .btn-error, .btn-destructive {
+    @apply bg-primary text-white hover:bg-ink;
+    box-shadow: 3px 3px 0 0 #111111;
   }
 
   .input {
-    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100;
+    @apply h-10 w-full border-2 border-ink bg-white px-3 py-2 text-sm text-ink placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-400 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500;
   }
 
+  /* 几何标签 */
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium;
+    @apply inline-flex items-center gap-1 border-2 border-ink px-2 py-0.5 text-xs font-bold uppercase tracking-wide;
+  }
+  .chip-blue {
+    @apply bg-info text-white;
+  }
+  .chip-yellow {
+    @apply bg-accent text-ink;
+  }
+  .chip-red {
+    @apply bg-primary text-white;
   }
 
   .progress-bar {
-    @apply h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700;
+    @apply h-3 w-full overflow-hidden border-2 border-ink bg-white dark:border-gray-500;
   }
+  .progress-bar > div {
+    @apply h-full bg-accent;
+  }
+
+  /* 包豪斯几何装饰元素 */
+  .geo-red-square { @apply inline-block bg-primary; width: 14px; height: 14px; }
+  .geo-yellow-circle { @apply inline-block bg-accent rounded-full; width: 14px; height: 14px; }
+  .geo-blue-triangle {
+    @apply inline-block;
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid #0F52BA;
+  }
+
+  /* 三色分割条（顶栏/卡片顶部装饰） */
+  .bauhaus-stripe {
+    @apply flex;
+  }
+  .bauhaus-stripe > span:nth-child(1) { @apply block h-1.5 flex-1 bg-primary; }
+  .bauhaus-stripe > span:nth-child(2) { @apply block h-1.5 flex-1 bg-accent; }
+  .bauhaus-stripe > span:nth-child(3) { @apply block h-1.5 flex-1 bg-info; }
 }
+
+/* 滚动条（桌面端包豪斯风格） */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #fafaf7; }
+::-webkit-scrollbar-thumb { background: #111111; border: 2px solid #fafaf7; }
+::-webkit-scrollbar-thumb:hover { background: #E30613; }

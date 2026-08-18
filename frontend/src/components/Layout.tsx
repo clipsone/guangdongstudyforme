@@ -18,66 +18,94 @@ export const Layout: React.FC = () => {
     { path: '/profile', icon: User, label: '我的' },
   ];
 
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-      <nav className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 sticky top-0 z-50">
+    <div className="min-h-screen bg-paper dark:bg-[#111111] transition-colors">
+      {/* 顶栏：白色 + 底部三色条（包豪斯经典配色） */}
+      <nav className="sticky top-0 z-50 border-b-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
-              <Link to="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-bold text-primary">2027春考·精准冲刺</span>
+              <Link to="/" className="flex items-center gap-3">
+                {/* 包豪斯几何 logo：红方+黄圆+蓝三角 */}
+                <span className="relative flex items-center">
+                  <span className="geo-red-square" />
+                  <span className="geo-yellow-circle -ml-2" />
+                  <span className="geo-blue-triangle -ml-1.5" />
+                </span>
+                <span className="text-xl font-black tracking-tight text-ink dark:text-white">
+                  2027春考<span className="text-primary">·</span>精准冲刺
+                </span>
               </Link>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
+              <span className="hidden sm:inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
+                <span className="geo-blue-triangle scale-50" /> 450 分目标
+              </span>
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="border-2 border-ink p-2 hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-colors"
+                aria-label="切换主题"
               >
                 {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
+        {/* 三色分割条 */}
+        <div className="bauhaus-stripe">
+          <span /><span /><span />
+        </div>
       </nav>
 
       {/* 移动端底部导航 */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t dark:border-gray-700 z-50">
-        <div className="flex justify-around py-1.5">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]">
+        <div className="flex justify-around py-1">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center px-1 py-1 ${
-                location.pathname === item.path
-                  ? 'text-primary'
-                  : 'text-gray-500 dark:text-gray-400'
+              className={`flex flex-col items-center px-1 py-1.5 ${
+                isActive(item.path) ? 'text-primary' : 'text-gray-500 dark:text-gray-400'
               }`}
             >
               <item.icon className="w-5 h-5" />
-              <span className="text-[10px] mt-0.5">{item.label}</span>
+              <span className="text-[10px] mt-0.5 font-bold">{item.label}</span>
             </Link>
           ))}
         </div>
       </nav>
 
-      {/* 桌面端侧边栏 */}
+      {/* 桌面端侧边栏：包豪斯几何色块激活态 */}
       <div className="flex">
-        <aside className="hidden md:block w-64 bg-white dark:bg-gray-800 min-h-screen border-r dark:border-gray-700 fixed left-0 top-16">
-          <nav className="p-4 space-y-2">
-            {navItems.map((item) => (
+        <aside className="hidden md:block w-64 border-r-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c] min-h-screen fixed left-0 top-[68px]">
+          <nav className="p-3 space-y-1.5">
+            {navItems.map((item, idx) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                  location.pathname === item.path
-                    ? 'bg-primary text-white'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                className={`flex items-center space-x-3 px-4 py-3 border-2 font-bold transition-all ${
+                  isActive(item.path)
+                    ? 'border-ink bg-ink text-white'
+                    : 'border-transparent text-gray-700 hover:border-ink hover:bg-white dark:text-gray-300 dark:hover:bg-gray-800'
                 }`}
               >
+                {/* 每项前置几何色点：红黄蓝循环 */}
+                <span
+                  className={`inline-block h-2.5 w-2.5 ${
+                    idx % 3 === 0 ? 'bg-primary' : idx % 3 === 1 ? 'bg-accent' : 'bg-info'
+                  } ${isActive(item.path) ? 'rounded-full' : ''}`}
+                />
                 <item.icon className="w-5 h-5" />
                 <span>{item.label}</span>
               </Link>
             ))}
+            <div className="mt-6 border-2 border-ink bg-accent p-3">
+              <div className="text-xs font-bold text-ink">距离 2027 春考</div>
+              <div className="text-lg font-black text-ink">坚持 · 精准 · 冲刺</div>
+            </div>
           </nav>
         </aside>
 

@@ -78,30 +78,39 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-5 p-4 sm:p-6">
-      {/* 顶部：倒计时 + 语录 */}
+      {/* 顶部：倒计时（包豪斯海报式） */}
       <div className="card overflow-hidden">
-        <div className="bg-gradient-to-r from-primary to-primary-dark px-6 py-6 text-white">
+        <div className="bauhaus-stripe"><span /><span /><span /></div>
+        <div className="px-6 py-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="text-sm opacity-80">距 2027 年广东春季高考</div>
-              <div className="mt-1 flex items-end gap-2">
-                <span className="text-5xl font-black tabular-nums">{daysLeft}</span>
-                <span className="pb-1 text-xl font-semibold">天</span>
+              <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500">
+                <span className="geo-red-square" /> 距 2027 年广东春季高考
               </div>
-              <div className="mt-1 text-xs opacity-80">
-                考试日期：{fmtDate(user?.examDate || '2027-01-10')}（⚠️ 以官方公布为准）
+              <div className="mt-2 flex items-end gap-2">
+                <span className="text-7xl font-black tabular-nums leading-none text-ink dark:text-white">{daysLeft}</span>
+                <span className="pb-1 text-2xl font-black text-primary">天</span>
+              </div>
+              <div className="mt-2 inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
+                考试日期：{fmtDate(user?.examDate || '2027-01-10')} · 以官方公布为准
               </div>
             </div>
-            <div className="max-w-md rounded-xl bg-white/15 px-4 py-3 text-sm leading-relaxed">
-              <div className="mb-1 flex items-center gap-1 text-xs font-semibold opacity-90">
-                <Flame size={14} /> 今日语录
+            {/* 包豪斯几何装饰组合 */}
+            <div className="flex items-center gap-2 opacity-90">
+              <span className="geo-yellow-circle !w-10 !h-10" />
+              <span className="geo-blue-triangle !border-l-[20px] !border-r-[20px] !border-b-[34px]" />
+              <span className="geo-red-square !w-10 !h-10" />
+            </div>
+            <div className="max-w-md border-2 border-ink bg-paper px-4 py-3 text-sm leading-relaxed dark:bg-gray-800">
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-ink dark:text-white">
+                <Flame size={14} className="text-primary" /> 今日语录
               </div>
               {quote}
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2 border-t border-gray-100 px-4 py-2 text-xs dark:border-gray-700">
-          <Newspaper size={14} className="shrink-0 text-accent" />
+        <div className="flex items-center gap-2 border-t-2 border-ink bg-white px-4 py-2 text-xs dark:bg-[#1c1c1c]">
+          <Newspaper size={14} className="shrink-0 text-primary" />
           <span className="text-gray-600 dark:text-gray-300">
             2027 春考依据《普通高中课程标准（2017 年版 2020 年修订）》，只考必修内容。
             数学新增复数/逻辑用语/百分位数，英语新增「五选五」阅读还原。
