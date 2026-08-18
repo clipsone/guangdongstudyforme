@@ -7,6 +7,7 @@ import { chat } from '../src/services/aiProvider.js';
 import { normalizeMathText } from '../src/controllers/aiQuestionController.js';
 
 const BATCH = parseInt(process.argv[2] || '1'); // 每考点每批几道
+const VARIANT = process.argv[3] || ''; // 变体提示（防雷同）
 const CONCURRENCY = 8;
 
 const p = new PrismaClient();
@@ -25,6 +26,7 @@ function buildPrompt(section, type, kpName, style) {
         : '{"section":"{SECTION}","stem":"题干（含(1)(2)两个小问）","answer":"参考答案（只写关键步骤要点，不超过150字）","analysis":"解析一句话"}';
   return `你是广东春季高考（依学考）数学命题专家。命制一道${typeName}，属于「${section}」分区，考查「${kpName}」，难度与题风严格贴近 2023-2026 年广东春季高考数学真题（学考录取，150分制）。
 ${style || ''}
+${VARIANT}
 ${MATH_RULE}
 严禁使用真题原题或常见教辅模板题；数据与情境要自然合理，不得与现有题目雷同。
 严格按以下 JSON 格式输出（不要输出任何其他文字、不要 markdown、不要解释）：
@@ -122,7 +124,8 @@ async function pool(items, worker, size) {
 
 // ---------- 解析 ----------
 function safeJson(text) {
-  try { return JSON.parse(text); } catch { /* noop */ }
+  let t = String(text || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
+  try { return JSON.parse(t); } catch { /* noop */ }
   const m = String(text).match(/\{[\s\S]*\}/);
   if (m) {
     try { return JSON.parse(m[0]); } catch { /* noop */ }
@@ -163,7 +166,6 @@ async function genOne(task, attempt = 0) {
     solution: { analysis: normalizeMathText(String(raw.analysis || '').trim()) },
     difficulty: task.type === 'essay' ? (task.section.includes('22') ? 5 : 4) : 3,
     source: 'ai',
-    kpIds: task.kpIds,
   };
 }
 

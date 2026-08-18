@@ -47,7 +47,8 @@ export function normalizeMathText(text) {
   // 3) 单个字符角标：x^2 / a_n（只吃单个数字或字母，避免吞掉后面的负号）
   s = s.replace(/\^([0-9n])(?![0-9])/g, (m, c) => SUP_MAP[c] || c);
   s = s.replace(/_([0-9n])(?![0-9])/g, (m, c) => SUB_MAP[c] || c);
-  // 4) 清理多余空格：括号内逗号后、等号两边保持原样，仅压缩连续空格
+  // 4) 清理：去 $ 包裹符与多余空格（$ 在数学题中无其他含义）
+  s = s.replace(/\$/g, '');
   s = s.replace(/\s{2,}/g, ' ');
   return s;
 }
