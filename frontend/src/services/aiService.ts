@@ -37,7 +37,7 @@ export const aiService = {
     return http.post<ApiResponse<{ answer: string }>>('/ai/chat', {
       question,
       userId,
-    });
+    }, { timeout: 60000 });
   },
 
   // AI出题（扩充题库）
