@@ -58,6 +58,7 @@ export const exportData = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

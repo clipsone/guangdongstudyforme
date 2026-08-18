@@ -60,7 +60,8 @@ export const register = async (req, res) => {
     const token = await createSession(user.id);
     res.status(201).json({ data: { token, user: safeUser(user) } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -82,7 +83,8 @@ export const login = async (req, res) => {
     const token = await createSession(user.id);
     res.json({ data: { token, user: safeUser(user) } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -94,7 +96,8 @@ export const logout = async (req, res) => {
     }
     res.json({ data: { success: true } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -107,7 +110,8 @@ export const me = async (req, res) => {
     }
     res.json({ data: safeUser(user) });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -139,6 +143,7 @@ export const changePassword = async (req, res) => {
 
     res.json({ data: { success: true, message: '密码已修改' } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

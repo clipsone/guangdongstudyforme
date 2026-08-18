@@ -35,7 +35,8 @@ export const getKnowledge = async (req, res) => {
 
     res.json({ data });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -83,7 +84,8 @@ export const getKnowledgeById = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -98,6 +100,7 @@ export const updateMastery = async (req, res) => {
 
     res.json({ data: { id, mastery: Number(mastery) || 0 } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

@@ -79,7 +79,8 @@ export const getStudyTasks = async (req, res) => {
     const filtered = tasks.filter((t) => t.dueDate >= today && t.dueDate < tomorrow);
     res.json({ data: filtered });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -103,7 +104,8 @@ export const createStudyTask = async (req, res) => {
 
     res.json({ data: task });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -113,17 +115,19 @@ export const completeStudyTask = async (req, res) => {
     const { id } = req.params;
 
     const task = await prisma.studyTask.update({
-      where: { id },
+      where: { id, userId: req.userId },
       data: {
         completed: true,
         completedAt: new Date()
       }
     });
+    if (!task) return res.status(404).json({ error: { message: '任务不存在', status: 404 } });
 
     const newAchievements = await checkAndUnlockAchievements(task.userId).catch(() => []);
 
     res.json({ data: task, newAchievements });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

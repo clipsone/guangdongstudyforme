@@ -37,7 +37,8 @@ export const generateExercisePaper = async (req, res) => {
     const questions = await generatePaper({ userId, subjectId, count, difficulty, knowledgeIds });
     res.json({ data: { questions } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -155,7 +156,8 @@ export const createExercise = async (req, res) => {
 
     res.json({ data: withSummary, newAchievements });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -186,7 +188,8 @@ export const getExercises = async (req, res) => {
 
     res.json({ data: exercises });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -221,7 +224,8 @@ export const getExerciseById = async (req, res) => {
 
     res.json({ data: exercise });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 

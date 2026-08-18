@@ -44,7 +44,8 @@ export const getExamTemplates = async (req, res) => {
     }
     res.json({ data: enriched });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -150,7 +151,8 @@ export const createExam = async (req, res) => {
 
     res.json({ data: { ...exam, missingSections } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -168,7 +170,8 @@ export const getExams = async (req, res) => {
     });
     res.json({ data: exams });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -177,7 +180,7 @@ export const getExamById = async (req, res) => {
   try {
     const { id } = req.params;
     const exam = await prisma.exam.findUnique({
-      where: { id },
+      where: { id, userId: req.userId },
       include: {
         template: { include: { subject: true } },
         questions: {
@@ -196,7 +199,8 @@ export const getExamById = async (req, res) => {
     }
     res.json({ data: exam });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -222,6 +226,9 @@ export const submitExam = async (req, res) => {
     });
     if (!exam) {
       return res.status(404).json({ error: { message: '模考不存在', status: 404 } });
+    }
+    if (exam.userId !== req.userId) {
+      return res.status(403).json({ error: { message: '无权提交他人的模考', status: 403 } });
     }
     if (exam.status === 'completed') {
       return res.status(400).json({ error: { message: '该模考已提交过', status: 400 } });
@@ -340,6 +347,7 @@ export const submitExam = async (req, res) => {
       newAchievements
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

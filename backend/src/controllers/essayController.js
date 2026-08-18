@@ -95,7 +95,8 @@ export const createEssay = async (req, res) => {
 
     res.json({ data: { essay, review } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -113,7 +114,8 @@ export const getEssays = async (req, res) => {
     });
     res.json({ data: essays });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -121,9 +123,15 @@ export const getEssays = async (req, res) => {
 export const deleteEssay = async (req, res) => {
   try {
     const { id } = req.params;
+    const essay = await prisma.essay.findUnique({ where: { id }, select: { userId: true } });
+    if (!essay) return res.status(404).json({ error: { message: '作文不存在', status: 404 } });
+    if (essay.userId !== req.userId) {
+      return res.status(403).json({ error: { message: '无权删除他人的作文', status: 403 } });
+    }
     await prisma.essay.delete({ where: { id } });
     res.json({ data: { id, deleted: true } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

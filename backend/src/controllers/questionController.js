@@ -53,7 +53,8 @@ export const getQuestions = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -84,7 +85,8 @@ export const getQuestionById = async (req, res) => {
 
     res.json({ data: question });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 // 提交题目纠错反馈（AI 生成题答案可能有误，收集后复核修正）
@@ -116,6 +118,7 @@ export const submitQuestionFeedback = async (req, res) => {
     });
     res.json({ data: { ok: true, id: fb.id } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

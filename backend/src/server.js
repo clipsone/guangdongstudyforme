@@ -39,7 +39,8 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || true,
+  // 锁死允许的来源域名（默认本站），禁止反射任意 Origin
+  origin: process.env.CORS_ORIGIN || 'https://www.day-money-made.icu',
   credentials: true
 }));
 app.use(morgan('dev'));
@@ -79,10 +80,11 @@ app.use('/api/admin', adminRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Error:', err);
+  // 只记录摘要，不向客户端回显内部错误细节
+  console.error('[全局错误]', err?.status, err?.message);
   res.status(err.status || 500).json({
     error: {
-      message: err.message || '服务器内部错误',
+      message: '服务器内部错误',
       status: err.status || 500
     }
   });

@@ -32,7 +32,8 @@ export const getReviewDue = async (req, res) => {
     });
     res.json({ data: wrongQuestions });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -73,7 +74,8 @@ export const getWrongQuestions = async (req, res) => {
 
     res.json({ data: wrongQuestions });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -90,6 +92,9 @@ export const reviewWrongQuestion = async (req, res) => {
     if (!wrongQuestion) {
       return res.status(404).json({ error: { message: '错题不存在', status: 404 } });
     }
+    if (wrongQuestion.userId !== req.userId) {
+      return res.status(403).json({ error: { message: '无权操作他人的错题', status: 403 } });
+    }
 
     const updated = await prisma.wrongQuestion.update({
       where: { id },
@@ -105,7 +110,8 @@ export const reviewWrongQuestion = async (req, res) => {
 
     res.json({ data: updated, newAchievements });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -142,6 +148,7 @@ export const batchReviewWrongQuestions = async (req, res) => {
 
     res.json({ data: results.filter(r => r !== null) });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

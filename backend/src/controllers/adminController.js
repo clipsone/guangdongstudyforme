@@ -27,7 +27,8 @@ export const getStats = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -55,7 +56,8 @@ export const getCoverage = async (req, res) => {
       })),
     });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -80,7 +82,8 @@ export const getQuestions = async (req, res) => {
     ]);
     res.json({ data: { total, list: questions } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -109,7 +112,8 @@ export const updateQuestion = async (req, res) => {
     const updated = await prisma.question.update({ where: { id }, data });
     res.json({ data: updated });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -121,7 +125,8 @@ export const archiveQuestion = async (req, res) => {
     res.json({ data: { ok: true } });
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: { message: '题目不存在', status: 404 } });
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -139,7 +144,8 @@ export const getFeedbacks = async (req, res) => {
     });
     res.json({ data: feedbacks });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -155,7 +161,8 @@ export const resolveFeedback = async (req, res) => {
     res.json({ data: updated });
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: { message: '反馈不存在', status: 404 } });
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -175,7 +182,8 @@ export const getUsers = async (req, res) => {
     });
     res.json({ data: users });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -194,7 +202,8 @@ export const setUserRole = async (req, res) => {
     res.json({ data: { id: updated.id, username: updated.username, role: updated.role } });
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: { message: '用户不存在', status: 404 } });
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -209,6 +218,7 @@ export const deleteUser = async (req, res) => {
     res.json({ data: { ok: true } });
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: { message: '用户不存在', status: 404 } });
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

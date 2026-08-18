@@ -21,7 +21,8 @@ export const getRecitationItems = async (req, res) => {
 
     res.json({ data: items });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -89,7 +90,8 @@ export const createRecitationRecord = async (req, res) => {
 
     res.json({ data: record });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -112,7 +114,8 @@ export const getMyRecitationRecords = async (req, res) => {
 
     res.json({ data: records });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -145,6 +148,7 @@ export const getTodayRecitation = async (req, res) => {
 
     res.json({ data: records });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };

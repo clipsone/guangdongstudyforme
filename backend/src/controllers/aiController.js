@@ -149,7 +149,8 @@ export const solveQuestion = async (req, res) => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     res.json({ data: mockResponse });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -199,7 +200,8 @@ export const reviewEssay = async (req, res) => {
     await new Promise((resolve) => setTimeout(resolve, 600));
     res.json({ data: mockResponse });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -222,7 +224,8 @@ export const getChatHistory = async (req, res) => {
     }
     res.json({ data: messages });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
 
@@ -277,6 +280,7 @@ export const chat = async (req, res) => {
 
     res.json({ data: { answer } });
   } catch (error) {
-    res.status(500).json({ error: { message: error.message, status: 500 } });
+        console.error('[API错误]', error?.message || error);
+        res.status(500).json({ error: { message: '服务器内部错误', status: 500 } });
   }
 };
