@@ -258,6 +258,32 @@ export const submitExam = async (req, res) => {
       if (gradeQuestion(eq.question, userAnswer)) score += eq.score || 0;
     }
 
+    // 模考错题自动入错题本（与练习一致：1 天后安排复习）
+    const wrongUpserts = exam.questions
+      .filter((eq) => {
+        const ua = answerMap[eq.questionId] || '';
+        return ua && !gradeQuestion(eq.question, ua);
+      })
+      .map((eq) =>
+        prisma.wrongQuestion.upsert({
+          where: { userId_questionId: { userId: exam.userId, questionId: eq.questionId } },
+          create: {
+            userId: exam.userId,
+            questionId: eq.questionId,
+            wrongCount: 1,
+            lastWrongAt: new Date(),
+            nextReviewAt: new Date(Date.now() + 86400000),
+          },
+          update: {
+            wrongCount: { increment: 1 },
+            lastWrongAt: new Date(),
+            mastered: false,
+            nextReviewAt: new Date(Date.now() + 86400000),
+          },
+        })
+      );
+    await Promise.all(wrongUpserts);
+
     // 掌握度更新 + 成就解锁 并行执行（互不依赖，减少交卷等待）
     const [newAchievements] = await Promise.all([
       checkAndUnlockAchievements(exam.userId).catch(() => []),
