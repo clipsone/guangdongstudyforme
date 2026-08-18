@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon } from 'lucide-react';
+import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useUser } from '@/hooks/useUser';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const { user } = useUser();
+  const isAdmin = user?.role === 'admin';
 
   const navItems = [
     { path: '/', icon: Home, label: '首页' },
@@ -41,6 +44,14 @@ export const Layout: React.FC = () => {
               </Link>
             </div>
             <div className="flex items-center space-x-3">
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="inline-flex items-center gap-1.5 border-2 border-ink bg-ink px-2.5 py-0.5 text-xs font-bold text-white hover:bg-primary hover:border-primary transition-colors"
+                >
+                  <Lock className="w-3.5 h-3.5" /> 管理后台
+                </Link>
+              )}
               <span className="hidden sm:inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
                 <span className="geo-blue-triangle scale-50" /> 450 分目标
               </span>
@@ -75,6 +86,15 @@ export const Layout: React.FC = () => {
               <span className="text-[10px] mt-0.5 font-bold">{item.label}</span>
             </Link>
           ))}
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className={`flex flex-col items-center px-1 py-1.5 ${isActive('/admin') ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`}
+            >
+              <Lock className="w-5 h-5" />
+              <span className="text-[10px] mt-0.5 font-bold">管理</span>
+            </Link>
+          )}
         </div>
       </nav>
 
@@ -102,6 +122,20 @@ export const Layout: React.FC = () => {
                 <span>{item.label}</span>
               </Link>
             ))}
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className={`flex items-center space-x-3 px-4 py-3 border-2 font-bold transition-all ${
+                  isActive('/admin')
+                    ? 'border-ink bg-ink text-white'
+                    : 'border-transparent text-gray-700 hover:border-ink hover:bg-white dark:text-gray-300 dark:hover:bg-gray-800'
+                }`}
+              >
+                <span className="inline-block h-2.5 w-2.5 bg-ink" />
+                <Lock className="w-5 h-5" />
+                <span>管理后台</span>
+              </Link>
+            )}
             <div className="mt-6 border-2 border-ink bg-accent p-3">
               <div className="text-xs font-bold text-ink">距离 2027 春考</div>
               <div className="text-lg font-black text-ink">坚持 · 精准 · 冲刺</div>
