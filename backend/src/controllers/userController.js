@@ -7,6 +7,7 @@ const safeUser = (u) => ({
   email: u.email,
   targetScore: u.targetScore,
   examDate: u.examDate,
+  role: u.role || 'user',
   createdAt: u.createdAt,
 });
 
