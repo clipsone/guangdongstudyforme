@@ -258,20 +258,22 @@ export const submitExam = async (req, res) => {
       if (gradeQuestion(eq.question, userAnswer)) score += eq.score || 0;
     }
 
-    // 更新掌握度
-    for (const [kpId, stats] of Object.entries(knowledgeStats)) {
-      const accuracy = (stats.correct / stats.total) * 100;
-      const kp = await prisma.knowledgePoint.findUnique({ where: { id: kpId } });
-      if (!kp) continue;
-      let newMastery = kp.mastery;
-      if (accuracy >= 80) newMastery = Math.min(100, kp.mastery + 8);
-      else if (accuracy < 40) newMastery = Math.max(0, kp.mastery - 8);
-      else newMastery = Math.min(100, Math.max(0, kp.mastery + (accuracy - 50) / 12));
-      await prisma.knowledgePoint.update({
-        where: { id: kpId },
-        data: { mastery: Math.round(newMastery) }
-      });
-    }
+    // 更新掌握度（并行执行，避免串行 DB 往返拖慢交卷）
+    await Promise.all(
+      Object.entries(knowledgeStats).map(async ([kpId, stats]) => {
+        const accuracy = (stats.correct / stats.total) * 100;
+        const kp = await prisma.knowledgePoint.findUnique({ where: { id: kpId } });
+        if (!kp) return;
+        let newMastery = kp.mastery;
+        if (accuracy >= 80) newMastery = Math.min(100, kp.mastery + 8);
+        else if (accuracy < 40) newMastery = Math.max(0, kp.mastery - 8);
+        else newMastery = Math.min(100, Math.max(0, kp.mastery + (accuracy - 50) / 12));
+        await prisma.knowledgePoint.update({
+          where: { id: kpId },
+          data: { mastery: Math.round(newMastery) }
+        });
+      })
+    );
 
     const updated = await prisma.exam.update({
       where: { id },

@@ -23,11 +23,12 @@ export const examService = {
     return http.get<ApiResponse<Exam>>(`/exams/${id}`);
   },
 
-  // 交卷
+  // 交卷（判分+掌握度更新较重，放宽超时到 60s）
   submitExam: (id: string, answers: Array<{ questionId: string; userAnswer: string }>) => {
     return http.post<ApiResponse<Exam> & { summary?: { total: number; correct: number; accuracy: number }; newAchievements?: Array<{ name: string; icon: string }> }>(
       `/exams/${id}/submit`,
-      { answers }
+      { answers },
+      { timeout: 60000 }
     );
   },
 };
