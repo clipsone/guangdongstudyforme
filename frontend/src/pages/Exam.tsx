@@ -400,7 +400,8 @@ export default function ExamPage() {
 
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">
-        <div className="card bg-gradient-to-br from-primary to-primary-dark p-6 text-center text-white">
+        <div className="card bg-ink p-6 text-center text-white">
+          <div className="bauhaus-stripe mb-3 -mx-6"><span /><span /><span /></div>
           <div className="text-xs opacity-80">{exam.template.name}</div>
           <div className="mt-2 text-5xl font-black">{score}<span className="text-lg opacity-80"> / {totalScore}</span></div>
           <div className="mt-2 text-sm opacity-90">

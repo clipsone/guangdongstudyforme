@@ -484,7 +484,8 @@ export default function Practice() {
 
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">
-        <div className="card bg-gradient-to-br from-primary to-primary-dark p-6 text-center text-white">
+        <div className="card bg-ink p-6 text-center text-white">
+          <div className="bauhaus-stripe mb-3 -mx-6"><span /><span /><span /></div>
           <div className="text-4xl font-black">{accuracy}%</div>
           <div className="mt-1 text-sm opacity-90">答对 {correct} / {result.length} 题</div>
         </div>

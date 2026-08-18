@@ -55,7 +55,7 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 dark:bg-gray-900">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center border-2 border-ink bg-accent">
             <GraduationCap className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">2027春考·精准冲刺</h1>
