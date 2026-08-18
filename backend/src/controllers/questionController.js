@@ -87,3 +87,35 @@ export const getQuestionById = async (req, res) => {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };
+// 提交题目纠错反馈（AI 生成题答案可能有误，收集后复核修正）
+export const submitQuestionFeedback = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { reason } = req.body;
+    const userId = req.userId;
+
+    const question = await prisma.question.findUnique({ where: { id } });
+    if (!question) {
+      return res.status(404).json({ error: { message: '题目不存在', status: 404 } });
+    }
+    const r = String(reason || '').trim();
+    if (!r) {
+      return res.status(400).json({ error: { message: '请填写反馈原因', status: 400 } });
+    }
+
+    // 同一用户对同一题只记一条待处理反馈
+    const existing = await prisma.questionFeedback.findFirst({
+      where: { questionId: id, userId, status: 'pending' },
+    });
+    if (existing) {
+      return res.json({ data: { ok: true, duplicate: true } });
+    }
+
+    const fb = await prisma.questionFeedback.create({
+      data: { questionId: id, userId, reason: r.slice(0, 300) },
+    });
+    res.json({ data: { ok: true, id: fb.id } });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};

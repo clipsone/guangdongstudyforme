@@ -5,6 +5,7 @@ import { useUser } from '@/hooks/useUser';
 import { statisticsService } from '@/services/statisticsService';
 import { studyTaskService } from '@/services/studyTaskService';
 import { recitationService } from '@/services/recitationService';
+import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { getQuoteOfDay } from '@/data/quotes';
 import { daysUntil, fmtDate } from '@/utils/date';
 import { DonutChart } from '@/components/Charts';
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [tasks, setTasks] = useState<StudyTask[]>([]);
   const [dueCount, setDueCount] = useState(0);
+  const [dueWrong, setDueWrong] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [newBadges, setNewBadges] = useState<string[]>([]);
@@ -31,14 +33,16 @@ export default function Dashboard() {
     setLoading(true);
     setError('');
     try {
-      const [statsRes, tasksRes, dueRes] = await Promise.all([
+      const [statsRes, tasksRes, dueRes, dueWrongRes] = await Promise.all([
         statisticsService.getDashboardStats(userId),
         studyTaskService.getStudyTasks(userId),
         recitationService.getTodayRecitation(userId),
+        wrongQuestionService.getReviewDue().catch(() => ({ data: [] })),
       ]);
       setStats(statsRes.data);
       setTasks(tasksRes.data);
       setDueCount(dueRes.data.length);
+      setDueWrong(dueWrongRes.data.length);
     } catch (e: any) {
       setError(e?.error?.message || '无法连接后端');
     } finally {
@@ -185,6 +189,7 @@ export default function Dashboard() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Milestone label="刷题总量" value={`${totalExercises} 次练习`} pct={Math.min(100, Math.round((totalExercises / 50) * 100))} />
               <Milestone label="待重练错题" value={`${wrongPending} 题`} pct={100} danger={wrongPending > 0} />
+              <Milestone label="今日错题到期" value={`${dueWrong} 题`} pct={100} danger={dueWrong > 0} />
               <Milestone label="背诵待复习" value={`${dueCount} 项`} pct={100} danger={dueCount > 0} />
               <Milestone label="今日学习时长" value={studyMinutes > 0 ? `${studyHours}h ${studyMinRest}m` : '0 min'} pct={Math.min(100, Math.round((studyMinutes / 120) * 100))} />
               <Milestone label="已掌握考点" value={`${mastery.filter((m) => m.mastery >= 80).length}/3 科`} pct={Math.round((mastery.filter((m) => m.mastery >= 80).length / 3) * 100)} />

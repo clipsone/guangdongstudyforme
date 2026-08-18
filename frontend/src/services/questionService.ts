@@ -19,4 +19,9 @@ export const questionService = {
   getQuestionById: (id: string) => {
     return http.get<ApiResponse<Question>>(`/questions/${id}`);
   },
+
+  // 提交题目纠错反馈（AI 生成题答案可能有误）
+  submitFeedback: (id: string, reason: string) => {
+    return http.post<ApiResponse<{ ok: boolean }>>(`/questions/${id}/feedback`, { reason });
+  },
 };

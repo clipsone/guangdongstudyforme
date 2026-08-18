@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, Eraser, Filter, Play, RefreshCw } from 'lucide-react';
+import { AlertTriangle, CalendarClock, CheckCircle2, Eraser, Filter, Play, RefreshCw } from 'lucide-react';
 import { useUser } from '@/hooks/useUser';
 import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { knowledgeService } from '@/services/knowledgeService';
@@ -19,12 +19,15 @@ export default function WrongQuestions() {
   const [reviewMode, setReviewMode] = useState<WrongQuestion | null>(null);
   const [reviewAnswer, setReviewAnswer] = useState('');
   const [reviewResult, setReviewResult] = useState('');
+  const [dueList, setDueList] = useState<WrongQuestion[]>([]);
 
   const load = async () => {
     setLoading(true);
     try {
       const res = await wrongQuestionService.getWrongQuestions({ userId, limit: 100 });
       setList(res.data);
+      const due = await wrongQuestionService.getReviewDue().catch(() => ({ data: [] }));
+      setDueList(due.data);
     } finally {
       setLoading(false);
     }
@@ -145,6 +148,30 @@ export default function WrongQuestions() {
           <button className="btn-outline" onClick={load}><RefreshCw size={16} /> 刷新</button>
         </div>
       </div>
+
+      {/* 今日待复习（艾宾浩斯到期） */}
+      {dueList.length > 0 && (
+        <div className="card border-amber-300 bg-amber-50/60 dark:border-amber-500/30 dark:bg-amber-900/10">
+          <div className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-amber-700 dark:text-amber-400">
+            <CalendarClock size={15} /> 今日待复习（{dueList.length} 道到期错题）
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {dueList.slice(0, 6).map((w) => (
+              <button
+                key={w.id}
+                className="rounded-lg border border-amber-300 bg-white px-3 py-2 text-left text-xs hover:bg-amber-100 dark:border-amber-500/40 dark:bg-gray-800 dark:hover:bg-amber-900/30"
+                onClick={() => startReview(w)}
+              >
+                <div className="mb-0.5 line-clamp-1 max-w-[240px] text-gray-700 dark:text-gray-200">{w.question.stem}</div>
+                <div className="text-amber-500">{w.question.subject?.name || ''} · 重练第 {w.reviewCount + 1} 轮</div>
+              </button>
+            ))}
+            {dueList.length > 6 && (
+              <span className="self-center text-xs text-gray-400">还有 {dueList.length - 6} 道…</span>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* 筛选 */}
       <div className="card flex flex-wrap items-center gap-3 p-3">

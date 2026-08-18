@@ -546,6 +546,22 @@ export default function Practice() {
                     <div className="whitespace-pre-wrap leading-relaxed">{analysis}</div>
                   </div>
                 )}
+                <div className="mt-2 flex items-center justify-between">
+                  <button
+                    className="text-xs text-gray-400 underline-offset-2 hover:text-amber-600 hover:underline"
+                    onClick={() => {
+                      const reason = window.prompt('你觉得这题哪里有问题？（如：答案有误 / 选项重复 / 题干不清）');
+                      if (reason) {
+                        questionService.submitFeedback(r.question.id, reason)
+                          .then(() => window.alert('✅ 已提交反馈，感谢纠错！我们会尽快复核修正。'))
+                          .catch(() => window.alert('反馈提交失败，请稍后重试'));
+                      }
+                    }}
+                  >
+                    ⚠️ 题目有误？反馈纠错
+                  </button>
+                  <span className="text-[11px] text-gray-300 dark:text-gray-600">AI 生成题，答案如有疑问可反馈</span>
+                </div>
               </div>
             );
           })}

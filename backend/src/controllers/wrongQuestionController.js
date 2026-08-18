@@ -1,6 +1,41 @@
 import prisma from '../utils/prisma.js';
 import { checkAndUnlockAchievements } from '../services/achievement.service.js';
 
+// 艾宾浩斯复习间隔（天）：按已复习次数递进
+const REVIEW_INTERVALS = [1, 3, 7, 15, 30];
+const nextReviewDate = (reviewCount) => {
+  const days = REVIEW_INTERVALS[Math.min(reviewCount, REVIEW_INTERVALS.length - 1)];
+  return new Date(Date.now() + days * 86400000);
+};
+
+// 今日待复习错题（到期未掌握的）
+export const getReviewDue = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const now = new Date();
+    const wrongQuestions = await prisma.wrongQuestion.findMany({
+      where: {
+        userId,
+        mastered: false,
+        OR: [{ nextReviewAt: { lte: now } }, { nextReviewAt: null }],
+      },
+      include: {
+        question: {
+          include: {
+            subject: true,
+            questionKnowledge: { include: { knowledgePoint: true } },
+          },
+        },
+      },
+      orderBy: { nextReviewAt: 'asc' },
+      take: 30,
+    });
+    res.json({ data: wrongQuestions });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
+
 // 获取错题本
 export const getWrongQuestions = async (req, res) => {
   try {
@@ -60,7 +95,9 @@ export const reviewWrongQuestion = async (req, res) => {
       where: { id },
       data: {
         reviewCount: wrongQuestion.reviewCount + 1,
-        mastered: isCorrect && wrongQuestion.reviewCount >= 1
+        mastered: isCorrect && wrongQuestion.reviewCount >= 1,
+        // 掌握后不再安排；未掌握按艾宾浩斯递进安排下次复习
+        nextReviewAt: isCorrect && wrongQuestion.reviewCount >= 1 ? null : nextReviewDate(wrongQuestion.reviewCount),
       }
     });
 
@@ -94,7 +131,8 @@ export const batchReviewWrongQuestions = async (req, res) => {
             where: { id: wrongQuestion.id },
             data: {
               reviewCount: wrongQuestion.reviewCount + 1,
-              mastered: true
+              mastered: true,
+              nextReviewAt: null,
             }
           });
         }

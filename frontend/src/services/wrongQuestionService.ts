@@ -13,6 +13,11 @@ export const wrongQuestionService = {
     return http.get<ApiResponse<WrongQuestion[]>>('/wrong-questions', { params });
   },
 
+  // 今日待复习错题（艾宾浩斯到期）
+  getReviewDue: () => {
+    return http.get<ApiResponse<WrongQuestion[]>>('/wrong-questions/review-due');
+  },
+
   // 错题重练提交
   reviewWrongQuestion: (id: string, isCorrect: boolean) => {
     return http.post<ApiResponse<WrongQuestion>>(`/wrong-questions/${id}/review`, {

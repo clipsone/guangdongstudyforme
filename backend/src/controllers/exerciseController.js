@@ -116,7 +116,9 @@ export const createExercise = async (req, res) => {
             data: {
               wrongCount: existingWrong.wrongCount + 1,
               lastWrongAt: new Date(),
-              mastered: false
+              mastered: false,
+              // 再次做错：重置为 1 天后复习
+              nextReviewAt: new Date(Date.now() + 86400000),
             }
           });
         } else {
@@ -125,7 +127,9 @@ export const createExercise = async (req, res) => {
               userId,
               questionId: eq.questionId,
               wrongCount: 1,
-              lastWrongAt: new Date()
+              lastWrongAt: new Date(),
+              // 首次做错：1 天后安排复习
+              nextReviewAt: new Date(Date.now() + 86400000),
             }
           });
         }

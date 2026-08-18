@@ -8,5 +8,6 @@ router.use(authMiddleware);
 
 router.get('/', questionController.getQuestions);
 router.get('/:id', questionController.getQuestionById);
+router.post('/:id/feedback', questionController.submitQuestionFeedback);
 
 export default router;
