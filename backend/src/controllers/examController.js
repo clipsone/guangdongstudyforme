@@ -63,7 +63,7 @@ export const createExam = async (req, res) => {
     }
 
     const config = template.config || {};
-    const sections = config.sections || [{ type: 'choice', count: 10, scorePer: 10 }];
+    const sections = config.sections;
     const fixedIds = Array.isArray(config.fixedQuestionIds) ? config.fixedQuestionIds : [];
 
     // 固定真题卷：按卷面题目顺序取题；仿真卷：按题型分区抽题
@@ -83,6 +83,9 @@ export const createExam = async (req, res) => {
       const byId = new Map(fixed.map((q) => [q.id, q]));
       pickedQuestions = fixedIds.map((id) => byId.get(id)).filter(Boolean);
     } else {
+      if (!sections || sections.length === 0) {
+        return res.status(400).json({ error: { message: '模板分区配置异常，请联系管理员检查模板', status: 400 } });
+      }
       for (const section of sections) {
         // 有分区名时按分区抽题（同区可含混合题型，如完形填空的 choice/fill 版式）；
         // 无分区名时回退按题型抽题

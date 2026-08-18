@@ -34,6 +34,7 @@ model User {
   weeklyReports     WeeklyReport[]
   sessions          Session[]
   knowledgeMastery  KnowledgeMastery[]
+  wrongQuestions    WrongQuestion[]
 }
 
 // 登录会话（token 存库，可注销/过期）
@@ -222,6 +223,7 @@ model WrongQuestion {
   updatedAt   DateTime @updatedAt
 
   question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, questionId])
   @@index([userId])

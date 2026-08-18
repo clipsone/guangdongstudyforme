@@ -48,7 +48,9 @@ export async function getUserMasteryMap(userId) {
 
 // 写入/更新某用户某考点掌握度
 export async function upsertUserMastery(userId, knowledgePointId, mastery) {
-  const value = Math.max(0, Math.min(100, Math.round(mastery)));
+  const value = Number.isFinite(Number(mastery))
+    ? Math.max(0, Math.min(100, Math.round(Number(mastery))))
+    : 0;
   return prisma.knowledgeMastery.upsert({
     where: { userId_knowledgePointId: { userId, knowledgePointId } },
     create: { userId, knowledgePointId, mastery: value },

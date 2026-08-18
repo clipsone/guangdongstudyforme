@@ -102,6 +102,9 @@ export const updateQuestion = async (req, res) => {
       const sol = existing.solution || {};
       data.solution = { ...sol, analysis: String(analysis).trim() };
     }
+    if (Object.keys(data).length === 0) {
+      return res.status(400).json({ error: { message: '没有可更新的字段', status: 400 } });
+    }
 
     const updated = await prisma.question.update({ where: { id }, data });
     res.json({ data: updated });
@@ -117,6 +120,7 @@ export const archiveQuestion = async (req, res) => {
     await prisma.question.update({ where: { id }, data: { status: 'archived' } });
     res.json({ data: { ok: true } });
   } catch (error) {
+    if (error.code === 'P2025') return res.status(404).json({ error: { message: '题目不存在', status: 404 } });
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };
@@ -150,6 +154,7 @@ export const resolveFeedback = async (req, res) => {
     const updated = await prisma.questionFeedback.update({ where: { id }, data: { status } });
     res.json({ data: updated });
   } catch (error) {
+    if (error.code === 'P2025') return res.status(404).json({ error: { message: '反馈不存在', status: 404 } });
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };
@@ -188,6 +193,7 @@ export const setUserRole = async (req, res) => {
     const updated = await prisma.user.update({ where: { id }, data: { role } });
     res.json({ data: { id: updated.id, username: updated.username, role: updated.role } });
   } catch (error) {
+    if (error.code === 'P2025') return res.status(404).json({ error: { message: '用户不存在', status: 404 } });
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };
@@ -202,6 +208,7 @@ export const deleteUser = async (req, res) => {
     await prisma.user.delete({ where: { id } });
     res.json({ data: { ok: true } });
   } catch (error) {
+    if (error.code === 'P2025') return res.status(404).json({ error: { message: '用户不存在', status: 404 } });
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
 };

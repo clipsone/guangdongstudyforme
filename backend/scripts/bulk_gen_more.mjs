@@ -122,17 +122,35 @@ async function genOne(task, subjectId) {
 
 const subj = await p.subject.findUnique({ where: { name: SUBJECT_NAME } });
 const kps = await p.knowledgePoint.findMany({ where: { chapter: { subjectId: subj.id }, level: 2 } });
+const kpByCode = new Map(kps.map((k) => [k.code, k]));
 
-// 分区→考点映射（语文用区名近似匹配考点；英语用区名映射）
-const sectionToKps = {};
-for (const t of TASKS) {
-  if (!sectionToKps[t.section]) sectionToKps[t.section] = [];
-}
-// 简化：按任务 kpName 关键词匹配考点
+// 分区 → 精确考点 code 映射（与知识图谱一致，替代低精度关键词截断）
+const SECTION_KP_CODES = {
+  // 语文
+  '基础知识与运用': ['Y4-2', 'Y4-3', 'Y4-4', 'Y4-8'],
+  '名句名篇默写': ['Y3-1'],
+  '文言文翻译': ['Y2-4', 'Y9-4'],
+  '文言文理解填空': ['Y2-1', 'Y9-1'],
+  '诗歌鉴赏·手法': ['Y2-5'],
+  '诗歌鉴赏·意境情感': ['Y2-6'],
+  '现代文阅读·论述类': ['Y1-1', 'Y1-2', 'Y1-4'],
+  '现代文阅读·论述类主观题': ['Y1-3', 'Y1-4'],
+  '现代文阅读·文学类': ['Y6-1', 'Y6-2', 'Y7-1'],
+  '现代文阅读·文学类赏析': ['Y6-4', 'Y7-3'],
+  '写作': ['Y5-1', 'Y5-3', 'Y10-1'],
+  // 英语
+  '情景交际': ['E7-1', 'E7-2'],
+  '阅读理解·第一节': ['E2-1', 'E2-2', 'E2-4'],
+  '阅读理解·第二节': ['E2-5'],
+  '完形填空': ['E3-1', 'E3-3', 'E3-4'],
+  '语法填空': ['E4-1', 'E4-6'],
+  '书面表达': ['E6-1'],
+};
+
 const jobs = [];
 for (const t of TASKS) {
-  const matched = kps.filter((k) => k.name.includes(t.kpName.slice(0, 4)) || t.kpName.includes(k.name.slice(0, 4)) || t.kpName.includes(k.name.slice(0, 6)));
-  const kpIds = matched.length > 0 ? matched.map((k) => k.id).slice(0, 2) : [];
+  const codes = SECTION_KP_CODES[t.section] || [];
+  const kpIds = codes.map((c) => kpByCode.get(c)).filter(Boolean).map((k) => k.id);
   for (let i = 0; i < t.count; i++) {
     jobs.push({ ...t, subjectId: subj.id, kpIds });
   }

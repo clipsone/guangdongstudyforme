@@ -37,17 +37,18 @@ export function normalizeMathText(text) {
     [/\\ /g, ''],
   ];
   for (const [re, rep] of cmds) s = s.replace(re, rep);
-  // 2) 花括号角标：^{...} / _{...} / {x}（如 {a_n} 会先被 _ 规则处理）
-  s = s.replace(/\^\{([^{}]*)\}/g, (m, inner) => toUni(inner.replace(/_([0-9n])/g, (mm, c) => SUB_MAP[c] || c), SUP_MAP));
-  s = s.replace(/_\{([^{}]*)\}/g, (m, inner) => toUni(inner, SUB_MAP));
-  s = s.replace(/\{([^{}]+)\}/g, (m, inner) => {
-    // 内部无 ^_ 的纯花括号包裹（如 {aₙ}）直接去括号；有角标的先不处理
-    return inner.includes('^') || inner.includes('_') ? m : inner;
+  // 2) 花括号角标：^{...} / _{...}（幂语义保留 ^ 前缀，输出 2^aₙ）
+  s = s.replace(/\^\{([^{}]*)\}/g, (m, inner) => {
+    const sub = inner.replace(/_([0-9n])/g, (mm, c) => SUB_MAP[c] || c);
+    return '^' + toUni(sub, SUP_MAP);
   });
+  s = s.replace(/_\{([^{}]*)\}/g, (m, inner) => toUni(inner, SUB_MAP));
   // 3) 单个字符角标：x^2 / a_n（只吃单个数字或字母，避免吞掉后面的负号）
   s = s.replace(/\^([0-9n])(?![0-9])/g, (m, c) => SUP_MAP[c] || c);
   s = s.replace(/_([0-9n])(?![0-9])/g, (m, c) => SUB_MAP[c] || c);
-  // 4) 清理：去 $ 包裹符与多余空格（$ 在数学题中无其他含义）
+  // 4) 去花括号：此时内部已无 ^ 与 _ 残留，纯包裹（如 {aₙ}、{3}）直接去掉
+  s = s.replace(/\{([^{}]+)\}/g, (m, inner) => inner);
+  // 5) 清理：去 $ 包裹符与多余空格（$ 在数学题中无其他含义）
   s = s.replace(/\$/g, '');
   s = s.replace(/\s{2,}/g, ' ');
   return s;
