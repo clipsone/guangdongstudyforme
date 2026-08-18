@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, Clock, Flag, RotateCcw, Sparkles, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Clock, Flag, Loader2, RotateCcw, Sparkles, XCircle } from 'lucide-react';
 import { useUser } from '@/hooks/useUser';
 import { examService } from '@/services/examService';
 import { studySessionService } from '@/services/studySessionService';
@@ -358,7 +358,7 @@ export default function ExamPage() {
           <div className="mx-auto flex max-w-3xl items-center justify-between gap-3">
             <div className="text-xs text-gray-500">已答 {answeredCount}/{qs.length} 题</div>
             <button className="btn-primary flex-1" disabled={loading} onClick={() => submitExam(false)}>
-              <Flag size={15} /> 交卷
+              {loading ? <Loader2 size={15} className="animate-spin" /> : <Flag size={15} />} {loading ? '判卷中…' : '交卷'}
             </button>
           </div>
         </div>
