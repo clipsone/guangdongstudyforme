@@ -1,4 +1,5 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap } from '../services/mastery.service.js';
 
 // ISO 周数（周一为一周开始）
 function weekNumber(date = new Date()) {
@@ -41,13 +42,17 @@ export const generateWeeklyReport = async (req, res) => {
       ? Math.round(exercises.reduce((s, x) => s + x.accuracy, 0) / exercises.length)
       : 0;
 
-    // 本周薄弱考点
-    const weak = await prisma.knowledgePoint.findMany({
-      where: { level: 2, mastery: { lt: 60 } },
-      orderBy: { mastery: 'asc' },
-      take: 3,
-      select: { name: true, mastery: true, chapter: { select: { subject: { select: { name: true } } } } }
+    // 本周薄弱考点（按用户掌握度）
+    const masteryMap = await getUserMasteryMap(userId);
+    const allWeak = await prisma.knowledgePoint.findMany({
+      where: { level: 2 },
+      select: { id: true, name: true, chapter: { select: { subject: { select: { name: true } } } } }
     });
+    const weak = allWeak
+      .map((p) => ({ ...p, mastery: masteryMap.get(p.id) || 0 }))
+      .filter((p) => p.mastery < 60)
+      .sort((a, b) => a.mastery - b.mastery)
+      .slice(0, 3);
 
     const highlights = [];
     if (exercises.length > 0) highlights.push(`本周完成 ${exercises.length} 组练习（共 ${exerciseCount} 题），平均正确率 ${accuracy}%`);

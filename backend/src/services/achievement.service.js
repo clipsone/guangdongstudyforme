@@ -1,4 +1,5 @@
 import prisma from '../utils/prisma.js';
+import { subjectMasteryFor } from './mastery.service.js';
 
 // 成就判定规则（condition.type 与 service 中一致）
 const RULES = {
@@ -22,15 +23,10 @@ const RULES = {
   recitation_10: async (userId) => (await prisma.recitationRecord.count({ where: { userId } })) >= 10,
   task_first: async (userId) => (await prisma.studyTask.count({ where: { userId, completed: true } })) >= 1,
   exam_first: async (userId) => (await prisma.exam.count({ where: { userId, status: 'completed' } })) >= 1,
-  subject_mastered: async () => {
+  subject_mastered: async (userId) => {
     const subjects = await prisma.subject.findMany();
     for (const subject of subjects) {
-      const points = await prisma.knowledgePoint.findMany({
-        where: { chapter: { subjectId: subject.id } },
-        select: { mastery: true }
-      });
-      if (points.length === 0) continue;
-      const avg = points.reduce((s, p) => s + p.mastery, 0) / points.length;
+      const avg = await subjectMasteryFor(userId, subject.id);
       if (avg >= 80) return true;
     }
     return false;

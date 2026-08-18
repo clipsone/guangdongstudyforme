@@ -1,4 +1,5 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap, subjectMasteryFor } from '../services/mastery.service.js';
 
 // 获取统计数据 - 仪表盘
 export const getDashboardStats = async (req, res) => {
@@ -65,17 +66,18 @@ export const getDashboardStats = async (req, res) => {
       ? Math.round(exams.reduce((s, x) => s + (x.score || 0), 0) / exams.length)
       : 0;
 
-    // 计算总体掌握度
+    // 计算总体掌握度（按用户隔离：新用户全 0）
     const subjects = await prisma.subject.findMany();
+    const userMastery = await getUserMasteryMap(uid);
     const subjectStats = await Promise.all(
       subjects.map(async (subject) => {
         const knowledgePoints = await prisma.knowledgePoint.findMany({
           where: { chapter: { subjectId: subject.id } },
-          select: { mastery: true }
+          select: { id: true }
         });
 
         const avgMastery = knowledgePoints.length > 0
-          ? knowledgePoints.reduce((sum, kp) => sum + kp.mastery, 0) / knowledgePoints.length
+          ? knowledgePoints.reduce((sum, kp) => sum + (userMastery.get(kp.id) || 0), 0) / knowledgePoints.length
           : 0;
 
         return {
@@ -197,16 +199,20 @@ export const getMasteryHistory = async (req, res) => {
     });
 
     const subjects = await prisma.subject.findMany();
+    const userMastery = await getUserMasteryMap(uid);
     const points = await prisma.knowledgePoint.findMany({
       where: { level: 2 },
-      select: { mastery: true, chapter: { select: { subjectId: true } } }
+      select: { id: true }
     });
 
+    const currentAvgFromUser = () => {
+      if (points.length === 0) return 0;
+      return Math.round(points.reduce((s, p) => s + (userMastery.get(p.id) || 0), 0) / points.length);
+    };
+
     if (snapshots.length === 0) {
-      // 无历史快照时返回当前值作为起点
-      let avg = 0;
-      if (points.length > 0) avg = Math.round(points.reduce((s, p) => s + p.mastery, 0) / points.length);
-      return res.json({ data: [{ date: new Date().toISOString().split('T')[0], mastery: avg }] });
+      // 无历史快照时返回当前值作为起点（按用户）
+      return res.json({ data: [{ date: new Date().toISOString().split('T')[0], mastery: currentAvgFromUser() }] });
     }
 
     // 按天聚合三科平均
@@ -216,9 +222,7 @@ export const getMasteryHistory = async (req, res) => {
       if (!byDay[date]) byDay[date] = [];
       byDay[date].push(s.mastery);
     }
-    const currentAvg = points.length > 0
-      ? Math.round(points.reduce((s, p) => s + p.mastery, 0) / points.length)
-      : 0;
+    const currentAvg = currentAvgFromUser();
 
     const data = Object.keys(byDay).sort().map((date) => ({
       date,
@@ -241,14 +245,16 @@ export const getRadarData = async (req, res) => {
     }
 
     const subjects = await prisma.subject.findMany();
+    const radarMap = await getUserMasteryMap(uid);
     const radarData = await Promise.all(
       subjects.map(async (subject) => {
-        // 掌握度
+        // 掌握度（按用户）
         const knowledgePoints = await prisma.knowledgePoint.findMany({
-          where: { chapter: { subjectId: subject.id } }
+          where: { chapter: { subjectId: subject.id } },
+          select: { id: true }
         });
         const mastery = knowledgePoints.length > 0
-          ? knowledgePoints.reduce((sum, kp) => sum + kp.mastery, 0) / knowledgePoints.length
+          ? knowledgePoints.reduce((sum, kp) => sum + (radarMap.get(kp.id) || 0), 0) / knowledgePoints.length
           : 0;
 
         // 练习准确率（含模考）

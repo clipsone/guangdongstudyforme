@@ -32,6 +32,7 @@ model User {
   userAchievements  UserAchievement[]
   weeklyReports     WeeklyReport[]
   sessions          Session[]
+  knowledgeMastery  KnowledgeMastery[]
 }
 
 // 登录会话（token 存库，可注销/过期）
@@ -102,9 +103,26 @@ model KnowledgePoint {
   children         KnowledgePoint[]   @relation("KnowledgePointRelation")
   questionKnowledge QuestionKnowledge[]
   masterySnapshots MasterySnapshot[]
+  userMastery      KnowledgeMastery[]
 
   @@index([chapterId])
   @@index([parentId])
+}
+
+// 按用户的考点掌握度（新用户天然全 0，互不干扰）
+model KnowledgeMastery {
+  id               String @id @default(uuid())
+  userId           String
+  knowledgePointId String
+  mastery          Int    @default(0) // 0-100
+  updatedAt        DateTime @updatedAt
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  knowledgePoint KnowledgePoint  @relation(fields: [knowledgePointId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, knowledgePointId])
+  @@index([userId])
+  @@index([knowledgePointId])
 }
 
 model Question {

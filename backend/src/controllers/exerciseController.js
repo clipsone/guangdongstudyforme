@@ -1,21 +1,24 @@
 import prisma from '../utils/prisma.js';
 import { generatePaper } from '../services/paper.service.js';
 import { checkAndUnlockAchievements } from '../services/achievement.service.js';
-import { recordMasterySnapshot } from '../services/mastery.service.js';
+import { recordMasterySnapshot, getUserMasteryMap, upsertUserMastery } from '../services/mastery.service.js';
 
 // 生成练习 AI 小结（mock，基于正确率与薄弱考点）
 async function buildAiSummary(userId, subjectId, accuracy, correctCount, totalCount) {
   const subjects = await prisma.subject.findMany();
   const subject = subjects.find((s) => s.id === subjectId);
   const subjectName = subject?.name || '该科';
-  const weak = await prisma.knowledgePoint.findMany({
-    where: {
-      mastery: { lt: 50 },
-      ...(subjectId ? { chapter: { subjectId } } : {})
-    },
-    take: 3,
-    orderBy: { mastery: 'asc' }
+  const masteryMap = await getUserMasteryMap(userId);
+  const points = await prisma.knowledgePoint.findMany({
+    where: subjectId ? { chapter: { subjectId } } : {},
+    select: { id: true, name: true }
   });
+  // 按用户掌握度找最薄弱考点（无记录视为 0）
+  const weak = points
+    .map((p) => ({ ...p, mastery: masteryMap.get(p.id) || 0 }))
+    .filter((p) => p.mastery < 50)
+    .sort((a, b) => a.mastery - b.mastery)
+    .slice(0, 3);
   const weakNames = weak.map((k) => `${k.name}`).join('、');
   if (accuracy >= 80) {
     return `本组${subjectName}练习正确率 ${Math.round(accuracy)}%，表现很棒！${weakNames ? `接下来可以挑战更高难度的题目巩固：${weakNames}。` : '继续保持，可以尝试全真模考检验综合水平。'}`;
@@ -238,33 +241,20 @@ async function updateKnowledgeMastery(userId, exerciseQuestions) {
     }
   }
 
-  // 更新掌握度
+  // 更新掌握度（按用户：KnowledgeMastery）
+  const masteryMap = await getUserMasteryMap(userId);
   for (const [knowledgePointId, stats] of Object.entries(knowledgeStats)) {
     const accuracy = (stats.correct / stats.total) * 100;
-    const currentKp = await prisma.knowledgePoint.findUnique({
-      where: { id: knowledgePointId }
-    });
+    const current = masteryMap.get(knowledgePointId) || 0;
 
-    let newMastery = currentKp.mastery;
-    let newStatus = currentKp.status;
-
+    let newMastery = current;
     if (accuracy >= 80 && stats.total >= 5) {
-      newStatus = 'mastered';
-      newMastery = Math.min(100, currentKp.mastery + 10);
+      newMastery = Math.min(100, current + 10);
     } else if (accuracy < 40) {
-      newStatus = 'learning';
-      newMastery = Math.max(0, currentKp.mastery - 10);
+      newMastery = Math.max(0, current - 10);
     } else {
-      newStatus = 'learning';
-      newMastery = Math.min(100, Math.max(0, currentKp.mastery + (accuracy - 50) / 10));
+      newMastery = Math.min(100, Math.max(0, current + (accuracy - 50) / 10));
     }
-
-    await prisma.knowledgePoint.update({
-      where: { id: knowledgePointId },
-      data: {
-        mastery: Math.round(newMastery),
-        status: newStatus
-      }
-    });
+    await upsertUserMastery(userId, knowledgePointId, newMastery);
   }
 }

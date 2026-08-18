@@ -1,6 +1,6 @@
 import prisma from '../utils/prisma.js';
 import { checkAndUnlockAchievements } from '../services/achievement.service.js';
-import { recordMasterySnapshot } from '../services/mastery.service.js';
+import { recordMasterySnapshot, getUserMasteryMap, upsertUserMastery } from '../services/mastery.service.js';
 
 // 判分：选择题精确比对字母；其他题型归一化（去空白/标点）比对
 function gradeQuestion(question, userAnswer) {
@@ -290,20 +290,18 @@ export const submitExam = async (req, res) => {
       (async () => {
         const kpIds = Object.keys(knowledgeStats);
         if (kpIds.length === 0) return;
-        // 批量查出所有知识点，避免逐题 findUnique 往返
-        const kps = await prisma.knowledgePoint.findMany({ where: { id: { in: kpIds } } });
+        // 按用户掌握度更新（KnowledgeMastery）
+        const masteryMap = await getUserMasteryMap(exam.userId);
         await Promise.all(
-          kps.map(async (kp) => {
-            const stats = knowledgeStats[kp.id];
+          kpIds.map(async (kpId) => {
+            const stats = knowledgeStats[kpId];
             const accuracy = (stats.correct / stats.total) * 100;
-            let newMastery = kp.mastery;
-            if (accuracy >= 80) newMastery = Math.min(100, kp.mastery + 8);
-            else if (accuracy < 40) newMastery = Math.max(0, kp.mastery - 8);
-            else newMastery = Math.min(100, Math.max(0, kp.mastery + (accuracy - 50) / 12));
-            await prisma.knowledgePoint.update({
-              where: { id: kp.id },
-              data: { mastery: Math.round(newMastery) }
-            });
+            const current = masteryMap.get(kpId) || 0;
+            let newMastery = current;
+            if (accuracy >= 80) newMastery = Math.min(100, current + 8);
+            else if (accuracy < 40) newMastery = Math.max(0, current - 8);
+            else newMastery = Math.min(100, Math.max(0, current + (accuracy - 50) / 12));
+            await upsertUserMastery(exam.userId, kpId, newMastery);
           })
         );
       })(),

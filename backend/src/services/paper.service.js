@@ -1,12 +1,13 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap } from './mastery.service.js';
 
 // 智能组卷：按薄弱考点加权抽取题目
 // 权重设计：掌握度越低权重越高，未做过的考点视为薄弱
-function weightOf(kp) {
-  const mastery = kp.mastery || 0;
-  if (mastery < 30) return 5;      // 严重薄弱
-  if (mastery < 50) return 3.5;    // 薄弱
-  if (mastery < 80) return 1.5;    // 一般
+function weightOf(mastery) {
+  const m = mastery || 0;
+  if (m < 30) return 5;      // 严重薄弱
+  if (m < 50) return 3.5;    // 薄弱
+  if (m < 80) return 1.5;    // 一般
   return 0.4;                       // 已掌握，少量覆盖
 }
 
@@ -31,20 +32,24 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
     return fresh.length > 0 ? fresh : list;
   };
 
+  // 按用户掌握度（无记录=0，视为薄弱）
+  const masteryMap = await getUserMasteryMap(userId);
+
   // 1. 目标知识点池
   let targetPoints = [];
   if (knowledgeIds && knowledgeIds.length > 0) {
     targetPoints = await prisma.knowledgePoint.findMany({
       where: { id: { in: knowledgeIds } },
-      select: { id: true, mastery: true }
+      select: { id: true }
     });
   } else {
     // 智能模式：取该科目全部考点按权重排序
     targetPoints = await prisma.knowledgePoint.findMany({
       where: subjectId ? { chapter: { subjectId } } : {},
-      select: { id: true, mastery: true }
+      select: { id: true }
     });
   }
+  targetPoints = targetPoints.map((kp) => ({ ...kp, mastery: masteryMap.get(kp.id) || 0 }));
 
   if (targetPoints.length === 0) {
     // 无考点数据时退化为随机抽题
@@ -62,7 +67,7 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
   // 2. 按考点权重随机抽样（加权不放回）
   const weightedIds = [];
   for (const kp of targetPoints) {
-    const w = Math.round(weightOf(kp) * 10);
+    const w = Math.round(weightOf(kp.mastery) * 10);
     for (let i = 0; i < w; i++) weightedIds.push(kp.id);
   }
   // 打乱权重池，取前 N 个不同考点

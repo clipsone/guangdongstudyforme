@@ -1,11 +1,12 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap } from '../services/mastery.service.js';
 
 // 计算某科的学习诊断
 async function buildDiagnosis(userId, subject) {
-  const [points, exercises, exams, wrongCount, recitations] = await Promise.all([
+  let [points, exercises, exams, wrongCount, recitations, masteryMap] = await Promise.all([
     prisma.knowledgePoint.findMany({
       where: { chapter: { subjectId: subject.id } },
-      orderBy: { mastery: 'asc' }
+      select: { id: true, code: true, name: true }
     }),
     prisma.exerciseRecord.findMany({
       where: { userId, subjectId: subject.id },
@@ -16,8 +17,13 @@ async function buildDiagnosis(userId, subject) {
       select: { score: true, template: { select: { totalScore: true } } }
     }),
     prisma.wrongQuestion.count({ where: { userId, mastered: false, question: { subjectId: subject.id } } }),
-    prisma.recitationItem.count({ where: { subjectId: subject.id } })
+    prisma.recitationItem.count({ where: { subjectId: subject.id } }),
+    getUserMasteryMap(userId),
   ]);
+
+  // 按用户掌握度（无记录=0）
+  points = points.map((p) => ({ ...p, mastery: masteryMap.get(p.id) || 0 }));
+  points.sort((a, b) => a.mastery - b.mastery);
 
   const exerciseCount = exercises.length;
   const exerciseAccuracy = exerciseCount > 0

@@ -1,4 +1,5 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap, upsertUserMastery } from '../services/mastery.service.js';
 
 // 获取知识图谱
 export const getKnowledge = async (req, res) => {
@@ -24,7 +25,15 @@ export const getKnowledge = async (req, res) => {
       ]
     });
 
-    res.json({ data: knowledgePoints });
+    // 按用户掌握度覆盖（新用户全 0）
+    const masteryMap = await getUserMasteryMap(req.userId);
+    const data = knowledgePoints.map((kp) => ({
+      ...kp,
+      mastery: masteryMap.get(kp.id) ?? 0,
+      status: (masteryMap.get(kp.id) ?? 0) >= 80 ? 'mastered' : kp.status,
+    }));
+
+    res.json({ data });
   } catch (error) {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }
@@ -68,7 +77,7 @@ export const getKnowledgeById = async (req, res) => {
     });
 
     res.json({
-      data: { ...knowledgePoint, prerequisitesDetails },
+      data: { ...knowledgePoint, prerequisitesDetails, mastery: (await getUserMasteryMap(req.userId)).get(id) ?? 0 },
       stats: {
         questionCount: questionStats.length
       }
@@ -78,18 +87,16 @@ export const getKnowledgeById = async (req, res) => {
   }
 };
 
-// 更新知识点掌握度
+// 更新知识点掌握度（按用户）
 export const updateMastery = async (req, res) => {
   try {
     const { id } = req.params;
     const { mastery } = req.body;
+    const userId = req.userId;
 
-    const updated = await prisma.knowledgePoint.update({
-      where: { id },
-      data: { mastery }
-    });
+    await upsertUserMastery(userId, id, Number(mastery) || 0);
 
-    res.json({ data: updated });
+    res.json({ data: { id, mastery: Number(mastery) || 0 } });
   } catch (error) {
     res.status(500).json({ error: { message: error.message, status: 500 } });
   }

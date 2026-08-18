@@ -21,13 +21,7 @@ export async function recordMasterySnapshot(userId) {
     });
     if (exists) continue;
 
-    const points = await prisma.knowledgePoint.findMany({
-      where: { chapter: { subjectId: subject.id } },
-      select: { mastery: true }
-    });
-    const avg = points.length > 0
-      ? Math.round(points.reduce((s, p) => s + p.mastery, 0) / points.length)
-      : 0;
+    const avg = await subjectMasteryFor(userId, subject.id);
 
     await prisma.masterySnapshot.create({
       data: {
@@ -38,4 +32,38 @@ export async function recordMasterySnapshot(userId) {
       }
     });
   }
+}
+
+// ===== 按用户掌握度（KnowledgeMastery）=====
+
+// 取某用户全部考点掌握度 Map<knowledgePointId, mastery>（无记录=0）
+export async function getUserMasteryMap(userId) {
+  if (!userId) return new Map();
+  const rows = await prisma.knowledgeMastery.findMany({
+    where: { userId },
+    select: { knowledgePointId: true, mastery: true },
+  });
+  return new Map(rows.map((r) => [r.knowledgePointId, r.mastery]));
+}
+
+// 写入/更新某用户某考点掌握度
+export async function upsertUserMastery(userId, knowledgePointId, mastery) {
+  const value = Math.max(0, Math.min(100, Math.round(mastery)));
+  return prisma.knowledgeMastery.upsert({
+    where: { userId_knowledgePointId: { userId, knowledgePointId } },
+    create: { userId, knowledgePointId, mastery: value },
+    update: { mastery: value },
+  });
+}
+
+// 算某用户某科目平均掌握度（无记录=0）
+export async function subjectMasteryFor(userId, subjectId) {
+  const map = await getUserMasteryMap(userId);
+  const points = await prisma.knowledgePoint.findMany({
+    where: { chapter: { subjectId } },
+    select: { id: true },
+  });
+  if (points.length === 0) return 0;
+  const sum = points.reduce((s, p) => s + (map.get(p.id) || 0), 0);
+  return Math.round(sum / points.length);
 }

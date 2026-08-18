@@ -1,4 +1,5 @@
 import prisma from '../utils/prisma.js';
+import { getUserMasteryMap } from '../services/mastery.service.js';
 import { checkAndUnlockAchievements } from '../services/achievement.service.js';
 
 // 每天首次访问时按薄弱考点生成当日任务（懒生成）
@@ -6,16 +7,17 @@ async function ensureTodayTasks(userId, date) {
   const existing = await prisma.studyTask.findMany({ where: { userId, dueDate: date } });
   if (existing.length > 0) return existing;
 
-  // 找薄弱考点：各科掌握度最低的考点
-  const weak = await prisma.knowledgePoint.findMany({
-    where: {
-      level: 2,
-      mastery: { lt: 60 }
-    },
-    orderBy: { mastery: 'asc' },
-    take: 6,
+  // 找薄弱考点：各科掌握度最低的考点（按用户掌握度）
+  const masteryMap = await getUserMasteryMap(userId);
+  const allPoints = await prisma.knowledgePoint.findMany({
+    where: { level: 2 },
     include: { chapter: { include: { subject: true } } }
   });
+  const weak = allPoints
+    .map((p) => ({ ...p, mastery: masteryMap.get(p.id) || 0 }))
+    .filter((p) => p.mastery < 60)
+    .sort((a, b) => a.mastery - b.mastery)
+    .slice(0, 6);
 
   const mathPoint = weak.find((k) => k.chapter.subject.code === 'M') || weak[0];
   const subjectName = (kp) => (kp?.chapter?.subject?.name || '数学');
