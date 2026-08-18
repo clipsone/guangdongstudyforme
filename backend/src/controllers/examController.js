@@ -313,8 +313,18 @@ export const submitExam = async (req, res) => {
       where: { id },
       data: { score, status: 'completed', endTime: new Date() },
       include: {
-        template: { include: { subject: true } }
-      }
+        template: { include: { subject: true } },
+        // 交卷后返回完整题目+判分结果，前端成绩页据此渲染逐题解析
+        questions: {
+          include: {
+            question: {
+              include: {
+                questionKnowledge: { include: { knowledgePoint: true } },
+              },
+            },
+          },
+        },
+      },
     });
 
     recordMasterySnapshot(exam.userId).catch(() => {});
