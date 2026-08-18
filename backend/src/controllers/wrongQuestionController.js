@@ -96,8 +96,8 @@ export const reviewWrongQuestion = async (req, res) => {
       data: {
         reviewCount: wrongQuestion.reviewCount + 1,
         mastered: isCorrect && wrongQuestion.reviewCount >= 1,
-        // 掌握后不再安排；未掌握按艾宾浩斯递进安排下次复习
-        nextReviewAt: isCorrect && wrongQuestion.reviewCount >= 1 ? null : nextReviewDate(wrongQuestion.reviewCount),
+        // 掌握后不再安排；未掌握按艾宾浩斯递进安排下次复习（复习后间隔递增：1→3→7→15→30 天）
+        nextReviewAt: isCorrect && wrongQuestion.reviewCount >= 1 ? null : nextReviewDate(wrongQuestion.reviewCount + 1),
       }
     });
 
