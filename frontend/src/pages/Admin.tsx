@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { adminService, type AdminStats, type AdminQuestion, type AdminFeedback, type AdminUser } from '@/services/adminService';
+import { adminService, type AdminStats, type AdminQuestion, type AdminFeedback, type AdminUser, type AdminCoverage } from '@/services/adminService';
+import { aiService } from '@/services/aiService';
 import { subjectService } from '@/services/subjectService';
 import type { Subject } from '@/types';
 import { useUser } from '@/hooks/useUser';
@@ -8,6 +9,7 @@ import { useUser } from '@/hooks/useUser';
 const TABS = [
   { id: 'overview', label: '数据总览' },
   { id: 'questions', label: '题库管理' },
+  { id: 'generate', label: 'AI 补题' },
   { id: 'feedbacks', label: '纠错反馈' },
   { id: 'users', label: '用户管理' },
 ] as const;
@@ -19,6 +21,7 @@ const PERMISSIONS = [
   '题库管理：浏览/编辑题目题干、选项、答案、解析，下架错误题目',
   '纠错反馈：处理用户提交的「题目有误」反馈（标记已修正 / 忽略）',
   '用户管理：查看用户列表，设置/取消管理员，删除违规账号',
+  'AI 补题：查看各题型分区题量，一键调用 AI 生成新题补充题库（每题约 10-20 秒）',
 ];
 
 export default function Admin() {
@@ -84,6 +87,7 @@ export default function Admin() {
 
       {tab === 'overview' && <Overview stats={stats} />}
       {tab === 'questions' && <Questions subjects={subjects} />}
+      {tab === 'generate' && <Generate subjects={subjects} />}
       {tab === 'feedbacks' && <Feedbacks />}
       {tab === 'users' && <Users me={user.id} />}
     </div>
@@ -92,6 +96,84 @@ export default function Admin() {
 
 function PageFallback() {
   return <div className="p-8 text-center text-gray-400">加载中…</div>;
+}
+
+
+// ---------- AI 补题 ----------
+function Generate({ subjects }: { subjects: Subject[] }) {
+  const [subjectId, setSubjectId] = useState('');
+  const [coverage, setCoverage] = useState<AdminCoverage[]>([]);
+  const [busy, setBusy] = useState<string>(''); // 正在补题的分区名
+  const [log, setLog] = useState<string>('');
+
+  const load = useCallback((sid: string) => {
+    if (!sid) { setCoverage([]); return; }
+    adminService.getCoverage(sid).then(setCoverage).catch(() => setCoverage([]));
+  }, []);
+  useEffect(() => { load(subjectId); }, [subjectId, load]);
+
+  const generate = async (sec: AdminCoverage) => {
+    if (busy || !subjectId) return;
+    setBusy(sec.name);
+    setLog(`开始为「${sec.name}」生成 5 道新题…`);
+    let okCount = 0;
+    try {
+      // 逐题调用（每次 1 道，避免超时），共 5 道
+      for (let i = 0; i < 5; i++) {
+        try {
+          const res = await aiService.generateQuestions({ subjectId, section: sec.name, type: sec.type, count: 1 });
+          okCount += res.data?.count || 0;
+          setLog(`「${sec.name}」已生成 ${i + 1}/5 道…`);
+        } catch {
+          setLog(`「${sec.name}」第 ${i + 1} 道失败（网络波动，跳过）…`);
+        }
+      }
+      setLog(okCount > 0 ? `✅ 「${sec.name}」完成，新增 ${okCount} 题` : `❌ 「${sec.name}」全部失败，请稍后重试`);
+      load(subjectId);
+    } finally {
+      setBusy('');
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex gap-2 items-center mb-4 flex-wrap">
+        <select value={subjectId} onChange={(e) => setSubjectId(e.target.value)} className="input px-3 py-2 text-sm w-40">
+          <option value="">选择科目</option>
+          {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+        </select>
+        <span className="text-xs text-gray-500">提示：每题生成约 10-20 秒，5 题约 1 分钟。建议每天补 1-2 个分区，保持题库常新。</span>
+      </div>
+
+      {subjectId && (
+        <div className="grid md:grid-cols-2 gap-3">
+          {coverage.map((sec) => {
+            const sets = Math.floor(sec.have / sec.countPerExam);
+            const low = sec.have < sec.countPerExam * 6;
+            return (
+              <div key={sec.name} className={`card p-3 flex items-center gap-3 ${low ? 'border-l-4 border-l-error' : ''}`}>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-sm">{sec.name}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">
+                    现有 {sec.have} 题 · 每卷用 {sec.countPerExam} 题 · 可组约 {sets} 套
+                    {low && <span className="chip chip-red ml-2">题量偏少</span>}
+                  </div>
+                </div>
+                <button
+                  onClick={() => generate(sec)}
+                  disabled={!!busy}
+                  className="btn btn-ink !px-3 !py-1 text-xs disabled:opacity-40"
+                >
+                  {busy === sec.name ? '生成中…' : '补 5 题'}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {log && <div className="mt-4 text-sm">{log}</div>}
+    </div>
+  );
 }
 
 // ---------- 数据总览 ----------

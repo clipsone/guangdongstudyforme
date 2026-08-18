@@ -42,8 +42,17 @@ export interface AdminFeedback {
   question?: AdminQuestion & { stem: string };
 }
 
+export interface AdminCoverage {
+  name: string;
+  type: string;
+  countPerExam: number;
+  have: number;
+}
+
 export const adminService = {
   getStats: () => http.get<{ data: AdminStats }>('/admin/stats').then((r) => r.data),
+  getCoverage: (subjectId: string) =>
+    http.get<{ data: AdminCoverage[] }>('/admin/coverage', { params: { subjectId } }).then((r) => r.data),
   getQuestions: (params?: { subjectId?: string; section?: string; status?: string; page?: number; pageSize?: number }) =>
     http.get<{ data: { total: number; list: AdminQuestion[] } }>('/admin/questions', { params }).then((r) => r.data),
   updateQuestion: (id: string, data: Partial<AdminQuestion>) =>

@@ -11,6 +11,7 @@ router.use(adminMiddleware);
 // 数据总览
 router.get('/stats', adminController.getStats);
 // 题库管理
+router.get('/coverage', adminController.getCoverage);
 router.get('/questions', adminController.getQuestions);
 router.patch('/questions/:id', adminController.updateQuestion);
 router.delete('/questions/:id', adminController.archiveQuestion);

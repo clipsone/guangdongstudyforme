@@ -31,6 +31,34 @@ export const getStats = async (req, res) => {
   }
 };
 
+
+// 分区覆盖度（管理员补题用）：模板各区需求 vs 题库现有
+export const getCoverage = async (req, res) => {
+  try {
+    const { subjectId } = req.query;
+    if (!subjectId) return res.status(400).json({ error: { message: '缺少 subjectId', status: 400 } });
+    const template = await prisma.examTemplate.findFirst({ where: { subjectId } });
+    if (!template) return res.status(404).json({ error: { message: '模板不存在', status: 404 } });
+    const sections = (template.config && template.config.sections) || [];
+    const groups = await prisma.question.groupBy({
+      by: ['section'],
+      where: { subjectId, status: 'active' },
+      _count: { _all: true },
+    });
+    const map = new Map(groups.map((g) => [g.section, g._count._all]));
+    res.json({
+      data: sections.map((s) => ({
+        name: s.name,
+        type: s.type,
+        countPerExam: s.count,
+        have: map.get(s.name) || 0,
+      })),
+    });
+  } catch (error) {
+    res.status(500).json({ error: { message: error.message, status: 500 } });
+  }
+};
+
 // 题目列表（管理）
 export const getQuestions = async (req, res) => {
   try {
