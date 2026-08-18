@@ -15,6 +15,7 @@ const AIPage = lazy(() => import('@/pages/AIPage'));
 const Profile = lazy(() => import('@/pages/Profile'));
 const Insights = lazy(() => import('@/pages/Insights'));
 const Resources = lazy(() => import('@/pages/Resources'));
+const Admin = lazy(() => import('@/pages/Admin'));
 
 // 路由守卫：未登录跳转登录页
 function RequireAuth({ children }: { children: ReactNode }) {
@@ -55,6 +56,7 @@ export default function App() {
         <Route path="/profile" element={<Suspense fallback={<PageFallback />}><Profile /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<PageFallback />}><Insights /></Suspense>} />
         <Route path="/resources" element={<Suspense fallback={<PageFallback />}><Resources /></Suspense>} />
+        <Route path="/admin" element={<Suspense fallback={<PageFallback />}><Admin /></Suspense>} />
       </Route>
     </Routes>
   );

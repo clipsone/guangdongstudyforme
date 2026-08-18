@@ -28,6 +28,7 @@ import weeklyReportRoutes from './routes/weeklyReportRoutes.js';
 import resourceRoutes from './routes/resourceRoutes.js';
 import essayRoutes from './routes/essayRoutes.js';
 import exportRoutes from './routes/exportRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 // 无论 cwd 在哪，都从 backend/.env 加载本地配置（云端由平台注入环境变量，此文件不存在则跳过）
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
@@ -74,6 +75,7 @@ app.use('/api/weekly-reports', weeklyReportRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/essays', essayRoutes);
 app.use('/api/export', exportRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

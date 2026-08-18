@@ -143,6 +143,9 @@ export default function Profile() {
           </span>
           <Link to="/insights" className="chip bg-info/10 text-info hover:bg-info/20"><BarChart3 size={12} /> 数据洞察</Link>
           <Link to="/resources" className="chip bg-accent/10 text-accent hover:bg-accent/20"><BookMarked size={12} /> 资料库</Link>
+          {user?.role === 'admin' && (
+            <Link to="/admin" className="chip bg-ink text-white hover:bg-black"><Lock size={12} /> 管理后台</Link>
+          )}
           <button onClick={doExport} className="chip bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" title="导出全部学习数据">
             <Download size={12} /> 导出
           </button>

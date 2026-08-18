@@ -3,6 +3,7 @@ export interface User {
   id: string;
   username: string;
   email: string;
+  role?: string; // user/admin
   targetScore: number;
   examDate: string;
   createdAt: string;
