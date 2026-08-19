@@ -26,6 +26,8 @@ export default function Practice() {
   const [searchParams] = useSearchParams();
   const isUndergrad = user?.examMode === 'undergraduate';
 
+  console.log('[Practice] user:', user?.username, 'examMode:', user?.examMode, 'isUndergrad:', isUndergrad);
+
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [points, setPoints] = useState<KnowledgePoint[]>([]);
   const [subjectId, setSubjectId] = useState('');
