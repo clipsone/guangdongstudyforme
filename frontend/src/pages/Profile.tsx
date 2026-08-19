@@ -144,7 +144,7 @@ export default function Profile() {
           </span>
           <span className="chip bg-primary/10 text-primary"><Target size={12} /> 目标 {user?.targetScore || 450} 分</span>
           <span className="chip bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300">
-            <CalendarDays size={12} /> 考试 {fmtDate(user?.examDate || (user.examMode === 'undergraduate' ? '2027-06-30' : '2027-01-10'))}
+            <CalendarDays size={12} /> 考试 {fmtDate(user?.examDate || (user?.examMode === 'undergraduate' ? '2027-06-30' : '2027-01-10'))}
           </span>
           <Link to="/insights" className="chip bg-info/10 text-info hover:bg-info/20"><BarChart3 size={12} /> 数据洞察</Link>
           <Link to="/resources" className="chip bg-accent/10 text-accent hover:bg-accent/20"><BookMarked size={12} /> 资料库</Link>
