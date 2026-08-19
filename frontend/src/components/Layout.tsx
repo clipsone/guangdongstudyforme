@@ -39,7 +39,7 @@ export const Layout: React.FC = () => {
                   <span className="geo-blue-triangle -ml-1.5" />
                 </span>
                 <span className="text-xl font-black tracking-tight text-ink dark:text-white">
-                  {user?.examMode === 'undergraduate' ? '本科学习平台' : '春考精准冲刺'}<span className="text-primary">·</span>高效备考
+                  {user?.examMode === 'undergraduate' ? '大学学习助手' : '春考精准冲刺'}<span className="text-primary">·</span>高效备考
                 </span>
               </Link>
             </div>
@@ -53,7 +53,7 @@ export const Layout: React.FC = () => {
                 </Link>
               )}
               <span className="hidden sm:inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
-                <span className="geo-blue-triangle scale-50" /> {user?.examMode === 'undergraduate' ?  : '{user?.examMode === 'undergraduate' ? `${user.examTargets?.goalScore || 600} 分目标` : '450 分目标'}'}
+                <span className="geo-blue-triangle scale-50" /> {user?.examMode === 'undergraduate' ?  : '{user?.examMode === 'undergraduate' ? '大学学习进度' : '450 分目标'}'}
               </span>
               <button
                 onClick={toggleTheme}
@@ -137,7 +137,7 @@ export const Layout: React.FC = () => {
               </Link>
             )}
             <div className="mt-6 border-2 border-ink bg-accent p-3">
-              <div className="text-xs font-bold text-ink">{user?.examMode === 'undergraduate' ? '本科阶段学习' : '{user?.examMode === 'undergraduate' ? '本科阶段学习' : '距离 2027 春考'}'}</div>
+              <div className="text-xs font-bold text-ink">{user?.examMode === 'undergraduate' ? '本科阶段学习' : '{user?.examMode === 'undergraduate' ? '本学期学习任务' : '距离 2027 春考'}'}</div>
               <div className="text-lg font-black text-ink">坚持 · 精准 · 冲刺</div>
             </div>
           </nav>

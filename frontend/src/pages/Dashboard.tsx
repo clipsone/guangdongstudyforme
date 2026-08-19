@@ -110,7 +110,7 @@ export default function Dashboard() {
               </div>
               <div className="mt-2">
                 <span className="text-4xl font-black tabular-nums leading-none text-ink dark:text-white">
-                  {isUndergrad ? '学习平台' : `${daysLeft}`}
+                  {isUndergrad ? '📚 大学学习助手' : `${daysLeft}`}
                 </span>
                 {!isUndergrad && <span className="pb-1 text-2xl font-black text-primary"> 天</span>}
               </div>
