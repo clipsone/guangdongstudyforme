@@ -256,7 +256,11 @@ export default function Dashboard() {
               <Milestone label="已掌握考点" value={`${mastery.filter((m) => m.mastery >= 80).length}/${mastery.length || 3} 科`} pct={mastery.length ? Math.round((mastery.filter((m) => m.mastery >= 80).length / mastery.length) * 100) : 0} />
               <Milestone label="模考平均分" value={`${stats?.avgExamScore || 0} 分`} pct={isUndergrad ? Math.min(100, Math.round(((stats?.avgExamScore || 0) / (user?.examTargets?.goalScore || 550)) * 100)) : Math.min(100, Math.round(((stats?.avgExamScore || 0) / 150) * 100))} />
               <Milestone label="目标分数" value={`${user?.targetScore || 450} 分`} pct={0} />
-              {isUndergrad ? <Milestone label="本周任务" value={`${Math.max(0, 7 - new Date().getDay())} 天`} /> : <Milestone label="离考试" value={`${daysLeft} 天`} /> pct={Math.max(0, Math.min(100, Math.round(((365 - daysLeft) / 365) * 100)))} />
+              {isUndergrad ? (
+                <Milestone label="本周任务" value={`${Math.max(0, 7 - new Date().getDay())} 天`} pct={0} />
+              ) : (
+                <Milestone label="离考试" value={`${daysLeft} 天`} pct={Math.max(0, Math.min(100, Math.round(((365 - daysLeft) / 365) * 100)))} />
+              )}
             </div>
           </div>
 

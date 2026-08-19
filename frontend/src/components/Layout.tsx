@@ -137,8 +137,8 @@ export const Layout: React.FC = () => {
               </Link>
             )}
             <div className="mt-6 border-2 border-ink bg-accent p-3">
-              <div className="text-xs font-bold text-ink">{user?.examMode === 'undergraduate' ? '本科阶段学习' : '{user?.examMode === 'undergraduate' ? '本学期学习任务' : '距离 2027 春考'}'}</div>
-              <div className="text-lg font-black text-ink">坚持 · 精准 · 冲刺</div>
+              <div className="text-xs font-bold text-ink">{user?.examMode === 'undergraduate' ? '本学期学习任务' : '距离 2027 春考'}</div>
+              <div className="text-lg font-black text-ink">{user?.examMode === 'undergraduate' ? '坚持 · 积累 · 进步' : '坚持 · 精准 · 冲刺'}</div>
             </div>
           </nav>
         </aside>
