@@ -31,8 +31,10 @@ import essayRoutes from './routes/essayRoutes.js';
 import exportRoutes from './routes/exportRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
-// 无论 cwd 在哪，都从 backend/.env 加载本地配置（云端由平台注入环境变量，此文件不存在则跳过）
-dotenv.config({ path: path.join(__dirname, '..', '.env') });
+// 仅本地开发加载 .env；云端由平台注入环境变量，优先级更高
+if (!process.env.VERCEL && !process.env.DATABASE_URL) {
+  dotenv.config({ path: path.join(__dirname, '..', '.env') });
+}
 
 const app = express();
 const PORT = process.env.PORT || 3001;
