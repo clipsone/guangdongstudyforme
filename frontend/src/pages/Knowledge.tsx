@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AlertTriangle, BookOpen, ChevronRight, Link2, PenLine, Sparkles, Star, X } from 'lucide-react';
+import { useUser } from '@/hooks/useUser';
 import { knowledgeService } from '@/services/knowledgeService';
 import { aiService } from '@/services/aiService';
 import { freqLabel, statusColor, statusLabel } from '@/utils/date';
