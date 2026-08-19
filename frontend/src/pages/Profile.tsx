@@ -134,9 +134,14 @@ export default function Profile() {
         </div>
         <div className="flex-1">
           <div className="text-lg font-bold">{user?.username || '冲刺人'}</div>
-          <div className="text-sm text-gray-500">2027 广东春季高考 · 语数英三科 · 单用户复习系统</div>
+          <div className="text-sm text-gray-500">
+            {user?.examMode === 'undergraduate' ? '本科学习平台 · 单用户复习系统' : '2027 广东春季高考 · 语数英三科 · 单用户复习系统'}
+          </div>
         </div>
         <div className="flex flex-wrap gap-2">
+          <span className={`chip ${user?.examMode === 'undergraduate' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' : 'bg-primary/10 text-primary'}`}>
+            <Target size={12} /> {user?.examMode === 'undergraduate' ? '本科模式' : '春考模式'}
+          </span>
           <span className="chip bg-primary/10 text-primary"><Target size={12} /> 目标 {user?.targetScore || 450} 分</span>
           <span className="chip bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300">
             <CalendarDays size={12} /> 考试 {fmtDate(user?.examDate || '2027-01-10')}
@@ -149,6 +154,42 @@ export default function Profile() {
           <button onClick={doExport} className="chip bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" title="导出全部学习数据">
             <Download size={12} /> 导出
           </button>
+        </div>
+      </div>
+
+      {/* 考试模式切换 */}
+      <div className="card p-5">
+        <h3 className="mb-3 font-semibold">🔄 切换考试模式</h3>
+        <p className="mb-3 text-sm text-gray-500">当前模式：<b>{user?.examMode === 'undergraduate' ? '本科学习（CET-4/6、雅思、托福、法律、大学通识课）' : '春季高考（语文/数学/英语）'}</b>，切换后数据完全隔离</p>
+        <div className="flex gap-3 flex-wrap">
+          <button
+            onClick={async () => {
+              try {
+                await userService.updateMe({ examMode: 'spring', examTargets: undefined });
+                window.location.reload();
+              } catch { /* ignore */ }
+            }}
+            className={`btn-outline text-sm ${user?.examMode !== 'spring' ? 'border-primary text-primary font-bold' : ''}`}
+          >
+            🌾 春考模式（语文/数学/英语）
+          </button>
+          <button
+            onClick={async () => {
+              try {
+                await userService.updateMe({
+                  examMode: 'undergraduate',
+                  examTargets: { subjects: ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'], goalScore: 600 },
+                });
+                window.location.reload();
+              } catch { /* ignore */ }
+            }}
+            className={`btn-outline text-sm ${user?.examMode === 'undergraduate' ? 'border-primary text-primary font-bold' : ''}`}
+          >
+            🎓 本科模式（CET/雅思/托福/法律/大学课）
+          </button>
+        </div>
+        <div className="mt-3 text-xs text-gray-400">
+          ⚠️ 切换模式后，当前账号将切换到对应科目的练习、错题和背诵数据，两者互不干扰。
         </div>
       </div>
 

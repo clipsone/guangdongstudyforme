@@ -24,3 +24,7 @@
     "uuid": "^9.0.1"
   }
 }
+  "scripts": {
+    "seed:undergraduate": "cd backend && node prisma/seed-undergraduate.js",
+    "generate:undergraduate": "cd backend && node scripts/generateUndergraduateQuestions.mjs"
+  }

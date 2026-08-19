@@ -266,28 +266,70 @@ async function main() {
   });
   console.log('✅ 每日任务创建成功');
 
-  // 7. 创建模考模板
-  const EXAM_SECTIONS = [
-    { type: 'choice', count: 6, scorePer: 5 },
-    { type: 'fill', count: 4, scorePer: 10 },
-    { type: 'essay', count: 2, scorePer: 15 }
-  ];
+  // 7. 创建模考模板（按广东春季高考真实结构：语文/数学/英语各 150 分）
+  const TEMPLATES = {
+    Y: {
+      name: '语文·春季高考仿真卷',
+      description: '按广东春季高考（合格考）真实结构：基础知识与运用约33分 / 古诗文阅读20分（文言文翻译4+理解填空6、诗歌鉴赏4+6）/ 现代文阅读40分（论述类+文学类，含主观题）/ 写作60分。150分/120分钟',
+      totalScore: 150, duration: 120,
+      sections: [
+        { name: '基础知识与运用', type: 'choice', count: 6, scorePer: 4 },
+        { name: '名句名篇默写', type: 'fill', count: 3, scorePer: 2 },
+        { name: '文言文翻译', type: 'essay', count: 1, scorePer: 4 },
+        { name: '文言文理解填空', type: 'fill', count: 1, scorePer: 6 },
+        { name: '诗歌鉴赏·手法', type: 'essay', count: 1, scorePer: 4 },
+        { name: '诗歌鉴赏·意境情感', type: 'essay', count: 1, scorePer: 6 },
+        { name: '现代文阅读·论述类', type: 'choice', count: 4, scorePer: 3 },
+        { name: '现代文阅读·论述类主观题', type: 'essay', count: 1, scorePer: 8 },
+        { name: '现代文阅读·文学类', type: 'choice', count: 4, scorePer: 3 },
+        { name: '现代文阅读·文学类赏析', type: 'essay', count: 1, scorePer: 8 },
+        { name: '写作', type: 'essay', count: 1, scorePer: 60 },
+      ],
+    },
+    M: {
+      name: '数学·春季高考仿真卷',
+      description: '按广东春季高考真实结构（90分钟/150分）：选择题12题×6分 + 填空题6题×6分 + 解答题4题（19-21题各10分、22题12分）',
+      totalScore: 150, duration: 90,
+      sections: [
+        { name: '选择题', type: 'choice', count: 12, scorePer: 6 },
+        { name: '填空题', type: 'fill', count: 6, scorePer: 6 },
+        { name: '解答题（19-21题）', type: 'essay', count: 3, scorePer: 10 },
+        { name: '解答题（22题）', type: 'essay', count: 1, scorePer: 12 },
+      ],
+    },
+    E: {
+      name: '英语·春季高考仿真卷',
+      description: '按广东春季高考真实结构（90分钟/150分）：情景交际15 + 阅读理解60（第一节45+五选五15）+ 完形填空30 + 语法填空20 + 书面表达25',
+      totalScore: 150, duration: 90,
+      sections: [
+        { name: '情景交际', type: 'choice', count: 5, scorePer: 3 },
+        { name: '阅读理解·第一节', type: 'choice', count: 15, scorePer: 3 },
+        { name: '阅读理解·第二节', type: 'fill', count: 5, scorePer: 3 },
+        { name: '完形填空', type: 'choice', count: 15, scorePer: 2 },
+        { name: '语法填空', type: 'fill', count: 10, scorePer: 2 },
+        { name: '书面表达', type: 'essay', count: 1, scorePer: 25 },
+      ],
+    },
+  };
+
   for (const subject of subjects) {
+    const tpl = TEMPLATES[subject.code];
+    if (!tpl) continue;
     await prisma.examTemplate.upsert({
       where: { id: `template-${subject.code}` },
       update: {},
       create: {
         id: `template-${subject.code}`,
         subjectId: subject.id,
-        name: `${subject.name}全真模拟卷`,
-        description: `2027 春考 ${subject.name} 全真模拟（选择题+填空+解答）`,
-        config: { sections: EXAM_SECTIONS },
-        totalScore: EXAM_SECTIONS.reduce((s, x) => s + x.count * x.scorePer, 0),
-        duration: 90
+        name: tpl.name,
+        description: tpl.description,
+        config: { sections: tpl.sections },
+        totalScore: tpl.totalScore,
+        duration: tpl.duration
       }
     });
   }
-  console.log('✅ 模考模板创建成功');
+  console.log('✅ 模考模板创建成功（三科均 150 分，按真实结构）');
 
   // 8. 创建成就徽章
   const achievements = [

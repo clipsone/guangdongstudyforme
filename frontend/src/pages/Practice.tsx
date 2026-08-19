@@ -237,7 +237,12 @@ export default function Practice() {
           .catch(() => undefined);
       }
     } catch (e: any) {
-      setError(e?.error?.message || '提交失败');
+      // API 失败时仍显示本地判分结果，避免用户看不到评分
+      console.error('[练习提交失败]', e?.error?.message || e);
+      setError(e?.error?.message || '提交失败（已显示本地判分结果）');
+      // 使用本地计算的 items 作为结果
+      setResult(items);
+      setPhase('result');
     } finally {
       setLoading(false);
     }
@@ -365,7 +370,9 @@ export default function Practice() {
     const myAnswer = answers[q.id] || '';
     const progress = Math.round((answeredCount / questions.length) * 100);
     const options: string[] = Array.isArray(q.options) ? q.options : [];
-    const isObj = q.type === 'choice' || options.length > 0;
+    // 多空五选五（答案含多个字母，如 "C A B D E"）不能按单选渲染，需走文本框
+    const multiLetter = options.length > 0 && /\s/.test(String(q.answer || '').trim()) && /^[A-E]+(\s+[A-E]+)+$/i.test(String(q.answer || '').trim());
+    const isObj = q.type === 'choice' || (options.length > 0 && !multiLetter);
 
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">

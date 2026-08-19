@@ -337,6 +337,8 @@ export default function ExamPage() {
         {exam.questions.map((eq, i) => {
           const q = eq.question;
           const ua = answers[q.id] || '';
+          // 多空五选五（答案含多个字母，如 "C A B D E"）不能按单选渲染，需走文本框
+          const multiLetter = (q.options?.length ?? 0) > 0 && /\s/.test(String(q.answer || '').trim()) && /^[A-E]+(\s+[A-E]+)+$/i.test(String(q.answer || '').trim());
           return (
             <div key={eq.id} className={`card p-4 ${ua.trim() ? 'border-l-4 border-l-primary' : ''}`}>
               <div className="mb-2 flex items-center gap-2">
@@ -346,7 +348,7 @@ export default function ExamPage() {
               </div>
               <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200">{q.stem}</div>
 
-              {q.type === 'choice' || (q.options && q.options.length > 0) ? (
+              {q.type === 'choice' || ((q.options && q.options.length > 0) && !multiLetter) ? (
                 <div className="mt-3 space-y-1.5">
                   {q.options?.map((opt: string, i: number) => {
                     const letter = String.fromCharCode(65 + i);
@@ -373,7 +375,7 @@ export default function ExamPage() {
                 <textarea
                   value={ua}
                   onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
-                  placeholder={q.type === 'essay' ? '输入你的作答…' : '输入答案…'}
+                  placeholder={q.type === 'essay' ? '输入你的作答…' : multiLetter ? '五选五请按顺序填入选项字母，如：C A B D E' : '输入答案…'}
                   rows={q.type === 'essay' ? 5 : 2}
                   className="mt-3 w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm outline-none focus:border-primary dark:border-gray-700 dark:bg-gray-800"
                 />

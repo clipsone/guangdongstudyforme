@@ -16,6 +16,8 @@ model User {
   email         String?   @unique
   passwordHash  String
   role          String    @default("user") // user/admin
+  examMode      String    @default("spring") // spring=春考, undergraduate=本科
+  examTargets   Json?     // 备考目标配置：{subjects: ['CET4', 'CET6'], goalScore: 550}
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   targetScore   Int       @default(450)

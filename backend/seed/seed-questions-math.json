@@ -1093,7 +1093,7 @@
     ],
     "answer": "B",
     "solution": {
-      "analysis": "A₁B∥D₁C（二者均与 C₁D 平行且方向相同，为正方体中对边），故两直线平行。选 B。"
+      "analysis": "A₁B∥D₁C（正方体中，A₁B 与 D₁C 是前后相对两侧面上方向相同的面对角线），故两直线平行。选 B。"
     },
     "knowledgePointIds": [
       "M7-3"

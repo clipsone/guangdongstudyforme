@@ -4,6 +4,8 @@ export interface User {
   username: string;
   email: string;
   role?: string; // user/admin
+  examMode?: 'spring' | 'undergraduate'; // 春考模式 / 本科模式
+  examTargets?: { subjects?: string[]; goalScore?: number }; // 备考目标
   targetScore: number;
   examDate: string;
   createdAt: string;

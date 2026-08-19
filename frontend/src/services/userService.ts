@@ -9,7 +9,7 @@ export const userService = {
   },
 
   // 更新用户设置
-  updateMe: (data: { targetScore?: number; examDate?: string }) => {
+  updateMe: (data: { targetScore?: number; examDate?: string; examMode?: 'spring' | 'undergraduate'; examTargets?: User['examTargets'] }) => {
     return http.patch<ApiResponse<User>>('/user/me', data);
   },
 };

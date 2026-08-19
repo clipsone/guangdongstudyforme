@@ -8,6 +8,8 @@ const safeUser = (u) => ({
   targetScore: u.targetScore,
   examDate: u.examDate,
   role: u.role || 'user',
+  examMode: u.examMode || 'spring',
+  examTargets: u.examTargets || null,
   createdAt: u.createdAt,
 });
 
@@ -27,15 +29,17 @@ export const getMe = async (req, res) => {
   }
 };
 
-// 更新当前用户（考试日期/目标分）
+// 更新当前用户（考试日期/目标分/考试模式）
 export const updateMe = async (req, res) => {
   try {
-    const { targetScore, examDate } = req.body;
+    const { targetScore, examDate, examMode, examTargets } = req.body;
     const updated = await prisma.user.update({
       where: { id: req.userId },
       data: {
         ...(targetScore !== undefined ? { targetScore: Number(targetScore) } : {}),
-        ...(examDate ? { examDate: new Date(examDate) } : {})
+        ...(examDate ? { examDate: new Date(examDate) } : {}),
+        ...(examMode ? { examMode } : {}),
+        ...(examTargets !== undefined ? { examTargets } : {}),
       }
     });
 

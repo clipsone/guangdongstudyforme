@@ -174,13 +174,13 @@
     "stem": "下列各句中，没有语病的一句是（　）",
     "options": [
       "A. 通过这次活动，使我明白了团结的重要性。",
-      "B. 他能否考上理想的大学，关键在于他平时是否努力。",
+      "他能否考上理想的大学，关键在于他平时努力。",
       "C. 我们要养成随时整理错题的好习惯。",
       "D. 为了避免不再发生类似事故，学校加强了安全管理。"
     ],
     "answer": "C",
     "solution": {
-      "analysis": "A 项\"通过……使……\"缺主语；B 项\"能否……是否……\"搭配没问题但\"考上理想的大学\"表述不当（两面对两面本身可以，但语义重复）；D 项\"避免不再\"否定不当。C 项没有语病。故选 C。"
+      "analysis": "A 项\"通过……使……\"缺主语；B 项\"能否考上\"与\"关键在于他平时努力\"两面对一面，搭配不当；D 项\"避免不再\"否定不当。C 项没有语病。故选 C。"
     },
     "knowledgePointIds": [
       "Y4-4"
@@ -193,13 +193,13 @@
     "stem": "下列各句中加点成语使用恰当的一项是（　）",
     "options": [
       "A. 他平时不努力，考试前才临阵磨枪，真是事半功倍。",
-      "B. 这篇作文立意新颖，语言优美，真是独具匠心。",
+      "他做事总是马马虎虎，真是独具匠心。",
       "C. 面对困难，我们要勇往直前，不能裹足不前。",
       "D. 他的演讲慷慨激昂，令人叹为观止。"
     ],
     "answer": "C",
     "solution": {
-      "analysis": "A 项\"事半功倍\"用反（应为\"事倍功半\"）；B 项\"独具匠心\"多用于艺术构思，用于作文尚可但\"真是\"略显生硬；D 项\"叹为观止\"指赞美事物精妙，用于演讲不恰当；C 项\"裹足不前\"使用正确。综合选 C。"
+      "analysis": "A 项\"事半功倍\"用反（应为\"事倍功半\"）；B 项\"独具匠心\"指艺术创作中独到的巧妙构思，与\"马马虎虎\"的做事态度矛盾，褒贬错位；D 项\"叹为观止\"多用于赞美艺术品或美景，用于演讲不恰当。C 项\"裹足不前\"使用正确。故选 C。"
     },
     "knowledgePointIds": [
       "Y4-3"
@@ -490,7 +490,7 @@
     "subjectCode": "E",
     "type": "choice",
     "difficulty": 3,
-    "stem": "阅读上文，根据文章，考前最后一晚应该（　）",
+    "stem": "根据学习经验，考前最后一晚应该（　）",
     "options": [
       "A. 通宵复习",
       "B. 做更多模拟卷",
@@ -547,13 +547,20 @@
     "subjectCode": "E",
     "type": "fill",
     "difficulty": 4,
-    "stem": "五选五（阅读还原）：将下列句子按正确顺序填入文章空白处。\n\nKeeping a diary is a good habit. ①______ ②______ ③______ ④______ ⑤______\nA. It helps you remember what happened each day.\nB. You can also record your feelings and ideas.\nC. Try to write at the same time every day.\nD. Reading old diaries can be fun and meaningful.\nE. Diaries are private, so write honestly.\n（请按 A-E 的顺序字母作答，如：A B C D E）",
-    "answer": "A B C D E",
+    "stem": "五选五（阅读还原）：将下列句子按正确顺序填入文章空白处。\n\nKeeping a diary is a good habit. [1]______ [2]______ [3]______ [4]______ [5]______",
+    "answer": "A B C E D",
     "solution": {
-      "analysis": "逻辑顺序：写日记帮助回忆（A）→ 记录感受（B）→ 固定时间（C）→ 诚实书写（D）→ 回读有趣（E）。按此顺序作答。"
+      "analysis": "逻辑顺序：写日记帮助回忆（A）→ 记录感受（B）→ 固定时间（C）→ 诚实书写（E）→ 回读有趣（D）。按此顺序作答。"
     },
     "knowledgePointIds": [
       "E2-5"
+    ],
+    "options": [
+      "A. It helps you remember what happened each day.",
+      "B. You can also record your feelings and ideas.",
+      "C. Try to write at the same time every day.",
+      "D. Reading old diaries can be fun and meaningful.",
+      "E. Diaries are private, so write honestly."
     ]
   },
   {
