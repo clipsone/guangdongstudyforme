@@ -50,24 +50,37 @@ export default function Practice() {
   const startTimeRef = useRef<number>(0);
 
   useEffect(() => {
-    Promise.all([
+    if (!user) return; // 等待用户信息加载完成
+    const isUndergrad = user.examMode === 'undergraduate';
+
+    Promise.allSettled([
       subjectService.getSubjects(),
       knowledgeService.getKnowledge(),
-    ]).then(([subsRes, kpRes]) => {
-      setSubjects(subsRes.data);
-      // 根据模式过滤科目
-      const filtered = isUndergrad
-        ? subsRes.data.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
-        : subsRes.data.filter(s => ['Y', 'M', 'E'].includes(s.code));
-      setSubjects(filtered);
-      const pts = kpRes.data.filter((p) => p.level === 2);
-      setPoints(pts);
-      if (filtered.length > 0) setSubjectId(filtered[0].id);
+    ]).then(([subsResult, kpResult]) => {
+      // 处理科目列表
+      if (subsResult.status === 'fulfilled') {
+        const subs = subsResult.value.data || [];
+        const filtered = isUndergrad
+          ? subs.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
+          : subs.filter(s => ['Y', 'M', 'E'].includes(s.code));
+        console.log('[Practice] subjects loaded:', filtered.length, filtered.map(s => s.code));
+        setSubjects(filtered);
+        if (filtered.length > 0 && !subjectId) setSubjectId(filtered[0].id);
+      } else {
+        console.error('[Practice] 科目加载失败:', subsResult.reason);
+      }
 
-      // 从知识页「专项练习」进入：自动切到按考点模式并开练
+      // 处理知识点列表
+      if (kpResult.status === 'fulfilled') {
+        const pts = (kpResult.value.data || []).filter((p) => p.level === 2);
+        setPoints(pts);
+      }
+
+      // 从知识页「专项练习」进入
       const kpId = searchParams.get('knowledge');
       if (kpId) {
-        const kp = pts.find((p) => p.id === kpId);
+        const allKps = (kpResult.status === 'fulfilled' ? kpResult.value.data : points);
+        const kp = (allKps || []).find((p) => p.id === kpId);
         if (kp) {
           setSubjectId(kp.chapter.subjectId);
           setKnowledgeId(kpId);
@@ -76,14 +89,16 @@ export default function Practice() {
         }
         return;
       }
-      // 从错题本「一键重练」进入：自动切到错题重练模式并开练
+      // 从错题本「一键重练」进入
       if (searchParams.get('mode') === 'wrong') {
         setMode('wrong');
         setTimeout(() => start('wrong'), 0);
       }
-    }).catch(() => undefined);
+    }).catch((e) => {
+      console.error('[Practice] 加载失败:', e);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   const pointsOfSubject = useMemo(
     () => points.filter((p) => p.chapter.subjectId === subjectId),
@@ -96,13 +111,30 @@ export default function Practice() {
     const useSubj = subjId || subjectId;
     setLoading(true);
     setError('');
+
+    // 验证必填参数
+    if (!useSubj) {
+      setError('请先选择科目');
+      setLoading(false);
+      return;
+    }
+    if (!userId) {
+      setError('请先登录');
+      setLoading(false);
+      return;
+    }
+
+    console.log('[Practice] start:', { useMode, useSubj, useKp, userId, count });
+
     try {
       let list: Question[] = [];
       if (useMode === 'wrong') {
         const wrongRes = await wrongQuestionService.getWrongQuestions({ userId, mastered: false, limit: 50 });
         list = wrongRes.data.filter((w) => w.question && (w.question.status !== 'archived')).map((w) => w.question);
+        console.log('[Practice] wrong questions:', list.length);
       } else if (useMode === 'smart') {
         // 智能组卷：薄弱考点加权
+        console.log('[Practice] generating paper for subject:', useSubj);
         const genRes = await exerciseService.generatePaper({
           userId,
           subjectId: useSubj,
@@ -110,13 +142,15 @@ export default function Practice() {
           ...(difficulty !== 'all' ? { difficulty } : {}),
         });
         list = genRes.data.questions || [];
+        console.log('[Practice] generated questions:', list.length);
       } else {
         const qRes = await questionService.getQuestions({
           subjectId: useSubj,
           ...(useMode === 'knowledge' && useKp ? { knowledgePointId: useKp } : {}),
           limit: 60,
         });
-        list = qRes.data;
+        list = qRes.data || [];
+        console.log('[Practice] questions loaded:', list.length);
       }
 
       // 难度过滤（智能组卷已过滤；其余模式兜底）
@@ -127,7 +161,7 @@ export default function Practice() {
       list = [...list].sort(() => Math.random() - 0.5).slice(0, count);
 
       if (list.length === 0) {
-        setError('该条件下暂无题目，试试智能组卷或更换筛选');
+        setError('该条件下暂无题目，请尝试其他模式或更换筛选条件');
         return;
       }
       setQuestions(list);
@@ -139,7 +173,8 @@ export default function Practice() {
       startTimeRef.current = Date.now();
       setPhase('answering');
     } catch (e: any) {
-      setError(e?.error?.message || '加载题目失败');
+      console.error('[Practice] start error:', e);
+      setError(e?.error?.message || '加载题目失败，请检查网络连接后重试');
     } finally {
       setLoading(false);
     }
