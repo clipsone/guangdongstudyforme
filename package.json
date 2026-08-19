@@ -8,7 +8,9 @@
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "db:setup": "npm --prefix backend run db:setup",
-    "build:frontend": "npm --prefix frontend run build"
+    "build:frontend": "npm --prefix frontend run build",
+    "seed:undergraduate": "cd backend && node prisma/seed-undergraduate.js",
+    "generate:undergraduate": "cd backend && node scripts/generateUndergraduateQuestions.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -24,7 +26,3 @@
     "uuid": "^9.0.1"
   }
 }
-  "scripts": {
-    "seed:undergraduate": "cd backend && node prisma/seed-undergraduate.js",
-    "generate:undergraduate": "cd backend && node scripts/generateUndergraduateQuestions.mjs"
-  }
