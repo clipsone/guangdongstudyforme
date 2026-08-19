@@ -171,7 +171,7 @@ export default function Profile() {
             }}
             className={`btn-outline text-sm ${user?.examMode !== 'spring' ? 'border-primary text-primary font-bold' : ''}`}
           >
-            🌾 春考模式（语文/数学/英语）
+            🌾 春考模式
           </button>
           <button
             onClick={async () => {
