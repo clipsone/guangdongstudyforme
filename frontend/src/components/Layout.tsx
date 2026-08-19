@@ -53,7 +53,7 @@ export const Layout: React.FC = () => {
                 </Link>
               )}
               <span className="hidden sm:inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
-                <span className="geo-blue-triangle scale-50" /> {user?.examMode === 'undergraduate' ?  : '{user?.examMode === 'undergraduate' ? '大学学习进度' : '450 分目标'}'}
+                 <span className="geo-blue-triangle scale-50" /> {user?.examMode === 'undergraduate' ? '大学学习进度' : '450 分目标'}
               </span>
               <button
                 onClick={toggleTheme}
