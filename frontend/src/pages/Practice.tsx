@@ -24,9 +24,7 @@ interface ResultItem {
 export default function Practice() {
   const { userId, user } = useUser();
   const [searchParams] = useSearchParams();
-  const isUndergrad = user?.examMode === 'undergraduate';
 
-  console.log('[Practice] user:', user?.username, 'examMode:', user?.examMode, 'isUndergrad:', isUndergrad);
 
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [points, setPoints] = useState<KnowledgePoint[]>([]);
@@ -63,11 +61,9 @@ export default function Practice() {
         const filtered = isUndergrad
           ? subs.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
           : subs.filter(s => ['Y', 'M', 'E'].includes(s.code));
-        console.log('[Practice] subjects loaded:', filtered.length, filtered.map(s => s.code));
         setSubjects(filtered);
         if (filtered.length > 0 && !subjectId) setSubjectId(filtered[0].id);
       } else {
-        console.error('[Practice] 科目加载失败:', subsResult.reason);
       }
 
       // 处理知识点列表
@@ -94,8 +90,7 @@ export default function Practice() {
         setMode('wrong');
         setTimeout(() => start('wrong'), 0);
       }
-    }).catch((e) => {
-      console.error('[Practice] 加载失败:', e);
+    }).catch(() => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -124,17 +119,14 @@ export default function Practice() {
       return;
     }
 
-    console.log('[Practice] start:', { useMode, useSubj, useKp, userId, count });
 
     try {
       let list: Question[] = [];
       if (useMode === 'wrong') {
         const wrongRes = await wrongQuestionService.getWrongQuestions({ userId, mastered: false, limit: 50 });
         list = wrongRes.data.filter((w) => w.question && (w.question.status !== 'archived')).map((w) => w.question);
-        console.log('[Practice] wrong questions:', list.length);
       } else if (useMode === 'smart') {
         // 智能组卷：薄弱考点加权
-        console.log('[Practice] generating paper for subject:', useSubj);
         const genRes = await exerciseService.generatePaper({
           userId,
           subjectId: useSubj,
@@ -142,7 +134,6 @@ export default function Practice() {
           ...(difficulty !== 'all' ? { difficulty } : {}),
         });
         list = genRes.data.questions || [];
-        console.log('[Practice] generated questions:', list.length);
       } else {
         const qRes = await questionService.getQuestions({
           subjectId: useSubj,
@@ -150,7 +141,6 @@ export default function Practice() {
           limit: 60,
         });
         list = qRes.data || [];
-        console.log('[Practice] questions loaded:', list.length);
       }
 
       // 难度过滤（智能组卷已过滤；其余模式兜底）
@@ -173,7 +163,6 @@ export default function Practice() {
       startTimeRef.current = Date.now();
       setPhase('answering');
     } catch (e: any) {
-      console.error('[Practice] start error:', e);
       setError(e?.error?.message || '加载题目失败，请检查网络连接后重试');
     } finally {
       setLoading(false);
@@ -282,7 +271,6 @@ export default function Practice() {
       }
     } catch (e: any) {
       // API 失败时仍显示本地判分结果，避免用户看不到评分
-      console.error('[练习提交失败]', e?.error?.message || e);
       setError(e?.error?.message || '提交失败（已显示本地判分结果）');
       // 使用本地计算的 items 作为结果
       setResult(items);
