@@ -43,7 +43,7 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 app.use(cors({
   // 锁死允许的来源域名（默认本站），禁止反射任意 Origin
-  origin: process.env.CORS_ORIGIN || 'https://www.day-money-made.icu',
+  origin: process.env.CORS_ORIGIN || (process.env.VERCEL ? `https://${process.env.VERCEL_URL}` : 'https://www.day-money-made.icu'),
   credentials: true
 }));
 app.use(morgan('dev'));
