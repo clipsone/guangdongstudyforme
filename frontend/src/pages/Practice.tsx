@@ -200,8 +200,9 @@ export default function Practice() {
 
   const submit = async () => {
     setLoading(true);
+    let items: ResultItem[] = [];
     try {
-      const items: ResultItem[] = questions.map((q) => {
+      items = questions.map((q) => {
         const userAnswer = answers[q.id] || '';
         const isCorrect = grade(q, userAnswer);
         return { question: q, userAnswer, isCorrect };

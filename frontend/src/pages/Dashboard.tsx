@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, CheckCircle2, Circle, ClipboardList, Flame, Newspaper, Rocket, Target, GraduationCap, BookOpen, PenTool, XCircle, FileText, Bot as BotIcon, User, Award } from 'lucide-react';
+import { CheckCircle2, Circle, ClipboardList, Flame, Newspaper, Rocket, Target, XCircle, Bot as BotIcon } from 'lucide-react';
 import { useUser } from '@/hooks/useUser';
 import { statisticsService } from '@/services/statisticsService';
 import { studyTaskService } from '@/services/studyTaskService';
@@ -52,7 +52,7 @@ export default function Dashboard() {
     setLoading(true);
     setError('');
     try {
-      const [statsRes, tasksRes, dueRes, dueWrongRes] = await Promise.all([
+      const [statsRes, tasksRes, dueRes, _dueWrongRes] = await Promise.all([
         statisticsService.getDashboardStats(userId),
         studyTaskService.getStudyTasks(userId),
         recitationService.getTodayRecitation(userId),
@@ -61,6 +61,7 @@ export default function Dashboard() {
       setStats(statsRes.data);
       setTasks(tasksRes.data);
       setDueCount(dueRes.data.length);
+      setDueWrong((_dueWrongRes?.data?.length) || 0);
       setDueWrong(dueRes.data.length);
     } catch (e: any) {
       setError(e?.error?.message || '无法连接后端');
@@ -92,12 +93,8 @@ export default function Dashboard() {
   const studyHours = Math.floor(studyMinutes / 60);
   const studyMinRest = studyMinutes % 60;
 
-  // 春考标题
-  const springTitle = '2027 年广东春季高考';
+  // 准备描述文案
   const springDesc = '依据《普通高中课程标准》，只考必修内容。数学新增复数/逻辑用语/百分位数，英语新增五选五。';
-
-  // 本科标题
-  const undergradTitle = '大学学习平台';
   const undergradDesc = isUndergrad ? `备考目标：${(user?.examTargets?.subjects || []).join('、') || '未设置'}` : '';
 
   return (
@@ -123,7 +120,7 @@ export default function Dashboard() {
                   : `考试日期：${fmtDate(user?.examDate || '2027-01-10')} · 以官方公布为准`}
               </div>
               {isUndergrad && (user?.examTargets?.goalScore || 0) > 0 && (
-                <div className="mt-1 text-xs text-gray-500">目标分数：{user.examTargets.goalScore}</div>
+                <div className="mt-1 text-xs text-gray-500">目标分数：{user?.examTargets?.goalScore}</div>
               )}
             </div>
             <div className="flex items-center gap-2 opacity-90">
