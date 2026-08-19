@@ -58,7 +58,7 @@ export default function Login() {
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center border-2 border-ink bg-accent">
             <GraduationCap className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">学习平台 · 精准冲刺</h1>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">学习平台</h1>
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             {mode === 'login' ? '登录后继续你的复习计划' : '注册一个专属账号，数据完全隔离'}
           </p>

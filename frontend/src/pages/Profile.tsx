@@ -133,9 +133,9 @@ export default function Profile() {
           <UserIcon size={32} />
         </div>
         <div className="flex-1">
-          <div className="text-lg font-bold">{user?.username || '冲刺人'}</div>
+          <div className="text-lg font-bold">{user?.username || '学习者'}</div>
           <div className="text-sm text-gray-500">
-            {user?.examMode === 'undergraduate' ? '本科学习平台 · 单用户复习系统' : '2027 广东春季高考 · 语数英三科 · 单用户复习系统'}
+            {user?.examMode === 'undergraduate' ? '大学学习助手 · 支持多科目备考' : '2027 广东春季高考 · 语数英三科 · 单用户复习系统'}
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
