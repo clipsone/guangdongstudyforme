@@ -377,8 +377,8 @@ export default function AIPage() {
             {messages.length === 0 && (
               <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-sm text-gray-400">
                 <Bot size={36} className="opacity-40" />
-                <div>我是你的春考学习助手，可以问我任何问题</div>
-                <div className="text-xs opacity-70">试试：「春考数学怎么复习？」「帮我解释充分必要条件」</div>
+                <div>我是你的学习助手，可以问我任何问题</div>
+                <div className="text-xs opacity-70">试试：「这道题怎么解？」「帮我解释这个知识点」</div>
               </div>
             )}
             {messages.map((m, i) => (
