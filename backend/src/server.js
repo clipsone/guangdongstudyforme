@@ -1,13 +1,21 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// 必须在其他模块导入前加载环境变量
+// Vercel 会注入 DATABASE_URL，本地开发从 .env 读取
+if (!process.env.VERCEL && !process.env.DATABASE_URL) {
+  import('dotenv').then(({ default: dotenv }) => {
+    dotenv.config({ path: path.join(__dirname, '..', '.env') });
+  });
+}
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import prisma from './utils/prisma.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Routes
 import userRoutes from './routes/userRoutes.js';
@@ -30,11 +38,6 @@ import resourceRoutes from './routes/resourceRoutes.js';
 import essayRoutes from './routes/essayRoutes.js';
 import exportRoutes from './routes/exportRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
-
-// 仅本地开发加载 .env；云端由平台注入环境变量，优先级更高
-if (!process.env.VERCEL && !process.env.DATABASE_URL) {
-  dotenv.config({ path: path.join(__dirname, '..', '.env') });
-}
 
 const app = express();
 const PORT = process.env.PORT || 3001;
