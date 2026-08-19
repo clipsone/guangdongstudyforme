@@ -22,8 +22,9 @@ interface ResultItem {
 }
 
 export default function Practice() {
-  const { userId } = useUser();
+  const { userId, user } = useUser();
   const [searchParams] = useSearchParams();
+  const isUndergrad = user?.examMode === 'undergraduate';
 
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [points, setPoints] = useState<KnowledgePoint[]>([]);
@@ -52,9 +53,14 @@ export default function Practice() {
       knowledgeService.getKnowledge(),
     ]).then(([subsRes, kpRes]) => {
       setSubjects(subsRes.data);
+      // 根据模式过滤科目
+      const filtered = isUndergrad
+        ? subsRes.data.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
+        : subsRes.data.filter(s => ['Y', 'M', 'E'].includes(s.code));
+      setSubjects(filtered);
       const pts = kpRes.data.filter((p) => p.level === 2);
       setPoints(pts);
-      if (subsRes.data.length > 0) setSubjectId(subsRes.data[0].id);
+      if (filtered.length > 0) setSubjectId(filtered[0].id);
 
       // 从知识页「专项练习」进入：自动切到按考点模式并开练
       const kpId = searchParams.get('knowledge');

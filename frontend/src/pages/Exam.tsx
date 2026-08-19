@@ -17,8 +17,9 @@ interface AnswerEntry {
 }
 
 export default function ExamPage() {
-  const { userId } = useUser();
+  const { userId, user } = useUser();
   const navigate = useNavigate();
+  const isUndergrad = user?.examMode === 'undergraduate';
 
   const [templates, setTemplates] = useState<ExamTemplate[]>([]);
   const [history, setHistory] = useState<Exam[]>([]);
@@ -52,7 +53,12 @@ export default function ExamPage() {
         setTemplates(tRes.data);
         setHistory(hRes.data);
         setSubjects(sRes.data);
-        if (sRes.data.length > 0 && !importSubjectId) setImportSubjectId(sRes.data[0].id);
+        // 根据模式过滤科目
+        const filtered = isUndergrad
+          ? sRes.data.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
+          : sRes.data.filter(s => ['Y', 'M', 'E'].includes(s.code));
+        setSubjects(filtered);
+        if (filtered.length > 0 && !importSubjectId) setImportSubjectId(filtered[0].id);
       })
       .catch((e: any) => setError(e?.error?.message || '加载模考数据失败'));
   }, [userId]);

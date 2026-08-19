@@ -30,8 +30,10 @@ const SUBJECT_TABS = [
 ];
 
 export default function Knowledge() {
+  const { user } = useUser();
+  const isUndergrad = user?.examMode === 'undergraduate';
   const [subjects, setSubjects] = useState<SubjectGroup[]>([]);
-  const [activeSubject, setActiveSubject] = useState('Y');
+  const [activeSubject, setActiveSubject] = useState(isUndergrad ? 'CET4' : 'Y');
   const [activeChapter, setActiveChapter] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>('all');
   const [search, setSearch] = useState('');
@@ -77,7 +79,11 @@ export default function Knowledge() {
           sg.chapters.sort((a, b) => a.order - b.order);
         }
         const list = Array.from(subjectMap.values()).sort((a, b) => a.code.localeCompare(b.code));
-        setSubjects(list);
+        // 根据模式过滤
+        const filtered = isUndergrad
+          ? list.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
+          : list.filter(s => ['Y', 'M', 'E'].includes(s.code));
+        setSubjects(filtered);
         if (list.length > 0) {
           setActiveSubject(list[0].code);
           if (list[0].chapters.length > 0) setActiveChapter(list[0].chapters[0].id);
