@@ -57,7 +57,7 @@ async function main() {
     const existing = await prisma.question.count({ where: { subjectId: cet4Id } });
     const need = Math.max(0, 50 - existing);
     const questions = cet4Questions.slice(0, need).map(q => ({
-      subjectId: cet4Id, ...q, difficulty: 2, source: 'template', status: 'active'
+      subjectId: cet4Id, ...q, solution: { analysis: q.analysis }, difficulty: 2, source: 'template', status: 'active'
     }));
     await prisma.question.createMany({ data: questions, skipDuplicates: true });
     console.log(`✅ CET-4: +${questions.length} 题 (共${existing + questions.length})`);
@@ -70,7 +70,7 @@ async function main() {
     const existing = await prisma.question.count({ where: { subjectId: lawId } });
     const need = Math.max(0, 40 - existing);
     const questions = lawQuestions.slice(0, need).map(q => ({
-      subjectId: lawId, ...q, difficulty: 3, source: 'template', status: 'active'
+      subjectId: lawId, ...q, solution: { analysis: q.analysis }, difficulty: 3, source: 'template', status: 'active'
     }));
     await prisma.question.createMany({ data: questions, skipDuplicates: true });
     console.log(`✅ 法律: +${questions.length} 题 (共${existing + questions.length})`);
@@ -83,7 +83,7 @@ async function main() {
     const existing = await prisma.question.count({ where: { subjectId: univId } });
     const need = Math.max(0, 30 - existing);
     const questions = univQuestions.slice(0, need).map(q => ({
-      subjectId: univId, ...q, difficulty: 2, source: 'template', status: 'active'
+      subjectId: univId, ...q, solution: { analysis: q.analysis }, difficulty: 2, source: 'template', status: 'active'
     }));
     await prisma.question.createMany({ data: questions, skipDuplicates: true });
     console.log(`✅ 通识课: +${questions.length} 题 (共${existing + questions.length})`);
