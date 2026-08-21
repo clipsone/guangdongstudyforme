@@ -1,7 +1,12 @@
 import prisma from '../utils/prisma.js';
+import { syncLawCurriculum } from '../services/lawCurriculum.service.js';
 
-export const getLawStatus = async (_req, res) => {
+export const getLawStatus = async (req, res) => {
   try {
+    if (req.query.bootstrap === '1') {
+      const sync = await syncLawCurriculum();
+      return res.json({ data: { bootstrapped: true, ...sync } });
+    }
     const subject = await prisma.subject.findUnique({ where: { code: 'LAW' }, select: { id: true, name: true, code: true } });
     if (!subject) return res.json({ data: { subject: null, chapters: 0, knowledgePoints: 0, questions: 0, generatedQuestions: 0, examTemplates: 0 } });
     let [chapters, knowledgePoints, questions, generatedQuestions, examTemplates] = await Promise.all([
