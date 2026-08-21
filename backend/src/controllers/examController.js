@@ -15,7 +15,12 @@ function gradeQuestion(question, userAnswer) {
 // 获取模考模板列表
 export const getExamTemplates = async (req, res) => {
   try {
+    const user = await prisma.user.findUnique({ where: { id: req.userId }, select: { examMode: true } });
+    const allowedCodes = user?.examMode === 'undergraduate'
+      ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER']
+      : ['Y', 'M', 'E'];
     const templates = await prisma.examTemplate.findMany({
+      where: { subject: { code: { in: allowedCodes } } },
       include: { subject: true },
       orderBy: { createdAt: 'asc' }
     });
@@ -55,8 +60,12 @@ export const createExam = async (req, res) => {
     const { templateId } = req.body;
     const userId = req.userId;
 
-    const template = await prisma.examTemplate.findUnique({
-      where: { id: templateId },
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { examMode: true } });
+    const allowedCodes = user?.examMode === 'undergraduate'
+      ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER']
+      : ['Y', 'M', 'E'];
+    const template = await prisma.examTemplate.findFirst({
+      where: { id: templateId, subject: { code: { in: allowedCodes } } },
       include: { subject: true }
     });
     if (!template) {

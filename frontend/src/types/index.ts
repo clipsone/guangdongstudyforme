@@ -54,7 +54,7 @@ export interface KnowledgePoint {
 export interface Question {
   id: string;
   subjectId: string;
-  type: 'choice' | 'fill' | 'essay' | 'composite';
+  type: 'choice' | 'fill' | 'essay' | 'listening' | 'composite';
   section?: string;
   stem: string;
   options?: any;

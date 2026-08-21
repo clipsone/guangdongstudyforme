@@ -7,6 +7,7 @@ export const questionService = {
   getQuestions: (params?: {
     subjectId?: string;
     type?: string;
+    section?: string;
     difficulty?: number;
     knowledgePointId?: string;
     limit?: number;

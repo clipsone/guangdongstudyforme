@@ -33,6 +33,8 @@ export default function Practice() {
   const [knowledgeId, setKnowledgeId] = useState('');
   const [count, setCount] = useState(10);
   const [difficulty, setDifficulty] = useState('all');
+  const [questionType, setQuestionType] = useState('all');
+  const [section, setSection] = useState(searchParams.get('section') || 'all');
   const [mode, setMode] = useState<Mode>('smart');
   const [aiType, setAiType] = useState<'choice' | 'fill' | 'essay'>('choice');
 
@@ -139,7 +141,9 @@ export default function Practice() {
         const qRes = await questionService.getQuestions({
           subjectId: useSubj,
           ...(useMode === 'knowledge' && useKp ? { knowledgePointId: useKp } : {}),
-          limit: 60,
+          ...(questionType !== 'all' ? { type: questionType } : {}),
+          ...(section !== 'all' ? { section } : {}),
+          limit: 100,
         });
         list = qRes.data || [];
       }
@@ -367,7 +371,14 @@ export default function Practice() {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          {user?.examMode === 'undergraduate' && mode !== 'ai' && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型</label><select className="input" value={questionType} onChange={(e) => setQuestionType(e.target.value)}><option value="all">全部题型</option><option value="choice">选择题</option><option value="fill">填空 / 名词解释</option><option value="essay">简答 / 论述 / 案例分析</option><option value="listening">听力题</option></select></div>
+              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型分区</label><input className="input" placeholder="如：民法总论、案例分析、Reading" value={section === 'all' ? '' : section} onChange={(e) => setSection(e.target.value || 'all')} /></div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 gap-4" style={{ marginTop: user?.examMode === 'undergraduate' && mode !== 'ai' ? 12 : 0 }}>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题量</label>
               <select className="input" value={count} onChange={(e) => setCount(Number(e.target.value))}>

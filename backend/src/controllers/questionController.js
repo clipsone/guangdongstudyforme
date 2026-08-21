@@ -6,6 +6,7 @@ export const getQuestions = async (req, res) => {
     const {
       subjectId,
       type,
+      section,
       difficulty,
       knowledgePointId,
       limit = 20,
@@ -16,6 +17,7 @@ export const getQuestions = async (req, res) => {
 
     if (subjectId) where.subjectId = subjectId;
     if (type) where.type = type;
+    if (section) where.section = section;
     if (difficulty) where.difficulty = parseInt(difficulty);
 
     if (knowledgePointId) {

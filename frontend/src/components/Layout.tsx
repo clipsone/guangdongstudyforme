@@ -14,6 +14,7 @@ export const Layout: React.FC = () => {
   const springNavItems = [
     { path: '/', icon: Home, label: '首页' },
     { path: '/learn', icon: BookOpen, label: '学习' },
+    { path: '/law/knowledge', icon: BookOpen, label: '法学知识库' },
     { path: '/practice', icon: PenTool, label: '练习' },
     { path: '/micro-learn', icon: Zap, label: '微学习' },
     { path: '/exam', icon: ClipboardList, label: '模考' },
