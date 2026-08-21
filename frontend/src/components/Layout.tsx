@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock } from 'lucide-react';
+import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock, Zap } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useUser } from '@/hooks/useUser';
 
@@ -14,6 +14,7 @@ export const Layout: React.FC = () => {
     { path: '/', icon: Home, label: '首页' },
     { path: '/learn', icon: BookOpen, label: '学习' },
     { path: '/practice', icon: PenTool, label: '练习' },
+    { path: '/micro-learn', icon: Zap, label: '微学习' },
     { path: '/exam', icon: ClipboardList, label: '模考' },
     { path: '/wrong', icon: XCircle, label: '错题' },
     { path: '/recitation', icon: FileText, label: '背诵' },

@@ -8,6 +8,7 @@ import Login from '@/pages/Login';
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Knowledge = lazy(() => import('@/pages/Knowledge'));
 const Practice = lazy(() => import('@/pages/Practice'));
+const MicroLearn = lazy(() => import('@/pages/MicroLearn'));
 const Exam = lazy(() => import('@/pages/Exam'));
 const WrongQuestions = lazy(() => import('@/pages/WrongQuestions'));
 const Recitation = lazy(() => import('@/pages/Recitation'));
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/" element={<Suspense fallback={<PageFallback />}><Dashboard /></Suspense>} />
         <Route path="/learn" element={<Suspense fallback={<PageFallback />}><Knowledge /></Suspense>} />
         <Route path="/practice" element={<Suspense fallback={<PageFallback />}><Practice /></Suspense>} />
+        <Route path="/micro-learn" element={<Suspense fallback={<PageFallback />}><MicroLearn /></Suspense>} />
         <Route path="/exam" element={<Suspense fallback={<PageFallback />}><Exam /></Suspense>} />
         <Route path="/wrong" element={<Suspense fallback={<PageFallback />}><WrongQuestions /></Suspense>} />
         <Route path="/recitation" element={<Suspense fallback={<PageFallback />}><Recitation /></Suspense>} />
