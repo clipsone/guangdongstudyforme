@@ -1,5 +1,6 @@
 // 管理员后台：数据总览 / 题库管理 / 纠错反馈 / 用户管理
 import prisma from '../utils/prisma.js';
+import { syncLawCurriculum as syncLawData } from '../services/lawCurriculum.service.js';
 
 const LAW_CURRICULUM = [
   ['法理学','法律本体与法律规范',['法的概念与特征','法律规范的结构','法律渊源与效力','法律责任基础']],
@@ -18,27 +19,8 @@ const LAW_CURRICULUM = [
 
 // 幂等同步本科法学课程、知识点和基础练习题（管理员专用）
 export const syncLawCurriculum = async (_req, res) => {
-  try {
-    const subject = await prisma.subject.findUnique({ where: { code: 'LAW' } });
-    if (!subject) return res.status(404).json({ error: { message: 'LAW 科目不存在，请先运行本科种子', status: 404 } });
-    let chapters = 0; let knowledgePoints = 0; let questions = 0;
-    for (let ci = 0; ci < LAW_CURRICULUM.length; ci++) {
-      const [name, description, points] = LAW_CURRICULUM[ci];
-      const chapter = await prisma.chapter.upsert({ where: { code: 'LAW-' + String(ci + 1).padStart(2, '0') }, update: { name, description, order: ci + 1 }, create: { subjectId: subject.id, code: 'LAW-' + String(ci + 1).padStart(2, '0'), name, description, order: ci + 1 } });
-      chapters++;
-      for (let pi = 0; pi < points.length; pi++) {
-        const code = chapter.code + '-' + String(pi + 1).padStart(2, '0');
-        const kp = await prisma.knowledgePoint.upsert({ where: { code }, update: { name: points[pi], summary: name + '：' + points[pi] + '。掌握概念、构成要件、法律后果、典型案例和易错点。', level: 2, difficulty: ci % 3 + 2 }, create: { chapterId: chapter.id, code, name: points[pi], level: 2, difficulty: ci % 3 + 2, summary: name + '：' + points[pi] + '。掌握概念、构成要件、法律后果、典型案例和易错点。' } });
-        knowledgePoints++;
-        const variants = [{ type: 'choice', label: '单项选择题', stem: name + '｜' + points[pi] + '：下列哪项最符合本知识点的基本分析方法？', options: ['A. 仅凭直觉判断', 'B. 结合构成要件与法律后果分析', 'C. 只看主观愿望', 'D. 只看最终结果'], answer: 'B' }, { type: 'fill', label: '名词解释/简答题', stem: name + '｜' + points[pi] + '：请解释该知识点的核心概念、构成要件或法律后果。', options: null, answer: '按照规则、要件、事实和结论作答。' }, { type: 'essay', label: '案例分析题', stem: name + '｜' + points[pi] + '案例分析：请按事实识别、法律关系、适用规则、法律后果和结论作答。', options: null, answer: '按照事实识别、法律关系、适用规则、法律后果和结论作答。' }];
-        for (const variant of variants) {
-          const q = await prisma.question.upsert({ where: { id: 'law-seed-' + code + '-' + variant.type }, update: { section: name + '·' + variant.label, options: variant.options, answer: variant.answer, source: 'course-generated', status: 'active' }, create: { id: 'law-seed-' + code + '-' + variant.type, subjectId: subject.id, type: variant.type, section: name + '·' + variant.label, stem: variant.stem, options: variant.options, answer: variant.answer, solution: { analysis: '本科法学课程生成练习题，来源为 course-generated；不代表官方真题。', knowledgePoint: points[pi] }, difficulty: ci % 3 + 2, source: 'course-generated', status: 'active' } });
-          await prisma.questionKnowledge.upsert({ where: { questionId_knowledgePointId: { questionId: q.id, knowledgePointId: kp.id } }, update: {}, create: { questionId: q.id, knowledgePointId: kp.id } }); questions++;
-        }
-      }
-    }
-    res.json({ data: { chapters, knowledgePoints, questions } });
-  } catch (error) { console.error('[法学课程同步]', error); res.status(500).json({ error: { message: '法学课程同步失败', status: 500 } }); }
+  try { res.json({ data: await syncLawData() }); }
+  catch (error) { console.error('[法学课程同步]', error); res.status(500).json({ error: { message: '法学课程同步失败', status: 500 } }); }
 };
 
 // 数据总览
