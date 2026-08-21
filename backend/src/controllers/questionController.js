@@ -13,7 +13,11 @@ export const getQuestions = async (req, res) => {
       offset = 0
     } = req.query;
 
-    const where = {};
+    const user = await prisma.user.findUnique({ where: { id: req.userId }, select: { examMode: true } });
+    const allowedCodes = user?.examMode === 'undergraduate'
+      ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER']
+      : ['Y', 'M', 'E'];
+    const where = { subject: { code: { in: allowedCodes } } };
 
     if (subjectId) where.subjectId = subjectId;
     if (type) where.type = type;

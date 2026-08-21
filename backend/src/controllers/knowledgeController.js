@@ -6,7 +6,12 @@ export const getKnowledge = async (req, res) => {
   try {
     const { subjectId } = req.query;
 
-    const where = subjectId ? { chapter: { subjectId } } : {};
+    const user = await prisma.user.findUnique({ where: { id: req.userId }, select: { examMode: true } });
+    const allowedCodes = user?.examMode === 'undergraduate'
+      ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER']
+      : ['Y', 'M', 'E'];
+    const where = { chapter: { subject: { code: { in: allowedCodes } } } };
+    if (subjectId) where.chapter.subjectId = subjectId;
 
     const knowledgePoints = await prisma.knowledgePoint.findMany({
       where,
