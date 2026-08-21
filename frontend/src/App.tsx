@@ -46,6 +46,13 @@ function LearningRoute() {
     : <Suspense fallback={<PageFallback />}><Knowledge /></Suspense>;
 }
 
+function UniversityResourcesRoute() {
+  const { user } = useUser();
+  return user?.examMode === 'undergraduate'
+    ? <Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>
+    : <Suspense fallback={<PageFallback />}><Resources /></Suspense>;
+}
+
 function HomeRoute() {
   const { user } = useUser();
   return user?.examMode === 'undergraduate'
@@ -75,7 +82,7 @@ export default function App() {
         <Route path="/profile" element={<Suspense fallback={<PageFallback />}><Profile /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<PageFallback />}><Insights /></Suspense>} />
         <Route path="/university-analytics" element={<Suspense fallback={<PageFallback />}><UniversityAnalytics /></Suspense>} />
-        <Route path="/resources" element={<Suspense fallback={<PageFallback />}><Resources /></Suspense>} />
+        <Route path="/resources" element={<UniversityResourcesRoute />} />
         <Route path="/university" element={<Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>} />
         <Route path="/admin" element={<Suspense fallback={<PageFallback />}><Admin /></Suspense>} />
       </Route>

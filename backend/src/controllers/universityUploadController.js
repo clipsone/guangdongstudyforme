@@ -5,7 +5,7 @@ import mammoth from 'mammoth';
 import { chat, vision, safeJson } from '../services/aiProvider.js';
 const allowed = new Set(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown', 'image/png', 'image/jpeg', 'image/webp']);
 export const uploadFile = async (req, res) => {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: { message: '文件存储尚未配置，请在 Vercel 添加 BLOB_READ_WRITE_TOKEN', status: 503 } });
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: { message: '文件存储尚未配置：请在 Vercel Production 添加 BLOB_READ_WRITE_TOKEN；当前仅有 BLOB_STORE_ID 还不能上传。', status: 503 } });
   const file = req.file;
   if (!file) return res.status(400).json({ error: { message: '请选择文件', status: 400 } });
   if (!allowed.has(file.mimetype)) return res.status(400).json({ error: { message: '仅支持 PDF、Word、TXT、Markdown 和 PNG/JPG/WEBP 图片', status: 400 } });
