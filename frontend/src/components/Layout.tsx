@@ -34,7 +34,7 @@ export const Layout: React.FC = () => {
     { path: '/profile', icon: User, label: '我的' },
   ];
   const navItems = isUndergrad ? universityNavItems : springNavItems;
-  const mobileNavItems = navItems.filter((item) => (isUndergrad ? ['/university','/practice','/exam','/ai','/profile'] : ['/','/learn','/practice','/ai','/profile']).includes(item.path));
+  const mobileNavItems = navItems.filter((item) => (isUndergrad ? ['/university','/practice','/exam','/ai','/university-analytics','/profile'] : ['/','/learn','/practice','/ai','/profile']).includes(item.path));
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
