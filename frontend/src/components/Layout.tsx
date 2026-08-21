@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock, Zap } from 'lucide-react';
+import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock, Zap, Target } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useUser } from '@/hooks/useUser';
 
@@ -9,8 +9,9 @@ export const Layout: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const { user } = useUser();
   const isAdmin = user?.role === 'admin';
+  const isUndergrad = user?.examMode === 'undergraduate';
 
-  const navItems = [
+  const springNavItems = [
     { path: '/', icon: Home, label: '首页' },
     { path: '/learn', icon: BookOpen, label: '学习' },
     { path: '/practice', icon: PenTool, label: '练习' },
@@ -21,6 +22,17 @@ export const Layout: React.FC = () => {
     { path: '/ai', icon: Bot, label: 'AI' },
     { path: '/profile', icon: User, label: '我的' },
   ];
+  const universityNavItems = [
+    { path: '/', icon: Home, label: '工作台' },
+    { path: '/learn', icon: BookOpen, label: '课程' },
+    { path: '/practice', icon: PenTool, label: '练习' },
+    { path: '/resources', icon: FileText, label: '资料' },
+    { path: '/ai', icon: Bot, label: 'AI 助手' },
+    { path: '/insights', icon: Target, label: '学习分析' },
+    { path: '/profile', icon: User, label: '我的' },
+  ];
+  const navItems = isUndergrad ? universityNavItems : springNavItems;
+  const mobileNavItems = navItems.filter((item) => ['/','/learn','/practice','/ai','/profile'].includes(item.path));
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
@@ -28,7 +40,7 @@ export const Layout: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper dark:bg-[#111111] transition-colors">
       {/* 顶栏：白色 + 底部三色条（包豪斯经典配色） */}
-      <nav className="sticky top-0 z-50 border-b-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]">
+      <nav className={isUndergrad ? 'sticky top-0 z-50 border-b-2 border-indigo-300 bg-white/95 dark:border-indigo-800 dark:bg-slate-950/95' : 'sticky top-0 z-50 border-b-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]'}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
@@ -67,7 +79,7 @@ export const Layout: React.FC = () => {
           </div>
         </div>
         {/* 三色分割条 */}
-        <div className="bauhaus-stripe">
+        <div className={isUndergrad ? 'university-stripe' : 'bauhaus-stripe'}>
           <span /><span /><span />
         </div>
       </nav>
@@ -75,7 +87,7 @@ export const Layout: React.FC = () => {
       {/* 移动端底部导航 */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]">
         <div className="flex justify-around py-1">
-          {navItems.map((item) => (
+          {mobileNavItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -145,7 +157,7 @@ export const Layout: React.FC = () => {
         </aside>
 
         {/* 主内容区域 */}
-        <main className="flex-1 md:ml-64 pb-20 md:pb-8">
+        <main className={isUndergrad ? 'flex-1 md:ml-64 pb-24 md:pb-8 university-shell' : 'flex-1 md:ml-64 pb-24 md:pb-8'}>
           <Outlet />
         </main>
       </div>

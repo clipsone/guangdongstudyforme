@@ -8,6 +8,7 @@
   }
 
   body {
+    overflow-x: hidden;
     @apply bg-paper text-ink antialiased dark:bg-[#111111] dark:text-gray-100;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
@@ -133,8 +134,44 @@
 @keyframes reward-spin { 0%, 100% { opacity: .25; transform: scale(.7) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(180deg); } }
 @media (prefers-reduced-motion: reduce) { .reward-overlay, .reward-card, .reward-icon, .reward-burst { animation: none; } }
 
+/* 大学学习助手：安静、专注的蓝紫色工作台 */
+.university-shell { background: linear-gradient(135deg, #f8faff 0%, #f5f3ff 48%, #eef7ff 100%); min-height: calc(100vh - 68px); }
+.dark .university-shell { background: linear-gradient(135deg, #0f172a 0%, #17153a 52%, #102333 100%); }
+.university-stripe { display: flex; height: 6px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 48%, #06b6d4 100%); }
+.university-stripe::after { content: ''; flex: 1; background: rgb(255 255 255 / 22%); }
+.university-shell .card { border-color: #c7d2fe; border-radius: 14px; box-shadow: 0 10px 30px rgb(79 70 229 / 8%); }
+.dark .university-shell .card { border-color: #373b70; box-shadow: 0 10px 30px rgb(0 0 0 / 20%); }
+.university-shell .btn-primary { border-radius: 10px; background: #4f46e5; box-shadow: 0 4px 12px rgb(79 70 229 / 25%); }
+.university-shell .btn-primary:hover { background: #4338ca; }
+.university-shell .chip { border-color: #a5b4fc; border-radius: 999px; text-transform: none; }
+
+/* 大学学习助手：安静、专注的蓝紫色工作台 */
+.university-shell { background: linear-gradient(135deg, #f8faff 0%, #f5f3ff 48%, #eef7ff 100%); min-height: calc(100vh - 68px); }
+.dark .university-shell { background: linear-gradient(135deg, #0f172a 0%, #17153a 52%, #102333 100%); }
+.university-stripe { display: flex; height: 6px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 48%, #06b6d4 100%); }
+.university-stripe::after { content: ''; flex: 1; background: rgb(255 255 255 / 22%); }
+.university-shell .card { border-color: #c7d2fe; border-radius: 14px; box-shadow: 0 10px 30px rgb(79 70 229 / 8%); }
+.dark .university-shell .card { border-color: #373b70; box-shadow: 0 10px 30px rgb(0 0 0 / 20%); }
+.university-shell .btn-primary { border-radius: 10px; background: #4f46e5; box-shadow: 0 4px 12px rgb(79 70 229 / 25%); }
+.university-shell .btn-primary:hover { background: #4338ca; }
+.university-shell .chip { border-color: #a5b4fc; border-radius: 999px; text-transform: none; }
+.university-tools { margin-top: -0.25rem; }
+.university-tool-card { display: flex; align-items: center; gap: .75rem; border: 1px solid #c7d2fe; border-radius: 14px; background: rgb(255 255 255 / 78%); padding: 1rem; color: #1e1b4b; transition: transform .18s, box-shadow .18s; }
+.university-tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgb(79 70 229 / 12%); }
+.university-tool-card b, .university-tool-card small { display: block; }
+.university-tool-card small { margin-top: .25rem; color: #64748b; font-size: .75rem; }
+.dark .university-tool-card { border-color: #373b70; background: rgb(30 27 75 / 55%); color: #eef2ff; }
+
 /* 滚动条（桌面端包豪斯风格） */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #fafaf7; }
 ::-webkit-scrollbar-thumb { background: #111111; border: 2px solid #fafaf7; }
 ::-webkit-scrollbar-thumb:hover { background: #1D4ED8; }
+
+@media (max-width: 767px) {
+  .card { box-shadow: 2px 2px 0 #111; }
+  .university-shell .card { box-shadow: 0 5px 18px rgb(79 70 229 / 10%); }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  .reward-card { box-shadow: 4px 4px 0 #111; }
+  .table-scroll, .chart-scroll { max-width: 100%; overflow-x: auto; }
+}

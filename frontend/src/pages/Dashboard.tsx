@@ -105,7 +105,7 @@ export default function Dashboard() {
   const undergradDesc = isUndergrad ? `备考目标：${(user?.examTargets?.subjects || []).join('、') || '未设置'}` : '';
 
   return (
-    <div className="space-y-5 p-4 sm:p-6">
+    <div className={isUndergrad ? 'university-dashboard space-y-5 p-3 sm:p-6' : 'space-y-5 p-4 sm:p-6'}>
       {/* 顶部 banner */}
       <div className="card overflow-hidden">
         <div className="bauhaus-stripe"><span /><span /><span /></div>
@@ -116,8 +116,8 @@ export default function Dashboard() {
                 <span className="geo-red-square" /> {isUndergrad ? '本科模式' : '春考冲刺'}
               </div>
               <div className="mt-2">
-                <span className="text-4xl font-black tabular-nums leading-none text-ink dark:text-white">
-                  {isUndergrad ? '📚 大学学习助手' : `${daysLeft}`}
+                <span className="text-3xl font-black leading-tight text-ink dark:text-white sm:text-4xl">
+                  {isUndergrad ? '📚 你的大学学习工作台' : `${daysLeft}`}
                 </span>
                 {!isUndergrad && <span className="pb-1 text-2xl font-black text-primary"> 天</span>}
               </div>
@@ -168,6 +168,14 @@ export default function Dashboard() {
           </Link>
         ))}
       </div>
+
+      {isUndergrad && (
+        <div className="university-tools grid gap-3 sm:grid-cols-3">
+          <Link to="/learn" className="university-tool-card"><span className="text-2xl">🎓</span><span><b>我的课程</b><small>整理本学期知识点</small></span></Link>
+          <Link to="/resources" className="university-tool-card"><span className="text-2xl">📚</span><span><b>资料中心</b><small>课件、笔记与复习资料</small></span></Link>
+          <Link to="/ai" className="university-tool-card"><span className="text-2xl">🤖</span><span><b>AI 学习助手</b><small>总结、解释、论文与计划</small></span></Link>
+        </div>
+      )}
 
       {newBadges.length > 0 && (
         <div className="card border-accent/40 bg-accent/5 p-4">
@@ -277,7 +285,7 @@ export default function Dashboard() {
           <div className="card flex flex-wrap items-center gap-3 p-5">
             <Target size={22} className="text-accent" />
             <div className="flex-1 text-sm text-gray-600 dark:text-gray-300">
-              今天的目标：完成 <b>20 道练习</b>、复习 <b>5 道错题</b>、背诵 <b>1 个篇目</b>。积少成多，坚持就是胜利！
+              {isUndergrad ? <>今天的目标：完成 <b>1 个课程小节</b>、整理 <b>3 条笔记</b>、完成 <b>10 道练习</b>。每天推进一点，期末不慌。</> : <>今天的目标：完成 <b>20 道练习</b>、复习 <b>5 道错题</b>、背诵 <b>1 个篇目</b>。积少成多，坚持就是胜利！</>}
             </div>
             <div className="flex gap-2 flex-wrap">
               <Link to="/practice" className="btn-accent">开始练习 <Rocket size={14} /></Link>
