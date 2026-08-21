@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Layout } from '@/components/Layout';
+import { useUser } from '@/hooks/useUser';
 import Login from '@/pages/Login';
 
 // 路由级代码分割：首屏只加载必要页面，其余按需加载
@@ -16,6 +17,7 @@ const AIPage = lazy(() => import('@/pages/AIPage'));
 const Profile = lazy(() => import('@/pages/Profile'));
 const Insights = lazy(() => import('@/pages/Insights'));
 const Resources = lazy(() => import('@/pages/Resources'));
+const UniversityHub = lazy(() => import('@/pages/UniversityHub'));
 const Admin = lazy(() => import('@/pages/Admin'));
 
 // 路由守卫：未登录跳转登录页
@@ -36,6 +38,13 @@ function PageFallback() {
   );
 }
 
+function HomeRoute() {
+  const { user } = useUser();
+  return user?.examMode === 'undergraduate'
+    ? <Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>
+    : <Suspense fallback={<PageFallback />}><Dashboard /></Suspense>;
+}
+
 export default function App() {
   return (
     <Routes>
@@ -47,7 +56,7 @@ export default function App() {
           </RequireAuth>
         }
       >
-        <Route path="/" element={<Suspense fallback={<PageFallback />}><Dashboard /></Suspense>} />
+        <Route path="/" element={<HomeRoute />} />
         <Route path="/learn" element={<Suspense fallback={<PageFallback />}><Knowledge /></Suspense>} />
         <Route path="/practice" element={<Suspense fallback={<PageFallback />}><Practice /></Suspense>} />
         <Route path="/micro-learn" element={<Suspense fallback={<PageFallback />}><MicroLearn /></Suspense>} />
@@ -58,6 +67,7 @@ export default function App() {
         <Route path="/profile" element={<Suspense fallback={<PageFallback />}><Profile /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<PageFallback />}><Insights /></Suspense>} />
         <Route path="/resources" element={<Suspense fallback={<PageFallback />}><Resources /></Suspense>} />
+        <Route path="/university" element={<Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>} />
         <Route path="/admin" element={<Suspense fallback={<PageFallback />}><Admin /></Suspense>} />
       </Route>
     </Routes>

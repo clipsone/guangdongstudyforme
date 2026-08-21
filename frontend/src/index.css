@@ -156,6 +156,9 @@
 .university-shell .btn-primary:hover { background: #4338ca; }
 .university-shell .chip { border-color: #a5b4fc; border-radius: 999px; text-transform: none; }
 .university-tools { margin-top: -0.25rem; }
+.university-hub { min-width: 0; }
+.university-hero { background: linear-gradient(120deg, #312e81, #4f46e5 48%, #0891b2); box-shadow: 0 16px 32px rgb(49 46 129 / 18%); }
+.university-hub input[type='range'] { accent-color: #4f46e5; }
 .university-tool-card { display: flex; align-items: center; gap: .75rem; border: 1px solid #c7d2fe; border-radius: 14px; background: rgb(255 255 255 / 78%); padding: 1rem; color: #1e1b4b; transition: transform .18s, box-shadow .18s; }
 .university-tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgb(79 70 229 / 12%); }
 .university-tool-card b, .university-tool-card small { display: block; }
