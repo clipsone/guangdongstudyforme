@@ -27,23 +27,25 @@ const qVariants = (course, point) => [
 export async function syncLawCurriculum() {
   const subject = await prisma.subject.findUnique({ where:{ code:'LAW' } });
   if (!subject) throw new Error('LAW subject not found');
-  let chapters=0, knowledgePoints=0, questions=0;
-  for (let ci=0; ci<LAW_CURRICULUM.length; ci++) {
-    const [course, description, points] = LAW_CURRICULUM[ci];
+  const chapterResults = await Promise.all(LAW_CURRICULUM.map(async ([course, description, points], ci) => {
     const code='LAW-'+String(ci+1).padStart(2,'0');
-    const chapter=await prisma.chapter.upsert({ where:{code}, update:{name:course,description,order:ci+1}, create:{subjectId:subject.id,code,name:course,description,order:ci+1} }); chapters++;
-    for (let pi=0; pi<points.length; pi++) {
-      const point=points[pi]; const kpCode=code+'-'+String(pi+1).padStart(2,'0');
-      const kp=await prisma.knowledgePoint.upsert({ where:{code:kpCode}, update:{name:point,summary:course+'：'+point+'。掌握概念、构成要件、法律后果、典型案例和易错点。',level:2,difficulty:ci%3+2}, create:{chapterId:chapter.id,code:kpCode,name:point,level:2,difficulty:ci%3+2,summary:course+'：'+point+'。掌握概念、构成要件、法律后果、典型案例和易错点。'} }); knowledgePoints++;
-      for (const variant of qVariants(course,point)) {
+    const chapter=await prisma.chapter.upsert({ where:{code}, update:{name:course,description,order:ci+1}, create:{subjectId:subject.id,code,name:course,description,order:ci+1} });
+    const pointResults = await Promise.all(points.map(async (point, pi) => {
+      const kpCode=code+'-'+String(pi+1).padStart(2,'0');
+      const kp=await prisma.knowledgePoint.upsert({ where:{code:kpCode}, update:{name:point,summary:course+'：'+point+'。掌握概念、构成要件、法律后果、典型案例和易错点。',level:2,difficulty:ci%3+2}, create:{chapterId:chapter.id,code:kpCode,name:point,level:2,difficulty:ci%3+2,summary:course+'：'+point+'。掌握概念、构成要件、法律后果、典型案例和易错点。'} });
+      const variantResults = await Promise.all(qVariants(course,point).map(async (variant) => {
         const id='law-seed-'+kpCode+'-'+variant.type;
         const q=await prisma.question.upsert({ where:{id}, update:{section:course+'·'+variant.label,options:variant.options,answer:variant.answer,source:'course-generated',status:'active'}, create:{id,subjectId:subject.id,type:variant.type,section:course+'·'+variant.label,stem:variant.stem,options:variant.options,answer:variant.answer,solution:{analysis:'本科法学课程生成练习题，来源为 course-generated；不代表官方真题。',knowledgePoint:point},difficulty:ci%3+2,source:'course-generated',status:'active'} });
-        await prisma.questionKnowledge.upsert({ where:{questionId_knowledgePointId:{questionId:q.id,knowledgePointId:kp.id}}, update:{}, create:{questionId:q.id,knowledgePointId:kp.id} }); questions++;
-      }
-    }
-  }
+        await prisma.questionKnowledge.upsert({ where:{questionId_knowledgePointId:{questionId:q.id,knowledgePointId:kp.id}}, update:{}, create:{questionId:q.id,knowledgePointId:kp.id} });
+        return q.id;
+      }));
+      return { questions: variantResults.length };
+    }));
+    return { knowledgePoints: pointResults.length, questions: pointResults.reduce((sum, item) => sum + item.questions, 0) };
+  }));
   for (const [code,name,description,totalScore,duration,sections] of templates) {
-    await prisma.examTemplate.upsert({ where:{name}, update:{description,config:{examMode:'undergraduate',courseCode:'LAW',sections:sections.map(([n,t,c,s])=>({name:n,type:t,count:c,scorePer:s}))},totalScore,duration}, create:{subjectId:subject.id,name,description,config:{examMode:'undergraduate',courseCode:'LAW',sections:sections.map(([n,t,c,s])=>({name:n,type:t,count:c,scorePer:s}))},totalScore,duration} });
+    const config={examMode:'undergraduate',courseCode:'LAW',sections:sections.map(([n,t,c,s])=>({name:n,type:t,count:c,scorePer:s}))};
+    await prisma.examTemplate.upsert({ where:{name}, update:{description,config,totalScore,duration}, create:{subjectId:subject.id,name,description,config,totalScore,duration} });
   }
-  return {chapters, knowledgePoints, questions, examTemplates:templates.length};
+  return { chapters: chapterResults.length, knowledgePoints: chapterResults.reduce((sum, item) => sum + item.knowledgePoints, 0), questions: chapterResults.reduce((sum, item) => sum + item.questions, 0), examTemplates: templates.length };
 }
