@@ -40,6 +40,7 @@ import universityAnalyticsRoutes from './routes/universityAnalyticsRoutes.js';
 import essayRoutes from './routes/essayRoutes.js';
 import exportRoutes from './routes/exportRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import lawRoutes from './routes/lawRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -94,6 +95,7 @@ app.use('/api/university-analytics', universityAnalyticsRoutes);
 app.use('/api/essays', essayRoutes);
 app.use('/api/export', exportRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/law', lawRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
