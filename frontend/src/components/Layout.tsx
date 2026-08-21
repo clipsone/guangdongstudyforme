@@ -27,6 +27,7 @@ export const Layout: React.FC = () => {
     { path: '/university', icon: BookOpen, label: '课程' },
     { path: '/practice', icon: PenTool, label: '练习' },
     { path: '/exam', icon: ClipboardList, label: '模拟考试' },
+    { path: '/wrong', icon: XCircle, label: '错题' },
     { path: '/resources', icon: FileText, label: '资料' },
     { path: '/ai', icon: Bot, label: 'AI 助手' },
     { path: '/insights', icon: Target, label: '学习分析' },

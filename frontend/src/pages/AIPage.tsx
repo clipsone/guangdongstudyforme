@@ -16,7 +16,8 @@ interface ChatMsg {
 }
 
 export default function AIPage() {
-  const { userId } = useUser();
+  const { userId, user } = useUser();
+  const isUndergrad = user?.examMode === 'undergraduate';
   const [tab, setTab] = useState<Tab>('explain');
 
   // 解题助手
@@ -59,11 +60,13 @@ export default function AIPage() {
         if (pts.length > 0) setPointId(pts[0].id);
         setQuestions(qRes.data);
         if (qRes.data.length > 0) setQuestionId(qRes.data[0].id);
-        setSubjects(subRes.data);
-        if (subRes.data.length > 0) setEssaySubjectId(subRes.data[0].id);
+        const allowed = isUndergrad ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'] : ['Y', 'M', 'E'];
+        const filteredSubjects = subRes.data.filter((s) => allowed.includes(s.code));
+        setSubjects(filteredSubjects);
+        if (filteredSubjects.length > 0) setEssaySubjectId(filteredSubjects[0].id);
       })
       .catch(() => undefined);
-  }, []);
+  }, [isUndergrad]);
 
   // 加载聊天历史 + 作文库
   useEffect(() => {

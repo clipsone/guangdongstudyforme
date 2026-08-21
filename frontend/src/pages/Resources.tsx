@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useUser } from '@/hooks/useUser';
 import { ExternalLink, FileText, Film, Headphones, Plus, Trash2 } from 'lucide-react';
 import { subjectService } from '@/services/subjectService';
 import { resourceService } from '@/services/resourceService';
@@ -12,6 +13,8 @@ const TYPE_META: Record<string, { icon: React.ReactNode; label: string; color: s
 };
 
 export default function Resources() {
+  const { user } = useUser();
+  const isUndergrad = user?.examMode === 'undergraduate';
   const [resources, setResources] = useState<Resource[]>([]);
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [subjectId, setSubjectId] = useState('');
@@ -35,8 +38,8 @@ export default function Resources() {
   };
 
   useEffect(() => {
-    subjectService.getSubjects().then((r) => setSubjects(r.data)).catch(() => undefined);
-  }, []);
+    subjectService.getSubjects().then((r) => { const allowed = isUndergrad ? ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'] : ['Y', 'M', 'E']; setSubjects(r.data.filter((s) => allowed.includes(s.code))); }).catch(() => undefined);
+  }, [isUndergrad]);
 
   useEffect(() => {
     load();
@@ -73,7 +76,7 @@ export default function Resources() {
   return (
     <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold">📚 学习资料库</h2>
+        <h2 className="text-xl font-bold">{isUndergrad ? '📚 大学课程资料库' : '📚 学习资料库'}</h2>
         <button className="btn-primary text-sm" onClick={() => setShowForm((v) => !v)}>
           <Plus size={14} /> 添加资料
         </button>
