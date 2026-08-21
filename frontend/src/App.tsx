@@ -18,6 +18,7 @@ const Profile = lazy(() => import('@/pages/Profile'));
 const Insights = lazy(() => import('@/pages/Insights'));
 const Resources = lazy(() => import('@/pages/Resources'));
 const UniversityHub = lazy(() => import('@/pages/UniversityHub'));
+const UniversityAnalytics = lazy(() => import('@/pages/UniversityAnalytics'));
 const Admin = lazy(() => import('@/pages/Admin'));
 
 // 路由守卫：未登录跳转登录页
@@ -73,6 +74,7 @@ export default function App() {
         <Route path="/ai" element={<Suspense fallback={<PageFallback />}><AIPage /></Suspense>} />
         <Route path="/profile" element={<Suspense fallback={<PageFallback />}><Profile /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<PageFallback />}><Insights /></Suspense>} />
+        <Route path="/university-analytics" element={<Suspense fallback={<PageFallback />}><UniversityAnalytics /></Suspense>} />
         <Route path="/resources" element={<Suspense fallback={<PageFallback />}><Resources /></Suspense>} />
         <Route path="/university" element={<Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>} />
         <Route path="/admin" element={<Suspense fallback={<PageFallback />}><Admin /></Suspense>} />

@@ -11,6 +11,7 @@ router.get('/workspace', controller.getWorkspace);
 router.post('/schedules', scheduleController.createSchedule);
 router.delete('/schedules/:id', scheduleController.deleteSchedule);
 router.post('/files/upload', upload.single('file'), uploadController.uploadFile);
+router.post('/files/:id/summarize', uploadController.summarizeFile);
 router.post('/courses', controller.createCourse);
 router.patch('/courses/:id', controller.updateCourse);
 router.delete('/courses/:id', controller.deleteCourse);

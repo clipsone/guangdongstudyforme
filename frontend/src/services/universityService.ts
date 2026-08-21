@@ -1,6 +1,11 @@
 import { http } from './api';
 export const universityService = {
   workspace: () => http.get<any>('/university/workspace'),
+  analytics: () => http.get<any>('/university-analytics'),
+  saveGrade: (data: any) => http.post<any>('/university-analytics/grades', data),
+  refreshNotifications: () => http.post<any>('/university-analytics/notifications/refresh'),
+  notifications: () => http.get<any>('/university-analytics/notifications'),
+  markNotificationsRead: () => http.post<any>('/university-analytics/notifications/read'),
   createSchedule: (data: any) => http.post<any>('/university/schedules', data),
   deleteSchedule: (id: string) => http.delete<any>('/university/schedules/' + id),
   createCourse: (data: any) => http.post<any>('/university/courses', data),
@@ -13,5 +18,6 @@ export const universityService = {
   updatePlan: (id: string, data: any) => http.patch<any>('/university/plans/' + id, data),
   deletePlan: (id: string) => http.delete<any>('/university/plans/' + id),
   deleteFile: (id: string) => http.delete<any>('/university/files/' + id),
+  summarizeFile: (id: string) => http.post<any>('/university/files/' + id + '/summarize'),
   uploadFile: (file: File, category = 'course-material', courseId?: string) => { const data = new FormData(); data.append('file', file); data.append('category', category); if (courseId) data.append('courseId', courseId); return http.post<any>('/university/files/upload', data, { timeout: 60000 }); },
 };

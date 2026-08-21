@@ -30,7 +30,7 @@ export const Layout: React.FC = () => {
     { path: '/wrong', icon: XCircle, label: '错题' },
     { path: '/resources', icon: FileText, label: '资料' },
     { path: '/ai', icon: Bot, label: 'AI 助手' },
-    { path: '/insights', icon: Target, label: '学习分析' },
+    { path: '/university-analytics', icon: Target, label: '学习分析' },
     { path: '/profile', icon: User, label: '我的' },
   ];
   const navItems = isUndergrad ? universityNavItems : springNavItems;

@@ -1,0 +1,12 @@
+ALTER TABLE "UniversityFile" ADD COLUMN IF NOT EXISTS "extractedText" TEXT;
+ALTER TABLE "UniversityFile" ADD COLUMN IF NOT EXISTS "aiSummary" TEXT;
+ALTER TABLE "UniversityFile" ADD COLUMN IF NOT EXISTS "knowledgePoints" JSONB;
+ALTER TABLE "UniversityFile" ADD COLUMN IF NOT EXISTS "parseStatus" TEXT NOT NULL DEFAULT 'pending';
+CREATE TABLE IF NOT EXISTS "UniversityGrade" ("id" TEXT NOT NULL, "userId" TEXT NOT NULL, "courseId" TEXT NOT NULL, "usual" DOUBLE PRECISION, "midterm" DOUBLE PRECISION, "final" DOUBLE PRECISION, "credits" DOUBLE PRECISION NOT NULL DEFAULT 0, "semester" TEXT NOT NULL DEFAULT '本学期', "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "UniversityGrade_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX IF NOT EXISTS "UniversityGrade_userId_courseId_semester_key" ON "UniversityGrade"("userId","courseId","semester");
+CREATE INDEX IF NOT EXISTS "UniversityGrade_userId_semester_idx" ON "UniversityGrade"("userId","semester");
+ALTER TABLE "UniversityGrade" ADD CONSTRAINT "UniversityGrade_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "UniversityGrade" ADD CONSTRAINT "UniversityGrade_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "UniversityCourse"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS "UniversityNotification" ("id" TEXT NOT NULL, "userId" TEXT NOT NULL, "type" TEXT NOT NULL, "title" TEXT NOT NULL, "message" TEXT NOT NULL, "dueAt" TIMESTAMP(3), "read" BOOLEAN NOT NULL DEFAULT false, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "UniversityNotification_pkey" PRIMARY KEY ("id"));
+CREATE INDEX IF NOT EXISTS "UniversityNotification_userId_read_createdAt_idx" ON "UniversityNotification"("userId","read","createdAt");
+ALTER TABLE "UniversityNotification" ADD CONSTRAINT "UniversityNotification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

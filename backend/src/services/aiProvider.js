@@ -64,6 +64,13 @@ export function extractArray(obj) {
 
 // 统一对话入口：messages=[{role,content}]
 // opts: { temperature, json, maxTokens, model } —— json 时要求模型输出 JSON；model 缺省用全局配置
+export async function vision(prompt, dataUrl, { maxTokens = 1800, model } = {}) {
+  if (!isConfigured()) throw new Error('AI 未配置（AI_PROVIDER=mock 或缺少对应 API Key）');
+  const p = currentProvider(); const endpoint = p === 'doubao' ? DOUBAO_ENDPOINT : ZHIPU_ENDPOINT; const apiKey = p === 'doubao' ? process.env.ARK_API_KEY : process.env.ZHIPU_API_KEY;
+  const resp = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` }, body: JSON.stringify({ model: model || process.env.OCR_MODEL || 'glm-4v-flash', messages: [{ role: 'user', content: [{ type: 'text', text: prompt }, { type: 'image_url', image_url: { url: dataUrl } }] }], max_tokens: maxTokens, stream: false }), signal: AbortSignal.timeout(50000) });
+  if (!resp.ok) throw new Error(`视觉模型 API ${resp.status}: ${(await resp.text()).slice(0, 300)}`); const data = await resp.json(); const content = data?.choices?.[0]?.message?.content; if (!content) throw new Error('视觉模型返回为空'); return String(content);
+}
+
 export async function chat(messages, { temperature = 0.7, json = false, maxTokens = 1024, model } = {}) {
   if (!isConfigured()) {
     throw new Error('AI 未配置（AI_PROVIDER=mock 或缺少对应 API Key）');

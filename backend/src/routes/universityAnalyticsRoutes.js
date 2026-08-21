@@ -1,0 +1,11 @@
+import express from 'express';
+import authMiddleware from '../middleware/auth.js';
+import * as controller from '../controllers/universityAnalyticsController.js';
+const router = express.Router();
+router.use(authMiddleware);
+router.get('/', controller.getAnalytics);
+router.post('/grades', controller.saveGrade);
+router.get('/notifications', controller.getNotifications);
+router.post('/notifications/refresh', controller.refreshNotifications);
+router.post('/notifications/read', controller.markNotificationsRead);
+export default router;

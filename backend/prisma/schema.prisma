@@ -40,6 +40,8 @@ model User {
   universityPlans UniversityPlan[]
   universityFiles UniversityFile[]
   universitySchedules UniversitySchedule[]
+  universityGrades UniversityGrade[]
+  universityNotifications UniversityNotification[]
   knowledgeMastery  KnowledgeMastery[]
   wrongQuestions    WrongQuestion[]
 }
@@ -489,6 +491,7 @@ model UniversityCourse {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignments UniversityAssignment[]
   schedules UniversitySchedule[]
+  grades UniversityGrade[]
   @@index([userId])
 }
 
@@ -544,12 +547,46 @@ model UniversityFile {
   size         Int
   storageUrl   String
   storageKey   String?
+  extractedText String?
+  aiSummary String?
+  knowledgePoints Json?
+  parseStatus String @default("pending")
   category     String   @default("course-material")
   courseId     String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@index([userId, category])
+}
+
+model UniversityGrade {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  usual     Float?
+  midterm   Float?
+  final     Float?
+  credits   Float    @default(0)
+  semester  String   @default("本学期")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    UniversityCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@unique([userId, courseId, semester])
+  @@index([userId, semester])
+}
+
+model UniversityNotification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  title     String
+  message   String
+  dueAt     DateTime?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, read, createdAt])
 }
 
 model Achievement {

@@ -1,0 +1,3 @@
+import prisma from '../src/utils/prisma.js';
+import { GENERATED } from '../seed/generated-university-questions.js';
+for (const [code, questions] of Object.entries(GENERATED)) { const subject = await prisma.subject.findUnique({ where: { code } }); if (!subject) continue; const existing = await prisma.question.count({ where: { subjectId: subject.id, source: 'generated-practice' } }); for (const q of questions.slice(existing)) await prisma.question.create({ data: { ...q, subjectId: subject.id } }); console.log(code, 'generated-practice', Math.max(0, questions.length - existing)); } await prisma.$disconnect();
