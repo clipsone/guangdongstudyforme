@@ -32,17 +32,29 @@
 | `AI_MODEL` | `glm-4.5-flash` | 可选。与智谱账户实际可用模型保持一致 |
 | `NODE_ENV` | `production` | 可选。 生产环境标识 |
 | `CORS_ORIGIN` | `https://你的域名.vercel.app` | 可选。 允许的来源域名 |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob Token | **大学资料上传必须**；不要提交到 GitHub |
 
-### 3. 数据库初始化（关键一步）
+### 3. 数据库迁移与初始化（关键一步）
 
-Vercel 的函数是只读的，不能直接运行数据库迁移。你需要：
+Vercel 的函数是只读的，不能直接运行数据库迁移。大学工作台新增课程、作业、计划和文件索引表，必须先在 PostgreSQL 上执行迁移。你需要：
 
-**方式 A：在 Vercel 后台手动触发**
+**方式 A：在本地使用生产数据库连接执行迁移（推荐）**
+
+在安全终端中设置 Vercel 的 `DATABASE_URL` 后执行：
+
+```bash
+cd 2027spring-exam/backend
+npx prisma migrate deploy --schema prisma/schema.prisma
+```
+
+不要把真实连接串写进仓库或聊天记录。
+
+**方式 B：在 Vercel 后台手动触发**
 1. 进入 Vercel 项目 → `Deployments`
 2. 找到最新的成功部署，点击 `...` → `Open Deployment`
 3. 访问 `https://你的域名.vercel.app/api/health` 确认后端运行
 
-**方式 B：创建临时初始化路由（推荐）**
+**方式 C：创建临时初始化路由（不推荐）**
 
 在 `backend/src/routes/` 下创建一个临时路由 `dbInitRoutes.js`，用于初始化数据库：
 

@@ -1,0 +1,55 @@
+import prisma from '../utils/prisma.js';
+
+const uid = (req) => req.userId;
+const fail = (res, message, status = 400) => res.status(status).json({ error: { message, status } });
+const dateOrNull = (value) => value ? new Date(value) : null;
+
+export const getWorkspace = async (req, res) => {
+  const userId = uid(req);
+  const [courses, assignments, plans, files] = await Promise.all([
+    prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } }),
+    prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' } }),
+    prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+    prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+  ]);
+  res.json({ data: { courses, assignments, plans, files } });
+};
+
+export const createCourse = async (req, res) => {
+  const { name, teacher, color, mastery, examDate } = req.body;
+  if (!String(name || '').trim()) return fail(res, '课程名称不能为空');
+  const course = await prisma.universityCourse.create({ data: { userId: uid(req), name: String(name).trim().slice(0, 100), teacher: String(teacher || '').slice(0, 100) || null, color: String(color || '#4f46e5'), mastery: Math.max(0, Math.min(100, Number(mastery) || 0)), examDate: dateOrNull(examDate) } });
+  res.status(201).json({ data: course });
+};
+export const updateCourse = async (req, res) => {
+  const course = await prisma.universityCourse.findFirst({ where: { id: req.params.id, userId: uid(req) } });
+  if (!course) return fail(res, '课程不存在', 404);
+  const { name, teacher, color, mastery, examDate } = req.body;
+  const updated = await prisma.universityCourse.update({ where: { id: course.id }, data: { ...(name !== undefined ? { name: String(name).trim().slice(0, 100) } : {}), ...(teacher !== undefined ? { teacher: String(teacher).slice(0, 100) } : {}), ...(color !== undefined ? { color: String(color) } : {}), ...(mastery !== undefined ? { mastery: Math.max(0, Math.min(100, Number(mastery) || 0)) } : {}), ...(examDate !== undefined ? { examDate: dateOrNull(examDate) } : {}) } });
+  res.json({ data: updated });
+};
+export const createAssignment = async (req, res) => {
+  const { title, course, courseId, dueDate } = req.body;
+  if (!String(title || '').trim() || !dueDate) return fail(res, '作业名称和截止日期必填');
+  const item = await prisma.universityAssignment.create({ data: { userId: uid(req), title: String(title).trim().slice(0, 200), course: String(course || '').slice(0, 100) || null, courseId: courseId || null, dueDate: new Date(dueDate) } });
+  res.status(201).json({ data: item });
+};
+export const updateAssignment = async (req, res) => {
+  const item = await prisma.universityAssignment.findFirst({ where: { id: req.params.id, userId: uid(req) } });
+  if (!item) return fail(res, '作业不存在', 404);
+  const updated = await prisma.universityAssignment.update({ where: { id: item.id }, data: { ...(req.body.completed !== undefined ? { completed: Boolean(req.body.completed) } : {}), ...(req.body.title !== undefined ? { title: String(req.body.title).slice(0, 200) } : {}) } });
+  res.json({ data: updated });
+};
+export const createPlan = async (req, res) => {
+  if (!String(req.body.title || '').trim()) return fail(res, '计划内容不能为空');
+  const plan = await prisma.universityPlan.create({ data: { userId: uid(req), title: String(req.body.title).trim().slice(0, 200), day: String(req.body.day || '今天').slice(0, 20) } });
+  res.status(201).json({ data: plan });
+};
+export const updatePlan = async (req, res) => {
+  const plan = await prisma.universityPlan.findFirst({ where: { id: req.params.id, userId: uid(req) } });
+  if (!plan) return fail(res, '计划不存在', 404);
+  const updated = await prisma.universityPlan.update({ where: { id: plan.id }, data: { ...(req.body.completed !== undefined ? { completed: Boolean(req.body.completed) } : {}) } });
+  res.json({ data: updated });
+};
+export const deletePlan = async (req, res) => { const result = await prisma.universityPlan.deleteMany({ where: { id: req.params.id, userId: uid(req) } }); res.json({ data: { deleted: result.count > 0 } }); };
+export const deleteFile = async (req, res) => { const result = await prisma.universityFile.deleteMany({ where: { id: req.params.id, userId: uid(req) } }); res.json({ data: { deleted: result.count > 0 } }); };

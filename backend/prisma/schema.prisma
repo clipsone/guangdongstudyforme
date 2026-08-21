@@ -35,6 +35,10 @@ model User {
   userAchievements  UserAchievement[]
   weeklyReports     WeeklyReport[]
   sessions          Session[]
+  universityCourses UniversityCourse[]
+  universityAssignments UniversityAssignment[]
+  universityPlans UniversityPlan[]
+  universityFiles UniversityFile[]
   knowledgeMastery  KnowledgeMastery[]
   wrongQuestions    WrongQuestion[]
 }
@@ -469,6 +473,64 @@ model Resource {
 
   @@index([subjectId])
   @@index([type])
+}
+
+model UniversityCourse {
+  id          String   @id @default(uuid())
+  userId      String
+  name        String
+  teacher     String?
+  color       String   @default("#4f46e5")
+  mastery     Int      @default(0)
+  examDate    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignments UniversityAssignment[]
+  @@index([userId])
+}
+
+model UniversityAssignment {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String?
+  title     String
+  course    String?
+  dueDate   DateTime
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseRef UniversityCourse? @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  @@index([userId, dueDate])
+}
+
+model UniversityPlan {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  day       String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+}
+
+model UniversityFile {
+  id           String   @id @default(uuid())
+  userId       String
+  name         String
+  mimeType     String
+  size         Int
+  storageUrl   String
+  storageKey   String?
+  category     String   @default("course-material")
+  courseId     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, category])
 }
 
 model Achievement {
