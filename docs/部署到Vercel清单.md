@@ -28,7 +28,8 @@
 |-------|-----|------|
 | `DATABASE_URL` | `postgresql://...` | **必须**。 PostgreSQL 连接串 |
 | `ZHIPU_API_KEY` | `sk-...` | 可选。 AI 模型 API Key |
-| `AI_MODEL` | `deepseek-v4-flash` | 可选。 AI 模型名称 |
+| `AI_PROVIDER` | `glm` | 使用智谱 GLM 提供 AI 问答 |
+| `AI_MODEL` | `glm-4.5-flash` | 可选。与智谱账户实际可用模型保持一致 |
 | `NODE_ENV` | `production` | 可选。 生产环境标识 |
 | `CORS_ORIGIN` | `https://你的域名.vercel.app` | 可选。 允许的来源域名 |
 
@@ -115,8 +116,9 @@ node prisma/seed-users.js
 
 ```
 DATABASE_URL=postgresql://用户名:密码@host:5432/数据库名?schema=public
-ZHIPU_API_KEY=你的API密钥（可选）
-AI_MODEL=deepseek-v4-flash（可选）
+AI_PROVIDER=glm
+ZHIPU_API_KEY=你的智谱 API 密钥（可选）
+AI_MODEL=glm-4.5-flash（可选；以智谱控制台当前可用模型为准）
 NODE_ENV=production
 ```
 

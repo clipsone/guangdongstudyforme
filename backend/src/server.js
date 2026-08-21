@@ -53,15 +53,17 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Health check
-app.get('/health', async (req, res) => {
+// Health check：本地兼容 /health，Vercel 统一使用 /api/health
+const healthCheck = async (_req, res) => {
   try {
-    const dbOk = await prisma.$queryRaw`SELECT 1 as test`;
+    await prisma.$queryRaw`SELECT 1 as test`;
     res.json({ status: 'ok', database: 'connected', timestamp: new Date().toISOString() });
   } catch (e) {
     res.status(500).json({ status: 'error', database: 'disconnected', error: e.message });
   }
-});
+};
+app.get('/health', healthCheck);
+app.get('/api/health', healthCheck);
 
 // API Routes
 app.get('/api', (req, res) => {
