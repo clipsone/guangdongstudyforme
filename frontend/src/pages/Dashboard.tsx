@@ -40,7 +40,8 @@ const UNDERGRAD_SUBJECTS = [
 export default function Dashboard() {
   const { user, userId } = useUser();
   const isUndergrad = user?.examMode === 'undergraduate';
-  const subjects = isUndergrad ? UNDERGRAD_SUBJECTS : SPRING_SUBJECTS;
+  // 大学模式的课程来自大学工作台，不再展示春考固定科目卡片。
+  const subjects = isUndergrad ? [] : SPRING_SUBJECTS;
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [tasks, setTasks] = useState<StudyTask[]>([]);
   const [dueCount, setDueCount] = useState(0);
@@ -171,7 +172,7 @@ export default function Dashboard() {
 
       {isUndergrad && (
         <div className="university-tools grid gap-3 sm:grid-cols-3">
-          <Link to="/learn" className="university-tool-card"><span className="text-2xl">🎓</span><span><b>我的课程</b><small>整理本学期知识点</small></span></Link>
+          <Link to="/university" className="university-tool-card"><span className="text-2xl">🎓</span><span><b>我的课程</b><small>整理本学期课程与掌握度</small></span></Link>
           <Link to="/resources" className="university-tool-card"><span className="text-2xl">📚</span><span><b>资料中心</b><small>课件、笔记与复习资料</small></span></Link>
           <Link to="/ai" className="university-tool-card"><span className="text-2xl">🤖</span><span><b>AI 学习助手</b><small>总结、解释、论文与计划</small></span></Link>
         </div>

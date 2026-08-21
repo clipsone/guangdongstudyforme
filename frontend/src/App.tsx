@@ -38,6 +38,13 @@ function PageFallback() {
   );
 }
 
+function LearningRoute() {
+  const { user } = useUser();
+  return user?.examMode === 'undergraduate'
+    ? <Suspense fallback={<PageFallback />}><UniversityHub /></Suspense>
+    : <Suspense fallback={<PageFallback />}><Knowledge /></Suspense>;
+}
+
 function HomeRoute() {
   const { user } = useUser();
   return user?.examMode === 'undergraduate'
@@ -57,7 +64,7 @@ export default function App() {
         }
       >
         <Route path="/" element={<HomeRoute />} />
-        <Route path="/learn" element={<Suspense fallback={<PageFallback />}><Knowledge /></Suspense>} />
+        <Route path="/learn" element={<LearningRoute />} />
         <Route path="/practice" element={<Suspense fallback={<PageFallback />}><Practice /></Suspense>} />
         <Route path="/micro-learn" element={<Suspense fallback={<PageFallback />}><MicroLearn /></Suspense>} />
         <Route path="/exam" element={<Suspense fallback={<PageFallback />}><Exam /></Suspense>} />

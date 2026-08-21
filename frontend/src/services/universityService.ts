@@ -9,5 +9,5 @@ export const universityService = {
   updatePlan: (id: string, data: any) => http.patch<any>('/university/plans/' + id, data),
   deletePlan: (id: string) => http.delete<any>('/university/plans/' + id),
   deleteFile: (id: string) => http.delete<any>('/university/files/' + id),
-  uploadFile: (file: File, category = 'course-material', courseId?: string) => { const data = new FormData(); data.append('file', file); data.append('category', category); if (courseId) data.append('courseId', courseId); return http.post<any>('/university/files/upload', data, { headers: { 'Content-Type': 'multipart/form-data' }, timeout: 60000 }); },
+  uploadFile: (file: File, category = 'course-material', courseId?: string) => { const data = new FormData(); data.append('file', file); data.append('category', category); if (courseId) data.append('courseId', courseId); return http.post<any>('/university/files/upload', data, { timeout: 60000 }); },
 };
