@@ -24,6 +24,16 @@ const qVariants = (course, point) => [
   { type:'fill', label:'名词解释/简答题', stem:course+'｜'+point+'：请解释该知识点的核心概念、构成要件或法律后果。', options:null, answer:'按照规则、要件、事实和结论作答。' },
   { type:'essay', label:'案例分析题', stem:course+'｜'+point+'案例分析：请按事实识别、法律关系、适用规则、法律后果和结论作答。', options:null, answer:'按照事实识别、法律关系、适用规则、法律后果和结论作答。' },
 ];
+export async function ensureLawExamTemplates() {
+  const subject = await prisma.subject.findUnique({ where: { code: 'LAW' } });
+  if (!subject) throw new Error('LAW subject not found');
+  for (const [_code,name,description,totalScore,duration,sections] of templates) {
+    const config={examMode:'undergraduate',courseCode:'LAW',sections:sections.map(([n,t,c,s])=>({name:n,type:t,count:c,scorePer:s}))};
+    await prisma.examTemplate.upsert({ where:{name}, update:{description,config,totalScore,duration}, create:{subjectId:subject.id,name,description,config,totalScore,duration} });
+  }
+  return { examTemplates: templates.length };
+}
+
 export async function syncLawCurriculum() {
   const subject = await prisma.subject.findUnique({ where:{ code:'LAW' } });
   if (!subject) throw new Error('LAW subject not found');
@@ -43,9 +53,6 @@ export async function syncLawCurriculum() {
     }));
     return { knowledgePoints: pointResults.length, questions: pointResults.reduce((sum, item) => sum + item.questions, 0) };
   }));
-  for (const [code,name,description,totalScore,duration,sections] of templates) {
-    const config={examMode:'undergraduate',courseCode:'LAW',sections:sections.map(([n,t,c,s])=>({name:n,type:t,count:c,scorePer:s}))};
-    await prisma.examTemplate.upsert({ where:{name}, update:{description,config,totalScore,duration}, create:{subjectId:subject.id,name,description,config,totalScore,duration} });
-  }
+  await ensureLawExamTemplates();
   return { chapters: chapterResults.length, knowledgePoints: chapterResults.reduce((sum, item) => sum + item.knowledgePoints, 0), questions: chapterResults.reduce((sum, item) => sum + item.questions, 0), examTemplates: templates.length };
 }

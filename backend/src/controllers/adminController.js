@@ -1,6 +1,6 @@
 // 管理员后台：数据总览 / 题库管理 / 纠错反馈 / 用户管理
 import prisma from '../utils/prisma.js';
-import { syncLawCurriculum as syncLawData } from '../services/lawCurriculum.service.js';
+import { syncLawCurriculum as syncLawData, ensureLawExamTemplates } from '../services/lawCurriculum.service.js';
 
 
 // 幂等同步本科法学课程、知识点和基础练习题（管理员专用）
