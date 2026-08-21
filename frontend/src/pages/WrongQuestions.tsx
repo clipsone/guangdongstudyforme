@@ -5,6 +5,7 @@ import { useUser } from '@/hooks/useUser';
 import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { knowledgeService } from '@/services/knowledgeService';
 import { fmtDate, questionTypeLabel } from '@/utils/date';
+import { normalizeQuestionOptions } from '@/utils/question';
 import type { KnowledgePoint, WrongQuestion } from '@/types';
 
 export default function WrongQuestions() {
@@ -85,7 +86,7 @@ export default function WrongQuestions() {
 
   if (reviewMode) {
     const q = reviewMode.question;
-    const options: string[] = Array.isArray(q.options) ? q.options : [];
+    const options = normalizeQuestionOptions(q.options);
     const solution = q.solution as any;
     return (
       <div className="mx-auto max-w-3xl space-y-4 p-4 sm:p-6">

@@ -195,6 +195,8 @@ export interface AISolution {
   stepByStep: string[];
   tips: string;
   relatedKnowledge: string[];
+  // 作文/解答题的完整参考作答（选择题为空）
+  referenceAnswer?: string;
 }
 
 export interface AIEssayReview {

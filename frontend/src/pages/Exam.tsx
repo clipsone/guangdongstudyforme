@@ -7,6 +7,7 @@ import { studySessionService } from '@/services/studySessionService';
 import { subjectService } from '@/services/subjectService';
 import { aiService } from '@/services/aiService';
 import { questionTypeLabel, fmtDate } from '@/utils/date';
+import { normalizeQuestionOptions } from '@/utils/question';
 import type { Exam, ExamTemplate, Question, Subject } from '@/types';
 
 type Phase = 'list' | 'exam' | 'result';
@@ -344,7 +345,8 @@ export default function ExamPage() {
           const q = eq.question;
           const ua = answers[q.id] || '';
           // 多空五选五（答案含多个字母，如 "C A B D E"）不能按单选渲染，需走文本框
-          const multiLetter = (q.options?.length ?? 0) > 0 && /\s/.test(String(q.answer || '').trim()) && /^[A-E]+(\s+[A-E]+)+$/i.test(String(q.answer || '').trim());
+          const options = normalizeQuestionOptions(q.options);
+          const multiLetter = options.length > 0 && /\s/.test(String(q.answer || '').trim()) && /^[A-E]+(\s+[A-E]+)+$/i.test(String(q.answer || '').trim());
           return (
             <div key={eq.id} className={`card p-4 ${ua.trim() ? 'border-l-4 border-l-primary' : ''}`}>
               <div className="mb-2 flex items-center gap-2">
@@ -354,9 +356,9 @@ export default function ExamPage() {
               </div>
               <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200">{q.stem}</div>
 
-              {q.type === 'choice' || ((q.options && q.options.length > 0) && !multiLetter) ? (
+              {q.type === 'choice' || (options.length > 0 && !multiLetter) ? (
                 <div className="mt-3 space-y-1.5">
-                  {q.options?.map((opt: string, i: number) => {
+                  {options.map((opt: string, i: number) => {
                     const letter = String.fromCharCode(65 + i);
                     const active = ua === letter;
                     return (

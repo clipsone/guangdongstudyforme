@@ -100,6 +100,11 @@ export const solveQuestion = async (req, res) => {
     const analysis = question?.solution?.analysis || '先理解题意，再运用对应知识点求解。';
     const kps = (question?.questionKnowledge || []).map((qk) => `${qk.knowledgePoint.code} ${qk.knowledgePoint.name}`);
     const answer = String(question?.answer || '略');
+    const optionText = Array.isArray(question?.options)
+      ? question.options.join('；')
+      : question?.options && typeof question.options === 'object'
+        ? Object.entries(question.options).map(([key, value]) => `${key}. ${value}`).join('；')
+        : String(question?.options || '无');
 
     // 真实模型：基于题目与作答生成个性化解析
     if (isConfigured() && question) {
@@ -109,14 +114,14 @@ export const solveQuestion = async (req, res) => {
             {
               role: 'system',
               content:
-                '你是一位春季高考辅导老师，针对学生作答情况给出解题分析。只输出 JSON，格式：{"explanation":"针对对错情况的解析(60字内)","stepByStep":["步骤1","步骤2"],"tips":"解题技巧一句话","relatedKnowledge":["知识点1"]}。内容精炼。',
+                '你是一位春季高考辅导老师，针对学生作答情况给出完整解题。只输出 JSON，格式：{"explanation":"针对对错情况的详细解析（作文可为评分与问题分析）","stepByStep":["步骤1","步骤2"],"tips":"解题技巧或写作建议","relatedKnowledge":["知识点1"],"referenceAnswer":"完整参考答案"}。如果题型是作文/解答题，referenceAnswer 必须直接输出完整成文答案，包含开头、主体论证和结尾，不能只给提纲、关键词、写作提示或“略”；选择题和填空题可为空字符串。',
             },
             {
               role: 'user',
-              content: `题目（${question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题'}）：${question.stem}\n选项：${question.options?.join('；') || '无'}\n标准答案：${answer}\n题目解析：${analysis}\n学生作答：${userAnswer || '（未作答）'}\n判分结果：${isCorrect ? '正确' : '错误'}\n请给出解释与下一步建议。`,
+              content: `题目（${question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题'}）：${question.stem}\n选项：${optionText}\n标准答案：${answer}\n题目解析：${analysis}\n学生作答：${userAnswer || '（未作答）'}\n判分结果：${isCorrect ? '正确' : '错误'}\n请给出解释与下一步建议。`,
             },
           ],
-          { temperature: 0.4, json: true, maxTokens: 500 }
+          { temperature: 0.4, json: true, maxTokens: 1400 }
         );
         const parsed = safeJson(text);
         if (parsed?.explanation) {
@@ -127,6 +132,7 @@ export const solveQuestion = async (req, res) => {
               stepByStep: parsed.stepByStep || [],
               tips: parsed.tips || '注意审题，避免粗心错误；做完后对照解析检查思路。',
               relatedKnowledge: parsed.relatedKnowledge?.length ? parsed.relatedKnowledge : (kps.length ? kps : ['相关知识点']),
+              referenceAnswer: String(parsed.referenceAnswer || '').trim(),
             },
           });
         }
@@ -145,6 +151,9 @@ export const solveQuestion = async (req, res) => {
         : ['步骤1：先明确题目考查的知识点', '步骤2：把已知条件列出来，逐条分析', '步骤3：对照正确答案找差距，重做一遍', '步骤4：做一道同考点题目巩固'],
       tips: '解题提示：注意审题，避免粗心错误；做完后对照解析检查思路。',
       relatedKnowledge: kps.length > 0 ? kps : ['相关知识点'],
+      referenceAnswer: ['essay', 'composite'].includes(question?.type)
+        ? String(question?.solution?.referenceAnswer || question?.answer || '请结合题目要求完成完整作答。')
+        : '',
     };
     await new Promise((resolve) => setTimeout(resolve, 300));
     res.json({ data: mockResponse });

@@ -10,6 +10,7 @@ import { studySessionService } from '@/services/studySessionService';
 import { aiService } from '@/services/aiService';
 import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { questionTypeLabel } from '@/utils/date';
+import { normalizeQuestionOptions } from '@/utils/question';
 import type { AISolution, KnowledgePoint, Question, Subject } from '@/types';
 
 type Phase = 'config' | 'answering' | 'result';
@@ -401,7 +402,7 @@ export default function Practice() {
   if (phase === 'answering' && q) {
     const myAnswer = answers[q.id] || '';
     const progress = Math.round((answeredCount / questions.length) * 100);
-    const options: string[] = Array.isArray(q.options) ? q.options : [];
+    const options = normalizeQuestionOptions(q.options);
     // 多空五选五（答案含多个字母，如 "C A B D E"）不能按单选渲染，需走文本框
     const multiLetter = options.length > 0 && /\s/.test(String(q.answer || '').trim()) && /^[A-E]+(\s+[A-E]+)+$/i.test(String(q.answer || '').trim());
     const isObj = q.type === 'choice' || (options.length > 0 && !multiLetter);
@@ -479,6 +480,12 @@ export default function Practice() {
                 {aiPanel.solution.stepByStep.length > 0 && (
                   <div className="space-y-0.5 text-sm text-gray-500 dark:text-gray-400">
                     {aiPanel.solution.stepByStep.map((st, si) => <div key={si}>{st}</div>)}
+                  </div>
+                )}
+                {aiPanel.solution.referenceAnswer && (
+                  <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 dark:border-emerald-800/50 dark:bg-emerald-900/20">
+                    <div className="mb-1 text-sm font-semibold text-emerald-700 dark:text-emerald-300">📝 完整参考答案</div>
+                    <div className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700 dark:text-gray-200">{aiPanel.solution.referenceAnswer}</div>
                   </div>
                 )}
                 {aiPanel.solution.relatedKnowledge.length > 0 && (
