@@ -112,6 +112,19 @@ export async function generatePaper({ userId, subjectId, count = 10, difficulty,
     }
   });
 
+  // 批量导入的 generated-practice 题默认没有 QuestionKnowledge 关联；
+  // 将其作为补充池加入智能练习，否则智能组卷永远只会看到旧的带考点题。
+  const untaggedGenerated = await prisma.question.findMany({
+    where: { ...where, source: 'generated-practice', questionKnowledge: { none: {} } },
+    include: {
+      subject: true,
+      questionKnowledge: { include: { knowledgePoint: true } }
+    },
+    take: Math.max(count * 5, 50)
+  });
+  const merged = new Map([...questions, ...untaggedGenerated].map((q) => [q.id, q]));
+  questions = Array.from(merged.values());
+
   // 难度过滤
   if (difficulty) {
     const parts = String(difficulty).split('-').map(Number);
