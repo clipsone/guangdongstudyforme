@@ -27,15 +27,6 @@ const SPRING_SUBJECTS = [
   { code: 'E', name: '英语', icon: '🔤', color: 'from-green-500 to-emerald-500', path: '/practice' },
 ];
 
-const UNDERGRAD_SUBJECTS = [
-  { code: 'CET4', name: 'CET-4 四级', icon: '🎓', color: 'from-blue-500 to-indigo-500', path: '/practice' },
-  { code: 'CET6', name: 'CET-6 六级', icon: '🏆', color: 'from-purple-500 to-pink-500', path: '/practice' },
-  { code: 'IELTS', name: '雅思 IELTS', icon: '🌍', color: 'from-orange-500 to-yellow-500', path: '/practice' },
-  { code: 'TOEFL', name: '托福 TOEFL', icon: '🇺🇸', color: 'from-red-500 to-rose-500', path: '/practice' },
-  { code: 'LAW', name: '法律基础', icon: '⚖️', color: 'from-slate-500 to-gray-600', path: '/practice' },
-  { code: 'UNIV', name: '大学通识课', icon: '📚', color: 'from-green-500 to-teal-500', path: '/practice' },
-  { code: 'PAPER', name: '论文写作', icon: '✍️', color: 'from-amber-500 to-orange-500', path: '/practice' },
-];
 
 export default function Dashboard() {
   const { user, userId } = useUser();
