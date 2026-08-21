@@ -30,6 +30,7 @@ export default function Admin() {
   const [tab, setTab] = useState<TabId>('overview');
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [lawSync, setLawSync] = useState('');
 
   // 非管理员跳回首页
   useEffect(() => {
@@ -85,7 +86,7 @@ export default function Admin() {
         ))}
       </div>
 
-      {tab === 'overview' && <Overview stats={stats} />}
+      {tab === 'overview' && <><Overview stats={stats} /><div className="card mt-4 p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><b>本科法学题库同步</b><p className="mt-1 text-sm text-gray-500">同步 12 门课程、48 个知识点、144 道课程生成题和 3 套模拟卷。</p></div><button className="btn btn-ink" onClick={async()=>{setLawSync('同步中…');try{const r=await adminService.syncLawCurriculum();setLawSync(`✅ 已同步 ${r.chapters} 章、${r.knowledgePoints} 个知识点、${r.questions} 道题、${r.examTemplates} 套模拟卷`)}catch{setLawSync('❌ 同步失败，请重试')}}}>同步法学课程题库</button></div>{lawSync&&<p className="mt-3 text-sm">{lawSync}</p>}</div></>}
       {tab === 'questions' && <Questions subjects={subjects} />}
       {tab === 'generate' && <Generate subjects={subjects} />}
       {tab === 'feedbacks' && <Feedbacks />}

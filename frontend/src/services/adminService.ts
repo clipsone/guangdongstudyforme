@@ -51,6 +51,7 @@ export interface AdminCoverage {
 
 export const adminService = {
   getStats: () => http.get<{ data: AdminStats }>('/admin/stats').then((r) => r.data),
+  syncLawCurriculum: () => http.post<{ data: { chapters: number; knowledgePoints: number; questions: number; examTemplates: number } }>('/admin/law-curriculum/sync').then((r) => r.data),
   getCoverage: (subjectId: string) =>
     http.get<{ data: AdminCoverage[] }>('/admin/coverage', { params: { subjectId } }).then((r) => r.data),
   getQuestions: (params?: { subjectId?: string; section?: string; status?: string; page?: number; pageSize?: number }) =>
