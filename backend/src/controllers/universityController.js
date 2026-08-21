@@ -5,15 +5,20 @@ const fail = (res, message, status = 400) => res.status(status).json({ error: { 
 const dateOrNull = (value) => value ? new Date(value) : null;
 
 export const getWorkspace = async (req, res) => {
-  const userId = uid(req);
-  const [courses, assignments, plans, files, schedules] = await Promise.all([
-    prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } }),
-    prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' } }),
-    prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
-    prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
-    prisma.universitySchedule.findMany({ where: { userId }, orderBy: [{ weekday: 'asc' }, { startTime: 'asc' }] }),
-  ]);
-  res.json({ data: { courses, assignments, plans, files, schedules } });
+  try {
+    const userId = uid(req);
+    const [courses, assignments, plans, files, schedules] = await Promise.all([
+      prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } }),
+      prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' } }),
+      prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+      prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+      prisma.universitySchedule.findMany({ where: { userId }, orderBy: [{ weekday: 'asc' }, { startTime: 'asc' }] }),
+    ]);
+    res.json({ data: { courses, assignments, plans, files, schedules } });
+  } catch (error) {
+    console.error('[大学工作台]', error?.message || error);
+    res.status(503).json({ error: { message: '大学工作台数据库结构尚未完成更新，请先执行 university_features 迁移', status: 503 } });
+  }
 };
 
 export const createCourse = async (req, res) => {
