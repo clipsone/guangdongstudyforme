@@ -9,6 +9,7 @@ import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { getQuoteOfDay } from '@/data/quotes';
 import { daysUntil, fmtDate } from '@/utils/date';
 import { DonutChart } from '@/components/Charts';
+import { StudyReward } from '@/components/StudyReward';
 import type { DashboardStats, StudyTask } from '@/types';
 
 const TYPE_LABEL: Record<string, string> = {
@@ -47,6 +48,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [newBadges, setNewBadges] = useState<string[]>([]);
+  const [reward, setReward] = useState<{ title: string; message: string; icon: string } | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -78,7 +80,12 @@ export default function Dashboard() {
     try {
       const res = await studyTaskService.completeStudyTask(id);
       const badges = (res as any)?.newAchievements || [];
-      if (badges.length > 0) setNewBadges(badges.map((b: any) => b.name));
+      if (badges.length > 0) {
+        setNewBadges(badges.map((b: any) => b.name));
+        setReward({ title: `解锁成就：${badges[0].name}`, message: badges[0].description || '你的坚持被记录下来了！', icon: badges[0].icon || '🏆' });
+      } else {
+        setReward({ title: '今日任务完成！', message: '先完成一小步，再完成下一小步，进步就是这样发生的。', icon: '✨' });
+      }
     } catch { /* ignore */ }
     load();
   };
@@ -173,6 +180,8 @@ export default function Dashboard() {
           <button className="mt-2 text-xs text-gray-400 underline" onClick={() => setNewBadges([])}>知道了</button>
         </div>
       )}
+
+      <StudyReward open={!!reward} title={reward?.title || ''} message={reward?.message} icon={reward?.icon} onClose={() => setReward(null)} />
 
       {loading ? (
         <div className="py-16 text-center text-gray-400">加载中…</div>

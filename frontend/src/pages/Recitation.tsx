@@ -5,6 +5,7 @@ import { subjectService } from '@/services/subjectService';
 import { recitationService } from '@/services/recitationService';
 import { fmtDate, STAGE_LABEL } from '@/utils/date';
 import type { RecitationItem, Subject } from '@/types';
+import { StudyReward } from '@/components/StudyReward';
 
 type Category = 'essay' | 'vocabulary' | 'formula';
 
@@ -28,6 +29,7 @@ export default function Recitation() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ itemId: string; msg: string } | null>(null);
   const [newBadges, setNewBadges] = useState<string[]>([]);
+  const [reward, setReward] = useState<{ title: string; message: string; icon: string } | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -82,7 +84,12 @@ export default function Recitation() {
       return next;
     });
     const badges = (res as any)?.newAchievements || [];
-    if (badges.length > 0) setNewBadges(badges.map((b: any) => b.name));
+    if (badges.length > 0) {
+      setNewBadges(badges.map((b: any) => b.name));
+      setReward({ title: `解锁成就：${badges[0].name}`, message: badges[0].description || '你的记忆力正在升级！', icon: badges[0].icon || '🧠' });
+    } else if (passed) {
+      setReward({ title: '记忆打卡成功！', message: rec.stage >= 5 ? '这个知识点已经进入长期记忆。' : '再复习几轮，它就会变成你的稳定得分点。', icon: rec.stage >= 5 ? '🧠' : '📖' });
+    }
     setFeedback({
       itemId: item.id,
       msg: passed
@@ -104,6 +111,7 @@ export default function Recitation() {
 
   return (
     <div className="space-y-4 p-4 sm:p-6">
+      <StudyReward open={!!reward} title={reward?.title || ''} message={reward?.message} icon={reward?.icon} onClose={() => setReward(null)} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-xl font-bold">🧠 背诵与记忆</h2>
         {dueCount > 0 && (

@@ -118,6 +118,21 @@
   .bauhaus-stripe > span:nth-child(3) { @apply block h-1.5 flex-1 bg-gray-300; }
 }
 
+/* 学习奖励：轻量 CSS 动画，不依赖图片资源 */
+.reward-overlay { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgb(17 17 17 / 52%); animation: reward-fade-in 180ms ease-out; }
+.reward-card { position: relative; width: min(100%, 360px); overflow: hidden; border: 3px solid #111; background: #fff; padding: 1.5rem; text-align: center; box-shadow: 8px 8px 0 #111; animation: reward-pop 360ms cubic-bezier(.2,1.5,.4,1) both; }
+.dark .reward-card { border-color: #fff; background: #1c1c1c; box-shadow: 8px 8px 0 #000; }
+.reward-icon { display: grid; width: 88px; height: 88px; margin: 0 auto 1rem; place-items: center; border: 3px solid #111; border-radius: 999px; background: #facc15; font-size: 3.25rem; animation: reward-bounce 900ms ease-in-out infinite alternate; }
+.reward-burst { position: absolute; color: #facc15; font-size: 2rem; animation: reward-spin 1.8s ease-in-out infinite; }
+.reward-burst-a { top: 22%; left: 28%; }
+.reward-burst-b { top: 30%; right: 27%; animation-delay: 220ms; }
+.reward-burst-c { bottom: 24%; left: 25%; animation-delay: 440ms; }
+@keyframes reward-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes reward-pop { from { opacity: 0; transform: translateY(18px) scale(.82); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes reward-bounce { from { transform: translateY(0) rotate(-4deg); } to { transform: translateY(-8px) rotate(4deg); } }
+@keyframes reward-spin { 0%, 100% { opacity: .25; transform: scale(.7) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(180deg); } }
+@media (prefers-reduced-motion: reduce) { .reward-overlay, .reward-card, .reward-icon, .reward-burst { animation: none; } }
+
 /* 滚动条（桌面端包豪斯风格） */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #fafaf7; }

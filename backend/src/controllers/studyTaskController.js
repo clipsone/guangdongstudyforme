@@ -20,6 +20,8 @@ async function ensureTodayTasks(userId, date) {
     .slice(0, 6);
 
   const mathPoint = weak.find((k) => k.chapter.subject.code === 'M') || weak[0];
+  const chinesePoint = weak.find((k) => k.chapter.subject.code === 'Y');
+  const englishPoint = weak.find((k) => k.chapter.subject.code === 'E');
   const subjectName = (kp) => (kp?.chapter?.subject?.name || '数学');
 
   const tasks = [];
@@ -34,7 +36,31 @@ async function ensureTodayTasks(userId, date) {
       dueDate: date
     });
   }
-  // 2. 错题复习
+  // 2. 语文微任务：不要求整篇死背，先做识别、翻译和句式小练习
+  if (chinesePoint) {
+    tasks.push({
+      userId,
+      type: 'knowledge',
+      targetId: chinesePoint.id,
+      title: `语文 5 分钟：${chinesePoint.name}`,
+      description: '完成 3 个古诗文/文言文小题：词义、翻译或修辞辨析',
+      targetCount: 3,
+      dueDate: date
+    });
+  }
+  // 3. 英语微任务：通过短题练语法和上下文，不一次背整章
+  if (englishPoint) {
+    tasks.push({
+      userId,
+      type: 'knowledge',
+      targetId: englishPoint.id,
+      title: `英语 5 分钟：${englishPoint.name}`,
+      description: '完成 5 道语态/时态/完形线索小题，并复习 3 个错题',
+      targetCount: 5,
+      dueDate: date
+    });
+  }
+  // 4. 错题复习
   const pendingWrong = await prisma.wrongQuestion.count({
     where: { userId, mastered: false }
   });
@@ -48,7 +74,7 @@ async function ensureTodayTasks(userId, date) {
       dueDate: date
     });
   }
-  // 3. 背诵打卡
+  // 5. 背诵打卡
   tasks.push({
     userId,
     type: 'recitation',
