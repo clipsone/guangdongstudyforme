@@ -10,6 +10,7 @@ router.use(adminMiddleware);
 
 // 数据总览
 router.get('/stats', adminController.getStats);
+router.post('/law-curriculum/sync', adminController.syncLawCurriculum);
 // 题库管理
 router.get('/coverage', adminController.getCoverage);
 router.get('/questions', adminController.getQuestions);
