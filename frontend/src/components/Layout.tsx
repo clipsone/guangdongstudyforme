@@ -26,13 +26,14 @@ export const Layout: React.FC = () => {
     { path: '/university', icon: Home, label: '工作台' },
     { path: '/university', icon: BookOpen, label: '课程' },
     { path: '/practice', icon: PenTool, label: '练习' },
+    { path: '/exam', icon: ClipboardList, label: '模拟考试' },
     { path: '/resources', icon: FileText, label: '资料' },
     { path: '/ai', icon: Bot, label: 'AI 助手' },
     { path: '/insights', icon: Target, label: '学习分析' },
     { path: '/profile', icon: User, label: '我的' },
   ];
   const navItems = isUndergrad ? universityNavItems : springNavItems;
-  const mobileNavItems = navItems.filter((item) => (isUndergrad ? ['/university','/practice','/ai','/profile'] : ['/','/learn','/practice','/ai','/profile']).includes(item.path));
+  const mobileNavItems = navItems.filter((item) => (isUndergrad ? ['/university','/practice','/exam','/ai','/profile'] : ['/','/learn','/practice','/ai','/profile']).includes(item.path));
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);

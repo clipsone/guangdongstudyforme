@@ -6,13 +6,14 @@ const dateOrNull = (value) => value ? new Date(value) : null;
 
 export const getWorkspace = async (req, res) => {
   const userId = uid(req);
-  const [courses, assignments, plans, files] = await Promise.all([
+  const [courses, assignments, plans, files, schedules] = await Promise.all([
     prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } }),
     prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' } }),
     prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
     prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+    prisma.universitySchedule.findMany({ where: { userId }, orderBy: [{ weekday: 'asc' }, { startTime: 'asc' }] }),
   ]);
-  res.json({ data: { courses, assignments, plans, files } });
+  res.json({ data: { courses, assignments, plans, files, schedules } });
 };
 
 export const createCourse = async (req, res) => {
@@ -21,6 +22,11 @@ export const createCourse = async (req, res) => {
   const course = await prisma.universityCourse.create({ data: { userId: uid(req), name: String(name).trim().slice(0, 100), teacher: String(teacher || '').slice(0, 100) || null, color: String(color || '#4f46e5'), mastery: Math.max(0, Math.min(100, Number(mastery) || 0)), examDate: dateOrNull(examDate) } });
   res.status(201).json({ data: course });
 };
+export const deleteCourse = async (req, res) => {
+  const result = await prisma.universityCourse.deleteMany({ where: { id: req.params.id, userId: uid(req) } });
+  res.json({ data: { deleted: result.count > 0 } });
+};
+
 export const updateCourse = async (req, res) => {
   const course = await prisma.universityCourse.findFirst({ where: { id: req.params.id, userId: uid(req) } });
   if (!course) return fail(res, '课程不存在', 404);
@@ -34,6 +40,11 @@ export const createAssignment = async (req, res) => {
   const item = await prisma.universityAssignment.create({ data: { userId: uid(req), title: String(title).trim().slice(0, 200), course: String(course || '').slice(0, 100) || null, courseId: courseId || null, dueDate: new Date(dueDate) } });
   res.status(201).json({ data: item });
 };
+export const deleteAssignment = async (req, res) => {
+  const result = await prisma.universityAssignment.deleteMany({ where: { id: req.params.id, userId: uid(req) } });
+  res.json({ data: { deleted: result.count > 0 } });
+};
+
 export const updateAssignment = async (req, res) => {
   const item = await prisma.universityAssignment.findFirst({ where: { id: req.params.id, userId: uid(req) } });
   if (!item) return fail(res, '作业不存在', 404);

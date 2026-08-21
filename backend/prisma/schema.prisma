@@ -39,6 +39,7 @@ model User {
   universityAssignments UniversityAssignment[]
   universityPlans UniversityPlan[]
   universityFiles UniversityFile[]
+  universitySchedules UniversitySchedule[]
   knowledgeMastery  KnowledgeMastery[]
   wrongQuestions    WrongQuestion[]
 }
@@ -487,6 +488,7 @@ model UniversityCourse {
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignments UniversityAssignment[]
+  schedules UniversitySchedule[]
   @@index([userId])
 }
 
@@ -515,6 +517,23 @@ model UniversityPlan {
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@index([userId, createdAt])
+}
+
+model UniversitySchedule {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String?
+  title     String
+  weekday   Int
+  startTime String
+  endTime   String
+  room      String?
+  teacher   String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    UniversityCourse? @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([userId, weekday])
 }
 
 model UniversityFile {
