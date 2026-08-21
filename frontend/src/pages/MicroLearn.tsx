@@ -3,17 +3,18 @@ import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Sparkles, Tar
 import { useUser } from '@/hooks/useUser';
 import { subjectService } from '@/services/subjectService';
 import { questionService } from '@/services/questionService';
+import { knowledgeService } from '@/services/knowledgeService';
 import { StudyReward } from '@/components/StudyReward';
 import { normalizeQuestionOptions } from '@/utils/question';
-import type { Question, Subject } from '@/types';
+import type { KnowledgePoint, Question, Subject } from '@/types';
 
 type SubjectCode = 'Y' | 'E';
 type MicroMode = 'chinese-classics' | 'chinese-grammar' | 'english-grammar' | 'english-cloze';
-const MODES: Array<{ key: MicroMode; subject: SubjectCode; title: string; desc: string; icon: string; keywords: string[] }> = [
-  { key: 'chinese-classics', subject: 'Y', title: '古诗文理解', desc: '词义、翻译、主旨、名句识别', icon: '📜', keywords: ['古诗', '诗歌', '文言', '名句', '翻译'] },
-  { key: 'chinese-grammar', subject: 'Y', title: '文言句法修辞', desc: '虚词、句式、用词、修辞辨析', icon: '🖋️', keywords: ['文言', '句式', '修辞', '实词', '虚词', '词类'] },
-  { key: 'english-grammar', subject: 'E', title: '英语语法时态', desc: '语态、时态、过去式、语法选择', icon: '🔤', keywords: ['语法', '时态', '语态', '过去式', '被动'] },
-  { key: 'english-cloze', subject: 'E', title: '完形填空线索', desc: '词义、搭配、逻辑、上下文判断', icon: '🧩', keywords: ['完形', 'cloze', '词汇', '搭配'] },
+const MODES: Array<{ key: MicroMode; subject: SubjectCode; title: string; desc: string; icon: string; knowledgeNames: string[]; sections: string[]; types?: string[] }> = [
+  { key: 'chinese-classics', subject: 'Y', title: '古诗文理解', desc: '广东春考：古代诗文阅读、名句默写', icon: '📜', knowledgeNames: ['古代诗文阅读', '名句名篇默写', '背诵和默写常见古诗文名句', '理解名句的含义和作用'], sections: ['名句名篇默写', '诗歌鉴赏·手法', '诗歌鉴赏·意境情感'], types: ['choice', 'fill', 'essay'] },
+  { key: 'chinese-grammar', subject: 'Y', title: '文言句法修辞', desc: '广东春考：实词、虚词、句式、翻译、修辞', icon: '🖋️', knowledgeNames: ['文言文阅读', '理解文言实词的含义', '理解文言虚词的用法', '理解文言特殊句式', '翻译文言句子', '正确运用常见的修辞手法'], sections: ['文言文翻译', '文言文理解填空', '基础知识与运用'], types: ['choice', 'fill', 'essay'] },
+  { key: 'english-grammar', subject: 'E', title: '英语语法时态', desc: '广东春考：语法结构、时态和语态、非谓语', icon: '🔤', knowledgeNames: ['语法结构运用', '时态和语态', '非谓语动词', '定语从句', '名词性从句', '状语从句'], sections: ['语法填空'], types: ['choice', 'fill'] },
+  { key: 'english-cloze', subject: 'E', title: '完形填空线索', desc: '广东春考：完形填空词义、搭配、上下文', icon: '🧩', knowledgeNames: ['完形填空'], sections: ['完形填空'], types: ['choice'] },
 ];
 function norm(value: unknown) { return String(value || '').trim().toLowerCase().replace(/[\s，。、“”‘’'".,!?;；:：]/g, ''); }
 function analysis(q: Question) { return (q.solution as any)?.analysis || '先找题干关键词，再结合上下文、语法和固定搭配判断。答完后请用一句话说出自己的判断依据。'; }
@@ -21,6 +22,7 @@ function analysis(q: Question) { return (q.solution as any)?.analysis || '先找
 export default function MicroLearn() {
   useUser();
   const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [knowledge, setKnowledge] = useState<KnowledgePoint[]>([]);
   const [mode, setMode] = useState<MicroMode>('chinese-classics');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [current, setCurrent] = useState(0);
@@ -36,22 +38,33 @@ export default function MicroLearn() {
   const isChoice = options.length > 0 && question?.type === 'choice';
   const correct = !!question && norm(answer) === norm(question.answer);
 
-  useEffect(() => { subjectService.getSubjects().then((res) => setSubjects(res.data)).catch(() => setError('科目加载失败')); }, []);
+  useEffect(() => {
+    Promise.all([subjectService.getSubjects(), knowledgeService.getKnowledge()])
+      .then(([subjectsRes, knowledgeRes]) => { setSubjects(subjectsRes.data); setKnowledge(knowledgeRes.data); })
+      .catch(() => setError('科目或考点加载失败'));
+  }, []);
   const loadQuestions = async (nextMode = mode) => {
     const target = MODES.find((item) => item.key === nextMode)!;
     const subject = subjects.find((item) => item.code === target.subject);
     if (!subject) return;
     setLoading(true); setError(''); setChecked(false); setAnswer(''); setScore(0); setCurrent(0);
     try {
-      const res = await questionService.getQuestions({ subjectId: subject.id, limit: 100 });
-      const all = res.data || [];
-      const matched = all.filter((q) => target.keywords.some((key) => (q.section + ' ' + q.stem + ' ' + JSON.stringify(q.solution || '')).toLowerCase().includes(key.toLowerCase())));
-      const list = [...(matched.length >= 3 ? matched : all)].sort(() => Math.random() - 0.5).slice(0, 5);
-      if (!list.length) throw new Error('该科目暂无题目');
+      const targetPoints = knowledge.filter((point) => point.chapter?.subjectId === subject.id && target.knowledgeNames.includes(point.name));
+      const sectionPattern = target.sections.map((section) => section.toLowerCase());
+      const byPoint = await Promise.all(targetPoints.map((point) => questionService.getQuestions({ subjectId: subject.id, knowledgePointId: point.id, limit: 30 })));
+      const unique = new Map<string, Question>();
+      byPoint.flatMap((response) => response.data || []).forEach((q) => {
+        const section = String(q.section || '').toLowerCase();
+        const typeOk = !target.types || target.types.includes(q.type);
+        const sectionOk = !q.section || sectionPattern.length === 0 || sectionPattern.some((item) => section.includes(item));
+        if (typeOk && sectionOk) unique.set(q.id, q);
+      });
+      const list = [...unique.values()].sort(() => Math.random() - 0.5).slice(0, 5);
+      if (!list.length) throw new Error('该专项暂无已标注的广东春考题目，请先补充对应题库');
       setQuestions(list);
     } catch (e: any) { setQuestions([]); setError(e?.message || '暂无对应题目'); } finally { setLoading(false); }
   };
-  useEffect(() => { if (subjects.length) loadQuestions(); }, [subjects.length]);
+  useEffect(() => { if (subjects.length && knowledge.length) loadQuestions(); }, [subjects.length, knowledge.length]);
   const chooseMode = (next: MicroMode) => { setMode(next); loadQuestions(next); };
   const check = () => { if (question && answer.trim()) { setChecked(true); if (correct) setScore((value) => value + 1); } };
   const next = () => {
@@ -60,7 +73,7 @@ export default function MicroLearn() {
   };
   return <div className="mx-auto max-w-5xl space-y-5 p-4 pb-24 sm:p-6">
     <StudyReward open={!!reward} title={reward?.title || ''} message={reward?.message} icon={reward?.icon} onClose={() => { setReward(null); loadQuestions(); }} />
-    <div className="card p-5 sm:p-6"><div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary"><Zap size={14} /> 每天 5 分钟</div><h1 className="text-2xl font-black">微学习训练</h1><p className="mt-1 text-sm text-gray-500">不背整章，只解决一个小问题。答错的题可以继续在错题本复习。</p>
+    <div className="card p-5 sm:p-6"><div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary"><Zap size={14} /> 每天 5 分钟</div><h1 className="text-2xl font-black">微学习训练</h1><p className="mt-1 text-sm text-gray-500">只抽取已标注为广东春考考点/题型的题目；不够时会提示题库不足，不会混入其他题。</p>
       <div className="mt-5 grid gap-2 sm:grid-cols-4">{MODES.map((item) => <button key={item.key} onClick={() => chooseMode(item.key)} className={'rounded-lg border-2 p-3 text-left transition ' + (mode === item.key ? 'border-ink bg-accent' : 'border-gray-200 hover:border-ink dark:border-gray-700')}><div className="text-2xl">{item.icon}</div><div className="mt-1 text-sm font-bold">{item.title}</div><div className="mt-1 text-xs text-gray-500">{item.desc}</div></button>)}</div>
     </div>
     {error && <div className="card p-4 text-sm text-error">{error}</div>}
