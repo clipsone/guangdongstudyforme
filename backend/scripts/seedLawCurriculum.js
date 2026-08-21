@@ -1,3 +1,11 @@
+import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const here = path.dirname(fileURLToPath(import.meta.url));
+if (!process.env.DATABASE_URL) {
+  dotenv.config({ path: path.join(here, '..', '.env.local') });
+  dotenv.config({ path: path.join(here, '..', '.env') });
+}
 import prisma from '../src/utils/prisma.js';
 const curriculum = [
   ['法理学','法律本体与法律规范',['法的概念与特征','法律规范的结构','法律渊源与效力','法律责任基础']],
