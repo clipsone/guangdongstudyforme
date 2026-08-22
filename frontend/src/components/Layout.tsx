@@ -43,7 +43,7 @@ export const Layout: React.FC = () => {
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
   return (
-    <div className="min-h-screen bg-paper dark:bg-[#111111] transition-colors">
+    <div className={`min-h-screen transition-colors ${isUndergrad ? 'university-app bg-slate-50 dark:bg-slate-950' : 'spring-app bg-paper dark:bg-[#111111]'}`}> 
       {/* 顶栏：白色 + 底部三色条（包豪斯经典配色） */}
       <nav className={isUndergrad ? 'sticky top-0 z-50 border-b-2 border-indigo-300 bg-white/95 dark:border-indigo-800 dark:bg-slate-950/95' : 'sticky top-0 z-50 border-b-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]'}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
