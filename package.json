@@ -5,6 +5,7 @@
   "description": "2027 广东春季高考复习网站（Vercel 部署入口）",
   "type": "module",
   "scripts": {
+    "setup:dev": "npm --prefix backend install && npm --prefix frontend install",
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "db:setup": "npm --prefix backend run db:setup",
