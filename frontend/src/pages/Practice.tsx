@@ -69,7 +69,10 @@ export default function Practice() {
           ? universitySubjects.filter(s => ['LAW', 'CET4', 'CET6', 'IELTS', 'TOEFL', 'UNIV', 'PAPER'].includes(s.code))
           : universitySubjects.filter(s => ['Y', 'M', 'E'].includes(s.code));
         setSubjects(filtered);
-        if (filtered.length > 0 && !subjectId) setSubjectId(filtered[0].id);
+        if (filtered.length > 0 && !subjectId) {
+          const preferred = isUndergrad ? filtered.find(s => s.code === 'LAW') : filtered[0];
+          setSubjectId((preferred || filtered[0]).id);
+        }
       } else {
       }
 
@@ -325,7 +328,7 @@ export default function Practice() {
 
           {mode !== 'wrong' && (
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">科目</label>
+              <label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">科目（大学法学用户优先显示法律）</label>
               <div className="flex gap-2">
                 {subjects.map((s) => (
                   <button

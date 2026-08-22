@@ -21,7 +21,7 @@ export const getQuestions = async (req, res) => {
 
     if (subjectId) where.subjectId = subjectId;
     if (type) where.type = type;
-    if (section) where.section = section;
+    if (section) where.section = { contains: section, mode: 'insensitive' };
     if (difficulty) where.difficulty = parseInt(difficulty);
 
     if (knowledgePointId) {
