@@ -380,7 +380,7 @@ export default function Practice() {
 
           {user?.examMode === 'undergraduate' && mode !== 'ai' && (
             <div className="grid gap-3 sm:grid-cols-2">
-              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型</label><select className="input" value={questionType} onChange={(e) => setQuestionType(e.target.value)}><option value="all">全部题型</option><option value="choice">选择题</option><option value="fill">填空 / 名词解释</option><option value="essay">简答 / 论述 / 案例分析</option><option value="listening">听力题</option></select></div>
+              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型</label><select className="input" value={questionType} onChange={(e) => setQuestionType(e.target.value)}><option value="all">全部题型</option><option value="choice">选择题（含单选/多选）</option><option value="fill">填空 / 名词解释</option><option value="essay">简答 / 论述 / 案例分析</option><option value="listening">听力题</option></select></div>
               <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">课程 / 题型分区</label><select className="input" value={section} onChange={(e) => setSection(e.target.value)}><option value="all">全部课程</option>{universitySections.map((item) => <option key={item} value={item}>{item}</option>)}</select></div>
             </div>
           )}
