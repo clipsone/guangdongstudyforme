@@ -135,7 +135,7 @@ export default function Practice() {
       if (useMode === 'wrong') {
         const wrongRes = await wrongQuestionService.getWrongQuestions({ userId, mastered: false, limit: 50 });
         list = wrongRes.data.filter((w) => w.question && (w.question.status !== 'archived')).map((w) => w.question);
-      } else if (useMode === 'smart') {
+      } else if (useMode === 'smart' && questionType === 'all' && section === 'all') {
         // 智能组卷：薄弱考点加权
         const genRes = await exerciseService.generatePaper({
           userId,
