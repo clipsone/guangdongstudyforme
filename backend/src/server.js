@@ -72,6 +72,9 @@ app.get('/api/health', healthCheck);
 app.get('/api', (req, res) => {
   res.json({ message: '2027广东春季高考复习API', version: '1.0.0' });
 });
+app.get('/api/build-info', (_req, res) => {
+  res.json({ commit: process.env.VERCEL_GIT_COMMIT_SHA || 'local', environment: process.env.VERCEL_ENV || process.env.NODE_ENV || 'development' });
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
