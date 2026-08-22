@@ -39,7 +39,7 @@ export function freqLabel(f: number): string {
 
 /** 题目类型中文 */
 export function questionTypeLabel(t: string): string {
-  return { choice: '选择题', fill: '填空题', essay: '解答/写作题', composite: '综合题' }[t] || t;
+  return { choice: '单项选择题', fill: '名词解释/简答题', essay: '案例分析/法律文书题', composite: '综合题' }[t] || t;
 }
 
 /** 艾宾浩斯阶段标签 */

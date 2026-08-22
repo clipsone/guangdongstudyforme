@@ -439,6 +439,7 @@ export default function Practice() {
           <div className="mb-3 flex flex-wrap items-center gap-2 text-xs">
             <span className="chip bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300">{questionTypeLabel(q.type)}</span>
             <span className="chip bg-amber-100 text-amber-600 dark:bg-amber-900/40">难度 {'★'.repeat(q.difficulty)}</span>
+            {q.source === 'course-generated' && <span className="chip bg-purple-100 text-purple-600 dark:bg-purple-900/40">课程生成练习</span>}
             {q.questionKnowledge?.slice(0, 3).map((qk) => (
               <span key={qk.knowledgePoint.id} className="chip bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300">
                 {qk.knowledgePoint.code}
@@ -451,11 +452,11 @@ export default function Practice() {
             <div className="mt-4 space-y-2">
               {options.map((opt, i) => {
                 const letter = String.fromCharCode(65 + i);
-                const selected = myAnswer === letter;
+                const selected = questionTypeLabel(q.type).includes('多项') ? String(myAnswer || '').split(' ').includes(letter) : myAnswer === letter;
                 return (
                   <button
                     key={i}
-                    onClick={() => setAnswers({ ...answers, [q.id]: letter })}
+                    onClick={() => { const multi = q.type === 'choice' && String(q.answer || '').includes(' '); const current = String(answers[q.id] || '').split(' ').filter(Boolean); const next = multi ? (current.includes(letter) ? current.filter(x => x !== letter) : [...current, letter].sort()) : [letter]; setAnswers({ ...answers, [q.id]: next.join(' ') }); }}
                     className={`flex w-full items-start gap-3 rounded-lg border px-4 py-2.5 text-left text-sm transition-colors ${
                       selected
                         ? 'border-primary bg-primary/10'

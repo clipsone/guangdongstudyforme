@@ -21,8 +21,10 @@ const templates = [
 ];
 const qVariants = (course, point) => [
   { type:'choice', label:'单项选择题', stem:course+'｜'+point+'：下列哪项最符合本知识点的基本分析方法？', options:['A. 仅凭直觉判断','B. 结合构成要件与法律后果分析','C. 只看主观愿望','D. 只看最终结果'], answer:'B' },
+  { type:'choice', label:'多项选择题', stem:course+'｜'+point+'：学习本知识点时，哪些分析内容应当同时关注？', options:['A. 法律概念','B. 构成要件','C. 法律后果','D. 事实与规则的对应'], answer:'A B C D' },
   { type:'fill', label:'名词解释/简答题', stem:course+'｜'+point+'：请解释该知识点的核心概念、构成要件或法律后果。', options:null, answer:'按照规则、要件、事实和结论作答。' },
   { type:'essay', label:'案例分析题', stem:course+'｜'+point+'案例分析：请按事实识别、法律关系、适用规则、法律后果和结论作答。', options:null, answer:'按照事实识别、法律关系、适用规则、法律后果和结论作答。' },
+  { type:'essay', label:'法律文书题', stem:course+'｜'+point+'：请拟写一份简要法律分析意见，说明争点、依据、论证和结论。', options:null, answer:'应包含争点识别、法律依据、事实对应、风险分析和明确结论。' },
 ];
 export async function ensureLawExamTemplates() {
   const subject = await prisma.subject.findUnique({ where: { code: 'LAW' } });
