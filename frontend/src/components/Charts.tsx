@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
+import type * as echarts from 'echarts';
+import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface ChartProps {
@@ -12,11 +13,24 @@ interface ChartProps {
 export function Chart({ option, height = 280, className }: ChartProps) {
   const ref = useRef<HTMLDivElement>(null);
   const chartRef = useRef<echarts.ECharts | null>(null);
+  const echartsRef = useRef<typeof import('echarts') | null>(null);
+  const [ready, setReady] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
-    if (!ref.current) return;
-    chartRef.current = echarts.init(ref.current);
+    let cancelled = false;
+    import('echarts').then((mod) => {
+      if (cancelled) return;
+      echartsRef.current = mod;
+      setReady(true);
+      // The theme effect owns chart initialization after the module is ready.
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!ref.current || !echartsRef.current) return;
+    chartRef.current = echartsRef.current.init(ref.current);
     const onResize = () => chartRef.current?.resize();
     window.addEventListener('resize', onResize);
     return () => {
@@ -27,17 +41,18 @@ export function Chart({ option, height = 280, className }: ChartProps) {
   }, []);
 
   useEffect(() => {
+    if (!ready) return;
     chartRef.current?.setOption(option, true);
-  }, [option]);
+  }, [option, ready]);
 
   useEffect(() => {
     chartRef.current?.dispose();
-    if (ref.current) {
-      chartRef.current = echarts.init(ref.current);
+    if (ref.current && echartsRef.current) {
+      chartRef.current = echartsRef.current.init(ref.current);
       chartRef.current.setOption(option);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme]);
+  }, [theme, ready]);
 
   return <div ref={ref} style={{ height, width: '100%' }} className={className} />;
 }
