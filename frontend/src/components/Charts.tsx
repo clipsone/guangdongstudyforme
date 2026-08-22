@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
-import type * as echarts from 'echarts';
+import type { EChartsType, EChartsCoreOption } from 'echarts/core';
+type EChartsOption = EChartsCoreOption;
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface ChartProps {
-  option: echarts.EChartsOption;
+  option: EChartsOption;
   height?: number;
   className?: string;
 }
@@ -12,18 +13,27 @@ interface ChartProps {
 /** ECharts 通用封装：随主题自动重绘 */
 export function Chart({ option, height = 280, className }: ChartProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<echarts.ECharts | null>(null);
-  const echartsRef = useRef<typeof import('echarts') | null>(null);
+  const chartRef = useRef<EChartsType | null>(null);
+  const echartsRef = useRef<{ init: typeof import('echarts/core').init } | null>(null);
   const [ready, setReady] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
     let cancelled = false;
-    import('echarts').then((mod) => {
+    Promise.all([
+      import('echarts/core'),
+      import('echarts/charts'),
+      import('echarts/components'),
+      import('echarts/renderers'),
+    ]).then(([core, charts, components, renderers]) => {
       if (cancelled) return;
-      echartsRef.current = mod;
+      core.use([
+        charts.LineChart, charts.RadarChart, charts.PieChart,
+        components.GridComponent, components.TooltipComponent,
+        renderers.CanvasRenderer,
+      ]);
+      echartsRef.current = core;
       setReady(true);
-      // The theme effect owns chart initialization after the module is ready.
     });
     return () => { cancelled = true; };
   }, []);
@@ -49,7 +59,7 @@ export function Chart({ option, height = 280, className }: ChartProps) {
     chartRef.current?.dispose();
     if (ref.current && echartsRef.current) {
       chartRef.current = echartsRef.current.init(ref.current);
-      chartRef.current.setOption(option);
+      chartRef.current?.setOption(option);
     }
   }, [theme, ready]);
 
@@ -63,7 +73,7 @@ export function LineTrendChart({ data, labels, name = '正确率', color = '#1D4
   name?: string;
   color?: string;
 }) {
-  const option: echarts.EChartsOption = {
+  const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
     grid: { left: 40, right: 20, top: 30, bottom: 30 },
     xAxis: { type: 'category', data: labels, axisLine: { lineStyle: { color: '#9ca3af' } } },
@@ -93,7 +103,7 @@ export function LineTrendChart({ data, labels, name = '正确率', color = '#1D4
 
 /** 雷达图（三科掌握度） */
 export function RadarChart({ data }: { data: Array<{ name: string; value: number }> }) {
-  const option: echarts.EChartsOption = {
+  const option: EChartsOption = {
     tooltip: {},
     radar: {
       indicator: data.map((d) => ({ name: d.name, max: 100 })),
@@ -117,7 +127,7 @@ export function RadarChart({ data }: { data: Array<{ name: string; value: number
 
 /** 环形图（三科掌握度） */
 export function DonutChart({ data }: { data: Array<{ name: string; value: number }> }) {
-  const option: echarts.EChartsOption = {
+  const option: EChartsOption = {
     tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
     series: [{
       type: 'pie',
