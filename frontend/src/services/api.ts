@@ -42,7 +42,7 @@ api.interceptors.response.use(
     }
     const apiError: ApiError = {
       error: {
-        message: error.response?.data?.error?.message || '请求失败',
+        message: error.response?.data?.error?.message || (error.request ? '无法连接后端：请启动 backend（npm run dev）或检查 API 地址' : '请求失败'),
         status,
       },
     };

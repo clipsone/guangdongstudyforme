@@ -3,13 +3,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// 必须在其他模块导入前加载环境变量
-// Vercel 会注入 DATABASE_URL，本地开发从 .env 读取
-if (!process.env.VERCEL && !process.env.DATABASE_URL) {
-  import('dotenv').then(({ default: dotenv }) => {
-    dotenv.config({ path: path.join(__dirname, '..', '.env') });
-  });
-}
+// Prisma 在 backend/src/utils/prisma.js 中负责本地环境加载。
 
 import express from 'express';
 import cors from 'cors';
