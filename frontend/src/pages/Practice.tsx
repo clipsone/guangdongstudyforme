@@ -47,6 +47,8 @@ export default function Practice() {
   const [newBadges, setNewBadges] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const universitySections = ['法理学','宪法学','民法总论','民法分论','刑法总论','刑法分论','行政法与行政诉讼法','民事诉讼法','刑事诉讼法','商法与经济法','知识产权法','法律文书写作与案例分析'];
   const [aiPanel, setAiPanel] = useState<{ questionId: string; solution: AISolution | null; loading: boolean } | null>(null);
   const startTimeRef = useRef<number>(0);
 
@@ -61,9 +63,11 @@ export default function Practice() {
       // 处理科目列表
       if (subsResult.status === 'fulfilled') {
         const subs = subsResult.value.data || [];
+        const law = subs.find(s => s.code === 'LAW');
+        const universitySubjects = isUndergrad && law ? [law, ...subs.filter(s => s.code !== 'LAW')] : subs;
         const filtered = isUndergrad
-          ? subs.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))
-          : subs.filter(s => ['Y', 'M', 'E'].includes(s.code));
+          ? universitySubjects.filter(s => ['LAW', 'CET4', 'CET6', 'IELTS', 'TOEFL', 'UNIV', 'PAPER'].includes(s.code))
+          : universitySubjects.filter(s => ['Y', 'M', 'E'].includes(s.code));
         setSubjects(filtered);
         if (filtered.length > 0 && !subjectId) setSubjectId(filtered[0].id);
       } else {
@@ -374,7 +378,7 @@ export default function Practice() {
           {user?.examMode === 'undergraduate' && mode !== 'ai' && (
             <div className="grid gap-3 sm:grid-cols-2">
               <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型</label><select className="input" value={questionType} onChange={(e) => setQuestionType(e.target.value)}><option value="all">全部题型</option><option value="choice">选择题</option><option value="fill">填空 / 名词解释</option><option value="essay">简答 / 论述 / 案例分析</option><option value="listening">听力题</option></select></div>
-              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">题型分区</label><input className="input" placeholder="如：民法总论、案例分析、Reading" value={section === 'all' ? '' : section} onChange={(e) => setSection(e.target.value || 'all')} /></div>
+              <div><label className="mb-1.5 block text-sm font-medium text-gray-600 dark:text-gray-300">课程 / 题型分区</label><select className="input" value={section} onChange={(e) => setSection(e.target.value)}><option value="all">全部课程</option>{universitySections.map((item) => <option key={item} value={item}>{item}</option>)}</select></div>
             </div>
           )}
 

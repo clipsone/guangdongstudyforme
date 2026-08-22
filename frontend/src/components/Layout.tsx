@@ -26,6 +26,7 @@ export const Layout: React.FC = () => {
   const universityNavItems = [
     { path: '/university', icon: Home, label: '工作台' },
     { path: '/university', icon: BookOpen, label: '课程' },
+    { path: '/law/knowledge', icon: BookOpen, label: '法学知识库' },
     { path: '/practice', icon: PenTool, label: '练习' },
     { path: '/exam', icon: ClipboardList, label: '模拟考试' },
     { path: '/wrong', icon: XCircle, label: '错题' },

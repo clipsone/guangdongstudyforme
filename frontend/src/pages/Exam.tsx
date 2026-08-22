@@ -51,9 +51,12 @@ export default function ExamPage() {
       subjectService.getSubjects(),
     ])
       .then(([tRes, hRes, sRes]) => {
-        setTemplates(tRes.data);
-        setHistory(hRes.data);
-        setSubjects(sRes.data);
+        const universityCodes = ['LAW', 'CET4', 'CET6', 'IELTS', 'TOEFL', 'UNIV', 'PAPER'];
+        const springCodes = ['Y', 'M', 'E'];
+        const allowed = isUndergrad ? universityCodes : springCodes;
+        setTemplates(tRes.data.filter((t) => allowed.includes(t.subject.code)));
+        setHistory(hRes.data.filter((h) => allowed.includes(h.template.subject.code)));
+        setSubjects(sRes.data.filter((s) => allowed.includes(s.code)));
         // 根据模式过滤科目
         const filtered = isUndergrad
           ? sRes.data.filter(s => ['CET4', 'CET6', 'IELTS', 'TOEFL', 'LAW', 'UNIV', 'PAPER'].includes(s.code))

@@ -10,6 +10,7 @@ const safeUser = (u) => ({
   username: u.username,
   email: u.email,
   role: u.role || 'user',
+  examMode: u.examMode || 'spring',
   targetScore: u.targetScore,
   examDate: u.examDate,
   createdAt: u.createdAt,
