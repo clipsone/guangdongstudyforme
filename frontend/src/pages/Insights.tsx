@@ -42,7 +42,6 @@ export default function Insights() {
 
   useEffect(() => {
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const runDiagnostic = async () => {

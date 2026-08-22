@@ -43,7 +43,6 @@ export default function Resources() {
 
   useEffect(() => {
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectId, type]);
 
   const save = async () => {

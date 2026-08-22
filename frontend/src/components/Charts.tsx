@@ -51,7 +51,6 @@ export function Chart({ option, height = 280, className }: ChartProps) {
       chartRef.current = echartsRef.current.init(ref.current);
       chartRef.current.setOption(option);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, ready]);
 
   return <div ref={ref} style={{ height, width: '100%' }} className={className} />;

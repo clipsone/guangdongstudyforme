@@ -1,0 +1,30 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2022: true, node: true },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: { jsx: true },
+  },
+  plugins: ['@typescript-eslint', 'react-hooks', 'react-refresh'],
+  extends: ['eslint:recommended'],
+  ignorePatterns: ['dist/', 'node_modules/', '*.config.js', '*.config.ts'],
+  rules: {
+    'no-unused-vars': 'off',
+    'no-undef': 'off',
+    'no-redeclare': 'off',
+    'no-prototype-builtins': 'off',
+    'no-unreachable': 'error',
+    'no-constant-condition': ['error', { checkLoops: false }],
+    'no-dupe-keys': 'error',
+    'no-self-assign': 'error',
+    'no-unexpected-multiline': 'error',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    // Existing async loaders intentionally control their own dependencies; audit them separately.
+    'react-hooks/exhaustive-deps': 'off',
+    'react-refresh/only-export-components': 'off',
+  },
+};

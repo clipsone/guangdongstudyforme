@@ -73,7 +73,6 @@ export default function Practice() {
           const preferred = isUndergrad ? filtered.find(s => s.code === 'LAW') : filtered[0];
           setSubjectId((preferred || filtered[0]).id);
         }
-      } else {
       }
 
       // 处理知识点列表
@@ -100,9 +99,8 @@ export default function Practice() {
         setMode('wrong');
         setTimeout(() => start('wrong'), 0);
       }
-    }).catch(() => {
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Promise.allSettled never rejects; keep loader effect cleanup explicit.
   }, [user]);
 
   const pointsOfSubject = useMemo(

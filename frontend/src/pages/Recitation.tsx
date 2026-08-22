@@ -63,7 +63,6 @@ export default function Recitation() {
 
   useEffect(() => {
     if (userId) load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, userId]);
 
   const submit = async (item: RecitationItem, passed: boolean) => {

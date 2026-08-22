@@ -36,7 +36,6 @@ export default function WrongQuestions() {
 
   useEffect(() => {
     if (userId) load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   useEffect(() => {
