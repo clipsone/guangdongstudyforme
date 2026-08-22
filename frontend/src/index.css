@@ -172,9 +172,21 @@
 ::-webkit-scrollbar-thumb:hover { background: #1D4ED8; }
 
 @media (max-width: 767px) {
-  .card { box-shadow: 2px 2px 0 #111; }
+  :root { --mobile-gutter: 0.875rem; }
+  .card { box-shadow: 2px 2px 0 #111; border-radius: 12px; }
+  .university-shell, main { min-width: 0; }
+  main > * { max-width: 100vw; overflow-x: hidden; }
+  button, a, input, select, textarea { min-height: 44px; }
+  .input, select, textarea { font-size: 16px; }
+  .university-shell .university-hero { border-radius: 0 0 18px 18px; }
   .university-shell .card { box-shadow: 0 5px 18px rgb(79 70 229 / 10%); }
   button, a { -webkit-tap-highlight-color: transparent; }
   .reward-card { box-shadow: 4px 4px 0 #111; }
   .table-scroll, .chart-scroll { max-width: 100%; overflow-x: auto; }
+  .mobile-section { padding: 0 var(--mobile-gutter); }
+  .mobile-sticky-action { position: sticky; bottom: calc(4.5rem + env(safe-area-inset-bottom)); z-index: 20; }
 }
+
+/* 产品模式令牌：春考强调冲刺，大学模式强调专注 */
+.university-shell { --product-accent: #4f46e5; --product-surface: #f8faff; }
+.spring-shell { --product-accent: #dc2626; --product-surface: #fff7ed; }

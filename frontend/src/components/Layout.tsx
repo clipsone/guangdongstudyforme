@@ -3,18 +3,19 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Home, BookOpen, PenTool, ClipboardList, XCircle, FileText, Bot, User, Sun, Moon, Lock, Zap, Target } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useUser } from '@/hooks/useUser';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const { user } = useUser();
+  const { t, toggleLanguage } = useLanguage();
   const isAdmin = user?.role === 'admin';
   const isUndergrad = user?.examMode === 'undergraduate';
 
   const springNavItems = [
     { path: '/', icon: Home, label: '首页' },
     { path: '/learn', icon: BookOpen, label: '学习' },
-    { path: '/law/knowledge', icon: BookOpen, label: '法学知识库' },
     { path: '/practice', icon: PenTool, label: '练习' },
     { path: '/micro-learn', icon: Zap, label: '微学习' },
     { path: '/exam', icon: ClipboardList, label: '模考' },
@@ -56,7 +57,7 @@ export const Layout: React.FC = () => {
                   <span className="geo-blue-triangle -ml-1.5" />
                 </span>
                 <span className="text-xl font-black tracking-tight text-ink dark:text-white">
-                  {user?.examMode === 'undergraduate' ? '大学学习助手' : '春考精准冲刺'}<span className="text-primary">·</span>高效备考
+                  {isUndergrad ? t('universityBrand') : t('springBrand')}
                 </span>
               </Link>
             </div>
@@ -72,10 +73,11 @@ export const Layout: React.FC = () => {
               <span className="hidden sm:inline-flex items-center gap-1.5 border-2 border-ink bg-accent px-2 py-0.5 text-xs font-bold text-ink">
                  <span className="geo-blue-triangle scale-50" /> {user?.examMode === 'undergraduate' ? '大学学习进度' : '450 分目标'}
               </span>
+              <button onClick={toggleLanguage} className="hidden sm:inline-flex border-2 border-ink px-2 py-2 text-xs font-bold" aria-label={t('language')}>{t('language')}</button>
               <button
                 onClick={toggleTheme}
                 className="border-2 border-ink p-2 hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-colors"
-                aria-label="切换主题"
+                aria-label={t('switchTheme')}
               >
                 {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
               </button>
@@ -89,7 +91,7 @@ export const Layout: React.FC = () => {
       </nav>
 
       {/* 移动端底部导航 */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-ink bg-white dark:border-gray-500 dark:bg-[#1c1c1c]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-ink bg-white pb-[env(safe-area-inset-bottom)] dark:border-gray-500 dark:bg-[#1c1c1c]">
         <div className="flex justify-around py-1">
           {mobileNavItems.map((item) => (
             <Link
