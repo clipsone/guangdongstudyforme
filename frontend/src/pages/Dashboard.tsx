@@ -8,7 +8,7 @@ import { recitationService } from '@/services/recitationService';
 import { wrongQuestionService } from '@/services/wrongQuestionService';
 import { getQuoteOfDay } from '@/data/quotes';
 import { daysUntil, fmtDate } from '@/utils/date';
-import { DonutChart } from '@/components/Charts';
+import { DonutChart } from '@/components/DonutChart';
 import { StudyReward } from '@/components/StudyReward';
 import type { DashboardStats, StudyTask } from '@/types';
 

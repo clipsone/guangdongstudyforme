@@ -8,6 +8,7 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 router.use(authMiddleware);
 router.get('/workspace', controller.getWorkspace);
+router.get('/files', controller.getFiles);
 router.post('/schedules', scheduleController.createSchedule);
 router.delete('/schedules/:id', scheduleController.deleteSchedule);
 router.post('/files/upload', upload.single('file'), uploadController.uploadFile);

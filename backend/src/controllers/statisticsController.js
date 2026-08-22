@@ -67,27 +67,24 @@ export const getDashboardStats = async (req, res) => {
       : 0;
 
     // 计算总体掌握度（按用户隔离：新用户全 0）
-    const subjects = await prisma.subject.findMany();
+    const [subjects, knowledgePoints] = await Promise.all([
+      prisma.subject.findMany({ select: { id: true, name: true, code: true } }),
+      prisma.knowledgePoint.findMany({ where: { level: 2 }, select: { id: true, chapter: { select: { subjectId: true } } } }),
+    ]);
     const userMastery = await getUserMasteryMap(uid);
-    const subjectStats = await Promise.all(
-      subjects.map(async (subject) => {
-        const knowledgePoints = await prisma.knowledgePoint.findMany({
-          where: { chapter: { subjectId: subject.id } },
-          select: { id: true }
-        });
-
-        const avgMastery = knowledgePoints.length > 0
-          ? knowledgePoints.reduce((sum, kp) => sum + (userMastery.get(kp.id) || 0), 0) / knowledgePoints.length
-          : 0;
-
-        return {
-          id: subject.id,
-          name: subject.name,
-          code: subject.code,
-          mastery: Math.round(avgMastery)
-        };
-      })
-    );
+    const masteryBySubject = new Map();
+    const countBySubject = new Map();
+    for (const point of knowledgePoints) {
+      const subjectId = point.chapter.subjectId;
+      masteryBySubject.set(subjectId, (masteryBySubject.get(subjectId) || 0) + (userMastery.get(point.id) || 0));
+      countBySubject.set(subjectId, (countBySubject.get(subjectId) || 0) + 1);
+    }
+    const subjectStats = subjects.map((subject) => ({
+      id: subject.id,
+      name: subject.name,
+      code: subject.code,
+      mastery: Math.round((masteryBySubject.get(subject.id) || 0) / (countBySubject.get(subject.id) || 1)),
+    }));
 
     res.json({
       data: {

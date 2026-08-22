@@ -8,7 +8,8 @@ import { exerciseService } from '@/services/exerciseService';
 import { achievementService } from '@/services/achievementService';
 import { userService } from '@/services/userService';
 import { authService } from '@/services/authService';
-import { LineTrendChart, RadarChart } from '@/components/Charts';
+import { LineTrendChart } from '@/components/LineTrendChart';
+import { RadarChart } from '@/components/RadarChart';
 import { fmtDate } from '@/utils/date';
 import type { Achievement, ExerciseRecord } from '@/types';
 

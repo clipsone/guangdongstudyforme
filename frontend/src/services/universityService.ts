@@ -1,6 +1,7 @@
 import { http } from './api';
 export const universityService = {
   workspace: () => http.get<any>('/university/workspace'),
+  files: (page = 1, pageSize = 20) => http.get<any>('/university/files?page=' + page + '&pageSize=' + pageSize),
   analytics: () => http.get<any>('/university-analytics'),
   saveGrade: (data: any) => http.post<any>('/university-analytics/grades', data),
   refreshNotifications: () => http.post<any>('/university-analytics/notifications/refresh'),

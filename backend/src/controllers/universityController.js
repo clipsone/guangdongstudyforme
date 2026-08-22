@@ -8,17 +8,29 @@ export const getWorkspace = async (req, res) => {
   try {
     const userId = uid(req);
     const [courses, assignments, plans, files, schedules] = await Promise.all([
-      prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } }),
-      prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' } }),
-      prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
-      prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } }),
-      prisma.universitySchedule.findMany({ where: { userId }, orderBy: [{ weekday: 'asc' }, { startTime: 'asc' }] }),
+      prisma.universityCourse.findMany({ where: { userId }, orderBy: { createdAt: 'asc' }, take: 100, select: { id: true, name: true, teacher: true, color: true, mastery: true, examDate: true } }),
+      prisma.universityAssignment.findMany({ where: { userId }, orderBy: { dueDate: 'asc' }, take: 100, select: { id: true, title: true, course: true, courseId: true, dueDate: true, completed: true } }),
+      prisma.universityPlan.findMany({ where: { userId }, orderBy: { createdAt: 'desc' }, take: 100, select: { id: true, title: true, day: true, completed: true } }),
+      prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' }, take: 30, select: { id: true, name: true, mimeType: true, size: true, storageUrl: true, category: true, courseId: true, aiSummary: true, parseStatus: true, createdAt: true } }),
+      prisma.universitySchedule.findMany({ where: { userId }, orderBy: [{ weekday: 'asc' }, { startTime: 'asc' }], take: 200, select: { id: true, title: true, courseId: true, weekday: true, startTime: true, endTime: true, room: true, teacher: true } }),
     ]);
     res.json({ data: { courses, assignments, plans, files, schedules } });
   } catch (error) {
     console.error('[大学工作台]', error?.message || error);
     res.status(503).json({ error: { message: '大学工作台数据库结构尚未完成更新，请先执行 university_features 迁移', status: 503 } });
   }
+};
+
+
+export const getFiles = async (req, res) => {
+  const userId = uid(req);
+  const page = Math.max(1, Number(req.query.page) || 1);
+  const pageSize = Math.min(50, Math.max(1, Number(req.query.pageSize) || 20));
+  const [items, total] = await Promise.all([
+    prisma.universityFile.findMany({ where: { userId }, orderBy: { createdAt: 'desc' }, skip: (page - 1) * pageSize, take: pageSize, select: { id: true, name: true, mimeType: true, size: true, storageUrl: true, category: true, courseId: true, aiSummary: true, parseStatus: true, createdAt: true } }),
+    prisma.universityFile.count({ where: { userId } }),
+  ]);
+  res.json({ data: items, meta: { page, pageSize, total, pages: Math.ceil(total / pageSize) } });
 };
 
 export const createCourse = async (req, res) => {

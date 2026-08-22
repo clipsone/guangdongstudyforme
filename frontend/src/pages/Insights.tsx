@@ -4,7 +4,7 @@ import { useUser } from '@/hooks/useUser';
 import { diagnosticService } from '@/services/diagnosticService';
 import { weeklyReportService } from '@/services/weeklyReportService';
 import { statisticsService } from '@/services/statisticsService';
-import { LineTrendChart } from '@/components/Charts';
+import { LineTrendChart } from '@/components/LineTrendChart';
 import { fmtDate } from '@/utils/date';
 import type { Diagnostic, WeeklyReport } from '@/types';
 
